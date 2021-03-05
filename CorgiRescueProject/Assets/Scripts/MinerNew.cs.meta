@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 99dbe705ee6da264a885cc1867e40f73
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - dirtParticles: {fileID: 6310010033770557549, guid: 94cb80fb58e44db408f7e8ada366d17f, type: 3}
+  - diamondParticles: {fileID: 6310010033770557549, guid: 56e87180be5b65f45ba952b450c49ecb, type: 3}
+  - goldParticles: {fileID: 6310010033770557549, guid: 984ba32c59e702546a996a8ae36e818e, type: 3}
+  - silverParticles: {fileID: 6310010033770557549, guid: a87f23ef6da5bff4eaea8d87ef31e9da, type: 3}
+  - snowParticles: {fileID: 6310010033770557549, guid: e57a64a1a716f8f41afd317494eed7bc, type: 3}
+  - rockParticles: {fileID: 6310010033770557549, guid: 26d1cb29dd6205947b8c2f8b58f63827, type: 3}
+  - obsidianParticles: {fileID: 6310010033770557549, guid: 26d1cb29dd6205947b8c2f8b58f63827, type: 3}
+  - am: {instanceID: 0}
+  - pebble: {fileID: 5020420758543740405, guid: 0e3ff7031044bfb418f342415528e0bf, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
