@@ -134,6 +134,7 @@ public class playerMovement : MonoBehaviour
                 if (rb.velocity.magnitude > 0)
                 {
                     ChangeAnimationState("PlayerMove");
+                    ani.SetFloat("MoveSpeed", rb.velocity.magnitude / runsp);
                 }
                 else
                 {
@@ -162,7 +163,7 @@ public class playerMovement : MonoBehaviour
             if (!IceSlip)
             {
                 rb.velocity = new Vector2(0, 0);
-                if (!walkPressed)
+                if (!walkPressed && !mining)
                 {
                     rb.velocity = new Vector2(move.x * ps.moveSpeed, move.y * ps.moveSpeed);
                 }
