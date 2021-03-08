@@ -1885,11 +1885,11 @@ MonoBehaviour:
   GoldChance: 100
   SilverChance: 60
   SnekChance: 40
-  MoleChance: 40
-  BatChance: 40
+  MoleChance: 100
+  BatChance: 60
   MongChance: 40
-  BombyChance: 40
-  PebbleChance: 40
+  BombyChance: 60
+  PebbleChance: 60
   WoodCrateChance: 60
   MetalCrateChance: 400
   SpikeChance: 40

@@ -85,7 +85,17 @@ public class Damagable : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("PickupItems"))
             {
-                DoDamage(collision.gameObject);
+                if (SK)
+                {
+                    if (collision.gameObject.GetComponent<DamagesPlayer>().canHurt)
+                    {
+                        DoDamage(collision.gameObject);
+                    }
+                }
+                else
+                {
+                    DoDamage(collision.gameObject);
+                }
             }
         }
         if (Pick)
@@ -136,6 +146,7 @@ public class Damagable : MonoBehaviour
         }
         else
         {
+            print(collisionObj.name);
             cs.health -= collisionObj.GetComponent<DamageThisDoes>().damage;
             Instantiate(littleBlood, transform.position, Quaternion.identity);
             Anger();
