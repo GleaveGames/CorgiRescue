@@ -49,7 +49,7 @@ public class Menu : MonoBehaviour
     public void Fade()
     {
         //just reload agian for now
-        if (menuObjs[0] != null)
+        if (menuObjs.Length>0)
         {
             Time.timeScale = 0f;
             foreach (GameObject obj in menuObjs)

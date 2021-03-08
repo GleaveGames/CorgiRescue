@@ -246,8 +246,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   black: {fileID: 617757195}
-  retry: {fileID: 0}
+  menuObjs: []
   menu: 1
+  gameComplete: 0
 --- !u!95 &173389685
 Animator:
   serializedVersion: 3

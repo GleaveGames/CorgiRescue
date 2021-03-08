@@ -89,6 +89,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Walk"",
+                    ""type"": ""Button"",
+                    ""id"": ""d249e080-ed2d-4869-9e24-b0af41b5a495"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -260,7 +268,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""944e08cc-d4b6-46a7-a64c-70767d83369d"",
-                    ""path"": ""<Keyboard>/c"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -282,7 +290,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""66d26702-b690-4657-9a9f-223112c37884"",
-                    ""path"": ""<Keyboard>/z"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -326,7 +334,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""06a24508-dc76-4c88-b1b0-47141556532c"",
-                    ""path"": ""<Keyboard>/x"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -410,6 +418,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Debug"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""59ec57b2-c656-4f6e-aa8f-b4d951db263d"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -427,6 +446,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Game_Menu = m_Game.FindAction("Menu", throwIfNotFound: true);
         m_Game_Cheat = m_Game.FindAction("Cheat", throwIfNotFound: true);
         m_Game_Debug = m_Game.FindAction("Debug", throwIfNotFound: true);
+        m_Game_Walk = m_Game.FindAction("Walk", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -485,6 +505,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Game_Menu;
     private readonly InputAction m_Game_Cheat;
     private readonly InputAction m_Game_Debug;
+    private readonly InputAction m_Game_Walk;
     public struct GameActions
     {
         private @PlayerControls m_Wrapper;
@@ -498,6 +519,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Menu => m_Wrapper.m_Game_Menu;
         public InputAction @Cheat => m_Wrapper.m_Game_Cheat;
         public InputAction @Debug => m_Wrapper.m_Game_Debug;
+        public InputAction @Walk => m_Wrapper.m_Game_Walk;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -534,6 +556,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Debug.started -= m_Wrapper.m_GameActionsCallbackInterface.OnDebug;
                 @Debug.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnDebug;
                 @Debug.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnDebug;
+                @Walk.started -= m_Wrapper.m_GameActionsCallbackInterface.OnWalk;
+                @Walk.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnWalk;
+                @Walk.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnWalk;
             }
             m_Wrapper.m_GameActionsCallbackInterface = instance;
             if (instance != null)
@@ -565,6 +590,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Debug.started += instance.OnDebug;
                 @Debug.performed += instance.OnDebug;
                 @Debug.canceled += instance.OnDebug;
+                @Walk.started += instance.OnWalk;
+                @Walk.performed += instance.OnWalk;
+                @Walk.canceled += instance.OnWalk;
             }
         }
     }
@@ -580,5 +608,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnMenu(InputAction.CallbackContext context);
         void OnCheat(InputAction.CallbackContext context);
         void OnDebug(InputAction.CallbackContext context);
+        void OnWalk(InputAction.CallbackContext context);
     }
 }

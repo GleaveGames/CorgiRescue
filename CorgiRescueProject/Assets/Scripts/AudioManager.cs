@@ -21,7 +21,10 @@ public class AudioManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            FindObjectOfType<UI>().am = this;
+            if(FindObjectOfType<UI>() != null)
+            {
+                FindObjectOfType<UI>().am = this;
+            }
             PlayMusic("DirtTheme");
         }
         else

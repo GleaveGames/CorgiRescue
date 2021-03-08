@@ -96,7 +96,8 @@ public class SKPickUp : MonoBehaviour
             GameObject closestItem = itemsForPickUp[0];
             GameObject closestItem2 = itemsForPickUp[0];
             GameObject closestItem3 = itemsForPickUp[0];
-            float closestDistance = Vector2.Distance(transform.position, itemsForPickUp[0].transform.position);
+            float closestDistance = 99;
+            if (itemsForPickUp[0] != null) { closestDistance = Vector2.Distance(transform.position, itemsForPickUp[0].transform.position); }
             for (int i = 1; i < itemsForPickUp.Count; i++)
             {
                 if(itemsForPickUp[i] != null)

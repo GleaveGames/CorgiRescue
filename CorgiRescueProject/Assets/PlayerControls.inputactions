@@ -76,6 +76,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Walk",
+                    "type": "Button",
+                    "id": "d249e080-ed2d-4869-9e24-b0af41b5a495",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -247,7 +255,7 @@
                 {
                     "name": "",
                     "id": "944e08cc-d4b6-46a7-a64c-70767d83369d",
-                    "path": "<Keyboard>/c",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -269,7 +277,7 @@
                 {
                     "name": "",
                     "id": "66d26702-b690-4657-9a9f-223112c37884",
-                    "path": "<Keyboard>/z",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -313,7 +321,7 @@
                 {
                     "name": "",
                     "id": "06a24508-dc76-4c88-b1b0-47141556532c",
-                    "path": "<Keyboard>/x",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -395,6 +403,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Debug",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "59ec57b2-c656-4f6e-aa8f-b4d951db263d",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Walk",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

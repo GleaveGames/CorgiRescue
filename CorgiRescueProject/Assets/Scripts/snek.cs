@@ -27,6 +27,36 @@ public class snek : MonoBehaviour
         ani = GetComponent<Animator>();
     }
 
+    private IEnumerator Triggered()
+    {
+        triggered = true;
+        while(transform.localScale.x < 1.5)
+        {
+            transform.localScale = new Vector2(transform.localScale.x + 0.04f, transform.localScale.y + 0.04f);
+            yield return null;
+        }
+        while(transform.localScale.x > 1)
+        {
+            transform.localScale = new Vector2(transform.localScale.x - 0.04f, transform.localScale.y - 0.04f);
+            yield return null;
+        }
+        transform.localScale = new Vector2(1, 1);
+        while (Vector2.Distance(hit.point, transform.position) > 0.2)
+        {
+            if (!hissed)
+            {
+                StartCoroutine("Hiss");
+                hissed = true;
+            }
+            transform.position = Vector2.MoveTowards(transform.position, hit.point, speed * Time.deltaTime);
+            ChangeAnimationState("Snek");
+            yield return null;
+        }
+        transform.rotation = Quaternion.identity;
+        ChangeAnimationState("snekIdle");
+        triggered = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -37,61 +67,42 @@ public class snek : MonoBehaviour
         //
         if (!triggered)
         {
-            RaycastHit2D closestHitR = ClosestRaycast(transform.right);
+            RaycastHit2D closestHitR = ClosestRaycast(Vector2.right);
             if (closestHitR.collider.gameObject.CompareTag("Player"))
             {
+                print("right");
                 transform.rotation = Quaternion.Euler(0, 0, 0);
-                hit = closestHitR;
-                triggered = true;
+                hit = ClosestWall(Vector2.right);
+                StartCoroutine("Triggered");
             }
             //
-            RaycastHit2D closestHitL = ClosestRaycast(-transform.right);
+            RaycastHit2D closestHitL = ClosestRaycast(-Vector2.right);
             if (closestHitL.collider.gameObject.CompareTag("Player"))
             {
+                print("left");
                 transform.rotation = Quaternion.Euler(0, 0, 180);
-                hit = closestHitL;
-                triggered = true;
+                hit = ClosestWall(-Vector2.right);
+                StartCoroutine("Triggered");
             }
             //
-            RaycastHit2D closestHitU = ClosestRaycast(transform.up);
+            RaycastHit2D closestHitU = ClosestRaycast(Vector2.up);
             if (closestHitU.collider.gameObject.CompareTag("Player"))
             {
+                print("up");
                 transform.rotation = Quaternion.Euler(0, 0, 90);
-                hit = closestHitU;
-                triggered = true;
+                hit = ClosestWall(Vector2.up);
+                StartCoroutine("Triggered");
             }
             //
-            RaycastHit2D closestHitD = ClosestRaycast(-transform.up);
+            RaycastHit2D closestHitD = ClosestRaycast(-Vector2.up);
             if (closestHitD.collider.gameObject.CompareTag("Player"))
             {
+                print("down");
                 transform.rotation = Quaternion.Euler(0, 0, 270);
-                hit = closestHitD;
-                triggered = true;
+                hit = ClosestWall(-Vector2.up);
+                StartCoroutine("Triggered");
             }
-        }        
-        //
-        else
-        {
-            if(Vector2.Distance(hit.point, transform.position) > 0.2)
-            {
-                if (!hissed)
-                {
-                    StartCoroutine("Hiss");
-                    hissed = true;
-                }
-                transform.position = Vector2.MoveTowards(transform.position, hit.point, speed*Time.deltaTime);
-                ChangeAnimationState("Snek");
-               
-            }
-            else
-            {
-                transform.rotation = Quaternion.identity;
-                
-                ChangeAnimationState("snekIdle");
-       
-                triggered = false;
-            }
-        }       
+        }            
     }
     void ChangeAnimationState(string newState)
     {
@@ -109,11 +120,26 @@ public class snek : MonoBehaviour
 
     private RaycastHit2D ClosestRaycast(Vector2 direction)
     {
-        RaycastHit2D[] hitright = Physics2D.RaycastAll(transform.position, direction);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, direction);
         RaycastHit2D closestValidHit = new RaycastHit2D();
-        foreach (RaycastHit2D hit in hitright)
+        foreach (RaycastHit2D hit in hits)
         {
             if (hit.transform.gameObject != gameObject && (closestValidHit.collider == null || closestValidHit.distance > hit.distance))
+            {
+                closestValidHit = hit;
+            }
+        }
+        return closestValidHit;
+    }
+
+    private RaycastHit2D ClosestWall(Vector2 direction)
+    {
+        RaycastHit2D[] hitswall = Physics2D.RaycastAll(transform.position, direction);
+        RaycastHit2D closestValidHit = new RaycastHit2D();
+        Debug.DrawRay(transform.position, direction);
+        foreach (RaycastHit2D hit in hitswall)
+        {
+            if ((hit.transform.gameObject.tag == "Wall" | hit.transform.gameObject.tag == "Obsidian" | hit.transform.gameObject.tag == "Rock") && (closestValidHit.collider == null || closestValidHit.distance > hit.distance))
             {
                 closestValidHit = hit;
             }

@@ -43,6 +43,8 @@ public class playerMovement : MonoBehaviour
     [Range(0,1)]
     private float SlipFactor;
     private bool minePressed;
+    private bool walkPressed;
+    private float walkSpeed = 1.6f;
 
     private void Awake()
     {
@@ -50,6 +52,8 @@ public class playerMovement : MonoBehaviour
         pc.Game.Bomb.performed += _ => Bomb();
         pc.Game.Mine.started += _ => TriggerMine();
         pc.Game.Mine.canceled += _ => StopMine();
+        pc.Game.Walk.started += _ => TriggerWalk();
+        pc.Game.Walk.canceled += _ => StopWalk();
         pc.Game.Cheat.performed += _ => Cheat();
         pc.Game.Debug.performed += _ => Debug();
         am = FindObjectOfType<AudioManager>();
@@ -75,6 +79,14 @@ public class playerMovement : MonoBehaviour
     private void StopMine()
     {
         minePressed = false;
+    }
+    private void TriggerWalk()
+    {
+        walkPressed = true;
+    }
+    private void StopWalk()
+    {
+        walkPressed = false;
     }
 
 
@@ -150,7 +162,14 @@ public class playerMovement : MonoBehaviour
             if (!IceSlip)
             {
                 rb.velocity = new Vector2(0, 0);
-                rb.velocity = new Vector2(move.x * ps.moveSpeed, move.y * ps.moveSpeed);
+                if (!walkPressed)
+                {
+                    rb.velocity = new Vector2(move.x * ps.moveSpeed, move.y * ps.moveSpeed);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(move.x * walkSpeed, move.y * walkSpeed);
+                }
             }
             else
             {
