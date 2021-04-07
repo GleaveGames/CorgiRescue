@@ -55,7 +55,7 @@ public class playerMovement : MonoBehaviour
         pc.Game.Walk.started += _ => TriggerWalk();
         pc.Game.Walk.canceled += _ => StopWalk();
         pc.Game.Cheat.performed += _ => Cheat();
-        pc.Game.Debug.performed += _ => Debug();
+        pc.Game.Debug.performed += _ => Debugg();
         am = FindObjectOfType<AudioManager>();
     }
 
@@ -242,14 +242,13 @@ public class playerMovement : MonoBehaviour
     public void MineCool()
     {
         StartCoroutine("MiningCool");
-        canMine = true;
     }
 
     public void Cheat()
     {
         ps.health += 1;
     }
-    public void Debug()
+    public void Debugg()
     {
         if (GetComponent<DebugStuff.Debugger>().enabled)
         {
@@ -301,9 +300,10 @@ public class playerMovement : MonoBehaviour
     {
         if (canMine)
         {
+            Debug.Log("mine");
+            canMine = false;
             am.Play("Swing", transform.position);
             ChangeAnimationState("Mine");
-            canMine = false;
             mining = true;
             StartCoroutine("MiningCool");
         }        
@@ -314,6 +314,10 @@ public class playerMovement : MonoBehaviour
     public void ChangeAnimationState(string newState)
     {
         if (currentState == "Death") return;
+        if(currentState == "Mine")
+        {
+            ani.Play("Mine", -1, 0f);
+        }
         if (currentState == newState) return;
 
         ani.Play(newState);

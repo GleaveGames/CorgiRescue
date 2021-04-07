@@ -62,7 +62,7 @@ public class PassivePickup : MonoBehaviour
             {
                 RemoveFromList("GoldPick", ps.itemsForSale);
                 ps.miningSpeed = 0.4f;
-                player.GetComponent<playerMovement>().miningSpeed = 0.4f;
+                player.GetComponent<playerMovement>().miningSpeed = 0.8f;
                 //player.transform.GetChild(0).Find("pickaxe").gameObject.GetComponent<SpriteRenderer>().sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
                 invent.GetComponent<Inventory>().NewItem(gameObject.GetComponent<SpriteRenderer>().sprite);
                 am.Play("PickUp", transform.position);
@@ -72,7 +72,7 @@ public class PassivePickup : MonoBehaviour
                 RemoveFromList("DiamondPick", ps.itemsForSale);
                 RemoveFromList("GoldPick", ps.itemsForSale);
                 ps.miningSpeed = 0.2f;
-                player.GetComponent<playerMovement>().miningSpeed = 0.2f;
+                player.GetComponent<playerMovement>().miningSpeed = 0.6f;
                 //player.transform.GetChild(0).Find("pickaxe").gameObject.GetComponent<SpriteRenderer>().sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
                 invent.GetComponent<Inventory>().NewItem(gameObject.GetComponent<SpriteRenderer>().sprite);
                 am.Play("PickUp", transform.position);

@@ -44,12 +44,12 @@ GameObject:
   - component: {fileID: 1435047480065279769}
   - component: {fileID: 3761311232210427126}
   - component: {fileID: 7249542480218401027}
-  - component: {fileID: 3677100256628343161}
   - component: {fileID: 8467640212453393434}
-  - component: {fileID: 5500939399418359778}
   - component: {fileID: 666829808194364853}
   - component: {fileID: 4802225057804522137}
   - component: {fileID: 1890683344782889687}
+  - component: {fileID: 6543550002514370852}
+  - component: {fileID: 2698052851078726523}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: PickupItems
@@ -192,25 +192,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &3677100256628343161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5020420758543740405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d8aa628b6065cf46b78979e90d5934c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trigger: 0
-  damage: 0
-  canHurt: 1
-  knockbackTime: 1
-  destroyOnCollision: 0
-  collisionParticles: {fileID: 0}
-  canHurtPlayer: 0
 --- !u!82 &8467640212453393434
 AudioSource:
   m_ObjectHideFlags: 0
@@ -307,20 +288,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5500939399418359778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5020420758543740405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6c8a87603030ef47a316185a91b87aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
-  initialDamage: 0
 --- !u!114 &666829808194364853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,7 +315,7 @@ MonoBehaviour:
   - {x: -0.2723484, y: 0.054485798, z: 0}
   m_ShapePathHash: -879828739
   m_Mesh: {fileID: 0}
-  m_InstanceId: 75672
+  m_InstanceId: 38324
 --- !u!114 &4802225057804522137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,3 +355,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7868862, y: 0.23484683}
   m_EdgeRadius: 0
+--- !u!114 &6543550002514370852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5020420758543740405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d8aa628b6065cf46b78979e90d5934c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger: 0
+  damage: 0
+  canHurt: 0
+  knockbackTime: 1
+  destroyOnCollision: 0
+  collisionParticles: {fileID: 0}
+  canHurtPlayer: 1
+--- !u!114 &2698052851078726523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5020420758543740405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6c8a87603030ef47a316185a91b87aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  initialDamage: 0

@@ -34,7 +34,7 @@ public class DamagesPlayer : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (canHurt)
-        {
+        { 
             if (canHurtPlayer)
             {
                 if (collision.gameObject.CompareTag("Player"))

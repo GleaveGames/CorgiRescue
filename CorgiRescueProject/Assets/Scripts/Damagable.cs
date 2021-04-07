@@ -69,7 +69,16 @@ public class Damagable : MonoBehaviour
             {
                 DoDamage(collision.gameObject);
             }
-        }        
+        }
+
+        //JUST ADDED THIS SO THAT YOU CAN'T BUM RUSH SK 
+        if (collision.gameObject.CompareTag("SK"))
+        {
+            if (collision.gameObject.GetComponent<SKMovement>().angered)
+            {
+                DoDamage(collision.gameObject);
+            }
+        }
     }
     
     private void OnTriggerEnter2D(Collider2D collision)
@@ -118,13 +127,19 @@ public class Damagable : MonoBehaviour
             {
                 DoDamage(collision.gameObject);
             }
-        }        
+        } 
+        
     }
 
-    private void Anger()
+    private void Anger(GameObject target)
     {
         if (SK)
         {
+            if (target.CompareTag("Pick"))
+            {
+                target = target.transform.root.gameObject;
+            }
+            GetComponent<SKMovement>().target = target; 
             GetComponent<SKMovement>().angered = true;
             GetComponent<SKPickUp>().Drop();
         }
@@ -149,8 +164,7 @@ public class Damagable : MonoBehaviour
             print(collisionObj.name);
             cs.health -= collisionObj.GetComponent<DamageThisDoes>().damage;
             Instantiate(littleBlood, transform.position, Quaternion.identity);
-            Anger();
+            Anger(collisionObj);
         }
-        
     }
 }

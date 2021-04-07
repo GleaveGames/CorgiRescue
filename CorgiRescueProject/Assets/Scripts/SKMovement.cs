@@ -77,7 +77,6 @@ public class SKMovement : MonoBehaviour
                         pickup.item.GetComponent<DamagesPlayer>().canHurt = false;
                         Quaternion itemrot = Quaternion.LookRotation(transform.forward, -transform.right);
                         pickup.item.transform.rotation = itemrot;
-
                         //skm.findNewItem = false;
                     }
                 }
@@ -115,42 +114,60 @@ public class SKMovement : MonoBehaviour
             {
                 runsp = angeredspeed;
                 ani.speed = 1;
-                GetTarget();
+                //GetTarget();
                 //Debug.Log(target.name);
                 if (target != null)
                 {
                     FaceTarget();
-                    if(Vector2.Distance(transform.position, target.transform.position) < 1)
+                    if (!CheckLOS())
                     {
-                        transform.position = Vector2.MoveTowards(transform.position, 2 * transform.position - target.transform.position, runsp * Time.deltaTime);
-                    }
-                    else if (Vector2.Distance(transform.position, target.transform.position) > 3)
-                    {
-                        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, runsp * Time.deltaTime);
-                    }
-                    if (pickup.item.TryGetComponent(out shotgun Gun))
-                    {
-                        Gun.Fire();
-                    }
-                    else if (pickup.item.TryGetComponent(out Boomerang Boom))
-                    {
-                        Boom.Fire();
-                        StartCoroutine("WaitAfterThrow");
-                        findNewItem = false;
+                        RandomlyMove();
                     }
                     else
                     {
-                        pickup.ThrowItem();
-                        StartCoroutine("WaitAfterThrow");
-                        findNewItem = false;
+                        if (Vector2.Distance(transform.position, target.transform.position) < 2)
+                        {
+                            transform.position = Vector2.MoveTowards(transform.position, 2 * transform.position - target.transform.position, runsp * Time.deltaTime);
+                        }
+                        else if (Vector2.Distance(transform.position, target.transform.position) > 4)
+                        {
+                            transform.position = Vector2.MoveTowards(transform.position, target.transform.position, runsp * Time.deltaTime);
+                        }
+                        if (pickup.item.TryGetComponent(out shotgun Gun))
+                        {
+                            Gun.Fire();
+                        }
+                        else if (pickup.item.TryGetComponent(out Boomerang Boom))
+                        {
+                            Boom.Fire();
+                            StartCoroutine("WaitAfterThrow");
+                            findNewItem = false;
+                        }
+                        else
+                        {
+                            pickup.ThrowItem();
+                            StartCoroutine("WaitAfterThrow");
+                            findNewItem = false;
+                        }
                     }
                 }
                 else
                 {
-                    RandomlyMove();                    
+                    angered = false;                    
                 }
             }
         }     
+    }
+
+    private bool CheckLOS()
+    {
+        bool canSeeTarget = false;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, target.transform.position - transform.position, viewRange);
+        if(hit.collider.gameObject == target)
+        {
+            canSeeTarget = true;
+        }
+        return canSeeTarget;
     }
 
     void ChangeAnimationState(string newState)

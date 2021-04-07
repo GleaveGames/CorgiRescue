@@ -82,8 +82,8 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Swing
-    clip: {fileID: 8300000, guid: 815c734d4f1332847b407610a19609b5, type: 3}
-    volume: 0.322
+    clip: {fileID: 8300000, guid: 69b6f1e5336a3914e8a3d62c35082526, type: 3}
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
