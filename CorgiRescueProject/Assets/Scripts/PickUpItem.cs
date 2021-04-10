@@ -81,7 +81,11 @@ public class PickUpItem : MonoBehaviour
         }
         am.Play("PickUp", transform.position);
         leftHand = lH;
-        cc.isTrigger = true;
+
+        //cc.isTrigger = true;
+        // need to disable collider and re-enable because otherwise you can just run into enemies with a weapon and it will kill them
+        cc.enabled = false;
+        
         transform.position = lH.position;
         transform.parent = lH;
         rb.isKinematic = true;
@@ -105,7 +109,10 @@ public class PickUpItem : MonoBehaviour
         transform.parent = null;
         rb.isKinematic = false;
         rb.AddForce(leftHand.parent.up*throwPower, ForceMode2D.Impulse);
-        cc.isTrigger = false;
+        //cc.isTrigger = false;
+        //re-enable cc;
+        cc.enabled = true;
+
         //SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetActiveScene());
         lg.itemsForPickUp.Add(gameObject);
     }
