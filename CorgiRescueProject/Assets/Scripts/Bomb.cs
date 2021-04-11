@@ -14,6 +14,12 @@ public class Bomb : MonoBehaviour
     private cameraoptions co;
     public bool canBreakCreates = false;
     private LevelGenerator lg;
+    [SerializeField]
+    private Sprite decalsprite;
+    [SerializeField]
+    private int sortinglayerforDecal = -8;
+    Coroutine coroutine;
+
 
     private void Start()
     {
@@ -25,7 +31,16 @@ public class Bomb : MonoBehaviour
     }
     public void DestroyFromAni()
     {
-        Destroy(gameObject);
+        GameObject decal = new GameObject("BombDecal");
+        decal.AddComponent<SpriteRenderer>();
+        decal.transform.position = transform.position;
+        decal.GetComponent<SpriteRenderer>().sprite = decalsprite;
+        decal.GetComponent<SpriteRenderer>().sortingOrder = sortinglayerforDecal;
+        Color tmp = decal.GetComponent<SpriteRenderer>().color;
+        //tmp.a = 0.5f;
+        tmp.a = 0;
+        decal.GetComponent<SpriteRenderer>().color = tmp;
+        StartCoroutine(FadeIn(decal));
     }
 
     public void ExplosionSound()
@@ -65,4 +80,15 @@ public class Bomb : MonoBehaviour
         }
     }
 
+    private IEnumerator FadeIn(GameObject decal) 
+    {
+        while (decal.GetComponent<SpriteRenderer>().color.a < 0.6f) 
+        {
+            Color tmp = decal.GetComponent<SpriteRenderer>().color;
+            tmp.a += 0.05f;
+            decal.GetComponent<SpriteRenderer>().color = tmp;
+            yield return null;
+        }
+        Destroy(gameObject);
+    }
 }

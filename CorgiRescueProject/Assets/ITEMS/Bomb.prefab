@@ -178,6 +178,8 @@ MonoBehaviour:
   bombPushForce: 10
   explosionParticles: {fileID: 5632759806284379778, guid: 8146ac1eb0c49c84bad61456664f0b20, type: 3}
   canBreakCreates: 0
+  decalsprite: {fileID: 21300000, guid: e94dfb3dade1cd445958c8e51ba93694, type: 3}
+  sortinglayerforDecal: -8
 --- !u!114 &8200399939212217065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,7 +371,7 @@ MonoBehaviour:
   - {x: -0.28731337, y: 0.010089253, z: 0}
   m_ShapePathHash: 543634639
   m_Mesh: {fileID: 0}
-  m_InstanceId: 38414
+  m_InstanceId: 70158
 --- !u!114 &8841328252463168419
 MonoBehaviour:
   m_ObjectHideFlags: 0
