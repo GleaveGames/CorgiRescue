@@ -1,0 +1,604 @@
+fileFormatVersion: 2
+guid: 62e81c7923706a4498dbb320385aa8ab
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3049630353786785849
+    second: DirtTiles_0
+  - first:
+      213: -5856970931966116627
+    second: DirtTiles_1
+  - first:
+      213: -3821624720197457920
+    second: DirtTiles_2
+  - first:
+      213: 7910808362646633891
+    second: DirtTiles_3
+  - first:
+      213: 7255126837190009495
+    second: DirtTiles_4
+  - first:
+      213: -9046873170354391938
+    second: DirtTiles_5
+  - first:
+      213: -1287359217567520875
+    second: DirtTiles_6
+  - first:
+      213: -676165628585776795
+    second: DirtTiles_7
+  - first:
+      213: -4736997259760077381
+    second: DirtTiles_8
+  - first:
+      213: -7847902961056982144
+    second: DirtTiles_9
+  - first:
+      213: 1801508169391956272
+    second: DirtTiles_10
+  - first:
+      213: 4417842103981365104
+    second: DirtTiles_11
+  - first:
+      213: -6536475633307553873
+    second: DirtTiles_12
+  - first:
+      213: -8784942632082378787
+    second: DirtTiles_13
+  - first:
+      213: 8573578606068105151
+    second: DirtTiles_14
+  - first:
+      213: 3971415906363185480
+    second: DirtTiles_0
+  - first:
+      213: -6187467093816101102
+    second: DirtTiles_1
+  - first:
+      213: 8448196048953018620
+    second: DirtTiles_2
+  - first:
+      213: -1261455476225327593
+    second: DirtTiles_3
+  - first:
+      213: 4039814624342984093
+    second: DirtTiles_4
+  - first:
+      213: 6052608904529315238
+    second: DirtTiles_5
+  - first:
+      213: -3521972584493213983
+    second: DirtTiles_6
+  - first:
+      213: -2670224331614875993
+    second: DirtTiles_7
+  - first:
+      213: -3384930620507138426
+    second: DirtTiles_8
+  - first:
+      213: 8899171975916240905
+    second: DirtTiles_9
+  - first:
+      213: 8566616645673343521
+    second: DirtTiles_10
+  - first:
+      213: 8918353350542544014
+    second: DirtTiles_11
+  - first:
+      213: -686507251369826570
+    second: DirtTiles_12
+  - first:
+      213: -1436830199935685759
+    second: DirtTiles_13
+  - first:
+      213: 3408051901212870224
+    second: DirtTiles_14
+  - first:
+      213: -314502821791230087
+    second: DirtTiles_15
+  - first:
+      213: -363981355574240044
+    second: DirtTiles_16
+  - first:
+      213: 2530832368668026754
+    second: DirtTiles_17
+  - first:
+      213: -7877739694077190975
+    second: DirtTiles_18
+  - first:
+      213: 8285221219677715394
+    second: DirtTiles_19
+  - first:
+      213: 6258066550000125098
+    second: DirtTiles_20
+  - first:
+      213: 7352428557436842409
+    second: DirtTiles_21
+  - first:
+      213: -4107223424941114867
+    second: DirtTiles_22
+  - first:
+      213: -6838982628412638668
+    second: DirtTiles_23
+  - first:
+      213: -8022124745786496275
+    second: DirtTiles_24
+  - first:
+      213: 6503954077186974284
+    second: DirtTiles_25
+  - first:
+      213: 8626809035302736576
+    second: DirtTiles_26
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: DirtTiles_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 480
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8491d12b9bd4d1730800000000000000
+      internalID: 3971415906363185480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DirtTiles_1
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 480
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2173ca5f573b12aa0800000000000000
+      internalID: -6187467093816101102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DirtTiles_2
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 480
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf804bacb850e3570800000000000000
+      internalID: 8448196048953018620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DirtTiles_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71e3e978de86e7ee0800000000000000
+      internalID: -1261455476225327593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DirtTiles_4
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 384
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d95446a3ffd401830800000000000000
+      internalID: 4039814624342984093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DirtTiles_5
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 384
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a506d60bbf2ff350800000000000000
+      internalID: 6052608904529315238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DirtTiles_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e61e9838907f1fc0800000000000000
+      internalID: -3521972584493213983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DirtTiles_7
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 288
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ae8d7b2e1571fad0800000000000000
+      internalID: -2670224331614875993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DirtTiles_8
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 288
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6865457e88f4601d0800000000000000
+      internalID: -3384930620507138426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DirtTiles_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 900499323c5308b70800000000000000
+      internalID: 8899171975916240905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DirtTiles_10
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12ade4c837cb2e670800000000000000
+      internalID: 8566616645673343521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DirtTiles_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8cc080fe1b54cb70800000000000000
+      internalID: 8918353350542544014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DirtTiles_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f62f5aca490976f0800000000000000
+      internalID: -686507251369826570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DirtTiles_13
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18ba74abb8a5f0ce0800000000000000
+      internalID: -1436830199935685759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DirtTiles_14
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05643e3c525db4f20800000000000000
+      internalID: 3408051901212870224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DirtTiles_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97796429959a2abf0800000000000000
+      internalID: -314502821791230087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
