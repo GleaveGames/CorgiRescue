@@ -1968,9 +1968,9 @@ MonoBehaviour:
   - {fileID: 3331172430760222196, guid: b6092f29c974ba94086a3b0f45388a40, type: 3}
   player: {fileID: 3331172430760222196, guid: b6092f29c974ba94086a3b0f45388a40, type: 3}
   creature: {fileID: 7471924862020509344, guid: 3cd614f158472e640875b05f44363e5c, type: 3}
-  DirtRule: {fileID: 11400000, guid: 7ec54d64cce94c840b5fe07e1b5d6b99, type: 2}
+  DirtRule: {fileID: 11400000, guid: 76e629b9f7a4c97408dadb5305788b14, type: 2}
   SnowRule: {fileID: 11400000, guid: 4246fd359d8293249bc4aaacd72f932b, type: 2}
-  RockRule: {fileID: 11400000, guid: 17e249926ea380d44bc313f4ccce78c3, type: 2}
+  RockRule: {fileID: 11400000, guid: 80653559c2964064bac92ae4d9137ce1, type: 2}
   ObsidianRule: {fileID: 11400000, guid: b713a4b1599458f42ad5ef95f10ed730, type: 2}
   Wood: {fileID: 11400000, guid: 985361838a8472a4d83302df641ecf1b, type: 2}
   Diamond: {fileID: 11400000, guid: 23375434330a09540897702409fa05b8, type: 2}
