@@ -1945,6 +1945,7 @@ MonoBehaviour:
   - name: Shop
     rooms:
     - {fileID: 4174694867535851666, guid: da84274a5f9eff24ca89aba49e262de4, type: 3}
+    - {fileID: 4174694867535851666, guid: 900f08a9940b1834bab12c68a8879d07, type: 3}
   - name: Locked
     rooms:
     - {fileID: 4174694867535851666, guid: 16eeeb84d66930840beae866b671a030, type: 3}
