@@ -309,7 +309,7 @@ MonoBehaviour:
   creature: {fileID: 7471924862020509344, guid: 3cd614f158472e640875b05f44363e5c, type: 3}
   DirtRule: {fileID: 11400000, guid: 0acf6ffc583085a429a2e91109ae587a, type: 2}
   SnowRule: {fileID: 11400000, guid: 4246fd359d8293249bc4aaacd72f932b, type: 2}
-  RockRule: {fileID: 11400000, guid: 474d54790ca501b488cbf196c27d778b, type: 2}
+  RockRule: {fileID: 11400000, guid: 80653559c2964064bac92ae4d9137ce1, type: 2}
   ObsidianRule: {fileID: 11400000, guid: 9687cd4521aa64548b46b67d74c688cb, type: 2}
   Wood: {fileID: 11400000, guid: 985361838a8472a4d83302df641ecf1b, type: 2}
   Diamond: {fileID: 11400000, guid: 23375434330a09540897702409fa05b8, type: 2}

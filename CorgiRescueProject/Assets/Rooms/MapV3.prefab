@@ -390,11 +390,11 @@ MonoBehaviour:
   - {fileID: 3331172430760222196, guid: b6092f29c974ba94086a3b0f45388a40, type: 3}
   player: {fileID: 3331172430760222196, guid: b6092f29c974ba94086a3b0f45388a40, type: 3}
   creature: {fileID: 7471924862020509344, guid: 3cd614f158472e640875b05f44363e5c, type: 3}
-  DirtRule: {fileID: 11400000, guid: 0acf6ffc583085a429a2e91109ae587a, type: 2}
-  SnowRule: {fileID: 11400000, guid: 4246fd359d8293249bc4aaacd72f932b, type: 2}
-  RockRule: {fileID: 11400000, guid: 5bd8f07808634904887b35e79add700e, type: 2}
-  ObsidianRule: {fileID: 11400000, guid: 9687cd4521aa64548b46b67d74c688cb, type: 2}
-  Wood: {fileID: 11400000, guid: 985361838a8472a4d83302df641ecf1b, type: 2}
+  DirtRule: {fileID: 11400000, guid: 76e629b9f7a4c97408dadb5305788b14, type: 2}
+  SnowRule: {fileID: 11400000, guid: 3a660ea49740d904c8d60f374403e86c, type: 2}
+  RockRule: {fileID: 11400000, guid: 80653559c2964064bac92ae4d9137ce1, type: 2}
+  ObsidianRule: {fileID: 11400000, guid: b713a4b1599458f42ad5ef95f10ed730, type: 2}
+  Wood: {fileID: 11400000, guid: d5eacbc1dab398149bcd5009d3593055, type: 2}
   Diamond: {fileID: 11400000, guid: 23375434330a09540897702409fa05b8, type: 2}
   DiamondRock: {fileID: 11400000, guid: 53ece13bd79bfb441bc7e60da5515867, type: 2}
   Gold: {fileID: 11400000, guid: 13d0260f98c00f042bfbf9eba385cd7f, type: 2}

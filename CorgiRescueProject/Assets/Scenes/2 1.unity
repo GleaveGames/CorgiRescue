@@ -191,6 +191,8 @@ MonoBehaviour:
   goalsize: 8
   changesize: 1
   goalPos: {x: 0, y: 0, z: 0}
+  boss: 0
+  bosspos: {fileID: 0}
   shakeDuration: 0
   shakeAmount: 0.1
   decreaseFactor: 1
