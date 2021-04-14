@@ -1972,7 +1972,7 @@ MonoBehaviour:
   SnowRule: {fileID: 11400000, guid: 4246fd359d8293249bc4aaacd72f932b, type: 2}
   RockRule: {fileID: 11400000, guid: 80653559c2964064bac92ae4d9137ce1, type: 2}
   ObsidianRule: {fileID: 11400000, guid: b713a4b1599458f42ad5ef95f10ed730, type: 2}
-  Wood: {fileID: 11400000, guid: 985361838a8472a4d83302df641ecf1b, type: 2}
+  Wood: {fileID: 11400000, guid: 3a660ea49740d904c8d60f374403e86c, type: 2}
   Diamond: {fileID: 11400000, guid: 23375434330a09540897702409fa05b8, type: 2}
   DiamondRock: {fileID: 11400000, guid: 53ece13bd79bfb441bc7e60da5515867, type: 2}
   Gold: {fileID: 11400000, guid: 13d0260f98c00f042bfbf9eba385cd7f, type: 2}
