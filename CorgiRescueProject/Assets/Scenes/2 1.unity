@@ -1308,6 +1308,10 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[157].second.m_TileSpriteIndex
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7297774964566304171, guid: f45bfe7515a610940ab628b639052ac6, type: 3}
+      propertyPath: sortinglayer
+      value: -11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f45bfe7515a610940ab628b639052ac6, type: 3}
 --- !u!1001 &5111698654414404711
