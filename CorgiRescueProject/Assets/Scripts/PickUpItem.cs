@@ -85,7 +85,6 @@ public class PickUpItem : MonoBehaviour
         //cc.isTrigger = true;
         // need to disable collider and re-enable because otherwise you can just run into enemies with a weapon and it will kill them
         cc.enabled = false;
-        
         transform.position = lH.position;
         transform.parent = lH;
         rb.isKinematic = true;

@@ -45,6 +45,7 @@ public class Bomb : MonoBehaviour
 
     public void ExplosionSound()
     {
+        GetComponent<CircleCollider2D>().enabled = true;
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
         GetComponent<CircleCollider2D>().isTrigger = false;
         lg.itemsForPickUp.Remove(gameObject);

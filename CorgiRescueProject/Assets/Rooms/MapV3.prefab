@@ -250,6 +250,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8645798382614024343}
   - component: {fileID: 8645798382614024336}
+  - component: {fileID: 5126475184097006445}
   m_Layer: 0
   m_Name: MapV3
   m_TagString: Map
@@ -419,6 +420,21 @@ MonoBehaviour:
   spikesEnabled: 1
   arrowTrap: {fileID: 9163807118315481332, guid: 850c048a53979534e9c17477f2e02e1b, type: 3}
   arrowTrapEnabled: 0
+--- !u!114 &5126475184097006445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8645798382614024341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47425285d05205f4ead4ed8f59c38ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bigbackgrounds:
+  - {fileID: 21300000, guid: c07e2af346046c04586021293f566a35, type: 3}
+  sortinglayer: -11
 --- !u!1 &8645798382649410466
 GameObject:
   m_ObjectHideFlags: 0
