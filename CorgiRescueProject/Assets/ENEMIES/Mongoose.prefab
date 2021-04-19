@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 800d4f8f00f81e74595d2cb5a07ec441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bloodParticles: {fileID: 6310010033770557549, guid: 7be9f23a949dabd4395ea7df6d1c745f, type: 3}
+  particles: {fileID: 0}
 --- !u!61 &1034608871510261604
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -93,8 +93,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d8aa628b6065cf46b78979e90d5934c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trigger: 0
   damage: 1
   canHurt: 1
+  knockbackTime: 0.6
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
   canHurtPlayer: 1
@@ -283,7 +285,7 @@ MonoBehaviour:
   - {x: -0.3866021, y: -0.2682043, z: 0}
   m_ShapePathHash: 1491342261
   m_Mesh: {fileID: 0}
-  m_InstanceId: 53702
+  m_InstanceId: 82844
 --- !u!114 &6151886795089866090
 MonoBehaviour:
   m_ObjectHideFlags: 0

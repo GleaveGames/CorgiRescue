@@ -26,7 +26,10 @@ public class Damagable : MonoBehaviour
     [SerializeField]
     private bool Bombs = true;
     [SerializeField]
-    private bool Traps = true;   
+    private bool Traps = true;
+    [SerializeField]
+    private GameObject Ducks;
+    Coroutine coroutine;
     
     private void Start()
     {
@@ -165,6 +168,36 @@ public class Damagable : MonoBehaviour
             cs.health -= collisionObj.GetComponent<DamageThisDoes>().damage;
             Instantiate(littleBlood, transform.position, Quaternion.identity);
             Anger(collisionObj);
+            StartCoroutine(Dizzy());
         }
+    }
+
+    private IEnumerator Dizzy()
+    {
+        GameObject ducko = Instantiate(Ducks, transform.position, Quaternion.identity);
+        ducko.transform.parent = transform;
+        GetComponent<Animator>().enabled = false;
+        if (mole)
+        {
+            GetComponent<Mole>().enabled = false;
+            yield return new WaitForSeconds(3);
+            GetComponent<Mole>().enabled = true;
+        }
+        else if (TryGetComponent(out snek s))
+        {
+            s.enabled = false;
+            transform.position = transform.position;
+            yield return new WaitForSeconds(3);
+            s.enabled = true; 
+        }
+        else if (TryGetComponent(out Bat b)) 
+        {
+            b.enabled = false;
+            transform.position = transform.position;
+            yield return new WaitForSeconds(3);
+            b.enabled = true;
+        }
+        GetComponent<Animator>().enabled = true;
+        Destroy(ducko);
     }
 }

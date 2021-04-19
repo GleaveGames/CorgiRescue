@@ -3,7 +3,9 @@ guid: 67b68ef7aa6f6de419cbb7f914a92409
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - littleBlood: {fileID: 1654121160770679037, guid: 58d437bff74a2aa4896badd67bce2666, type: 3}
+  - Ducks: {fileID: 4289145125382618942, guid: ea340eaea3e3bd54cbda0557e8fd7669, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
