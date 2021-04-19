@@ -54,7 +54,6 @@ public class PickUpItem : MonoBehaviour
                 if (!AmIBomb)
                 {
                     GetComponent<DamagesPlayer>().canHurt = false;
-                    GetComponent<DamageThisDoes>().damage = 0;
                 }
             }
             else

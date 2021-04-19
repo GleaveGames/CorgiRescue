@@ -344,6 +344,7 @@ MonoBehaviour:
   mining: 0
   IceSlip: 0
   SlipFactor: 0.03
+  Ducks: {fileID: 4289145125382618942, guid: ea340eaea3e3bd54cbda0557e8fd7669, type: 3}
 --- !u!50 &3331172430760222192
 Rigidbody2D:
   serializedVersion: 4

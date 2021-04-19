@@ -45,6 +45,8 @@ public class playerMovement : MonoBehaviour
     private bool minePressed;
     private bool walkPressed;
     private float walkSpeed = 1.6f;
+    [SerializeField]
+    private GameObject Ducks;
 
     private void Awake()
     {
@@ -151,6 +153,12 @@ public class playerMovement : MonoBehaviour
         {
             canMove = false;
             ChangeAnimationState("Death");
+            Color tmp = playersprites[0].color;
+            tmp.a = 1;
+            for (int j = 0; j < playersprites.Length; j++)
+            {
+                playersprites[j].color = tmp;
+            }
             FindObjectOfType<Menu>().Fade();
             //GetComponent<CircleCollider2D>().enabled = false;
         }
@@ -229,7 +237,10 @@ public class playerMovement : MonoBehaviour
     {
         rb.AddForce(knockbackForce, ForceMode2D.Impulse);
         canMove = false;
+        GameObject duckos = Instantiate(Ducks, transform.position, Quaternion.identity);
+        duckos.transform.parent = transform;
         yield return new WaitForSeconds(knockbackTime);
+        Destroy(duckos);
         canMove = true;
     }
 

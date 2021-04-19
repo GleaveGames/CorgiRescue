@@ -12,7 +12,7 @@ public class DamagesPlayer : MonoBehaviour
     public bool canHurt = true;
     private playerStats ps;
     [SerializeField]
-    private float knockbackTime = 1f;
+    private float knockbackTime = 0.6f;
 
     [Header("For Bullets")]
     [SerializeField]
@@ -28,7 +28,7 @@ public class DamagesPlayer : MonoBehaviour
         ps = FindObjectOfType<playerStats>();
         co = FindObjectOfType<cameraoptions>();
         //just setting knockback time here cus cba to do it for everything
-        knockbackTime = 1f;
+        knockbackTime = 0.6f;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
