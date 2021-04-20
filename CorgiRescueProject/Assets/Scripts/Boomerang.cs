@@ -50,6 +50,7 @@ public class Boomerang : MonoBehaviour
         GetComponent<DamagesPlayer>().canHurt = false;
         StartCoroutine("WaitforHurt");
         cc.isTrigger = false;
+        cc.enabled = true;
         rb.drag = 0.3f;
         fired = true;
         Transform leftHand = transform.parent;

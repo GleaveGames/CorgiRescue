@@ -15,6 +15,8 @@ public class Damagable : MonoBehaviour
     private bool bomby = false;
     [SerializeField]
     private ParticleSystem littleBlood;
+    [SerializeField]
+    private float stuntime = 3f;
 
     [Header("Damaged By: ")]
     [SerializeField]
@@ -176,28 +178,53 @@ public class Damagable : MonoBehaviour
     {
         GameObject ducko = Instantiate(Ducks, transform.position, Quaternion.identity);
         ducko.transform.parent = transform;
-        GetComponent<Animator>().enabled = false;
+        if (!SK) 
+        {
+            GetComponent<Animator>().enabled = false;
+        }
+        else 
+        {
+            transform.GetChild(0).GetComponent<Animator>().enabled = false;
+        }
         if (mole)
         {
             GetComponent<Mole>().enabled = false;
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(stuntime);
             GetComponent<Mole>().enabled = true;
         }
         else if (TryGetComponent(out snek s))
         {
             s.enabled = false;
-            transform.position = transform.position;
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(stuntime);
             s.enabled = true; 
         }
         else if (TryGetComponent(out Bat b)) 
         {
             b.enabled = false;
             transform.position = transform.position;
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(stuntime);
             b.enabled = true;
         }
-        GetComponent<Animator>().enabled = true;
+        else if(TryGetComponent(out Penguin pen))
+        {
+            pen.enabled = false;
+            yield return new WaitForSeconds(stuntime);
+            pen.enabled = true;
+        }
+        else if (SK) 
+        {
+            GetComponent<SKMovement>().canMove = false;
+            yield return new WaitForSeconds(stuntime);
+            GetComponent<SKMovement>().canMove = true;
+        }
+        if (!SK)
+        {
+            GetComponent<Animator>().enabled = true;
+        }
+        else
+        {
+            transform.GetChild(0).GetComponent<Animator>().enabled = true;
+        }
         Destroy(ducko);
     }
 }

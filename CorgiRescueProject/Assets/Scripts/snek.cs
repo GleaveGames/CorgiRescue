@@ -41,7 +41,7 @@ public class snek : MonoBehaviour
             yield return null;
         }
         transform.localScale = new Vector2(1, 1);
-        while (Vector2.Distance(hit.point, transform.position) > 0.2)
+        while (Vector2.Distance(hit.point, transform.position) > 0.2 && this.enabled)
         {
             if (!hissed)
             {

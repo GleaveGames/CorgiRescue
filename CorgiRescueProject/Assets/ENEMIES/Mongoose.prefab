@@ -117,11 +117,13 @@ MonoBehaviour:
   mong: 1
   bomby: 0
   littleBlood: {fileID: 1654121160770679037, guid: 58d437bff74a2aa4896badd67bce2666, type: 3}
+  stuntime: 3
   Living: 0
   PickUpItems: 1
   Pick: 1
   Bombs: 1
   Traps: 1
+  Ducks: {fileID: 4289145125382618942, guid: ea340eaea3e3bd54cbda0557e8fd7669, type: 3}
 --- !u!114 &4049540707256942621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,7 +287,7 @@ MonoBehaviour:
   - {x: -0.3866021, y: -0.2682043, z: 0}
   m_ShapePathHash: 1491342261
   m_Mesh: {fileID: 0}
-  m_InstanceId: 82844
+  m_InstanceId: 63224
 --- !u!114 &6151886795089866090
 MonoBehaviour:
   m_ObjectHideFlags: 0

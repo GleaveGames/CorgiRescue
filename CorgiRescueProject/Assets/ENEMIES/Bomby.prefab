@@ -141,8 +141,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d8aa628b6065cf46b78979e90d5934c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trigger: 0
   damage: 4
   canHurt: 0
+  knockbackTime: 0.6
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
   canHurtPlayer: 1
@@ -162,6 +164,8 @@ MonoBehaviour:
   bombPushForce: 10
   explosionParticles: {fileID: 5632759806284379778, guid: 8146ac1eb0c49c84bad61456664f0b20, type: 3}
   canBreakCreates: 0
+  decalsprite: {fileID: 0}
+  sortinglayerforDecal: -8
 --- !u!114 &7560542176409843728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0f04bfb71a00a34f803b32b8736a58f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pick: 0
+  tilemaps: []
   canMine: 0
   canBreakRock: 1
   canBreakObsidian: 0
@@ -186,6 +190,7 @@ MonoBehaviour:
   snowParticles: {fileID: 6310010033770557549, guid: e57a64a1a716f8f41afd317494eed7bc, type: 3}
   rockParticles: {fileID: 6310010033770557549, guid: 26d1cb29dd6205947b8c2f8b58f63827, type: 3}
   obsidianParticles: {fileID: 6310010033770557549, guid: 26d1cb29dd6205947b8c2f8b58f63827, type: 3}
+  iceParticles: {fileID: 0}
   diamondWorth: 1000
   goldWorth: 300
   silverWorth: 100
@@ -205,6 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throwPower: 10
   AmIBomb: 1
+  AmISword: 0
 --- !u!50 &7335320053887418911
 Rigidbody2D:
   serializedVersion: 4
@@ -351,6 +357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 4
+  initialDamage: 0
 --- !u!114 &5075143066011929031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,7 +387,7 @@ MonoBehaviour:
   - {x: -0.28731337, y: 0.010089253, z: 0}
   m_ShapePathHash: 543634639
   m_Mesh: {fileID: 0}
-  m_InstanceId: 45568
+  m_InstanceId: 63426
 --- !u!114 &8841328252463168419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,11 +418,13 @@ MonoBehaviour:
   mong: 0
   bomby: 1
   littleBlood: {fileID: 0}
+  stuntime: 3
   Living: 1
   PickUpItems: 1
   Pick: 1
   Bombs: 1
   Traps: 1
+  Ducks: {fileID: 4289145125382618942, guid: ea340eaea3e3bd54cbda0557e8fd7669, type: 3}
 --- !u!1001 &5707581593407633473
 PrefabInstance:
   m_ObjectHideFlags: 0

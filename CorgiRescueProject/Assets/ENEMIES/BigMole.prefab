@@ -4995,8 +4995,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d8aa628b6065cf46b78979e90d5934c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trigger: 0
   damage: 5
   canHurt: 1
+  knockbackTime: 0.6
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
   canHurtPlayer: 1
@@ -5012,7 +5014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0f04bfb71a00a34f803b32b8736a58f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pick: 1
+  tilemaps: []
   canMine: 1
   canBreakRock: 0
   canBreakObsidian: 0
@@ -5024,6 +5026,7 @@ MonoBehaviour:
   snowParticles: {fileID: 6310010033770557549, guid: e57a64a1a716f8f41afd317494eed7bc, type: 3}
   rockParticles: {fileID: 6310010033770557549, guid: 26d1cb29dd6205947b8c2f8b58f63827, type: 3}
   obsidianParticles: {fileID: 6310010033770557549, guid: 26d1cb29dd6205947b8c2f8b58f63827, type: 3}
+  iceParticles: {fileID: 0}
   diamondWorth: 0
   goldWorth: 0
   silverWorth: 0
@@ -5102,11 +5105,13 @@ MonoBehaviour:
   mong: 0
   bomby: 0
   littleBlood: {fileID: 1654121160770679037, guid: 58d437bff74a2aa4896badd67bce2666, type: 3}
+  stuntime: 3
   Living: 0
   PickUpItems: 1
   Pick: 1
   Bombs: 1
   Traps: 1
+  Ducks: {fileID: 4289145125382618942, guid: ea340eaea3e3bd54cbda0557e8fd7669, type: 3}
 --- !u!114 &6849332161571909667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5242,7 +5247,7 @@ MonoBehaviour:
   - {x: -0.38534164, y: 0.4270172, z: 0}
   m_ShapePathHash: -1923273035
   m_Mesh: {fileID: 0}
-  m_InstanceId: 53034
+  m_InstanceId: 63856
 --- !u!58 &2479714998033567524
 CircleCollider2D:
   m_ObjectHideFlags: 0

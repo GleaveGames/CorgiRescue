@@ -139,6 +139,16 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField]
     private bool arrowTrapEnabled;
     Coroutine coroutine;
+    private int[] rocks = new int[1452];
+    private int[] woods = new int[1452];
+    private int[] walls = new int[1452];
+    private int[] snows = new int[1452];
+    private int[] obsidians = new int[1452];
+    private int[] empties = new int[1452];
+
+
+
+
     void Start()
     {
         if (LV0)
@@ -191,10 +201,9 @@ public class LevelGenerator : MonoBehaviour
     private IEnumerator WaitAndMerge()
     {
         MergeTiles();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.4f);
         SetGemsandEms();
         player.GetComponent<playerMovement>().canMove = true;
-        player.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
         player.GetComponent<Rigidbody2D>().isKinematic = false;
         player.GetComponent<CircleCollider2D>().enabled = true;
     }
@@ -707,43 +716,8 @@ public class LevelGenerator : MonoBehaviour
         return result;
     }
 
-    
-
-    private void JumbleTiles()
-    {      
-        for (int i = 0; i < nodes.Length - 1; i++)
-        {
-            for(int children = 0; children < nodes[i].transform.GetChild(0).childCount; children++)
-            {
-                if (nodes[i].transform.GetChild(0).GetChild(children).gameObject.TryGetComponent(out Tilemap wall))
-                {
-                    BoundsInt bounds = wall.cellBounds;
-                    TileBase[] allTiles = wall.GetTilesBlock(bounds);
-
-                    for (int x = 0; x < bounds.size.x; x++)
-                    {
-                        for (int y = 0; y < bounds.size.y; y++)
-                        {
-                            TileBase tile = allTiles[x + y * bounds.size.x];
-                            if (tile != null)
-                            {
-                                Matrix4x4 matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(0f, 0f, (Random.Range(0, 4) * 90f)), Vector3.one);
-                                wall.SetTransformMatrix(new Vector3Int(x - 1, y - 10, 0), matrix);
-                            }
-                        }
-                    }
-                }
-            }                          
-        }              
-    }
-
     public void MergeTiles()
     {
-        int[] rocks = new int[3000];
-        int[] woods = new int[3000];
-        int[] walls = new int[3000];
-        int[] snows = new int[3000];
-        int[] obsidians = new int[3000];
         for (int i = 0; i < nodes.Length - 1; i++)
         {
             if(nodes[i].transform.childCount > 0)
@@ -901,63 +875,47 @@ public class LevelGenerator : MonoBehaviour
 
     public void GenerateKey()
     {
-        int numberOfSpots = 0;
+        StartCoroutine(KeyGenDelay());
+        Debug.Log("Key Spawning");
+    }
 
-        for (int i = 0; i < nodes.Length - 1; i++)
+    private IEnumerator KeyGenDelay() 
+    {
+        yield return new WaitForSeconds(0.8f);
+        //NEW METHOD
+        BoundsInt bounds = nodes[0].transform.GetChild(0).GetChild(0).gameObject.GetComponent<Tilemap>().cellBounds;
+        int sum = 0;
+        for (int z = 0; z < empties.Length; z++) 
         {
-            for (int children = 0; children < nodes[i].transform.GetChild(0).childCount; children++)
+            if (walls[z] == 0 && rocks[z] == 0 && snows[z] == 0 && obsidians[z] == 0 && woods[z] == 0) 
             {
-                if (nodes[i].transform.GetChild(0).GetChild(children).gameObject.TryGetComponent(out Tilemap wall))
-                {
-                    BoundsInt bounds = wall.cellBounds;
-                    TileBase[] allTiles = wall.GetTilesBlock(bounds);
-
-                    for (int x = 0; x < bounds.size.x; x++)
-                    {
-                        for (int y = 0; y < bounds.size.y; y++)
-                        {
-                            TileBase tile = allTiles[x + y * bounds.size.x];
-                            if (tile == null)
-                            {
-                                numberOfSpots += 1;
-                            }
-                        }
-                    }
-                }
+                empties[z] = 1;
+                sum++;
             }
-        }                            
-        int spot = Random.Range(0, numberOfSpots);
-        numberOfSpots = 0;
-        for (int i = 0; i < nodes.Length - 1; i++)
+        }
+        
+        int spot = Random.Range(0, sum);
+        int temp = 0;
+        for(int p = 0; p < empties.Length; p++)
         {
-            for (int children = 0; children < nodes[i].transform.GetChild(0).childCount; children++)
+            if (empties[p] == 1 ) 
             {
-                if (nodes[i].transform.GetChild(0).GetChild(children).gameObject.TryGetComponent(out Tilemap wall))
-                {
-                    BoundsInt bounds = wall.cellBounds;
-                    TileBase[] allTiles = wall.GetTilesBlock(bounds);
-
-                    for (int x = 0; x < bounds.size.x; x++)
-                    {
-                        for (int y = 0; y < bounds.size.y; y++)
-                        {
-                            TileBase tile = allTiles[x + y * bounds.size.x];
-                            if (tile == null)
-                            {
-                                numberOfSpots += 1;
-                                if (numberOfSpots == spot)
-                                {
-                                    Vector2 spawnpoint = wall.transform.position;
-                                    spawnpoint.x = spawnpoint.x + x - 0.5f;
-                                    spawnpoint.y = spawnpoint.y + y - 9.5f;
-                                    Instantiate(key, spawnpoint, Quaternion.identity);
-                                    return;
-                                }
-                            }
-                        }
-                    }
-                }
+                temp++;
             }
-        }        
+            if (temp == spot)
+            {
+                int i = p / 121;
+                Debug.Log(sum);
+                int y = (p % 121) / 11;
+                int x = (p % 121) % 11;
+                Vector2 spawnpoint = nodes[0].transform.GetChild(0).position;
+                spawnpoint.y -= 9.5f;
+                spawnpoint.x -= 0.5f;
+                spawnpoint.x += x + i % 3 * 11;
+                spawnpoint.y += y + i / 3 * 11;
+                Instantiate(key, spawnpoint, Quaternion.identity);
+                break;
+            }
+        }
     }
 }

@@ -189,6 +189,7 @@ MonoBehaviour:
   Pick: 1
   Bombs: 1
   Traps: 1
+  Ducks: {fileID: 4289145125382618942, guid: ea340eaea3e3bd54cbda0557e8fd7669, type: 3}
 --- !u!114 &7489622281295460452
 MonoBehaviour:
   m_ObjectHideFlags: 0
