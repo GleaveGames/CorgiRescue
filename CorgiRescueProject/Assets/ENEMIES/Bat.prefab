@@ -158,14 +158,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cddc4c497b16f6045b94ef091106ba8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swoopDist: 2
   IgnoreMe:
     serializedVersion: 2
     m_Bits: 512
   inSwarm: 0
   triggered: 0
-  speed: 2.5
+  speed: 2
   offset: -90
-  rotateTime: 2
+  rotateTime: 1
   coreBat: 0
 --- !u!114 &8400349444890393351
 MonoBehaviour:
@@ -184,6 +185,7 @@ MonoBehaviour:
   mong: 0
   bomby: 0
   littleBlood: {fileID: 1654121160770679037, guid: 58d437bff74a2aa4896badd67bce2666, type: 3}
+  stuntime: 3
   Living: 0
   PickUpItems: 1
   Pick: 1
@@ -339,7 +341,7 @@ MonoBehaviour:
   - {x: -0.50734544, y: -0.003279686, z: 0}
   m_ShapePathHash: 1116525385
   m_Mesh: {fileID: 0}
-  m_InstanceId: 54386
+  m_InstanceId: 107676
 --- !u!114 &2307276744979374918
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -166,7 +166,6 @@ public class Damagable : MonoBehaviour
         }
         else
         {
-            print(collisionObj.name);
             cs.health -= collisionObj.GetComponent<DamageThisDoes>().damage;
             Instantiate(littleBlood, transform.position, Quaternion.identity);
             Anger(collisionObj);
@@ -176,6 +175,13 @@ public class Damagable : MonoBehaviour
 
     private IEnumerator Dizzy()
     {
+        if (transform.childCount > 0)
+        {
+            if (transform.GetChild(transform.childCount-1).gameObject.name.Contains("Duck"))
+            {
+                yield break;
+            }
+        }
         GameObject ducko = Instantiate(Ducks, transform.position, Quaternion.identity);
         ducko.transform.parent = transform;
         if (!SK) 

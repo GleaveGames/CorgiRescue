@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Bat : MonoBehaviour
 {
+    [SerializeField]
+    private float swoopDist;
+    private bool swooping;
+    private bool swoopend;
+
     public LayerMask IgnoreMe;
     public bool inSwarm;
     private GameObject player;
@@ -24,6 +29,8 @@ public class Bat : MonoBehaviour
     [SerializeField]
     private bool coreBat;
     private Quaternion quaternion;
+    private Vector3 swooppos;
+    private Vector3 swooppos2;
 
     // Start is called before the first frame update
     void Start()
@@ -54,10 +61,59 @@ public class Bat : MonoBehaviour
                 player = GameObject.FindGameObjectWithTag("Player");
             }
             RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up);
-            if (hit.collider.tag == "Player")
+            if (hit.collider.CompareTag("Player"))
             {
                 triggered = true;
             }
+
+            if (triggered) 
+            {
+                if (Vector2.Distance(hit.point, transform.position) > 0.2)
+                {
+                    if (!swooping) 
+                    {
+                        if (Vector2.Distance(transform.position, player.transform.position) < swoopDist)
+                        {
+                            //swoop
+                            StartCoroutine(Swoop());
+                            Debug.Log("Should be swooping");
+                        }
+                        else
+                        {
+                            transform.up = player.transform.position - transform.position;
+                            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+                            Debug.Log("General Move");
+                        }
+                    }
+                    else
+                    {
+                        if(Vector2.Distance(transform.position, swooppos2) < 0.2f) 
+                        {
+                            swoopend = true;
+                        }
+                    }
+                }
+                else
+                {
+                    swoopend = true;
+                    swooping = false;
+                    triggered = false;
+                    if (coreBat)
+                    {
+                        ChangeAnimationState("CoreBatIdle");
+                    }
+                    else
+                    {
+                        ChangeAnimationState("BatIdle");
+                    }
+
+                    Quaternion quaternion = Quaternion.LookRotation(-transform.forward, Vector3.up);
+                    rot = Quaternion.Lerp(transform.rotation, quaternion, 0.3f);
+                    //child.transform.eulerAngles = newRot;
+                    transform.localRotation = rot;
+                }
+            }
+            /*
             if (triggered)
             {
                 if (Vector2.Distance(hit.point, transform.position) > 0.2)   //might need to give raycast all a range
@@ -76,6 +132,12 @@ public class Bat : MonoBehaviour
                     //child.transform.eulerAngles = newRot;
                     transform.rotation = rot;
                     transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+            
+
+
+
+
+                    //anim stuff
                     if (coreBat)
                     {
                         ChangeAnimationState("CoreBatFly");
@@ -104,8 +166,34 @@ public class Bat : MonoBehaviour
                     transform.localRotation = rot;
                 }
             }
+            */
             else
             {
+                transform.rotation = Quaternion.identity;
+                RaycastHit2D closestHitR = ClosestRaycast(Vector2.right);
+                if (closestHitR.collider.gameObject.CompareTag("Player"))
+                {
+                    triggered = true;
+                }
+                //
+                RaycastHit2D closestHitL = ClosestRaycast(-Vector2.right);
+                if (closestHitL.collider.gameObject.CompareTag("Player"))
+                {
+                    triggered = true;
+                }
+                //
+                RaycastHit2D closestHitU = ClosestRaycast(Vector2.up);
+                if (closestHitU.collider.gameObject.CompareTag("Player"))
+                {
+                    triggered = true;
+                }
+                //
+                RaycastHit2D closestHitD = ClosestRaycast(-Vector2.up);
+                if (closestHitD.collider.gameObject.CompareTag("Player"))
+                {
+                    triggered = true;
+                }
+                /*
                 if (timer > rotateTime)
                 {
                     timer = 0;
@@ -113,11 +201,11 @@ public class Bat : MonoBehaviour
                 }
                 else
                 {
-                    rot = Quaternion.Lerp(transform.rotation, quaternion, 0.02f);
-                    //child.transform.eulerAngles = newRot;
+                    rot = Quaternion.Lerp(transform.rotation, quaternion, Time.deltaTime);
                     transform.rotation = rot;
                     timer += Time.deltaTime;
                 }
+                */
             }
         }
     }
@@ -130,10 +218,47 @@ public class Bat : MonoBehaviour
         currentState = newState;
     }
 
-    private IEnumerator Flap()
+    private IEnumerator Swoop()
     {
+        swooping = true;
+        swoopend = false;
+        swooppos = player.transform.position;
+        swooppos2 = player.transform.position + (player.transform.position-transform.position).normalized;
+        while (transform.localScale.x < 1.5)
+        {
+            transform.localScale = new Vector2(transform.localScale.x + 0.04f, transform.localScale.y + 0.04f);
+            yield return null;
+        }
+        while (transform.localScale.x > 1)
+        {
+            transform.localScale = new Vector2(transform.localScale.x - 0.04f, transform.localScale.y - 0.04f);
+            yield return null;
+        }
+        transform.localScale = new Vector2(1, 1);
         GetComponent<AudioSource>().Play();
-        yield return new WaitForSeconds(3);
-        flapPlayed = false;
+        while (!swoopend) 
+        {
+            transform.up = swooppos2 - transform.position;
+            transform.position = Vector2.MoveTowards(transform.position, swooppos2, 2* speed * Time.deltaTime);
+            yield return null;
+        }
+        yield return new WaitForSeconds(1);
+        swooping = false;
+        Debug.Log("Finishes swoop");
+    }
+
+
+    private RaycastHit2D ClosestRaycast(Vector2 direction)
+    {
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, direction);
+        RaycastHit2D closestValidHit = new RaycastHit2D();
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.transform.gameObject != gameObject && (closestValidHit.collider == null || closestValidHit.distance > hit.distance))
+            {
+                closestValidHit = hit;
+            }
+        }
+        return closestValidHit;
     }
 }
