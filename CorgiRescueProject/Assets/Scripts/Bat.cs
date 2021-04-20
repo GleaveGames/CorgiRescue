@@ -76,13 +76,19 @@ public class Bat : MonoBehaviour
                         {
                             //swoop
                             StartCoroutine(Swoop());
-                            Debug.Log("Should be swooping");
                         }
                         else
                         {
+                            if (coreBat)
+                            {
+                                ChangeAnimationState("CoreBatFly");
+                            }
+                            else
+                            {
+                                ChangeAnimationState("BatFly");
+                            }
                             transform.up = player.transform.position - transform.position;
                             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
-                            Debug.Log("General Move");
                         }
                     }
                     else
@@ -220,6 +226,14 @@ public class Bat : MonoBehaviour
 
     private IEnumerator Swoop()
     {
+        if (coreBat)
+        {
+            ChangeAnimationState("CoreBatIdle");
+        }
+        else
+        {
+            ChangeAnimationState("BatIdle");
+        }
         swooping = true;
         swoopend = false;
         swooppos = player.transform.position;
@@ -236,11 +250,28 @@ public class Bat : MonoBehaviour
         }
         transform.localScale = new Vector2(1, 1);
         GetComponent<AudioSource>().Play();
+        if (coreBat)
+        {
+            ChangeAnimationState("CoreBatFly");
+        }
+        else
+        {
+            ChangeAnimationState("BatFly");
+        } 
         while (!swoopend) 
         {
+
             transform.up = swooppos2 - transform.position;
             transform.position = Vector2.MoveTowards(transform.position, swooppos2, 2* speed * Time.deltaTime);
             yield return null;
+        }
+        if (coreBat)
+        {
+            ChangeAnimationState("CoreBatIdle");
+        }
+        else
+        {
+            ChangeAnimationState("BatIdle");
         }
         yield return new WaitForSeconds(1);
         swooping = false;
