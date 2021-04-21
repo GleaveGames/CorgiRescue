@@ -158,13 +158,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cddc4c497b16f6045b94ef091106ba8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swoopDist: 2
+  swoopDist: 2.6
   IgnoreMe:
     serializedVersion: 2
     m_Bits: 512
   inSwarm: 0
   triggered: 0
-  speed: 2
+  speed: 3
   offset: -90
   rotateTime: 1
   coreBat: 0

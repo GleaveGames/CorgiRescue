@@ -31,6 +31,7 @@ public class Bat : MonoBehaviour
     private Quaternion quaternion;
     private Vector3 swooppos;
     private Vector3 swooppos2;
+    private bool triggerpause = true;
 
     // Start is called before the first frame update
     void Start()
@@ -60,17 +61,13 @@ public class Bat : MonoBehaviour
             {
                 player = GameObject.FindGameObjectWithTag("Player");
             }
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up);
-            if (hit.collider.CompareTag("Player"))
-            {
-                triggered = true;
-            }
 
             if (triggered) 
             {
-                if (Vector2.Distance(hit.point, transform.position) > 0.2)
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up);
+                if (Vector2.Distance(hit.point, transform.position) > 0.2 || triggerpause)
                 {
-                    if (!swooping) 
+                    if (!swooping)
                     {
                         if (Vector2.Distance(transform.position, player.transform.position) < swoopDist)
                         {
@@ -93,7 +90,7 @@ public class Bat : MonoBehaviour
                     }
                     else
                     {
-                        if(Vector2.Distance(transform.position, swooppos2) < 0.2f) 
+                        if (Vector2.Distance(transform.position, swooppos2) < 0.2f)
                         {
                             swoopend = true;
                         }
@@ -119,101 +116,42 @@ public class Bat : MonoBehaviour
                     transform.localRotation = rot;
                 }
             }
-            /*
-            if (triggered)
-            {
-                if (Vector2.Distance(hit.point, transform.position) > 0.2)   //might need to give raycast all a range
-                {
-                    if (!flapPlayed)
-                    {
-                        StartCoroutine("Flap");
-                        flapPlayed = true;
-                    }
-                    targetPos = player.transform.position;
-                    targetPos.x = targetPos.x - transform.position.x;
-                    targetPos.y = targetPos.y - transform.position.y;
-                    angle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
-                    Quaternion quaternion = Quaternion.Euler(new Vector3(0, 0, angle + offset));
-                    rot = Quaternion.Lerp(transform.rotation, quaternion, 0.1f);
-                    //child.transform.eulerAngles = newRot;
-                    transform.rotation = rot;
-                    transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
-            
-
-
-
-
-                    //anim stuff
-                    if (coreBat)
-                    {
-                        ChangeAnimationState("CoreBatFly");
-                    }
-                    else
-                    {
-                        ChangeAnimationState("BatFly");
-                    }
-                }
-                else
-                {
-                    
-                    triggered = false;
-                    if (coreBat)
-                    {
-                        ChangeAnimationState("CoreBatIdle");
-                    }
-                    else
-                    {
-                        ChangeAnimationState("BatIdle");
-                    }
-
-                    Quaternion quaternion = Quaternion.LookRotation(-transform.forward, Vector3.up);
-                    rot = Quaternion.Lerp(transform.rotation, quaternion, 0.3f);
-                    //child.transform.eulerAngles = newRot;
-                    transform.localRotation = rot;
-                }
-            }
-            */
             else
             {
                 transform.rotation = Quaternion.identity;
                 RaycastHit2D closestHitR = ClosestRaycast(Vector2.right);
                 if (closestHitR.collider.gameObject.CompareTag("Player"))
                 {
-                    triggered = true;
+                    StartCoroutine(TriggerPause());
                 }
                 //
                 RaycastHit2D closestHitL = ClosestRaycast(-Vector2.right);
                 if (closestHitL.collider.gameObject.CompareTag("Player"))
                 {
-                    triggered = true;
+                    StartCoroutine(TriggerPause());
                 }
                 //
                 RaycastHit2D closestHitU = ClosestRaycast(Vector2.up);
                 if (closestHitU.collider.gameObject.CompareTag("Player"))
                 {
-                    triggered = true;
+                    StartCoroutine(TriggerPause());
                 }
                 //
                 RaycastHit2D closestHitD = ClosestRaycast(-Vector2.up);
                 if (closestHitD.collider.gameObject.CompareTag("Player"))
                 {
-                    triggered = true;
+                    StartCoroutine(TriggerPause());
                 }
-                /*
-                if (timer > rotateTime)
-                {
-                    timer = 0;
-                    quaternion = Quaternion.Euler(new Vector3(0, 0, Random.Range(1, 5) * 90 + angle + offset));
-                }
-                else
-                {
-                    rot = Quaternion.Lerp(transform.rotation, quaternion, Time.deltaTime);
-                    transform.rotation = rot;
-                    timer += Time.deltaTime;
-                }
-                */
             }
         }
+    }
+
+    private IEnumerator TriggerPause() 
+    {
+        triggerpause = true;
+        triggered = true;
+        yield return new WaitForSeconds(0.3f);
+        triggerpause = false;
     }
     void ChangeAnimationState(string newState)
     {
@@ -256,7 +194,7 @@ public class Bat : MonoBehaviour
         }
         else
         {
-            ChangeAnimationState("BatFly");
+            ChangeAnimationState("BatSwoop");
         } 
         while (!swoopend) 
         {
