@@ -24,7 +24,7 @@ public class CharacterStats : MonoBehaviour
             lg.livingThings.Remove(gameObject);
             Destroy(gameObject);
             Instantiate(blood, transform.position, Quaternion.identity);
-            am.Play("Hit", transform.position);
+            am.Play("Hit", transform.position, true);
         }            
     }
 }

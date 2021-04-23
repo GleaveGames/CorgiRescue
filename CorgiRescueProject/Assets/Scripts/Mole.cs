@@ -39,7 +39,7 @@ public class Mole : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player").transform;
             ZZZ = transform.GetChild(0).GetComponent<ParticleSystem>();
             am = FindObjectOfType<AudioManager>();
-            am.Play("Snore", transform.position);
+            am.Play("Snore", transform.position, true);
         }
         else
         {
@@ -216,7 +216,7 @@ public class Mole : MonoBehaviour
 
     private void SnoreFromAni()
     {
-        am.Play("Snore", transform.position);
+        am.Play("Snore", transform.position, true);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

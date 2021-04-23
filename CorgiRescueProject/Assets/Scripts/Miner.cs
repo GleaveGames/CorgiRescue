@@ -109,21 +109,18 @@ public class Miner : MonoBehaviour
         string sound = null;
         if (name.Contains("Diamond"))
         {
-            sound = "Diamond";
+            sound = "Dirt";
             var newParticles = Instantiate(diamondParticles, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
-            ps.money += diamondWorth;
         }
         else if (name.Contains("Gold"))
         {
-            sound = "Gold";
+            sound = "Dirt";
             var newParticles = Instantiate(goldParticles, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
-            ps.money += goldWorth;
         }
         else if (name.Contains("Silver"))
         {
-            sound = "Silver";
+            sound = "Dirt";
             var newParticles = Instantiate(silverParticles, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
-            ps.money += silverWorth;
         }
         else if (name.Contains("Dirt"))
         {
@@ -153,7 +150,7 @@ public class Miner : MonoBehaviour
         }
         if (soundOn)
         {
-            am.Play(sound, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0));
+            am.Play(sound, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), false);
         }
     }
 }

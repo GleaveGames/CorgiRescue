@@ -175,6 +175,10 @@ public class Damagable : MonoBehaviour
 
     private IEnumerator Dizzy()
     {
+        if(TryGetComponent(out DamagesPlayer damplay)) 
+        {
+            damplay.canHurt = false;
+        }
         if (transform.childCount > 0)
         {
             if (transform.GetChild(transform.childCount-1).gameObject.name.Contains("Duck"))
@@ -191,6 +195,9 @@ public class Damagable : MonoBehaviour
         else 
         {
             transform.GetChild(0).GetComponent<Animator>().enabled = false;
+            GetComponent<SKMovement>().canMove = false;
+            yield return new WaitForSeconds(stuntime);
+            GetComponent<SKMovement>().canMove = true;
         }
         if (mole)
         {
@@ -217,12 +224,13 @@ public class Damagable : MonoBehaviour
             yield return new WaitForSeconds(stuntime);
             pen.enabled = true;
         }
-        else if (SK) 
+        else if(TryGetComponent(out Beetle beetle)) 
         {
-            GetComponent<SKMovement>().canMove = false;
+            beetle.enabled = false;
             yield return new WaitForSeconds(stuntime);
-            GetComponent<SKMovement>().canMove = true;
+            beetle.enabled = true;
         }
+
         if (!SK)
         {
             GetComponent<Animator>().enabled = true;
@@ -230,6 +238,10 @@ public class Damagable : MonoBehaviour
         else
         {
             transform.GetChild(0).GetComponent<Animator>().enabled = true;
+        }
+        if (TryGetComponent(out DamagesPlayer damplay2))
+        {
+            damplay2.canHurt = true;
         }
         Destroy(ducko);
     }

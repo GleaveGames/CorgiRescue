@@ -50,7 +50,7 @@ public class Bomb : MonoBehaviour
         GetComponent<CircleCollider2D>().isTrigger = false;
         lg.itemsForPickUp.Remove(gameObject);
         canBreakCreates = true;
-        am.Play("Explosion", transform.position);
+        am.Play("Explosion", transform.position, true);
         ParticleSystem parts = Instantiate(explosionParticles, transform.position, Quaternion.identity);
         parts.transform.localScale = transform.localScale;
         GetComponent<Miner>().canMine = true;

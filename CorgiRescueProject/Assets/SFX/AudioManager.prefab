@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Diamond
-    clip: {fileID: 8300000, guid: 1169f3be7f2f42b4f8df7746ecd8f501, type: 3}
+    clip: {fileID: 8300000, guid: 7eeae754c788a5d42b1bf341cea6a67e, type: 3}
     volume: 0.22
     pitch: 1
     loop: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Gold
-    clip: {fileID: 8300000, guid: 3ad745194f9478e44b50b4741f57a9fa, type: 3}
+    clip: {fileID: 8300000, guid: b5b1b23c1272b7b4e880795d36c43d05, type: 3}
     volume: 0.2
     pitch: 1
     loop: 0
@@ -70,7 +70,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Silver
-    clip: {fileID: 8300000, guid: d08f1abf588c12942b705bc8f062f394, type: 3}
+    clip: {fileID: 8300000, guid: 9161901f4a7df1c438ae27aa66389102, type: 3}
     volume: 0.2
     pitch: 1
     loop: 0
@@ -173,6 +173,12 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Ice
     clip: {fileID: 8300000, guid: c795230a9e319d242aa40cd937dc025d, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CrateWood
+    clip: {fileID: 8300000, guid: 529a8993b7c24a64f9e4951523245a6c, type: 3}
     volume: 0.4
     pitch: 1
     loop: 0

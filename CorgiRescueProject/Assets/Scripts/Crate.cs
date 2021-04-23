@@ -45,12 +45,16 @@ public class Crate : MonoBehaviour
     private IEnumerator Spawn()
     {
         Instantiate(crateparticles, transform.position, Quaternion.identity);
+        FindObjectOfType<AudioManager>().Play("CrateWood", transform.position, true);
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
         GameObject newThing = Instantiate(items[Random.Range(0, items.Length)], transform.position, Quaternion.identity);
-        newThing.GetComponent<Collider2D>().enabled = false;
-        yield return new WaitForSeconds(0.5f);
-        newThing.GetComponent<Collider2D>().enabled = true;
+        if (!newThing.gameObject.name.Contains("Gemsplosion"))
+        {
+            newThing.GetComponent<Collider2D>().enabled = false;
+            yield return new WaitForSeconds(0.5f);
+            newThing.GetComponent<Collider2D>().enabled = true;
+        }
         Destroy(gameObject);
     }
 }

@@ -25,17 +25,17 @@ public class PassivePickup : MonoBehaviour
                 if (gameObject.name == ("MoneyS(Clone)"))
                 {
                     ps.money += 200;
-                    am.Play("Silver", transform.position);
+                    am.Play("Silver", transform.position, false);
                 }
                 else if (gameObject.name == ("MoneyM(Clone)"))
                 {
                     ps.money += 1000;
-                    am.Play("Gold", transform.position);
+                    am.Play("Gold", transform.position, false);
                 }
                 else if (gameObject.name == ("MoneyL(Clone)"))
                 {
                     ps.money += 3000;
-                    am.Play("Diamond", transform.position);
+                    am.Play("Diamond", transform.position, false);
                 }
                 else
                 {
@@ -45,18 +45,18 @@ public class PassivePickup : MonoBehaviour
             else if (gameObject.name == "Snack(Clone)" || gameObject.name == "FriedEgg(Clone)")
             {
                 ps.health += 1;
-                am.Play("Snack", transform.position);
+                am.Play("Snack", transform.position, true);
             }
             else if (gameObject.name == "BombBag(Clone)")
             {
                 ps.bombs += 3;
-                am.Play("PickUp", transform.position);
+                am.Play("PickUp", transform.position,true);
             }
             else if (gameObject.name == "BombBox(Clone)")
             {
                 ps.bombs += 10;
                 invent.GetComponent<Inventory>().NewItem(gameObject.GetComponent<SpriteRenderer>().sprite);
-                am.Play("PickUp", transform.position);
+                am.Play("PickUp", transform.position, true);
             }
             else if (gameObject.name == "GoldPick(Clone)")
             {
@@ -65,7 +65,7 @@ public class PassivePickup : MonoBehaviour
                 player.GetComponent<playerMovement>().miningSpeed = 0.8f;
                 //player.transform.GetChild(0).Find("pickaxe").gameObject.GetComponent<SpriteRenderer>().sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
                 invent.GetComponent<Inventory>().NewItem(gameObject.GetComponent<SpriteRenderer>().sprite);
-                am.Play("PickUp", transform.position);
+                am.Play("PickUp", transform.position, true);
             }
             else if (gameObject.name == "DiamondPick(Clone)")
             {
@@ -75,20 +75,20 @@ public class PassivePickup : MonoBehaviour
                 player.GetComponent<playerMovement>().miningSpeed = 0.6f;
                 //player.transform.GetChild(0).Find("pickaxe").gameObject.GetComponent<SpriteRenderer>().sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
                 invent.GetComponent<Inventory>().NewItem(gameObject.GetComponent<SpriteRenderer>().sprite);
-                am.Play("PickUp", transform.position);
+                am.Play("PickUp", transform.position, true);
             }
             else if (gameObject.name == "SpikeGloves(Clone)")
             {
                 RemoveFromList("SpikeGloves", ps.itemsForSale);
                 ps.spikegloves = true;
                 invent.GetComponent<Inventory>().NewItem(gameObject.GetComponent<SpriteRenderer>().sprite);
-                am.Play("PickUp", transform.position);
+                am.Play("PickUp", transform.position, true);
             }
             else if (gameObject.name == "Glasses(Clone)")
             {
                 ps.glasses = true;
                 invent.GetComponent<Inventory>().NewItem(gameObject.GetComponent<SpriteRenderer>().sprite);
-                am.Play("PickUp", transform.position);
+                am.Play("PickUp", transform.position, true);
                 ps.wanted = false;
             }
             else if(gameObject.name == "RunningShoes(Clone)")
@@ -96,7 +96,7 @@ public class PassivePickup : MonoBehaviour
                 RemoveFromList("RunningShoes", ps.itemsForSale);
                 ps.moveSpeed = 8;
                 invent.GetComponent<Inventory>().NewItem(gameObject.GetComponent<SpriteRenderer>().sprite);
-                am.Play("PickUp", transform.position);
+                am.Play("PickUp", transform.position, true);
 
             }
             else if(gameObject.name == "SteelToeBoots(Clone)")
@@ -104,14 +104,14 @@ public class PassivePickup : MonoBehaviour
                 RemoveFromList("SteelToeBoots", ps.itemsForSale);
                 ps.steeltoes = true;
                 invent.GetComponent<Inventory>().NewItem(gameObject.GetComponent<SpriteRenderer>().sprite);
-                am.Play("PickUp", transform.position);
+                am.Play("PickUp", transform.position, true);
             }
             else if(gameObject.name == "BigBombs(Clone)")
             {
                 RemoveFromList("BigBombs", ps.itemsForSale);
                 ps.bigbombs = true;
                 invent.GetComponent<Inventory>().NewItem(gameObject.GetComponent<SpriteRenderer>().sprite);
-                am.Play("PickUp", transform.position);
+                am.Play("PickUp", transform.position, true);
             }
 
             Destroy(gameObject);

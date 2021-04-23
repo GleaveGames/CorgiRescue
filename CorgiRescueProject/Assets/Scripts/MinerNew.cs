@@ -6,6 +6,7 @@ using UnityEngine.Tilemaps;
 
 public class MinerNew : MonoBehaviour
 {
+    /*
     //public Tilemap tilemap;
     public ContactPoint2D[] contacts = new ContactPoint2D[10];
     private Collider2D coll;
@@ -99,16 +100,15 @@ public class MinerNew : MonoBehaviour
                             if (Random.Range(0, 250) < 1) Instantiate(pebble, hitPosition, UnityEngine.Quaternion.identity);
                             if (soundOn)
                             {
-                                am.Play("DirtRule", new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0));
+                                am.Play("DirtRule", new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), true);
                             }
                         }
                         else if (collisionSprite.Contains("Diamond"))
                         {
                             var newParticles = Instantiate(diamondParticles, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
-                            ps.money += diamondWorth;
                             if (soundOn)
                             {
-                                am.Play(collisionSprite, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0));
+                                am.Play(collisionSprite, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), true);
                             }
                         }
                         else if (collisionSprite.Contains("Gold"))
@@ -158,7 +158,7 @@ public class MinerNew : MonoBehaviour
                             miningSound.Play();
                             Tm.SetTile(Tm.WorldToCell(hitPosition), null);
                             GetComponent<Rigidbody2D>().isKinematic = true;
-                            */
+                            // old end tag
                             //original broken code                            
                             //Debug.Log(contactCount);
                             //Debug.Log(i);
@@ -395,4 +395,5 @@ public class MinerNew : MonoBehaviour
             }
         }
     }
+    */
 }

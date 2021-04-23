@@ -35,6 +35,8 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField]
     private float SilverChance;
     [SerializeField]
+    float BeetleChance;
+    [SerializeField]
     private float SnekChance;
     [SerializeField]
     private float MoleChance;
@@ -75,7 +77,7 @@ public class LevelGenerator : MonoBehaviour
     private GameObject creature;
     private Vector3 spawnPos;
 
-    [Header("Tiles")] 
+    [Header("TILES")] 
     [SerializeField]
     private TileBase DirtRule;
     [SerializeField]
@@ -99,11 +101,15 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField]
     private TileBase SilverRock;
 
-    [Header("Enemeis")]
+    [Header("ENEMIES")]
     [SerializeField]
     private GameObject snek;
     [SerializeField]
     private bool snekEnabled;
+    [SerializeField]
+    private GameObject beetle;
+    [SerializeField]
+    bool beetleEnabled;
     [SerializeField]
     private GameObject bat;
     [SerializeField]
@@ -161,7 +167,7 @@ public class LevelGenerator : MonoBehaviour
             spawnPos.y -= 5f;
             player = Instantiate(player, spawnPos, Quaternion.identity);
             player.GetComponent<playerMovement>().canMove = true;
-            player.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+            player.transform.localScale = new Vector3(1, 1, 1);
             player.GetComponent<Rigidbody2D>().isKinematic = false;
             player.GetComponent<CircleCollider2D>().enabled = true;
             MergeTiles();
@@ -178,10 +184,12 @@ public class LevelGenerator : MonoBehaviour
                 SceneManager.MoveGameObjectToScene(GameObject.FindGameObjectWithTag("Player"), SceneManager.GetActiveScene());
                 GameObject.FindGameObjectWithTag("Player").transform.position = spawnPos;
                 player = GameObject.FindGameObjectWithTag("Player");
+                player.transform.localScale = new Vector3(1, 1, 1);
             }
             else
             {
                 player = Instantiate(player, spawnPos, Quaternion.identity);
+                player.transform.localScale = new Vector3(1, 1, 1);
             }
             player.GetComponent<CanPickUp>().lg = this;
             player.GetComponent<CanPickUp>().itemsForPickUp = new List<GameObject>();
@@ -582,6 +590,16 @@ public class LevelGenerator : MonoBehaviour
                                 spawnpoint.x = spawnpoint.x + x - 0.5f;
                                 spawnpoint.y = spawnpoint.y + y - 9.5f;
                                 Instantiate(bomby, spawnpoint, Quaternion.identity);
+                            }
+                        }
+                        else if (Random.Range(0, BeetleChance) < 1)
+                        {
+                            if (beetleEnabled)
+                            {
+                                Vector3 spawnpoint = wall.transform.position;
+                                spawnpoint.x = spawnpoint.x + x - 0.5f;
+                                spawnpoint.y = spawnpoint.y + y - 9.5f;
+                                Instantiate(beetle, spawnpoint, Quaternion.identity);
                             }
                         }
                     }

@@ -313,7 +313,7 @@ public class playerMovement : MonoBehaviour
         {
             Debug.Log("mine");
             canMine = false;
-            am.Play("Swing", transform.position);
+            am.Play("Swing", transform.position, true);
             ChangeAnimationState("Mine");
             mining = true;
             StartCoroutine("MiningCool");

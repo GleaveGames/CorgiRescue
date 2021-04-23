@@ -142,6 +142,12 @@ MonoBehaviour:
   - {fileID: 5020420758543740405, guid: 0e3ff7031044bfb418f342415528e0bf, type: 3}
   - {fileID: 5020420758543740405, guid: 0e3ff7031044bfb418f342415528e0bf, type: 3}
   - {fileID: 3691337205146848114, guid: 1f889a8faaed05747bfa0b4c25329773, type: 3}
+  - {fileID: 8989476970006806844, guid: 5eed1453165872941978a7e0cbd68e6c, type: 3}
+  - {fileID: 8989476970006806844, guid: 5eed1453165872941978a7e0cbd68e6c, type: 3}
+  - {fileID: 8989476970006806844, guid: 5eed1453165872941978a7e0cbd68e6c, type: 3}
+  - {fileID: 8989476970006806844, guid: 5eed1453165872941978a7e0cbd68e6c, type: 3}
+  - {fileID: 8989476970006806844, guid: 5eed1453165872941978a7e0cbd68e6c, type: 3}
+  - {fileID: 8989476970006806844, guid: 5eed1453165872941978a7e0cbd68e6c, type: 3}
   crateparticles: {fileID: 5061643180660836750, guid: a6d4fef50e43ae243956257225c90fca, type: 3}
 --- !u!50 &4660881465462714877
 Rigidbody2D:
@@ -189,4 +195,4 @@ MonoBehaviour:
   - {x: -0.34823036, y: 0.3448949, z: 0}
   m_ShapePathHash: 407443349
   m_Mesh: {fileID: 0}
-  m_InstanceId: 56274
+  m_InstanceId: 68534

@@ -93,11 +93,11 @@ public class CanPickUp : MonoBehaviour
                 {
                     FindObjectOfType<playerStats>().money -= buyZoneItem.GetComponent<ItemSlot>().thisItem.GetComponent<ShopInfo>().price;
                     buyZoneItem.GetComponent<ItemSlot>().purchased();
-                    am.Play("Pay", transform.position);
+                    am.Play("Pay", transform.position, true);
                 }
                 else
                 {
-                    am.Play("Denied", transform.position);
+                    am.Play("Denied", transform.position, false);
                 }
             }
             else if (leftHand.childCount < 1)

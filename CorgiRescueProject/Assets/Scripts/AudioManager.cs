@@ -47,7 +47,7 @@ public class AudioManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void Play(string name, Vector3 pos)
+    public void Play(string name, Vector3 pos, bool randpitch)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if(s == null)
@@ -58,7 +58,7 @@ public class AudioManager : MonoBehaviour
         GameObject newSound = Instantiate(audioSource, pos, Quaternion.identity);        
         newSound.GetComponent<AudioSource>().clip = s.clip;
         newSound.GetComponent<AudioSource>().volume = s.volume;
-        newSound.GetComponent<AudioSource>().pitch += UnityEngine.Random.Range(-0.2f, 0.2f);
+        if (randpitch) newSound.GetComponent<AudioSource>().pitch += UnityEngine.Random.Range(-0.2f, 0.2f); 
         newSound.GetComponent<AudioSource>().Play();
     }
     public void PlayMusic(string name)

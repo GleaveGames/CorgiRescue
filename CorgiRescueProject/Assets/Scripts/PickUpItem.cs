@@ -78,7 +78,7 @@ public class PickUpItem : MonoBehaviour
         {
             sword.ChangeAnimationState("AndurilIdle");
         }
-        am.Play("PickUp", transform.position);
+        am.Play("PickUp", transform.position, true);
         leftHand = lH;
 
         //cc.isTrigger = true;
@@ -101,7 +101,7 @@ public class PickUpItem : MonoBehaviour
 
     public void Throw()
     {
-        am.Play("Throw", transform.position);
+        am.Play("Throw", transform.position, true);
         GetComponent<DamagesPlayer>().canHurt = false;
         StartCoroutine("WaitforHurt");        
         transform.parent = null;
@@ -116,7 +116,7 @@ public class PickUpItem : MonoBehaviour
     }
     public void Drop()
     {
-        am.Play("Drop", transform.position);
+        am.Play("Drop", transform.position, true);
         GetComponent<DamagesPlayer>().canHurt = false;
         StartCoroutine("WaitforHurt");        
         transform.parent = null;

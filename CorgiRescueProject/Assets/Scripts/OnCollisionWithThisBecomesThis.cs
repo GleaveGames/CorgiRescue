@@ -19,7 +19,7 @@ public class OnCollisionWithThisBecomesThis : MonoBehaviour
             Instantiate(thingThatThisTurnsInto, transform.position, Quaternion.identity);
             if(sound != null)
             {
-                FindObjectOfType<AudioManager>().Play(sound, transform.position);
+                FindObjectOfType<AudioManager>().Play(sound, transform.position, true);
             }
             //instantiate eggshells
         }

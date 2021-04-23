@@ -132,12 +132,12 @@ MonoBehaviour:
   wood: 1
   present: 0
   items:
-  - {fileID: 3691337205146848114, guid: b5dfa30b1f6d3ba49b2b206cdbaee0c3, type: 3}
-  - {fileID: 3691337205146848114, guid: b5dfa30b1f6d3ba49b2b206cdbaee0c3, type: 3}
-  - {fileID: 3691337205146848114, guid: b5dfa30b1f6d3ba49b2b206cdbaee0c3, type: 3}
-  - {fileID: 3691337205146848114, guid: 5fb24727ed635514a9d944a7776be795, type: 3}
-  - {fileID: 3691337205146848114, guid: 5fb24727ed635514a9d944a7776be795, type: 3}
-  - {fileID: 3691337205146848114, guid: 6fc814eae34193148aae63c768fbf0d3, type: 3}
+  - {fileID: 8989476970006806844, guid: 8c3f14b04eb4ba44f91958f1c0162b79, type: 3}
+  - {fileID: 8989476970006806844, guid: 8c3f14b04eb4ba44f91958f1c0162b79, type: 3}
+  - {fileID: 8989476970006806844, guid: 8c3f14b04eb4ba44f91958f1c0162b79, type: 3}
+  - {fileID: 8989476970006806844, guid: 8c3f14b04eb4ba44f91958f1c0162b79, type: 3}
+  - {fileID: 8989476970006806844, guid: 8c3f14b04eb4ba44f91958f1c0162b79, type: 3}
+  - {fileID: 8989476970006806844, guid: 8c3f14b04eb4ba44f91958f1c0162b79, type: 3}
   - {fileID: 3691337205146848114, guid: 1f889a8faaed05747bfa0b4c25329773, type: 3}
   - {fileID: 15094032670358419, guid: 67d1b535a72970442986c2d88ba66b37, type: 3}
   - {fileID: 5020420758543740405, guid: 0e3ff7031044bfb418f342415528e0bf, type: 3}
@@ -189,7 +189,7 @@ MonoBehaviour:
   - {x: -0.34823036, y: 0.3448949, z: 0}
   m_ShapePathHash: 407443349
   m_Mesh: {fileID: 0}
-  m_InstanceId: 71094
+  m_InstanceId: 68232
 --- !u!114 &4159018020417223413
 MonoBehaviour:
   m_ObjectHideFlags: 0

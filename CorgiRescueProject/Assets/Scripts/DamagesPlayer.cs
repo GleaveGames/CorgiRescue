@@ -42,7 +42,7 @@ public class DamagesPlayer : MonoBehaviour
                     co.shakeDuration = 0.08f;
                     if (!collision.gameObject.GetComponent<playerMovement>().invinc)
                     {
-                        FindObjectOfType<AudioManager>().Play("PlayerGrunt", collision.gameObject.transform.position);
+                        FindObjectOfType<AudioManager>().Play("PlayerGrunt", collision.gameObject.transform.position, true);
                         GameObject player = collision.gameObject;
                         ps.health -= damage;
                         player.GetComponent<playerMovement>().invinc = true;
@@ -91,7 +91,7 @@ public class DamagesPlayer : MonoBehaviour
                         co.shakeDuration = 0.08f;
                         if (!collision.gameObject.GetComponent<playerMovement>().invinc)
                         {
-                            FindObjectOfType<AudioManager>().Play("PlayerGrunt", collision.gameObject.transform.position);
+                            FindObjectOfType<AudioManager>().Play("PlayerGrunt", collision.gameObject.transform.position, true);
                             GameObject player = collision.gameObject;
                             ps.health -= damage;
                             player.GetComponent<playerMovement>().invinc = true;
