@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BeetleMoveSmall
+  m_Name: BeetleIdleBig
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,18 +20,14 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 42398bc62a1f2bf4b8924542378c6515, type: 3}
-    - time: 0.1
-      value: {fileID: 21300000, guid: 014875e47d3428f459940f118d330820, type: 3}
+      value: {fileID: 21300000, guid: e5a32d6e830f17742a8befb29df64453, type: 3}
     - time: 0.2
-      value: {fileID: 21300000, guid: 1965b1d58da5e954897dcb7ef6a0fca4, type: 3}
-    - time: 0.3
-      value: {fileID: 21300000, guid: 5ecf2bb068796ab4eb75461ce9ec8657, type: 3}
+      value: {fileID: 21300000, guid: 9c3c77517b63e7b4099f724c1d8f8f2f, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 10
+  m_SampleRate: 5
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -46,10 +42,8 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 42398bc62a1f2bf4b8924542378c6515, type: 3}
-    - {fileID: 21300000, guid: 014875e47d3428f459940f118d330820, type: 3}
-    - {fileID: 21300000, guid: 1965b1d58da5e954897dcb7ef6a0fca4, type: 3}
-    - {fileID: 21300000, guid: 5ecf2bb068796ab4eb75461ce9ec8657, type: 3}
+    - {fileID: 21300000, guid: e5a32d6e830f17742a8befb29df64453, type: 3}
+    - {fileID: 21300000, guid: 9c3c77517b63e7b4099f724c1d8f8f2f, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

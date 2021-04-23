@@ -10,7 +10,7 @@ public class Beetle : MonoBehaviour
     Coroutine coroutine;
     int RotationDir;
     Animator ani;
-
+    string currentState;
 
 
 
@@ -81,6 +81,7 @@ public class Beetle : MonoBehaviour
             if (Vector2.Distance(hit.point, transform.position) > bumprange && Vector2.Distance(hit1.point, transform.position) > bumprange && Vector2.Distance(hit2.point, transform.position) > bumprange && !turning)
             {
                 //move forward;
+
                 transform.position = Vector2.MoveTowards(transform.position, hit.point, movespeed * Time.deltaTime);
                 midturn = false;
             }
@@ -98,12 +99,16 @@ public class Beetle : MonoBehaviour
 
     private IEnumerator Turn()
     {
+        if (Big) ChangeAnimationState("BeetleIdleBig");
+        else ChangeAnimationState("BeetleIdleSmall");
         midturn = true;
         yield return new WaitForSeconds(1);
         Rerotate();
         yield return new WaitForSeconds(0.5f);
         turning = false;
         midturn = false;
+        if (Big) ChangeAnimationState("BeetleMoveBig");
+        else ChangeAnimationState("BeetleMoveSmall");
     }
 
     private void Rerotate() 
@@ -114,4 +119,14 @@ public class Beetle : MonoBehaviour
         else if (RotationDir == 3) transform.up = Vector2.down;
         else if (RotationDir == 4) transform.up = Vector2.left;
     }
+
+    void ChangeAnimationState(string newState)
+    {
+        if (currentState == newState) return;
+
+        ani.Play(newState);
+
+        currentState = newState;
+    }
+
 }

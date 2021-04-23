@@ -52,11 +52,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Big: 0
-  moveSpeedBig: 1
+  moveSpeedBig: 2
   bigHealth: 3
   bigAni: {fileID: 9100000, guid: 601e803f046fbdc46a22cd336cd0bbc6, type: 2}
   bumpRangeBig: 0.5
-  moveSpeedLittle: 5
+  moveSpeedLittle: 4
   littleHealth: 1
   littleAni: {fileID: 9100000, guid: c6a524d9a9c5ae14d99445e2b9fc5b64, type: 2}
   bumpRangeLittle: 0.2
@@ -235,7 +235,7 @@ MonoBehaviour:
   - {x: -0.32573032, y: 0.043174744, z: 0}
   m_ShapePathHash: -1639424611
   m_Mesh: {fileID: 0}
-  m_InstanceId: 80566
+  m_InstanceId: 110500
 --- !u!95 &1508191824868838818
 Animator:
   serializedVersion: 3
@@ -246,7 +246,7 @@ Animator:
   m_GameObject: {fileID: 1080977945638850635}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c6a524d9a9c5ae14d99445e2b9fc5b64, type: 2}
+  m_Controller: {fileID: 9100000, guid: 601e803f046fbdc46a22cd336cd0bbc6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
