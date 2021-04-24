@@ -37,6 +37,8 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField]
     float BeetleChance;
     [SerializeField]
+    float SpiderChance;
+    [SerializeField]
     private float SnekChance;
     [SerializeField]
     private float MoleChance;
@@ -110,6 +112,10 @@ public class LevelGenerator : MonoBehaviour
     private GameObject beetle;
     [SerializeField]
     bool beetleEnabled;
+    [SerializeField]
+    GameObject spider;
+    [SerializeField]
+    bool spiderEnabled;
     [SerializeField]
     private GameObject bat;
     [SerializeField]
@@ -600,6 +606,16 @@ public class LevelGenerator : MonoBehaviour
                                 spawnpoint.x = spawnpoint.x + x - 0.5f;
                                 spawnpoint.y = spawnpoint.y + y - 9.5f;
                                 Instantiate(beetle, spawnpoint, Quaternion.identity);
+                            }
+                        }
+                        else if (Random.Range(0, SpiderChance) < 1)
+                        {
+                            if (spiderEnabled)
+                            {
+                                Vector3 spawnpoint = wall.transform.position;
+                                spawnpoint.x = spawnpoint.x + x - 0.5f;
+                                spawnpoint.y = spawnpoint.y + y - 9.5f;
+                                Instantiate(spider, spawnpoint, Quaternion.identity);
                             }
                         }
                     }
