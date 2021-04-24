@@ -19,7 +19,18 @@ public class Spider : MonoBehaviour
     int direction;
     [SerializeField]
     float bumprange;
-
+    [SerializeField]
+    float viewRange;
+    Transform player;
+    bool checking;
+    [SerializeField]
+    float rotationspeed;
+    bool attacking;
+    [SerializeField]
+    GameObject WebBall;
+    [SerializeField]
+    float shotpower;
+    Vector2 attackpoint;
 
     private void Start()
     {
@@ -27,9 +38,10 @@ public class Spider : MonoBehaviour
         direction = Random.Range(1, 5);
         Rotate();
         StartCoroutine(Idle());
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (walking) 
         {
@@ -63,6 +75,54 @@ public class Spider : MonoBehaviour
                 Rotate();
             }
         }
+
+        if (!checking) 
+        {
+            if (Vector2.Distance(transform.position, player.position) < viewRange)
+            {
+                RaycastHit2D playerhit = Physics2D.Raycast(transform.position, player.position - transform.position);
+                if (playerhit.collider.gameObject.transform == player)
+                {
+                    StartCoroutine(CanSeeCheck());
+                }
+            }
+        }
+        
+    }
+
+    private IEnumerator CanSeeCheck() 
+    {
+        checking = true;
+        float timer = 0;
+        RaycastHit2D playerhit = Physics2D.Raycast(transform.position, player.position - transform.position);
+        while (timer < 0.3f) 
+        {
+            
+            playerhit = Physics2D.Raycast(transform.position, player.position - transform.position);
+            if (playerhit.collider.gameObject.transform != player)
+            {
+                checking = false;
+                yield break;
+            }
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        triggered = true;
+        StartCoroutine(Attack());
+    }
+
+    private IEnumerator Attack() 
+    {
+        attacking = true;
+        attackpoint = player.position;
+        ChangeAnimationState("SpiderAttack");
+        while(attacking) 
+        {
+            transform.up = -Vector2.MoveTowards(-transform.up, (attackpoint - new Vector2(transform.position.x, transform.position.y)).normalized, rotationspeed * Time.deltaTime);
+            yield return null;
+        }
+        checking = false;
+        StartCoroutine(Idle());
     }
 
     private IEnumerator Walk() 
@@ -128,9 +188,6 @@ public class Spider : MonoBehaviour
         else Debug.Log("invalid direction for spider");
     }
 
-
-
-
     void ChangeAnimationState(string newState)
     {
         if (currentState == newState) return;
@@ -140,5 +197,15 @@ public class Spider : MonoBehaviour
         currentState = newState;
     }
 
+    private void AttackingEnd() 
+    {
+        attacking = false;
+        triggered = false;
+    }
 
+    private void ShootWeb() 
+    {
+        GameObject web = Instantiate(WebBall, transform.position - transform.up / 2, Quaternion.identity);
+        web.GetComponent<Rigidbody2D>().AddForce((attackpoint - new Vector2(transform.position.x, transform.position.y)).normalized * shotpower, ForceMode2D.Impulse);
+    }
 }

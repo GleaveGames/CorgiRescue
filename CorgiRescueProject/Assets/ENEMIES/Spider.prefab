@@ -55,6 +55,10 @@ MonoBehaviour:
   idleTime: 2
   movespeed: 2
   bumprange: 0.4
+  viewRange: 8
+  rotationspeed: 12
+  WebBall: {fileID: 364845537972970825, guid: 478bc43525d436247b037d4a77dd17e8, type: 3}
+  shotpower: 0.6
 --- !u!212 &6196099542520050376
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -230,7 +234,7 @@ MonoBehaviour:
   - {x: -0.32573032, y: 0.043174744, z: 0}
   m_ShapePathHash: -1639424611
   m_Mesh: {fileID: 0}
-  m_InstanceId: 95792
+  m_InstanceId: 100590
 --- !u!95 &1508191824868838818
 Animator:
   serializedVersion: 3
