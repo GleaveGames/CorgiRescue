@@ -30,11 +30,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 3182568805287213030}
   - {fileID: 5969812102697596990}
   - {fileID: 3068055160178837680}
   - {fileID: 2090712693832874379}
   - {fileID: 587306226608198207}
-  - {fileID: 3182568805287213030}
   - {fileID: 1579579368084930651}
   - {fileID: 5215936577542908112}
   - {fileID: 4795177710901517425}
@@ -95,7 +95,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2888152998787108415, guid: 3e608972c4cdf19408b3ceb99d97d9a2, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2888152998787108415, guid: 3e608972c4cdf19408b3ceb99d97d9a2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1853,7 +1853,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2888152998787108415, guid: 3e608972c4cdf19408b3ceb99d97d9a2, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2888152998787108415, guid: 3e608972c4cdf19408b3ceb99d97d9a2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2157,7 +2157,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2888152998787108415, guid: 3e608972c4cdf19408b3ceb99d97d9a2, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2888152998787108415, guid: 3e608972c4cdf19408b3ceb99d97d9a2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4159,7 +4159,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1903062596377013519, guid: 8f4e172c117573044a94ea1230edf6f4, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1903062596377013519, guid: 8f4e172c117573044a94ea1230edf6f4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7807,7 +7807,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2888152998787108415, guid: 3e608972c4cdf19408b3ceb99d97d9a2, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2888152998787108415, guid: 3e608972c4cdf19408b3ceb99d97d9a2, type: 3}
       propertyPath: m_LocalPosition.x

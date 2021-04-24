@@ -225,6 +225,7 @@ MonoBehaviour:
   DiamondChance: 140
   GoldChance: 100
   SilverChance: 60
+  BeetleChance: 0
   SnekChance: 60
   MoleChance: 60
   BatChance: 60
@@ -311,7 +312,7 @@ MonoBehaviour:
   DirtRule: {fileID: 11400000, guid: 0acf6ffc583085a429a2e91109ae587a, type: 2}
   SnowRule: {fileID: 11400000, guid: 4246fd359d8293249bc4aaacd72f932b, type: 2}
   RockRule: {fileID: 11400000, guid: 80653559c2964064bac92ae4d9137ce1, type: 2}
-  ObsidianRule: {fileID: 11400000, guid: 9687cd4521aa64548b46b67d74c688cb, type: 2}
+  ObsidianRule: {fileID: 11400000, guid: b713a4b1599458f42ad5ef95f10ed730, type: 2}
   Wood: {fileID: 11400000, guid: 985361838a8472a4d83302df641ecf1b, type: 2}
   Diamond: {fileID: 11400000, guid: 23375434330a09540897702409fa05b8, type: 2}
   DiamondRock: {fileID: 11400000, guid: 53ece13bd79bfb441bc7e60da5515867, type: 2}
@@ -321,6 +322,8 @@ MonoBehaviour:
   SilverRock: {fileID: 11400000, guid: c98d18104288b4645b18b61d994f58a5, type: 2}
   snek: {fileID: 15094032670358419, guid: 67d1b535a72970442986c2d88ba66b37, type: 3}
   snekEnabled: 0
+  beetle: {fileID: 0}
+  beetleEnabled: 0
   bat: {fileID: 8621365850395960104, guid: afc07b170c172824c95d0fef2afcff5b, type: 3}
   batEnabled: 1
   mole: {fileID: 7471924862020509344, guid: 10f6b3f98f59a4e49b0230c216ac6187, type: 3}

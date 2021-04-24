@@ -17,6 +17,7 @@ public class Bomby : MonoBehaviour
     void Start()
     {
         ani = GetComponent<Animator>();
+        GetComponent<DamagesPlayer>().canHurt = false;
     }
 
     // Update is called once per frame

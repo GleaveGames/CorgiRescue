@@ -68,6 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throwPower: 3
   AmIBomb: 0
+  AmISword: 0
 --- !u!212 &1435047480065279769
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -133,7 +134,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 0.4
   m_LinearDrag: 4.5
-  m_AngularDrag: 0.6
+  m_AngularDrag: 10
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -168,6 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d8aa628b6065cf46b78979e90d5934c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trigger: 0
   damage: 1
   canHurt: 1
   knockbackTime: 0.3
@@ -221,18 +223,16 @@ MonoBehaviour:
   m_SelfShadows: 0
   m_ApplyToSortingLayers: 00000000
   m_ShapePath:
-  - {x: -0.05308318, y: -0.14610481, z: 0}
-  - {x: 0.02204752, y: -0.14610481, z: 0}
+  - {x: -0.050547123, y: -0.076792, z: 0}
   - {x: 0.09277749, y: -0.016542196, z: 0}
-  - {x: 0.014312506, y: 0.042057514, z: 0}
-  - {x: 0.09623742, y: 0.2109642, z: 0}
-  - {x: 0.06447053, y: 0.30963254, z: 0}
-  - {x: -0.03918934, y: 0.3113048, z: 0}
-  - {x: -0.047192812, y: 0.0469954, z: 0}
-  - {x: -0.11515498, y: -0.040156364, z: 0}
-  m_ShapePathHash: -460805825
+  - {x: 0.22549653, y: -0.07676458, z: 0}
+  - {x: 0.32515097, y: 0.055485487, z: 0}
+  - {x: 0.048747778, y: 0.061941624, z: 0}
+  - {x: -0.0438931, y: 0.1394124, z: 0}
+  - {x: -0.1514523, y: 0.045659542, z: 0}
+  m_ShapePathHash: 258229079
   m_Mesh: {fileID: 0}
-  m_InstanceId: -829692
+  m_InstanceId: 25836
 --- !u!1 &6139515809835756484
 GameObject:
   m_ObjectHideFlags: 0

@@ -51,10 +51,17 @@ public class PickUpItem : MonoBehaviour
                 }
                 */
                 //rb.velocity = new Vector3(0f, 0f, 0f);
+                /*
                 if (!AmIBomb)
                 {
                     GetComponent<DamagesPlayer>().canHurt = false;
                 }
+                */
+
+
+                //changed this from above to try fix bomby from hurting player
+                GetComponent<DamagesPlayer>().canHurt = false;
+
             }
             else
             {

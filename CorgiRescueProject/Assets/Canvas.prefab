@@ -830,7 +830,7 @@ MonoBehaviour:
   ps: {fileID: 0}
   timerText: {fileID: 2089707040057726090}
   timer: 0
-  timerinit: 90
+  timerinit: 120
   unleashed: 0
   menu:
   - {fileID: 7647913423532229011}
@@ -1492,7 +1492,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1171704214108817347}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: LoadGame
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
