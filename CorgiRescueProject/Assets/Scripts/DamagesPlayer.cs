@@ -21,6 +21,10 @@ public class DamagesPlayer : MonoBehaviour
     private ParticleSystem collisionParticles;
     private cameraoptions co;
     public bool canHurtPlayer = true;
+    [SerializeField]
+    bool spawnsObjOnCollision;
+    [SerializeField]
+    GameObject collisionObject;
 
 
     private void Start()
@@ -73,7 +77,14 @@ public class DamagesPlayer : MonoBehaviour
         }
         if(destroyOnCollision)
         {
-            Instantiate(collisionParticles, transform.position, Quaternion.identity);
+            if (spawnsObjOnCollision)
+            {
+                Instantiate(collisionObject, transform.position, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(collisionParticles, transform.position, Quaternion.identity);
+            }
             Destroy(gameObject);
         }
     }
@@ -123,7 +134,14 @@ public class DamagesPlayer : MonoBehaviour
             }
             if (destroyOnCollision)
             {
-                Instantiate(collisionParticles, transform.position, Quaternion.identity);
+                if (spawnsObjOnCollision)
+                {
+                    Instantiate(collisionObject, transform.position, Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(collisionParticles, transform.position, Quaternion.identity);
+                }
                 Destroy(gameObject);
             }
         }

@@ -910,7 +910,6 @@ public class LevelGenerator : MonoBehaviour
     public void GenerateKey()
     {
         StartCoroutine(KeyGenDelay());
-        Debug.Log("Key Spawning");
     }
 
     private IEnumerator KeyGenDelay() 
@@ -939,7 +938,6 @@ public class LevelGenerator : MonoBehaviour
             if (temp == spot)
             {
                 int i = p / 121;
-                Debug.Log(sum);
                 int y = (p % 121) / 11;
                 int x = (p % 121) % 11;
                 Vector2 spawnpoint = nodes[0].transform.GetChild(0).position;

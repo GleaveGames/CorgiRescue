@@ -141,6 +141,8 @@ MonoBehaviour:
   destroyOnCollision: 1
   collisionParticles: {fileID: 5061643180660836750, guid: 29d2b95a68eeb164c8dd06592843dcf3, type: 3}
   canHurtPlayer: 1
+  spawnsObjOnCollision: 1
+  collisionObject: {fileID: 145467140550553414, guid: 7759a6e5ace774744b2d8ae78bf847c0, type: 3}
 --- !u!114 &1860192330718673706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,7 +150,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 364845537972970825}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44ea9152c7ba7e2449886185446cefcb, type: 3}
   m_Name: 

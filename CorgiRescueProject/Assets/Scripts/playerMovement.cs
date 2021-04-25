@@ -173,7 +173,7 @@ public class playerMovement : MonoBehaviour
                 rb.velocity = new Vector2(0, 0);
                 if (!walkPressed && !mining)
                 {
-                    rb.velocity = new Vector2(move.x * ps.moveSpeed, move.y * ps.moveSpeed);
+                    rb.velocity = new Vector2(move.x * runsp, move.y * runsp);
                 }
                 else
                 {
@@ -182,10 +182,10 @@ public class playerMovement : MonoBehaviour
             }
             else
             {
-                rb.velocity += SlipFactor * new Vector2(move.x * ps.moveSpeed, move.y * ps.moveSpeed);
-                if (rb.velocity.magnitude >= new Vector2(0.7f * ps.moveSpeed, 0.7f * ps.moveSpeed).magnitude) 
+                rb.velocity += SlipFactor * new Vector2(move.x * runsp, move.y * runsp);
+                if (rb.velocity.magnitude >= new Vector2(0.7f * runsp, 0.7f * runsp).magnitude) 
                 {
-                    rb.velocity = rb.velocity.normalized * new Vector2(0.7f * ps.moveSpeed, 0.7f * ps.moveSpeed).magnitude;
+                    rb.velocity = rb.velocity.normalized * new Vector2(0.7f * runsp, 0.7f * runsp).magnitude;
                 }
                 move.x = 0;
                 move.y = 0;
@@ -311,7 +311,6 @@ public class playerMovement : MonoBehaviour
     {
         if (canMine)
         {
-            Debug.Log("mine");
             canMine = false;
             am.Play("Swing", transform.position, true);
             ChangeAnimationState("Mine");
