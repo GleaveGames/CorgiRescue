@@ -8,6 +8,8 @@ public class Web : MonoBehaviour
     SpriteRenderer sprite;
     [SerializeField]
     private float WebLoss;
+    [SerializeField]
+    ParticleSystem webParticles;
 
     private void Start()
     {
@@ -28,8 +30,9 @@ public class Web : MonoBehaviour
                 tmp.a-=WebLoss;
                 sprite.color = tmp;
                 Debug.Log(tmp.a);
-                if(tmp.a <= 0.02f) 
+                if(tmp.a <= 0.2f) 
                 {
+                    Instantiate(webParticles, transform.position, Quaternion.identity);
                     Destroy(gameObject);
                 }
             }
