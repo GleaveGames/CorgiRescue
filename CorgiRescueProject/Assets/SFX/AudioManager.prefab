@@ -46,139 +46,227 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Diamond
-    clip: {fileID: 8300000, guid: 7eeae754c788a5d42b1bf341cea6a67e, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 7eeae754c788a5d42b1bf341cea6a67e, type: 3}
     volume: 0.22
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Dirt
-    clip: {fileID: 8300000, guid: 2606fbc96f3cd4d4e8de78c0cde05bab, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 8361dc18b2b752b46a75f6c2329d2d3a, type: 3}
+    - {fileID: 8300000, guid: d306fe1f16027dd4c907215c2d93bd3c, type: 3}
+    - {fileID: 8300000, guid: 7342bba41ec096541a639ac744944417, type: 3}
+    - {fileID: 8300000, guid: d25af70a53c75574c8c29bb58bdc9930, type: 3}
+    - {fileID: 8300000, guid: 83806d8356ac069488dc43e925cc2469, type: 3}
+    - {fileID: 8300000, guid: 880df919bc03f54408821ef8c329d52b, type: 3}
+    - {fileID: 8300000, guid: 240c79ac5e79b5f4391e05e06a86b8e7, type: 3}
+    - {fileID: 8300000, guid: 51b2aac7ce98e2541acf4e4af627822a, type: 3}
+    - {fileID: 8300000, guid: 92029384e5438354b994794b11a07992, type: 3}
+    - {fileID: 8300000, guid: 655f4cae6271e3a4a864acddce46623d, type: 3}
+    - {fileID: 8300000, guid: dc65ce59da6854d41a253d4485528a45, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Gold
-    clip: {fileID: 8300000, guid: b5b1b23c1272b7b4e880795d36c43d05, type: 3}
+    clips:
+    - {fileID: 8300000, guid: b5b1b23c1272b7b4e880795d36c43d05, type: 3}
     volume: 0.2
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Rock
-    clip: {fileID: 8300000, guid: 2c4adc558cc4ef3409643c85e319413a, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 5adff5ae5fe483f43a5c96a6cb85c08f, type: 3}
+    - {fileID: 8300000, guid: 88556cefa936d19458213afd9152e5ed, type: 3}
+    - {fileID: 8300000, guid: 8654a3fef0f638d43a17bbc765f1447c, type: 3}
+    - {fileID: 8300000, guid: 25b1791df279a50468b8bd829b34e206, type: 3}
+    - {fileID: 8300000, guid: 5eb25cf075a8e0c4cb5fd9ce94cb7b06, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Silver
-    clip: {fileID: 8300000, guid: 9161901f4a7df1c438ae27aa66389102, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 9161901f4a7df1c438ae27aa66389102, type: 3}
     volume: 0.2
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Snow
-    clip: {fileID: 8300000, guid: 8878f0ad81771464aae8f9ef05c22506, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 887b521653d05a049a3167a761bbd065, type: 3}
+    - {fileID: 8300000, guid: abda9c60a388bce428d77d6895a4e35b, type: 3}
+    - {fileID: 8300000, guid: 8a0426720664fb74eab10fd01d316c92, type: 3}
+    - {fileID: 8300000, guid: ca07dc4c1ac60844aa0fa5c748af4946, type: 3}
+    - {fileID: 8300000, guid: 020298508a2f5c646a6512ac60808e45, type: 3}
+    - {fileID: 8300000, guid: d93c1c1f7ec77f04e894005ad78ec526, type: 3}
+    - {fileID: 8300000, guid: f2daf5bc49a8d854eb81101703d737d3, type: 3}
+    - {fileID: 8300000, guid: 4c87f2ca6dbda0946b645c1e901fdcf0, type: 3}
     volume: 0.2
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Swing
-    clip: {fileID: 8300000, guid: 69b6f1e5336a3914e8a3d62c35082526, type: 3}
+    clips:
+    - {fileID: 8300000, guid: cfd2d72e418513b4bba799c6b4031418, type: 3}
+    - {fileID: 8300000, guid: ebd253b88f274c84ba4a3efdeb04c72f, type: 3}
+    - {fileID: 8300000, guid: c0b4269b0a2f9d74b8d1d1684a1f25e5, type: 3}
+    - {fileID: 8300000, guid: d10f3c0e1cb419546bfc5bca2442160a, type: 3}
+    - {fileID: 8300000, guid: e4a8d46729e97d344b1382acd93bb87a, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: PickUp
-    clip: {fileID: 8300000, guid: efbfab8cc23b2f54c85e9174cbf797ee, type: 3}
+    clips:
+    - {fileID: 8300000, guid: efbfab8cc23b2f54c85e9174cbf797ee, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Drop
-    clip: {fileID: 8300000, guid: 598cd51333fc8af4f84e25989750d661, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 598cd51333fc8af4f84e25989750d661, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Throw
-    clip: {fileID: 8300000, guid: 009f7e05e35feb249abe1f5ed592d109, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 009f7e05e35feb249abe1f5ed592d109, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Hit
-    clip: {fileID: 8300000, guid: 4e54e9876daa38246b0cd8c596486848, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 4e54e9876daa38246b0cd8c596486848, type: 3}
     volume: 0.5
     pitch: 0.75
     loop: 0
     source: {fileID: 0}
   - name: Explosion
-    clip: {fileID: 8300000, guid: 9ce4bb65094c725438337ae960f22f6d, type: 3}
+    clips:
+    - {fileID: 8300000, guid: b996510712ba30744989308388c26537, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Snack
-    clip: {fileID: 8300000, guid: 060aebc10f96e6d48b1d1973f2bb9d71, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 060aebc10f96e6d48b1d1973f2bb9d71, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: DirtTheme
-    clip: {fileID: 8300000, guid: 4aaf4586497d5e144bf237c40297c9dc, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 4aaf4586497d5e144bf237c40297c9dc, type: 3}
     volume: 0
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: DirtThemeChase
-    clip: {fileID: 8300000, guid: 8a4daed41e8f4814c947000d6c569095, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 8a4daed41e8f4814c947000d6c569095, type: 3}
     volume: 0
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: PlayerGrunt
-    clip: {fileID: 8300000, guid: 9126a9dc14290db45991b469c1c723fb, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 9126a9dc14290db45991b469c1c723fb, type: 3}
     volume: 0.4
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: MenuTheme
-    clip: {fileID: 8300000, guid: 447ab3f59dfd09d40a2afc275ebe5ea3, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 447ab3f59dfd09d40a2afc275ebe5ea3, type: 3}
     volume: 0
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Snore
-    clip: {fileID: 8300000, guid: fa6bf02278617944a80876a092d5b6c1, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 4d52cf2ad33162a4b8fc601f35a4c204, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Crack
-    clip: {fileID: 8300000, guid: 0da29bc47bee6fb4fbd8596ed3893267, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 0da29bc47bee6fb4fbd8596ed3893267, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Pay
-    clip: {fileID: 8300000, guid: 9d2af2539dfe3014691d25921f4a5596, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 22a188eb889edd34a9bdfbad10c2eeea, type: 3}
+    - {fileID: 8300000, guid: 9080cf33ddabba3469ee41ff60b3ac37, type: 3}
+    - {fileID: 8300000, guid: 91c426c46d465ce47b85af12fe6ecc2a, type: 3}
+    - {fileID: 8300000, guid: ae155341c34d74343968b2f67ccc2c21, type: 3}
+    - {fileID: 8300000, guid: 209c2ebb3e565d64aaadae75200680d9, type: 3}
+    - {fileID: 8300000, guid: 0c62dae753a583544afae426c780897d, type: 3}
+    - {fileID: 8300000, guid: 2893de4bb55b70740b595c15b215034c, type: 3}
+    - {fileID: 8300000, guid: 02f8b1b34826b5548abb639276cbcf4c, type: 3}
+    - {fileID: 8300000, guid: cd4fc5fec1c1eaf4db8186c336d6d430, type: 3}
+    - {fileID: 8300000, guid: c0ee32c08a838c7419e794a7aca0d61a, type: 3}
+    - {fileID: 8300000, guid: 39396aecdb55e3646ae05908feeea8af, type: 3}
+    - {fileID: 8300000, guid: aa3e65bc68fdba44cb0dae0cf5470f90, type: 3}
+    - {fileID: 8300000, guid: ad786a498ee6fbd4d91519e7495bf673, type: 3}
+    - {fileID: 8300000, guid: ea3c6f254bcddea48aab2cdae423c7cc, type: 3}
+    - {fileID: 8300000, guid: fbb4883dfcd7cde41aa8d9c48bb6bbb8, type: 3}
+    - {fileID: 8300000, guid: 3ea8434d797a4bc44b09595a403da39b, type: 3}
+    - {fileID: 8300000, guid: f1ac2bb0036a0724c98636e6e5f67f07, type: 3}
+    - {fileID: 8300000, guid: 03d676f27dc538745b86044c494825b2, type: 3}
+    - {fileID: 8300000, guid: 5f0f7e54753d25047a786b76554c1b57, type: 3}
+    - {fileID: 8300000, guid: e08b7d8e030f85140a3a50f6dd863605, type: 3}
+    - {fileID: 8300000, guid: 654639ef14df4294e89725bfb29bbd73, type: 3}
+    - {fileID: 8300000, guid: e522342671532b1408278845e7123ad5, type: 3}
+    - {fileID: 8300000, guid: 630d2f290cc2e7c4288e6ca045e5965e, type: 3}
+    - {fileID: 8300000, guid: 901ce331b23d01647a21a9a1ef32dfa3, type: 3}
+    - {fileID: 8300000, guid: f0fa745149b46eb4ab55bf36836e6af1, type: 3}
+    - {fileID: 8300000, guid: d555e473919208c4aaf7d311e2710ab0, type: 3}
+    - {fileID: 8300000, guid: 9a6b0cbc492552c438f3f396ff5b04af, type: 3}
+    - {fileID: 8300000, guid: 270a2fab5b9a2b949b9a445238c8d1c9, type: 3}
+    - {fileID: 8300000, guid: 48309db572faeff47909ea40e3fc920e, type: 3}
+    - {fileID: 8300000, guid: 44e44f5cc78ef294094565417c701af5, type: 3}
     volume: 0.4
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Denied
-    clip: {fileID: 8300000, guid: 611a35f70fa6fef428c07d44586795fb, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 9adf8fe9d543b034e81ae20359abc712, type: 3}
     volume: 0.4
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Ice
-    clip: {fileID: 8300000, guid: c795230a9e319d242aa40cd937dc025d, type: 3}
+    clips:
+    - {fileID: 8300000, guid: cfdbd05b2131a544fb732948890c73d6, type: 3}
+    - {fileID: 8300000, guid: 7fba3c09770d5f3449de0b6df35892fc, type: 3}
+    - {fileID: 8300000, guid: 6b281d9ba8c59da40b3c4d8ac12f982e, type: 3}
+    - {fileID: 8300000, guid: b7dbae8720d279d4a8da24b920316e80, type: 3}
+    - {fileID: 8300000, guid: 1dc7a28a17660d7488aadc652895ff73, type: 3}
+    - {fileID: 8300000, guid: e739f94513131ba4aa09bc6a761d11ac, type: 3}
+    - {fileID: 8300000, guid: e64127b459fb4fc45b1640993cc90591, type: 3}
+    - {fileID: 8300000, guid: 7d90ad15deb47724985e6d66479c1a4b, type: 3}
+    - {fileID: 8300000, guid: 8f0b941e0493d9841a6d5d230ae70883, type: 3}
+    - {fileID: 8300000, guid: c9f7664bc65c9ba4f8a78fecb69fb56f, type: 3}
     volume: 0.4
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: CrateWood
-    clip: {fileID: 8300000, guid: 529a8993b7c24a64f9e4951523245a6c, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 529a8993b7c24a64f9e4951523245a6c, type: 3}
+    - {fileID: 8300000, guid: 45e7694846a342744b4778f8d743eaa3, type: 3}
+    - {fileID: 8300000, guid: 9043cde3f2503b84ca4539ed91223585, type: 3}
     volume: 0.4
     pitch: 1
     loop: 0

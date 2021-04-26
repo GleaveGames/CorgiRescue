@@ -10,10 +10,12 @@ public class Web : MonoBehaviour
     private float WebLoss;
     [SerializeField]
     ParticleSystem webParticles;
+    AudioManager am;
 
     private void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
+        am = FindObjectOfType<AudioManager>();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -34,6 +36,7 @@ public class Web : MonoBehaviour
                 {
                     Instantiate(webParticles, transform.position, Quaternion.identity);
                     Destroy(gameObject);
+                    am.Play("Web", transform.position, false);
                 }
             }
         }
@@ -45,6 +48,7 @@ public class Web : MonoBehaviour
         {
             Player = collision.gameObject;
             Player.GetComponent<playerMovement>().runsp = FindObjectOfType<playerStats>().moveSpeed / 6;
+            am.Play("Web", transform.position, false);
         }
     }
 

@@ -246,7 +246,9 @@ public class playerMovement : MonoBehaviour
 
     private IEnumerator MiningCool()
     {
-        yield return new WaitForSeconds(miningSpeed);
+        yield return new WaitForSeconds(miningSpeed / 2);
+        am.Play("Swing", transform.position, true);
+        yield return new WaitForSeconds(miningSpeed /2);
         canMine = true;
     }
 
@@ -312,7 +314,6 @@ public class playerMovement : MonoBehaviour
         if (canMine)
         {
             canMine = false;
-            am.Play("Swing", transform.position, true);
             ChangeAnimationState("Mine");
             mining = true;
             StartCoroutine("MiningCool");

@@ -39,7 +39,7 @@ public class AudioManager : MonoBehaviour
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
+            s.source.clip = s.clips[UnityEngine.Random.Range(0, s.clips.Length)];
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
@@ -56,7 +56,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
         GameObject newSound = Instantiate(audioSource, pos, Quaternion.identity);        
-        newSound.GetComponent<AudioSource>().clip = s.clip;
+        newSound.GetComponent<AudioSource>().clip = s.clips[UnityEngine.Random.Range(0,s.clips.Length)];
         newSound.GetComponent<AudioSource>().volume = s.volume;
         if (randpitch) newSound.GetComponent<AudioSource>().pitch += UnityEngine.Random.Range(-0.2f, 0.2f); 
         newSound.GetComponent<AudioSource>().Play();
@@ -67,7 +67,7 @@ public class AudioManager : MonoBehaviour
         {
             musicAS = GetComponent<AudioSource>();
             Sound s = Array.Find(sounds, sound => sound.name == name);
-            StartCoroutine(FadeAudioSource.StartFade(musicAS, 1, s.volume, s.clip));
+            StartCoroutine(FadeAudioSource.StartFade(musicAS, 1, s.volume, s.clips[UnityEngine.Random.Range(0, s.clips.Length)]));
             currentMusic = name;
         }        
     }
