@@ -65,7 +65,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 92029384e5438354b994794b11a07992, type: 3}
     - {fileID: 8300000, guid: 655f4cae6271e3a4a864acddce46623d, type: 3}
     - {fileID: 8300000, guid: dc65ce59da6854d41a253d4485528a45, type: 3}
-    volume: 0.5
+    volume: 0.3
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -115,7 +115,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: c0b4269b0a2f9d74b8d1d1684a1f25e5, type: 3}
     - {fileID: 8300000, guid: d10f3c0e1cb419546bfc5bca2442160a, type: 3}
     - {fileID: 8300000, guid: e4a8d46729e97d344b1382acd93bb87a, type: 3}
-    volume: 1
+    volume: 0.414
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -267,7 +267,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 529a8993b7c24a64f9e4951523245a6c, type: 3}
     - {fileID: 8300000, guid: 45e7694846a342744b4778f8d743eaa3, type: 3}
     - {fileID: 8300000, guid: 9043cde3f2503b84ca4539ed91223585, type: 3}
-    volume: 0.4
+    volume: 0.23
     pitch: 1
     loop: 0
     source: {fileID: 0}

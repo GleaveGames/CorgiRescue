@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 2652619570924512440}
   - component: {fileID: 4159018020417223413}
   - component: {fileID: 2503999288548449287}
-  - component: {fileID: 4984381135450900778}
   - component: {fileID: 6395548067137857559}
   m_Layer: 0
   m_Name: WoodCrate
@@ -189,7 +188,7 @@ MonoBehaviour:
   - {x: -0.34823036, y: 0.3448949, z: 0}
   m_ShapePathHash: 407443349
   m_Mesh: {fileID: 0}
-  m_InstanceId: 68232
+  m_InstanceId: 78450
 --- !u!114 &4159018020417223413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,25 +217,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   percentageSlowed: 80
---- !u!114 &4984381135450900778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7688553074688750316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d8aa628b6065cf46b78979e90d5934c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trigger: 0
-  damage: 0
-  canHurt: 1
-  knockbackTime: 1
-  destroyOnCollision: 0
-  collisionParticles: {fileID: 5061643180660836750, guid: faebdcc121889e8418fcdfb125de12eb, type: 3}
-  canHurtPlayer: 1
 --- !u!114 &6395548067137857559
 MonoBehaviour:
   m_ObjectHideFlags: 0

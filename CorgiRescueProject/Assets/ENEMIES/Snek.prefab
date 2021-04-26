@@ -170,6 +170,8 @@ MonoBehaviour:
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
   canHurtPlayer: 1
+  spawnsObjOnCollision: 0
+  collisionObject: {fileID: 0}
 --- !u!114 &5686374190113552966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,6 +189,7 @@ MonoBehaviour:
   mong: 0
   bomby: 0
   littleBlood: {fileID: 1654121160770679037, guid: 58d437bff74a2aa4896badd67bce2666, type: 3}
+  stuntime: 3
   Living: 0
   PickUpItems: 1
   Pick: 1
@@ -203,7 +206,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ec13323d56e26054898cd8e9fa859a08, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4ba526e54c32ac840bbf69c1ceb740f6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
@@ -328,7 +331,7 @@ MonoBehaviour:
   - {x: -0.23658863, y: 0.14025319, z: 0}
   m_ShapePathHash: 888740386
   m_Mesh: {fileID: 0}
-  m_InstanceId: 88964
+  m_InstanceId: 72590
 --- !u!114 &7865070789608767469
 MonoBehaviour:
   m_ObjectHideFlags: 0

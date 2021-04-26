@@ -111,6 +111,8 @@ MonoBehaviour:
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
   canHurtPlayer: 1
+  spawnsObjOnCollision: 0
+  collisionObject: {fileID: 0}
 --- !u!58 &573251302377330187
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -216,7 +218,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2d5e1ad4b4017574ab572730135bb136, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a468fbe2fffb6ed4d8b03a25974b4ae1, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.2
   m_Pitch: 1
@@ -341,7 +343,7 @@ MonoBehaviour:
   - {x: -0.50734544, y: -0.003279686, z: 0}
   m_ShapePathHash: 1116525385
   m_Mesh: {fileID: 0}
-  m_InstanceId: 107676
+  m_InstanceId: 72714
 --- !u!114 &2307276744979374918
 MonoBehaviour:
   m_ObjectHideFlags: 0
