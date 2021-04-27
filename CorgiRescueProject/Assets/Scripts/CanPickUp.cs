@@ -121,7 +121,7 @@ public class CanPickUp : MonoBehaviour
                 {
                     closestItem.GetComponent<PickUpItem>().PickUp(leftHand);
                     item = closestItem;
-                    Quaternion itemrot = Quaternion.LookRotation(transform.forward, -transform.right);
+                    Quaternion itemrot = Quaternion.LookRotation(transform.forward, transform.up);
                     item.transform.rotation = itemrot;
                 }
                 else print("no items in range");

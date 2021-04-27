@@ -4,6 +4,76 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
+    /*
+     Sword Breakdown
+     
+    if charge weapon
+        attack -> hold ani
+        release -> attack ani
+    else  !charge weapon
+        attack -> attack ani
+
+
+    */
+
+    Coroutine coroutine;
+    [SerializeField]
+    private bool charge = true;
+    private cameraoptions co;
+    private Animator ani;
+    private string currentState;
+    private PlayerControls pc;
+
+    private void Awake()
+    {
+        pc = new PlayerControls();
+        co = FindObjectOfType<cameraoptions>();
+        ani = GetComponent<Animator>();
+        pc.Game.Fire.canceled += _ => Release();
+    }
+
+    public void Fire()
+    {
+        if (charge)
+        {
+            ChangeAnimationState("Hold");
+            co.shakeDuration = 0.01f;
+        }
+        else 
+        {
+            ChangeAnimationState("Swing");
+            co.shakeDuration = 0.01f;
+        }
+    }
+
+    private void Release()
+    {
+        if (transform.parent != null)
+        {
+            ChangeAnimationState("Swing");
+            //this is dumb should have just a script that saves these so don't have to check each time but idk means shotgun can be swapped between holders easily
+            GetComponent<AudioSource>().Play();
+        }
+    }
+    private void OnEnable()
+    {
+        pc.Enable();
+    }
+    private void OnDisable()
+    {
+        pc.Disable();
+    }
+
+    public void ChangeAnimationState(string newState)
+    {
+        if (currentState == newState) return;
+        ani.Play(newState);
+        currentState = newState;
+    }
+
+
+    /*
+     * OLD SWORD
     Coroutine coroutine;
     [SerializeField]
     private bool loaded = true;
@@ -29,12 +99,12 @@ public class Sword : MonoBehaviour
     {
         if (transform.parent == null)
         {
-            ChangeAnimationState("AndurilColliderOn");
+            ChangeAnimationState("ColliderOn");
             GetComponent<Collider2D>().isTrigger = false;
         }
     }
 
-    public void Fire()
+    public void Attack()
     {
         if (!chargeWeapon)
         {
@@ -45,7 +115,7 @@ public class Sword : MonoBehaviour
                 StartCoroutine("Reload");
                 GetComponent<AudioSource>().Play();
                 //GetComponent<Rigidbody2D>().isKinematic = false;
-                ChangeAnimationState("AndurilSwing");
+                ChangeAnimationState("Swing");
             }
         }
     }
@@ -53,7 +123,7 @@ public class Sword : MonoBehaviour
     public IEnumerator Reload()
     {
         yield return new WaitForSeconds(reloadTime);
-        ChangeAnimationState("AndurilIdle");
+        ChangeAnimationState("Idle");
         loaded = true;
     }
 
@@ -76,6 +146,8 @@ public class Sword : MonoBehaviour
     {
         pc.Disable();
     }
+
+    */
 
 }
 

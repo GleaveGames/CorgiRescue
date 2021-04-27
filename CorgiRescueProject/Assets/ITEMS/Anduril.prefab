@@ -54,9 +54,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c955def59c8e341438cf6a4e6f8c98be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loaded: 1
-  reloadTime: 1
-  chargeWeapon: 0
+  charge: 0
 --- !u!114 &4358306823458372606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +175,8 @@ MonoBehaviour:
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
   canHurtPlayer: 0
+  spawnsObjOnCollision: 0
+  collisionObject: {fileID: 0}
 --- !u!82 &8467640212453393434
 AudioSource:
   m_ObjectHideFlags: 0
@@ -321,7 +321,7 @@ MonoBehaviour:
   - {x: -0.18113346, y: 0.072449744, z: 0}
   m_ShapePathHash: 1472288172
   m_Mesh: {fileID: 0}
-  m_InstanceId: 65454
+  m_InstanceId: 71476
 --- !u!114 &4802225057804522137
 MonoBehaviour:
   m_ObjectHideFlags: 0

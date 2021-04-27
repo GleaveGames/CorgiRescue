@@ -40,6 +40,8 @@ public class PickUpItem : MonoBehaviour
 
     private void Update()
     {
+
+        //could maybe put all this into the throw coroutine or something idk
         if (transform.parent == null)
         {
             if (rb.velocity.magnitude <= 3)
@@ -57,11 +59,8 @@ public class PickUpItem : MonoBehaviour
                     GetComponent<DamagesPlayer>().canHurt = false;
                 }
                 */
-
-
                 //changed this from above to try fix bomby from hurting player
                 GetComponent<DamagesPlayer>().canHurt = false;
-
             }
             else
             {
@@ -83,11 +82,10 @@ public class PickUpItem : MonoBehaviour
     {
         if (TryGetComponent(out Sword sword)) 
         {
-            sword.ChangeAnimationState("AndurilIdle");
+            sword.ChangeAnimationState("Idle");
         }
         am.Play("PickUp", transform.position, true);
         leftHand = lH;
-
         //cc.isTrigger = true;
         // need to disable collider and re-enable because otherwise you can just run into enemies with a weapon and it will kill them
         cc.enabled = false;

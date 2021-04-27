@@ -48,7 +48,7 @@ public class shotgun : MonoBehaviour
                     //shoot from end of shotogun
 
                     GameObject b = Instantiate(bullet, bulletspawn.position, Quaternion.identity);
-                    Vector3 spread = transform.right;//transform.parent.parent.up;
+                    Vector3 spread = transform.up;//transform.parent.parent.up;
                     spread.x += Random.Range(-0.15f, 0.15f);
                     spread.y += Random.Range(-0.15f, 0.15f);
                     b.GetComponent<Rigidbody2D>().AddForce(spread * shotpower, ForceMode2D.Impulse);
@@ -63,7 +63,6 @@ public class shotgun : MonoBehaviour
                         {
                             skmov.KnockBack(0.3f, -5 * spread * shotpower);
                         }
-
                     }
                 }
                 loaded = false;
@@ -115,16 +114,15 @@ public class shotgun : MonoBehaviour
         if(transform.parent != null)
         {
             if(sling)
-        {
+            {
                 if (loaded)
                 {
                     ChangeAnimationState("SlingFire");
                     GameObject b = Instantiate(bullet, bulletspawn.position, Quaternion.identity);
-                    Vector3 spread = transform.right;//transform.parent.parent.up;
+                    Vector3 spread = transform.up;//transform.parent.parent.up;
                     spread.x += Random.Range(-0.15f, 0.15f);
                     spread.y += Random.Range(-0.15f, 0.15f);
                     b.GetComponent<Rigidbody2D>().AddForce(spread * shotpower, ForceMode2D.Impulse);
-
                     if (transform.root.gameObject.TryGetComponent(out playerMovement pm))
                     {
                         pm.KnockBack(0.3f, -spread * shotpower);
