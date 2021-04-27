@@ -247,6 +247,8 @@ MonoBehaviour:
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
   canHurtPlayer: 1
+  spawnsObjOnCollision: 0
+  collisionObject: {fileID: 0}
 --- !u!114 &5870998475583592556
 MonoBehaviour:
   m_ObjectHideFlags: 0

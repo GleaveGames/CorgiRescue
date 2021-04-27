@@ -14,7 +14,7 @@ public class ShootTrap : MonoBehaviour
     private int dir;
     [SerializeField]
     private Sprite firedSprite;
-
+    Coroutine coroutine;
 
     private void Update()
     {
@@ -51,12 +51,8 @@ public class ShootTrap : MonoBehaviour
         {
             if (!fired)
             {
-                GetComponent<SpriteRenderer>().sprite = firedSprite;
-                Vector3 spawnpoint = transform.position;
-                spawnpoint += transform.up;
-                GameObject b = Instantiate(bullet, spawnpoint, transform.rotation);
+                StartCoroutine(Fire());
                 fired = true;
-                b.GetComponent<Rigidbody2D>().AddForce(transform.up * shotPower, ForceMode2D.Impulse);
             }
         }
     }
@@ -117,4 +113,14 @@ public class ShootTrap : MonoBehaviour
         }
     }
 
+    private IEnumerator Fire() 
+    {
+        GetComponent<AudioSource>().Play();
+        yield return new WaitForSeconds(0.35f);
+        GetComponent<SpriteRenderer>().sprite = firedSprite;
+        Vector3 spawnpoint = transform.position;
+        spawnpoint += transform.up;
+        GameObject b = Instantiate(bullet, spawnpoint, transform.rotation);
+        b.GetComponent<Rigidbody2D>().AddForce(transform.up * shotPower, ForceMode2D.Impulse);
+    }
 }

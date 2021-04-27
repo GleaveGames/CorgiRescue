@@ -36,10 +36,11 @@ public class Beetle : MonoBehaviour
     RuntimeAnimatorController littleAni;
     [SerializeField]
     float bumpRangeLittle = 0.2f;
-
+    AudioSource crawlsound;
 
     private void Start()
     {
+        crawlsound = GetComponent<AudioSource>();
         if(Random.Range(0,2) < 1) Big = true; 
         ani = GetComponent<Animator>();
         idle = true;
@@ -81,7 +82,6 @@ public class Beetle : MonoBehaviour
             if (Vector2.Distance(hit.point, transform.position) > bumprange && Vector2.Distance(hit1.point, transform.position) > bumprange && Vector2.Distance(hit2.point, transform.position) > bumprange && !turning)
             {
                 //move forward;
-
                 transform.position = Vector2.MoveTowards(transform.position, hit.point, movespeed * Time.deltaTime);
                 midturn = false;
             }
@@ -99,6 +99,7 @@ public class Beetle : MonoBehaviour
 
     private IEnumerator Turn()
     {
+        crawlsound.Stop();
         if (Big) ChangeAnimationState("BeetleIdleBig");
         else ChangeAnimationState("BeetleIdleSmall");
         midturn = true;
@@ -109,6 +110,7 @@ public class Beetle : MonoBehaviour
         midturn = false;
         if (Big) ChangeAnimationState("BeetleMoveBig");
         else ChangeAnimationState("BeetleMoveSmall");
+        crawlsound.Play();
     }
 
     private void Rerotate() 

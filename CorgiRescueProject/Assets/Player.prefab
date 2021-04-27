@@ -286,7 +286,6 @@ GameObject:
   - component: {fileID: 3331172430760222192}
   - component: {fileID: 3395587979383381893}
   - component: {fileID: 7711765784988805059}
-  - component: {fileID: 1623710254703770727}
   - component: {fileID: 6419587093600241304}
   - component: {fileID: 956637169494313860}
   - component: {fileID: 1001694172895325570}
@@ -402,14 +401,6 @@ MonoBehaviour:
   inBuyZone: 0
   buyZoneItem: {fileID: 0}
   lg: {fileID: 0}
---- !u!81 &1623710254703770727
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3331172430760222196}
-  m_Enabled: 1
 --- !u!82 &6419587093600241304
 AudioSource:
   m_ObjectHideFlags: 0
