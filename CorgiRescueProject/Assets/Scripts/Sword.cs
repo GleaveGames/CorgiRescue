@@ -14,6 +14,10 @@ public class Sword : MonoBehaviour
         attack -> attack ani
 
 
+    GOT TO TURN ON COLLIDER DURING SWING IN SCRIPT BECAUSE OTHERWISE ANIMATOR RUINS COLLIDER SCRIPTS
+
+    ALSO HAVE TO BE TRIGGER DAMAGE
+
     */
 
     Coroutine coroutine;
@@ -23,6 +27,7 @@ public class Sword : MonoBehaviour
     private Animator ani;
     private string currentState;
     private PlayerControls pc;
+    Collider2D col;
 
     private void Awake()
     {
@@ -30,29 +35,38 @@ public class Sword : MonoBehaviour
         co = FindObjectOfType<cameraoptions>();
         ani = GetComponent<Animator>();
         pc.Game.Fire.canceled += _ => Release();
+        col = GetComponent<Collider2D>();
     }
 
     public void Fire()
     {
         if (charge)
         {
-            ChangeAnimationState("Hold");
-            co.shakeDuration = 0.01f;
+            if (ani.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+            {
+                ani.Play("Hold");
+                co.shakeDuration = 0.01f;
+            }
         }
         else 
         {
-            ChangeAnimationState("Swing");
-            co.shakeDuration = 0.01f;
+            if (ani.GetCurrentAnimatorStateInfo(0).IsName("Idle")) 
+            {
+                ani.Play("Swing");
+                co.shakeDuration = 0.01f;
+            }
         }
     }
 
     private void Release()
     {
-        if (transform.parent != null)
+        if (charge) 
         {
-            ChangeAnimationState("Swing");
-            //this is dumb should have just a script that saves these so don't have to check each time but idk means shotgun can be swapped between holders easily
-            GetComponent<AudioSource>().Play();
+            if (transform.parent != null)
+            {
+                ani.Play("Swing");
+                GetComponent<AudioSource>().Play();
+            }
         }
     }
     private void OnEnable()
@@ -64,6 +78,8 @@ public class Sword : MonoBehaviour
         pc.Disable();
     }
 
+
+    //change animation state doesn't really work if you use transitions
     public void ChangeAnimationState(string newState)
     {
         if (currentState == newState) return;
@@ -71,6 +87,18 @@ public class Sword : MonoBehaviour
         currentState = newState;
     }
 
+
+    public void ColliderOn() 
+    {
+        col.enabled = true;
+        col.isTrigger = true;
+    }
+
+    public void ColliderOff() 
+    {
+        col.enabled = false;
+        col.isTrigger = false;
+    }
 
     /*
      * OLD SWORD

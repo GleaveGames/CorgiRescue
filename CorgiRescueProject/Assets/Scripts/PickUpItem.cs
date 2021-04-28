@@ -80,15 +80,18 @@ public class PickUpItem : MonoBehaviour
 
     public void PickUp(Transform lH)
     {
+        /*
         if (TryGetComponent(out Sword sword)) 
         {
             sword.ChangeAnimationState("Idle");
         }
+        */
         am.Play("PickUp", transform.position, true);
         leftHand = lH;
         //cc.isTrigger = true;
         // need to disable collider and re-enable because otherwise you can just run into enemies with a weapon and it will kill them
         cc.enabled = false;
+        Debug.Log("cc.enabled = false");
         transform.position = lH.position;
         transform.parent = lH;
         rb.isKinematic = true;
@@ -106,6 +109,12 @@ public class PickUpItem : MonoBehaviour
 
     public void Throw()
     {
+        /*
+        if (TryGetComponent(out Sword sword))
+        {
+            sword.ChangeAnimationState("Idle");
+        }
+        */
         am.Play("Throw", transform.position, true);
         GetComponent<DamagesPlayer>().canHurt = false;
         StartCoroutine("WaitforHurt");        
@@ -121,6 +130,12 @@ public class PickUpItem : MonoBehaviour
     }
     public void Drop()
     {
+        /*
+        if (TryGetComponent(out Sword sword))
+        {
+            sword.ChangeAnimationState("Idle");
+        }
+        */
         am.Play("Drop", transform.position, true);
         GetComponent<DamagesPlayer>().canHurt = false;
         StartCoroutine("WaitforHurt");        

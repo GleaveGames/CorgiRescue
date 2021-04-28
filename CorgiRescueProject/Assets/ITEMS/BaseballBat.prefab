@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea122672870bce4e8d8943b5ba83875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwPower: 6
+  throwPower: 30
   AmIBomb: 0
   AmISword: 1
 --- !u!212 &1435047480065279769
@@ -147,8 +147,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 6
-  m_LinearDrag: 4.5
+  m_Mass: 3
+  m_LinearDrag: 3.6
   m_AngularDrag: 0.6
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6c8a87603030ef47a316185a91b87aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 4
+  damage: 2
   initialDamage: 0
 --- !u!114 &666829808194364853
 MonoBehaviour:
@@ -321,7 +321,7 @@ MonoBehaviour:
   - {x: -0.18113346, y: 0.072449744, z: 0}
   m_ShapePathHash: 1472288172
   m_Mesh: {fileID: 0}
-  m_InstanceId: 78946
+  m_InstanceId: 75602
 --- !u!114 &4802225057804522137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,7 +361,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5020420758543740405}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
