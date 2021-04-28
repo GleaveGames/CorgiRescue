@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4802225057804522137}
   - component: {fileID: 1435975279345846554}
   - component: {fileID: 7392834014282990093}
+  - component: {fileID: 3316309766074556843}
   m_Layer: 0
   m_Name: Anduril
   m_TagString: PickupItems
@@ -321,7 +322,7 @@ MonoBehaviour:
   - {x: -0.18113346, y: 0.072449744, z: 0}
   m_ShapePathHash: 1472288172
   m_Mesh: {fileID: 0}
-  m_InstanceId: 75532
+  m_InstanceId: 76782
 --- !u!114 &4802225057804522137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,3 +381,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1588623, y: 0.69962204}
   m_EdgeRadius: 0
+--- !u!114 &3316309766074556843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5020420758543740405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cec0ddfe42db9a4690bfdfa3304606b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  power: 5

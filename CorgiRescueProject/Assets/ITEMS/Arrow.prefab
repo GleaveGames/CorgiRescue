@@ -155,6 +155,7 @@ GameObject:
   - component: {fileID: 1075177655163910899}
   - component: {fileID: 3103768266205328026}
   - component: {fileID: 7634173072355788389}
+  - component: {fileID: -6514227041368718050}
   m_Layer: 8
   m_Name: Arrow
   m_TagString: PickupItems
@@ -343,3 +344,17 @@ MonoBehaviour:
   velocityCutoff: 4
   lowVDrag: 6
   highVDrag: 0.5
+--- !u!114 &-6514227041368718050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6837425018802859691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e1e9515d782f6f40b651e190b0bef62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  price: 400
+  passive: 0

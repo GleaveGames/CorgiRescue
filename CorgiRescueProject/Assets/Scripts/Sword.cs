@@ -100,6 +100,10 @@ public class Sword : MonoBehaviour
         col.isTrigger = false;
     }
 
+    
+
+
+
     /*
      * OLD SWORD
     Coroutine coroutine;

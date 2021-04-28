@@ -67,6 +67,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throwPower: 6
   AmIBomb: 0
+  AmISword: 0
 --- !u!212 &1435047480065279769
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -137,7 +138,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &380269276905970587
 CircleCollider2D:
@@ -167,12 +168,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d8aa628b6065cf46b78979e90d5934c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trigger: 0
   damage: 1
   canHurt: 1
   knockbackTime: 1
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
   canHurtPlayer: 0
+  spawnsObjOnCollision: 0
+  collisionObject: {fileID: 0}
 --- !u!114 &3011198022237279737
 MonoBehaviour:
   m_ObjectHideFlags: 0

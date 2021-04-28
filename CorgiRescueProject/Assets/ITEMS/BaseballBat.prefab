@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e1e9515d782f6f40b651e190b0bef62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 50000
+  price: 12000
   passive: 0
 --- !u!114 &3161322557936613988
 MonoBehaviour:
@@ -321,7 +321,7 @@ MonoBehaviour:
   - {x: -0.18113346, y: 0.072449744, z: 0}
   m_ShapePathHash: 1472288172
   m_Mesh: {fileID: 0}
-  m_InstanceId: 75602
+  m_InstanceId: 101800
 --- !u!114 &4802225057804522137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,3 +380,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1588623, y: 1.0312095}
   m_EdgeRadius: 0
+--- !u!114 &3250937277273289061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5020420758543740405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cec0ddfe42db9a4690bfdfa3304606b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  power: 15

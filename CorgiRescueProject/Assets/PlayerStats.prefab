@@ -67,6 +67,9 @@ MonoBehaviour:
   - {fileID: 3691337205146848114, guid: 2a1fddefbdaf2364a91e327301d00bd7, type: 3}
   - {fileID: 3691337205146848114, guid: 9889d0ba4c10bb64d9aa08f1dcb4a3a3, type: 3}
   - {fileID: 3691337205146848114, guid: e43b08a55bca92b47b3762aeb0ca18fc, type: 3}
+  - {fileID: 5020420758543740405, guid: 9021b3817d3d32241aa747b62d8fbb2c, type: 3}
+  - {fileID: 6837425018802859691, guid: 959bd3f9b85ca364185539f291e85dc9, type: 3}
+  - {fileID: 3691337205146848114, guid: 2182601288229ae4c945a752e99c992c, type: 3}
   glasses: 0
   inventory: []
   wanted: 0

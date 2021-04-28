@@ -80,12 +80,10 @@ public class PickUpItem : MonoBehaviour
 
     public void PickUp(Transform lH)
     {
-        /*
         if (TryGetComponent(out Sword sword)) 
         {
             sword.ChangeAnimationState("Idle");
         }
-        */
         am.Play("PickUp", transform.position, true);
         leftHand = lH;
         //cc.isTrigger = true;
@@ -109,12 +107,10 @@ public class PickUpItem : MonoBehaviour
 
     public void Throw()
     {
-        /*
         if (TryGetComponent(out Sword sword))
         {
             sword.ChangeAnimationState("Idle");
         }
-        */
         am.Play("Throw", transform.position, true);
         GetComponent<DamagesPlayer>().canHurt = false;
         StartCoroutine("WaitforHurt");        
@@ -130,12 +126,10 @@ public class PickUpItem : MonoBehaviour
     }
     public void Drop()
     {
-        /*
         if (TryGetComponent(out Sword sword))
         {
             sword.ChangeAnimationState("Idle");
         }
-        */
         am.Play("Drop", transform.position, true);
         GetComponent<DamagesPlayer>().canHurt = false;
         StartCoroutine("WaitforHurt");        

@@ -7,6 +7,7 @@ public class playerMovement : MonoBehaviour
 {
     Vector2 move;
     public float runsp = 3.0f;
+    public float acceleration = 1.0f;
     public float turnSpeed;
     private Rigidbody2D rb;
     private GameObject child;
@@ -34,6 +35,7 @@ public class playerMovement : MonoBehaviour
     private Vector3 knockbackForce;
     public bool canMine = true;
     public bool mining;
+    public bool attacking;
     [SerializeField]
     private PlayerControls pc;
     private AudioManager am;
@@ -170,14 +172,16 @@ public class playerMovement : MonoBehaviour
         {
             if (!IceSlip)
             {
-                rb.velocity = new Vector2(0, 0);
-                if (!walkPressed && !mining)
+                //rb.velocity = new Vector2(0, 0);
+                if (!walkPressed && !mining && !attacking)
                 {
-                    rb.velocity = new Vector2(move.x * runsp, move.y * runsp);
+                    rb.velocity = Vector2.MoveTowards(rb.velocity, new Vector2(move.x * runsp, move.y * runsp), acceleration);
+                    //rb.velocity = new Vector2(move.x * runsp, move.y * runsp);
                 }
                 else
                 {
-                    rb.velocity = new Vector2(move.x * walkSpeed, move.y * walkSpeed);
+                    rb.velocity = Vector2.MoveTowards(rb.velocity, new Vector2(move.x * walkSpeed, move.y * walkSpeed), acceleration);
+                    //rb.velocity = new Vector2(move.x * walkSpeed, move.y * walkSpeed);
                 }
             }
             else
