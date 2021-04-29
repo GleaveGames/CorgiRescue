@@ -97,11 +97,19 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""46953e52-56d8-4b0d-8219-27abf1a4095c"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
                 {
-                    ""name"": ""Arrows"",
+                    ""name"": ""WASD"",
                     ""id"": ""6b23cee7-6b65-46b1-9d85-c83c115bbd05"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
@@ -114,7 +122,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Up"",
                     ""id"": ""582c7116-2d4b-4823-8829-8bc0d02406f5"",
-                    ""path"": ""<Keyboard>/upArrow"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -125,7 +133,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Down"",
                     ""id"": ""5e79d456-9ed1-45f0-92bc-2eb0695d1783"",
-                    ""path"": ""<Keyboard>/downArrow"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -136,7 +144,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Left"",
                     ""id"": ""93fc1f29-125c-4cb3-939c-335535c279c7"",
-                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -147,7 +155,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Right"",
                     ""id"": ""54d76f96-ec77-4dc9-ae31-eba84bce881a"",
-                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -268,7 +276,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""944e08cc-d4b6-46a7-a64c-70767d83369d"",
-                    ""path"": ""<Keyboard>/d"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -290,7 +298,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""66d26702-b690-4657-9a9f-223112c37884"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -312,7 +320,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""4f415c36-5165-4b44-993a-a14a19a65390"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -334,7 +342,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""06a24508-dc76-4c88-b1b0-47141556532c"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -429,6 +437,61 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Walk"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""b6d9dade-2307-4be2-9bab-61334cb16e8e"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""0ca85f16-5809-44b3-85ba-1f91e00dfdcd"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""8279f9d6-6910-4f11-a605-a38b8b1bea25"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""a9d9bf73-cdf1-4342-9812-174438dd75af"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""c3a22876-99a2-41b4-a8f0-4f5ef62f3188"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -447,6 +510,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Game_Cheat = m_Game.FindAction("Cheat", throwIfNotFound: true);
         m_Game_Debug = m_Game.FindAction("Debug", throwIfNotFound: true);
         m_Game_Walk = m_Game.FindAction("Walk", throwIfNotFound: true);
+        m_Game_Aim = m_Game.FindAction("Aim", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -506,6 +570,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Game_Cheat;
     private readonly InputAction m_Game_Debug;
     private readonly InputAction m_Game_Walk;
+    private readonly InputAction m_Game_Aim;
     public struct GameActions
     {
         private @PlayerControls m_Wrapper;
@@ -520,6 +585,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Cheat => m_Wrapper.m_Game_Cheat;
         public InputAction @Debug => m_Wrapper.m_Game_Debug;
         public InputAction @Walk => m_Wrapper.m_Game_Walk;
+        public InputAction @Aim => m_Wrapper.m_Game_Aim;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -559,6 +625,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Walk.started -= m_Wrapper.m_GameActionsCallbackInterface.OnWalk;
                 @Walk.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnWalk;
                 @Walk.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnWalk;
+                @Aim.started -= m_Wrapper.m_GameActionsCallbackInterface.OnAim;
+                @Aim.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnAim;
+                @Aim.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnAim;
             }
             m_Wrapper.m_GameActionsCallbackInterface = instance;
             if (instance != null)
@@ -593,6 +662,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Walk.started += instance.OnWalk;
                 @Walk.performed += instance.OnWalk;
                 @Walk.canceled += instance.OnWalk;
+                @Aim.started += instance.OnAim;
+                @Aim.performed += instance.OnAim;
+                @Aim.canceled += instance.OnAim;
             }
         }
     }
@@ -609,5 +681,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnCheat(InputAction.CallbackContext context);
         void OnDebug(InputAction.CallbackContext context);
         void OnWalk(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
     }
 }

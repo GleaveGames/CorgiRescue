@@ -6,6 +6,7 @@ using UnityEngine;
 public class playerMovement : MonoBehaviour
 {
     Vector2 move;
+    Vector2 aim;
     public float runsp = 3.0f;
     public float acceleration = 1.0f;
     public float turnSpeed;
@@ -93,7 +94,6 @@ public class playerMovement : MonoBehaviour
         walkPressed = false;
     }
 
-
     void Update()
     {
         if(ps == null)
@@ -103,7 +103,43 @@ public class playerMovement : MonoBehaviour
         if (canMove)
         {
             move = pc.Game.Move.ReadValue<Vector2>();
-            if (move != Vector2.zero)
+            aim = pc.Game.Aim.ReadValue<Vector2>();
+
+            if(aim != Vector2.zero) 
+            {
+                Vector3 newRot = child.transform.eulerAngles;
+
+                if (aim.y < 0)
+                {
+                    if (aim.x < 0)
+                    {
+                        newRot.z = Mathf.Rad2Deg * Mathf.Atan(aim.x / aim.y) + 90;
+                    }
+                    else if (aim.x > 0)
+                    {
+                        newRot.z = Mathf.Rad2Deg * Mathf.Atan(aim.x / aim.y) - 90;
+                    }
+                    else
+                    {
+                        newRot.z = Mathf.Rad2Deg * Mathf.Atan(aim.x / aim.y) - 180;
+                    }
+
+                }
+                else
+                {
+                    newRot.z = Mathf.Rad2Deg * Mathf.Atan(-aim.x / aim.y);
+
+                }
+                Quaternion quaternion = Quaternion.Euler(newRot.x, newRot.y, newRot.z);
+                Quaternion rot = Quaternion.Lerp(transform.rotation, quaternion, turnSpeed);
+                //child.transform.eulerAngles = newRot;
+                transform.rotation = rot;
+
+            }
+
+
+
+            else if (move != Vector2.zero)
             {
                 Vector3 newRot = child.transform.eulerAngles;
 

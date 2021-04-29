@@ -1886,8 +1886,9 @@ MonoBehaviour:
   GoldChance: 100
   SilverChance: 60
   BeetleChance: 30
-  SnekChance: 40
-  MoleChance: 100
+  SpiderChance: 0
+  SnekChance: 20
+  MoleChance: 50
   BatChance: 60
   MongChance: 40
   BombyChance: 60
@@ -1985,8 +1986,10 @@ MonoBehaviour:
   snekEnabled: 1
   beetle: {fileID: 1080977945638850635, guid: 2e75c02e66b9afb458db4bc3f81a0b42, type: 3}
   beetleEnabled: 1
+  spider: {fileID: 0}
+  spiderEnabled: 0
   bat: {fileID: 8621365850395960104, guid: afc07b170c172824c95d0fef2afcff5b, type: 3}
-  batEnabled: 1
+  batEnabled: 0
   mole: {fileID: 7471924862020509344, guid: 10f6b3f98f59a4e49b0230c216ac6187, type: 3}
   moleEnabled: 1
   mong: {fileID: 15094032670358419, guid: 8a26f5f7d484fff4bbabcf8ef96fcfcc, type: 3}

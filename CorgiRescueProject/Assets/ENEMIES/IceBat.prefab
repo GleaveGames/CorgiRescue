@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: -3494325401532709634}
   - component: {fileID: 2307276744979374918}
   - component: {fileID: 6051957505586171004}
+  - component: {fileID: 3900643171412449502}
   m_Layer: 2
   m_Name: IceBat
   m_TagString: Living
@@ -111,6 +112,8 @@ MonoBehaviour:
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
   canHurtPlayer: 1
+  spawnsObjOnCollision: 0
+  collisionObject: {fileID: 0}
 --- !u!58 &573251302377330187
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -158,6 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cddc4c497b16f6045b94ef091106ba8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swoopDist: 0
   IgnoreMe:
     serializedVersion: 2
     m_Bits: 512
@@ -184,6 +188,7 @@ MonoBehaviour:
   mong: 0
   bomby: 0
   littleBlood: {fileID: 1654121160770679037, guid: 58d437bff74a2aa4896badd67bce2666, type: 3}
+  stuntime: 3
   Living: 0
   PickUpItems: 1
   Pick: 1
@@ -339,7 +344,7 @@ MonoBehaviour:
   - {x: -0.50734544, y: -0.003279686, z: 0}
   m_ShapePathHash: 1116525385
   m_Mesh: {fileID: 0}
-  m_InstanceId: 58942
+  m_InstanceId: 112304
 --- !u!114 &2307276744979374918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,3 +371,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0990266ada5e5b84297de08f0b94638b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &3900643171412449502
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8621365850395960104}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 5
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
