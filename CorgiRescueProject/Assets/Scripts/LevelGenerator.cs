@@ -571,34 +571,38 @@ public class LevelGenerator : MonoBehaviour
                             continue;
                         }
                     }
-                    if (Random.Range(0, BombyChance) < 1)
+                    if (bombyEnabled)
                     {
-                        if (bombyEnabled)
+                        if (Random.Range(0, BombyChance) < 1)
                         {
+                        
                             Instantiate(bomby, spawnpoint, Quaternion.identity);
                             continue;
                         }
                     }
-                    if (Random.Range(0, BeetleChance) < 1)
+                    if (beetleEnabled)
                     {
-                        if (beetleEnabled)
+                        if (Random.Range(0, BeetleChance) < 1)
                         {
+                        
                             Instantiate(beetle, spawnpoint, Quaternion.identity);
                             continue;
                         }
                     }
-                    if (Random.Range(0, SpiderChance) < 1)
+                    if (spiderEnabled)
                     {
-                        if (spiderEnabled)
+                        if (Random.Range(0, SpiderChance) < 1)
                         {
+                        
                             Instantiate(spider, spawnpoint, Quaternion.identity);
                             continue;
                         }
                     }
-                    if (Random.Range(0, MoleChance) < 1)
+                    if (moleEnabled)
                     {
-                        if (moleEnabled)
+                        if (Random.Range(0, MoleChance) < 1)
                         {
+                        
                             Instantiate(mole, spawnpoint, Quaternion.identity);
                             continue;
                         }
@@ -624,17 +628,18 @@ public class LevelGenerator : MonoBehaviour
                 }
                 if (CheckBool("spikes", p))
                 {
-                    if (Random.Range(0, SpikeChance) < 1)
+                    if (spikesEnabled)
                     {
-                        if (spikesEnabled)
+                        if (Random.Range(0, SpikeChance) < 1)
                         {
+                        
                             Instantiate(spikes, spawnpoint, Quaternion.identity);
                             continue;
                         }
                     }
-                    if (Random.Range(0, ArrowTrapChance) < 1)
+                    if (arrowTrapEnabled)
                     {
-                        if (arrowTrapEnabled)
+                        if (Random.Range(0, ArrowTrapChance) < 1)
                         {
                             Instantiate(arrowTrap, spawnpoint, Quaternion.identity);
                             continue;
