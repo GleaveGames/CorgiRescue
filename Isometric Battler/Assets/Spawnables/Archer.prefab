@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7245758917562213795}
   - component: {fileID: 392500122663687121}
   - component: {fileID: -1417144893278153073}
+  - component: {fileID: 3385827549480263767}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Untagged
@@ -97,6 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a58b36a7c29dd4db3e59a56a1f90dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   health: 3
   team: 1
   occupiesTile: 0
@@ -112,6 +115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d28e39ef126623c44afa46a12afe37ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   speed: 0.625
   attackSpeed: 2
   attackRange: 6
@@ -135,3 +140,24 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 
   hasSpawned: 0
+--- !u!114 &3385827549480263767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5223011800279032933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  localPositionSensitivity: 0.01
+  localRotationSensitivity: 0.01
+  localScaleSensitivity: 0.01
+  compressRotation: 0
+  interpolateScale: 1
+  syncScale: 1

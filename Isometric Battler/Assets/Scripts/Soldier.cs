@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class Soldier : MonoBehaviour
+public class Soldier : NetworkBehaviour
 {
     GameManager gm;
     [SerializeField]

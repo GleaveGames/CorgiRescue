@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5968930982523584874}
   - component: {fileID: 5920952726534841909}
   - component: {fileID: 1796079989509182088}
+  - component: {fileID: -1109052907335660594}
   m_Layer: 0
   m_Name: SoldierCamp
   m_TagString: Untagged
@@ -97,6 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81ed83f21f19594ea248b2e36ab9401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   cooldown: 3
   Cooldown: {fileID: 5791085092159015724, guid: 7777996e690cf1342ade619c36fef632, type: 3}
   Troop: {fileID: 5223011800279032933, guid: 23eecb1ee50b908429cb5dcce3de608d, type: 3}
@@ -113,6 +116,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a58b36a7c29dd4db3e59a56a1f90dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   health: 10
   team: 1
   occupiesTile: 1
@@ -133,3 +138,24 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 
   hasSpawned: 0
+--- !u!114 &-1109052907335660594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4569366539139361718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  localPositionSensitivity: 0.01
+  localRotationSensitivity: 0.01
+  localScaleSensitivity: 0.01
+  compressRotation: 0
+  interpolateScale: 1
+  syncScale: 1

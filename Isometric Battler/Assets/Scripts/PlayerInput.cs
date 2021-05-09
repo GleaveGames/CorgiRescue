@@ -16,7 +16,9 @@ public class PlayerInput : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Q)) 
+        if (!isLocalPlayer) return;
+
+        else if (Input.GetKey(KeyCode.Q)) 
         {
             if (Input.GetMouseButtonUp(0))
             {
@@ -26,7 +28,7 @@ public class PlayerInput : NetworkBehaviour
                 gm.SpawnBush(v3, "SoldierCamp", 0);
             }
 
-            if (Input.GetMouseButtonUp(1))
+            else if (Input.GetMouseButtonUp(1))
             {
                 Vector3 v3 = Input.mousePosition;
                 v3.z = 10.0f;
@@ -44,7 +46,7 @@ public class PlayerInput : NetworkBehaviour
                 gm.SpawnBush(v3, "ArcherCamp", 0);
             }
 
-            if (Input.GetMouseButtonUp(1))
+            else if (Input.GetMouseButtonUp(1))
             {
                 Vector3 v3 = Input.mousePosition;
                 v3.z = 10.0f;
@@ -63,7 +65,7 @@ public class PlayerInput : NetworkBehaviour
                 gm.SpawnBush(v3, "ArcherTower", 0);
             }
 
-            if (Input.GetMouseButtonUp(1))
+            else if (Input.GetMouseButtonUp(1))
             {
                 Vector3 v3 = Input.mousePosition;
                 v3.z = 10.0f;
@@ -82,7 +84,7 @@ public class PlayerInput : NetworkBehaviour
                 gm.SpawnBush(v3, "SoldierStable", 0);
             }
 
-            if (Input.GetMouseButtonUp(1))
+            else if (Input.GetMouseButtonUp(1))
             {
                 Vector3 v3 = Input.mousePosition;
                 v3.z = 10.0f;
@@ -101,7 +103,7 @@ public class PlayerInput : NetworkBehaviour
                 gm.SpawnBush(v3, "ArcherStable", 0);
             }
 
-            if (Input.GetMouseButtonUp(1))
+            else if (Input.GetMouseButtonUp(1))
             {
                 Vector3 v3 = Input.mousePosition;
                 v3.z = 10.0f;

@@ -10,16 +10,8 @@ public class GameManager : NetworkBehaviour
     [SerializeField]
     Tilemap tilemap;
     public int boundsX, boundsY;
-    [SerializeField]
-    GameObject soldiercamp;
-    [SerializeField]
-    GameObject archercamp;
-    [SerializeField]
-    GameObject archertower;
-    [SerializeField]
-    GameObject soldierstable;
-    [SerializeField]
-    GameObject archerstable;
+    public Builds[] builds;
+
     NetworkManager nm;
     public Team[] teams;
     NetworkIdentity ni;
@@ -29,37 +21,13 @@ public class GameManager : NetworkBehaviour
         nm = FindObjectOfType<NetworkManagerIso>();
         GetTiles();
     }
-
-    void SpawnObject(Vector3 objspawnpos, string objthing, int objteam, int objtilenumber, int objx, int objy) 
-    {
-        CmdSpawnObj_Server(objspawnpos, objthing, objteam, objtilenumber, objx, objy);
-       /*
-        GameObject building = Instantiate(nm.spawnPrefabs.Find(prefab => prefab.name == objthing), objspawnpos, Quaternion.identity);
-        NetworkServer.Spawn(building);
-        building.GetComponent<CharacterStats>().team = objteam;
-        building.GetComponent<SpriteRenderer>().color = teams[objteam].color;
-        teams[objteam].things.Add(building);
-        tiles[objx, objy] = 2;
-        */
-    }
-
-    [Command(requiresAuthority = false)]
-    void CmdSpawnObj_Server(Vector3 objspawnpos, string objthing, int objteam, int objtilenumber, int objx, int objy)
-    {
-        GameObject building = Instantiate(nm.spawnPrefabs.Find(prefab => prefab.name == objthing), objspawnpos, Quaternion.identity);
-        building.GetComponent<CharacterStats>().team = objteam;
-        building.GetComponent<SpriteRenderer>().color = teams[objteam].color;
-        teams[objteam].things.Add(building);
-        tiles[objx, objy] = 2;
-        NetworkServer.Spawn(building);
-    }
     public void SpawnBush(Vector3 touchPos, string thing, int team)
     {
-        float yRuff = 0.5f * (touchPos.y / 0.815f - touchPos.x/1.415f + boundsY -1);
+        float yRuff = 0.5f * (touchPos.y / 0.815f - touchPos.x / 1.415f + boundsY - 1);
         float xRuff = touchPos.x / 1.4f + 0.5f * (touchPos.y / 0.815f - touchPos.x / 1.415f + boundsY - 1);
         int y = Mathf.RoundToInt(yRuff);
         int x = Mathf.RoundToInt(xRuff);
-        if(tiles[x,y] == 1) 
+        if (tiles[x, y] == 1)
         {
             Vector3 spawn = transform.position;
             spawn.x = (x - y) * 1.415f;
@@ -67,9 +35,41 @@ public class GameManager : NetworkBehaviour
             spawn.y = (x + y - boundsY + 1) * 0.815f;
             if (thing == "SoldierCamp" || thing == "ArcherCamp" || thing == "ArcherTower" || thing == "SoldierStable" || thing == "ArcherStable")
             {
-                SpawnObject(spawn, thing, team, 2, x, y);
+                CmdSpawnBuild_Server(spawn, thing, team, 2, x, y);
             }
         }
+    }
+
+    [Command(requiresAuthority = false)]
+    void CmdSpawnBuild_Server(Vector3 objspawnpos, string objthing, int objteam, int objtilenumber, int objx, int objy)
+    {
+        GameObject building = Instantiate(nm.spawnPrefabs.Find(prefab => prefab.name == objthing), objspawnpos, Quaternion.identity);
+
+        building.GetComponent<CharacterStats>().team = objteam;
+        building.GetComponent<SpriteRenderer>().color = teams[objteam].color;
+        teams[objteam].things.Add(building);
+        tiles[objx, objy] = 2;
+
+        NetworkServer.Spawn(building);
+
+    }
+
+    [Command(requiresAuthority = false)]
+    void CmdSpawnTroop_Server(Vector3 objspawnpos, string objthing, int objteam, GameObject parent)
+    {
+        GameObject troopy = Instantiate(nm.spawnPrefabs.Find(prefab => prefab.name == objthing), objspawnpos, Quaternion.identity);
+        troopy.GetComponent<CharacterStats>().team = objteam;
+        troopy.GetComponent<SpriteRenderer>().color = teams[objteam].color;
+        troopy.transform.parent = parent.transform;
+        teams[objteam].things.Add(troopy);
+        NetworkServer.Spawn(troopy);
+    }
+
+
+    public void SpawnTroop(GameObject troop, GameObject spawner, Vector3 spawnpos)
+    {
+        Vector3 spawn = spawnpos;
+        CmdSpawnTroop_Server(spawn, troop.name, spawner.GetComponent<CharacterStats>().team, spawner);
     }
 
     void GetTiles()
@@ -149,4 +149,13 @@ public class Team
     public string name;
     public Color color;
     public List<GameObject> things;
+}
+
+[System.Serializable]
+public class Builds 
+{
+    public string name;
+    public GameObject build;
+    public int cost;
+    public Sprite sprite;
 }

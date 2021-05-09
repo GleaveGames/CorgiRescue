@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class Archer : MonoBehaviour
+public class Archer : NetworkBehaviour
 {
     GameManager gm;
     [SerializeField]

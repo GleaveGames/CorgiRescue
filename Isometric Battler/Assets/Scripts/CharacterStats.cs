@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class CharacterStats : MonoBehaviour
+public class CharacterStats : NetworkBehaviour
 {
     public int health;
+    [SyncVar]
     public int team;
     Coroutine coroutine;
     bool dead;

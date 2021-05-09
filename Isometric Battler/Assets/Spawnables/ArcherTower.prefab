@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330832375219451524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.58, z: 0}
+  m_LocalPosition: {x: 0, y: 0.958, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5232816956873811709}
@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 8314810751963962813}
   - component: {fileID: 962269546999904577}
   - component: {fileID: -1884330867831889520}
+  - component: {fileID: -7435619212529462552}
   m_Layer: 0
   m_Name: ArcherTower
   m_TagString: Untagged
@@ -128,6 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f49675c9ec8c8b4e83e5bc9dd656a4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   range: 6
   Projectile: {fileID: 5027986345379660360, guid: d71445106ded0624290cace47fb046af, type: 3}
   attackRate: 0.5
@@ -145,6 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a58b36a7c29dd4db3e59a56a1f90dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   health: 10
   team: 0
   occupiesTile: 1
@@ -165,3 +170,24 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 
   hasSpawned: 0
+--- !u!114 &-7435619212529462552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3690318784697315613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  localPositionSensitivity: 0.01
+  localRotationSensitivity: 0.01
+  localScaleSensitivity: 0.01
+  compressRotation: 0
+  interpolateScale: 1
+  syncScale: 1

@@ -9,6 +9,7 @@ public class NetworkManagerIso : NetworkManager
 
     public Transform P1Spawn;
     public Transform P2Spawn;
+    GameManager gm;
 
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
@@ -21,7 +22,17 @@ public class NetworkManagerIso : NetworkManager
     public void SpawnBuilding(Vector3 objspawnpos, string objthing, int objteam, int objtilenumber, int objx, int objy) 
     {
         return;
-    
     }
-    
+
+    /*
+    private void Awake()
+    {
+        gm = FindObjectOfType<GameManager>();
+        foreach(Builds b in gm.builds) 
+        {
+            spawnPrefabs.Add(b.build);
+        }
+    }
+    */
+
 }

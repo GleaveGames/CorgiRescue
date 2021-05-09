@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Tower : MonoBehaviour
+using Mirror;
+public class Tower : NetworkBehaviour
 {
     Coroutine coroutine;
     GameObject closestEnemy;

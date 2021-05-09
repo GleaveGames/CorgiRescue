@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class Spawner : MonoBehaviour
+public class Spawner : NetworkBehaviour
 {
     [SerializeField]
     float cooldown;
@@ -17,6 +18,8 @@ public class Spawner : MonoBehaviour
     GameObject fill;
     GameObject cooldownObj;
     GameManager gm;
+    [SyncVar]
+    Vector3 spawnpos;
 
 
     void Start()
@@ -58,11 +61,12 @@ public class Spawner : MonoBehaviour
             fill.transform.localScale = scale;
             yield return null;
         }
-        GameObject troop = Instantiate(Troop, transform.position, Quaternion.identity);
-        troop.GetComponent<CharacterStats>().team = GetComponent<CharacterStats>().team;
-        gm.teams[GetComponent<CharacterStats>().team].things.Add(troop);
-        troop.GetComponent<Transform>().parent = transform;
-        troop.GetComponent<SpriteRenderer>().color = gm.teams[GetComponent<CharacterStats>().team].color;
+        spawnpos = transform.position;
+        gm.SpawnTroop(Troop, this.gameObject, spawnpos);
+        //troop.GetComponent<CharacterStats>().team = GetComponent<CharacterStats>().team;
+        //gm.teams[GetComponent<CharacterStats>().team].things.Add(troop);
+        //troop.GetComponent<Transform>().parent = transform;
+        //troop.GetComponent<SpriteRenderer>().color = gm.teams[GetComponent<CharacterStats>().team].color;
         spawning = false;
         scale.x = 0;
         fill.transform.localScale = scale;
