@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  canvas: {fileID: 3919366697420038065, guid: b192b6e5b86fc774ba74364d072fe44f, type: 3}
 --- !u!114 &3959342992892631575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,5 +136,5 @@ MonoBehaviour:
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
   compressRotation: 0
-  interpolateScale: 1
-  syncScale: 1
+  interpolateScale: 0
+  syncScale: 0

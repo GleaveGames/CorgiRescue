@@ -34,7 +34,7 @@ public class ManaBar : MonoBehaviour
             {
                 if (sprites[i].color != fullColor) 
                 {
-                    sprites[i].color = Color.Lerp(sprites[i].color, fullColor, manaspeed * Time.deltaTime);
+                    sprites[i].color = Color.Lerp(sprites[i].color, fullColor, manaspeed*Time.deltaTime);
                     mana = i;
                     return;
                 }
@@ -46,7 +46,7 @@ public class ManaBar : MonoBehaviour
     {
         if(mana != transform.childCount-1) 
         {
-            for (int i = mana + 1; i > mana - 1 - cost; i--)
+            for (int i = mana + 1; i > mana - 1 - cost && i >= 0; i--)
             {
                 sprites[i].color = emtpyColor;
             }

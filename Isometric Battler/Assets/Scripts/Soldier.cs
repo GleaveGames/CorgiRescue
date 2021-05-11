@@ -26,6 +26,10 @@ public class Soldier : NetworkBehaviour
 
     private void Start()
     {
+        if (!isServer)
+        {
+            this.enabled = false;
+        }
         gm = FindObjectOfType<GameManager>();
         tiles = gm.tiles;
         dir = new int[8];
@@ -188,7 +192,6 @@ public class Soldier : NetworkBehaviour
         GetAvailableTiles();
         //RandomMove();
         MoveTowardsEnemy();
-
         while(new Vector2(transform.position.x, transform.position.y) != movepos) 
         {
             transform.position = Vector2.MoveTowards(transform.position, movepos, speed * Time.deltaTime);
@@ -307,5 +310,4 @@ public class Soldier : NetworkBehaviour
             }
         }
     }
-
 }

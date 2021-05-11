@@ -21,12 +21,11 @@ public class Tower : NetworkBehaviour
 
     private void Start()
     {
+        if (!isServer) this.enabled = false;
         gm = FindObjectOfType<GameManager>();
         StartCoroutine(EnemyCheckandAttack());
         firepos = transform.GetChild(0);
     }
-
-
 
     private IEnumerator EnemyCheckandAttack() 
     {
@@ -39,6 +38,7 @@ public class Tower : NetworkBehaviour
                 //Attack;
                 Debug.Log("Attack");
                 GameObject projectile = Instantiate(Projectile, firepos.position, Quaternion.identity);
+                NetworkServer.Spawn(projectile);
                 projectile.transform.up = closestEnemy.transform.position - firepos.transform.position;
                 Vector3 enemypos = closestEnemy.transform.position;
                 while (projectile.transform.position != enemypos && closestEnemy != null) 

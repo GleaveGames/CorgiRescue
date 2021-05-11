@@ -30,6 +30,10 @@ public class Archer : NetworkBehaviour
 
     private void Start()
     {
+        if(!isServer)
+        {
+            this.enabled = false;
+        }
         gm = FindObjectOfType<GameManager>();
         tiles = gm.tiles;
         dir = new int[8];
@@ -171,6 +175,7 @@ public class Archer : NetworkBehaviour
             yield return null;
         }
         GameObject projectile = Instantiate(Projectile, transform.position, Quaternion.identity);
+        NetworkServer.Spawn(projectile);
         Vector3 enemypos = projectile.transform.position;
         if (closestEnemy != null) 
         {

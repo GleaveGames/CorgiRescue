@@ -15,6 +15,7 @@ public class GameManager : NetworkBehaviour
     NetworkManager nm;
     public Team[] teams;
     NetworkIdentity ni;
+    public PlayerInput pi;
 
     private void Start()
     {
@@ -37,6 +38,7 @@ public class GameManager : NetworkBehaviour
             {
                 CmdSpawnBuild_Server(spawn, thing, team, 2, x, y);
             }
+            pi.loaded = false;
         }
     }
 
@@ -49,10 +51,26 @@ public class GameManager : NetworkBehaviour
         building.GetComponent<SpriteRenderer>().color = teams[objteam].color;
         teams[objteam].things.Add(building);
         tiles[objx, objy] = 2;
-
         NetworkServer.Spawn(building);
-
+        SetVariablesBuild(building, objteam);
+        pi.loaded = false;
     }
+
+    [ClientRpc]
+    void SetVariablesBuild(GameObject spawnedObj, int team) 
+    {
+        spawnedObj.GetComponent<CharacterStats>().team = team;
+        spawnedObj.GetComponent<SpriteRenderer>().color = teams[team].color;
+    }
+
+    [ClientRpc]
+    void SetVariablesTroop(GameObject spawnedObj, int team, GameObject parent) 
+    {
+        spawnedObj.GetComponent<CharacterStats>().team = team;
+        spawnedObj.GetComponent<SpriteRenderer>().color = teams[team].color;
+        spawnedObj.transform.parent = parent.transform;
+        spawnedObj.transform.position = parent.transform.position;
+    } 
 
     [Command(requiresAuthority = false)]
     void CmdSpawnTroop_Server(Vector3 objspawnpos, string objthing, int objteam, GameObject parent)
@@ -63,13 +81,14 @@ public class GameManager : NetworkBehaviour
         troopy.transform.parent = parent.transform;
         teams[objteam].things.Add(troopy);
         NetworkServer.Spawn(troopy);
+        SetVariablesTroop(troopy, objteam, parent);
     }
 
 
     public void SpawnTroop(GameObject troop, GameObject spawner, Vector3 spawnpos)
     {
-        Vector3 spawn = spawnpos;
-        CmdSpawnTroop_Server(spawn, troop.name, spawner.GetComponent<CharacterStats>().team, spawner);
+        //gets correct value for spawnpos
+        CmdSpawnTroop_Server(spawnpos, troop.name, spawner.GetComponent<CharacterStats>().team, spawner);
     }
 
     void GetTiles()
@@ -116,46 +135,28 @@ public class GameManager : NetworkBehaviour
             Debug.Log(row);
         }
     }
-
-    public void StopTime() 
-    {
-        Time.timeScale = 0.001f;
-    }
-
-    public void HalfTime() 
-    {
-        Time.timeScale = 0.5f;
-    }
-
-    public void NormalTime() 
-    {
-        Time.timeScale = 1;
-    }
-
-    public void DoubleTime() 
-    {
-        Time.timeScale = 2;
-    }
-
-    public void FiveTime() 
-    {
-        Time.timeScale = 5;
-    }
 }
 
 [System.Serializable]
 public class Team
 {
+    [SyncVar]
     public string name;
+    [SyncVar]
     public Color color;
+    [SyncVar]
     public List<GameObject> things;
 }
 
 [System.Serializable]
 public class Builds 
 {
+    [SyncVar]
     public string name;
+    [SyncVar]
     public GameObject build;
+    [SyncVar]
     public int cost;
+    [SyncVar]
     public Sprite sprite;
 }

@@ -24,6 +24,10 @@ public class Spawner : NetworkBehaviour
 
     void Start()
     {
+        if (!isServer)
+        {
+            this.enabled = false;
+        }
         cooldownObj = Instantiate(Cooldown, transform.position, Quaternion.identity);
         cooldownObj.transform.parent = transform;
         fill = cooldownObj.transform.GetChild(0).gameObject;
@@ -34,7 +38,7 @@ public class Spawner : NetworkBehaviour
 
     private void Update()
     {
-        if (!spawning) 
+        if (!spawning)
         {
             if (transform.childCount <= poplimit)
             {
@@ -42,7 +46,7 @@ public class Spawner : NetworkBehaviour
                 StartCoroutine(SpawnSoldier());
                 spawning = true;
             }
-            else 
+            else
             {
                 cooldownObj.SetActive(false);
             }
@@ -52,23 +56,26 @@ public class Spawner : NetworkBehaviour
 
     private IEnumerator SpawnSoldier()
     {
-        float timer = 0;
-        Vector3 scale = fill.transform.localScale;
-        while(timer < cooldown) 
+        if (isServer) 
         {
-            timer += Time.deltaTime;
-            scale.x = 2.2f * timer / cooldown;
+            float timer = 0;
+            Vector3 scale = fill.transform.localScale;
+            while (timer < cooldown)
+            {
+                timer += Time.deltaTime;
+                scale.x = 2.2f * timer / cooldown;
+                fill.transform.localScale = scale;
+                yield return null;
+            }
+            spawnpos = transform.position;
+            gm.SpawnTroop(Troop, this.gameObject, spawnpos);
+            //troop.GetComponent<CharacterStats>().team = GetComponent<CharacterStats>().team;
+            //gm.teams[GetComponent<CharacterStats>().team].things.Add(troop);
+            //troop.GetComponent<Transform>().parent = transform;
+            //troop.GetComponent<SpriteRenderer>().color = gm.teams[GetComponent<CharacterStats>().team].color;
+            spawning = false;
+            scale.x = 0;
             fill.transform.localScale = scale;
-            yield return null;
         }
-        spawnpos = transform.position;
-        gm.SpawnTroop(Troop, this.gameObject, spawnpos);
-        //troop.GetComponent<CharacterStats>().team = GetComponent<CharacterStats>().team;
-        //gm.teams[GetComponent<CharacterStats>().team].things.Add(troop);
-        //troop.GetComponent<Transform>().parent = transform;
-        //troop.GetComponent<SpriteRenderer>().color = gm.teams[GetComponent<CharacterStats>().team].color;
-        spawning = false;
-        scale.x = 0;
-        fill.transform.localScale = scale;
     }
 }

@@ -14,7 +14,9 @@ public class NetworkManagerIso : NetworkManager
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
         Transform start = numPlayers == 0 ? P1Spawn : P2Spawn;
+        int team = numPlayers == 0 ? 1 : 0;
         GameObject player = Instantiate(playerPrefab, start.position, start.rotation);
+        player.GetComponent<PlayerInput>().team = team;
         NetworkServer.AddPlayerForConnection(conn, player);
         //base.OnServerAddPlayer(conn);
     }
