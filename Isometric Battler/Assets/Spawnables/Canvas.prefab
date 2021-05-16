@@ -996,8 +996,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000030518, y: -0.54599}
-  m_SizeDelta: {x: 137.1344, y: 101.09198}
+  m_AnchoredPosition: {x: -1.9, y: -0.54599}
+  m_SizeDelta: {x: 137.1344, y: 138}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3919366697256461440
 CanvasRenderer:
@@ -1027,7 +1027,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2190c6a5ec1fda14fbe3228120f5d293, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a2413424ab2aa48498bb95daa845b67f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1897,7 +1897,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2190c6a5ec1fda14fbe3228120f5d293, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c384c29741554594fab7124aced7190e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2209,3 +2209,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttons: []
   pi: {fileID: 0}
+  unaffordable: {r: 1, g: 0, b: 0, a: 1}
+  affordable: {r: 1, g: 1, b: 1, a: 1}

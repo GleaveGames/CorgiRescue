@@ -9,7 +9,6 @@ public class NetworkManagerIso : NetworkManager
 
     public Transform P1Spawn;
     public Transform P2Spawn;
-    GameManager gm;
 
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
@@ -36,5 +35,4 @@ public class NetworkManagerIso : NetworkManager
         }
     }
     */
-
 }

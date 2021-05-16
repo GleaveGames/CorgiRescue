@@ -11,7 +11,11 @@ public class BuildButtons : MonoBehaviour
     public PlayerInput pi;
     ManaBar manabar;
     int[] buildnumber;
-
+    [SerializeField]
+    Color unaffordable;
+    [SerializeField]
+    Color affordable;
+    int tempmana;
 
     // Start is called before the first frame update
     void Start()
@@ -23,9 +27,9 @@ public class BuildButtons : MonoBehaviour
         {
             buttons.Add(transform.GetChild(i).gameObject);
         }
-        for(int z = 0; z < buttons.Count; z++) 
+        for (int z = 0; z < buttons.Count; z++)
         {
-            int buildchoice = Random.Range(0, gm.builds.Length);
+            int buildchoice = Random.Range(1, gm.builds.Length);
             buildnumber[z] = buildchoice;
             buttons[z].transform.GetChild(0).GetComponent<Image>().sprite = gm.builds[buildchoice].sprite;
         }
@@ -38,11 +42,31 @@ public class BuildButtons : MonoBehaviour
             pi.loaded = true;
             pi.build = gm.builds[buildnumber[buttonNumber]].build;
             manabar.UseMana(gm.builds[buildnumber[buttonNumber]].cost);
+            int buildchoice = Random.Range(1, gm.builds.Length);
+            buildnumber[buttonNumber] = buildchoice;
+            buttons[buttonNumber].transform.GetChild(0).GetComponent<Image>().sprite = gm.builds[buildchoice].sprite;
+            CheckAffordability();
         }
         else
         {
             Debug.Log("can't afford build");
         }
+    }
+
+    public void CheckAffordability() 
+    {
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            if (manabar.mana > gm.builds[buildnumber[i]].cost)
+            {
+                buttons[i].GetComponent<Image>().color = affordable;
+            }
+            else
+            {
+                buttons[i].GetComponent<Image>().color = unaffordable;
+            }
+        }
+        tempmana = manabar.mana;
     }
 
 }

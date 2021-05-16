@@ -13,10 +13,12 @@ public class ManaBar : MonoBehaviour
     Color fullColor;
     [SerializeField]
     float manaspeed;
+    private BuildButtons bb;
 
     // Start is called before the first frame update
     void Start()
     {
+        bb = transform.parent.GetComponent<BuildButtons>();
         sprites = new Image[transform.childCount];
         for(int i = 0; i < transform.childCount; i++) 
         {
@@ -35,7 +37,8 @@ public class ManaBar : MonoBehaviour
                 if (sprites[i].color != fullColor) 
                 {
                     sprites[i].color = Color.Lerp(sprites[i].color, fullColor, manaspeed*Time.deltaTime);
-                    mana = i;
+                    mana = i+1;
+                    bb.CheckAffordability();
                     return;
                 }
             }

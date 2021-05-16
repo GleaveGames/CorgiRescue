@@ -36,7 +36,6 @@ public class Tower : NetworkBehaviour
             if(Vector2.Distance(transform.position, closestEnemy.transform.position) <= range) 
             {
                 //Attack;
-                Debug.Log("Attack");
                 GameObject projectile = Instantiate(Projectile, firepos.position, Quaternion.identity);
                 NetworkServer.Spawn(projectile);
                 projectile.transform.up = closestEnemy.transform.position - firepos.transform.position;

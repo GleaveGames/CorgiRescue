@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using Mirror;
+
 
 public class GameManager : NetworkBehaviour
 {
@@ -34,11 +36,16 @@ public class GameManager : NetworkBehaviour
             spawn.x = (x - y) * 1.415f;
             //need to add a little offset to get centre of cell  eg the +1 below
             spawn.y = (x + y - boundsY + 1) * 0.815f;
-            if (thing == "SoldierCamp" || thing == "ArcherCamp" || thing == "ArcherTower" || thing == "SoldierStable" || thing == "ArcherStable")
-            {
+
+            //if (thing == "SoldierCamp" || thing == "ArcherCamp" || thing == "ArcherTower" || thing == "SoldierStable" || thing == "ArcherStable")
+            //{
                 CmdSpawnBuild_Server(spawn, thing, team, 2, x, y);
-            }
+            //}
             pi.loaded = false;
+            if(thing == "Base")
+            {
+                pi.BasePlaced();
+            }
         }
     }
 
@@ -54,6 +61,10 @@ public class GameManager : NetworkBehaviour
         NetworkServer.Spawn(building);
         SetVariablesBuild(building, objteam);
         pi.loaded = false;
+        if (objthing == "Base")
+        {
+            pi.BasePlaced();
+        }
     }
 
     [ClientRpc]
@@ -104,6 +115,7 @@ public class GameManager : NetworkBehaviour
                 TileBase tile = allTiles[x + y * boundsX];
                 if (tile!=null)
                 {
+                    /*
                     if (tile.name == "grass")
                     {
                         tiles[x, y] = 1;
@@ -111,6 +123,15 @@ public class GameManager : NetworkBehaviour
                     else
                     {
                         tiles[x, y] = 0;
+                    }
+                    */
+                    if (tile.name.Contains("river") || tile.name.Contains("ice")) 
+                    {
+                        tiles[x, y] = 2;
+                    }
+                    else 
+                    {
+                        tiles[x, y] = 1;
                     }
                 }
                 else
@@ -120,7 +141,6 @@ public class GameManager : NetworkBehaviour
             }
         }
     }
-
 
     public void PrintMap()
     {
