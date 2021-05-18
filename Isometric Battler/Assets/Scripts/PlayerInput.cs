@@ -12,8 +12,8 @@ public class PlayerInput : NetworkBehaviour
     [SerializeField]
     Canvas canvas;
     public int team;
-    
-
+    [SerializeField]
+    GameObject ghostBuild;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +35,7 @@ public class PlayerInput : NetworkBehaviour
         if (!isLocalPlayer) return;
         else if (loaded)
         {
+
             if (Input.GetMouseButtonDown(0))
             {
                 Vector3 v3 = Input.mousePosition;
@@ -63,5 +64,36 @@ public class PlayerInput : NetworkBehaviour
             FindObjectOfType<BuildButtons>().pi = this;
             basePlaced = true;
         }
+    }
+
+    public IEnumerator GhostBuild()
+    {
+        Vector3 v3 = Input.mousePosition;
+        v3.z = 10.0f;
+        v3 = Camera.main.ScreenToWorldPoint(v3);
+        GameObject Ghost = Instantiate(ghostBuild, v3, Quaternion.identity);
+        Ghost.GetComponent<SpriteRenderer>().sprite = build.GetComponent<SpriteRenderer>().sprite;
+        while (loaded)
+        {
+            v3 = Input.mousePosition;
+            v3.z = 10.0f;
+            v3 = Camera.main.ScreenToWorldPoint(v3);
+            float yRuff = 0.5f * (v3.y / 0.815f - v3.x / 1.415f + gm.boundsY - 1);
+            float xRuff = v3.x / 1.4f + 0.5f * (v3.y / 0.815f - v3.x / 1.415f + gm.boundsY - 1);
+            int y = Mathf.RoundToInt(yRuff);
+            int x = Mathf.RoundToInt(xRuff);
+            Debug.Log("x " + x + "\ny " + y);
+            if (gm.tiles[x, y] == 1)
+            {
+                Vector3 spawn = transform.position;
+                spawn.x = (x - y) * 1.415f;
+                spawn.y = (x + y - gm.boundsY + 1) * 0.815f;
+                Ghost.transform.position = spawn;
+                Debug.Log("Inside If ghost ship");
+            }
+            yield return null;
+
+        }
+        Destroy(Ghost);
     }
 }

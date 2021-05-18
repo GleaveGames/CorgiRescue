@@ -16,6 +16,7 @@ public class BuildButtons : MonoBehaviour
     [SerializeField]
     Color affordable;
     int tempmana;
+    Coroutine coroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +49,7 @@ public class BuildButtons : MonoBehaviour
             buttons[buttonNumber].transform.GetChild(0).GetComponent<Image>().sprite = gm.builds[buildchoice].sprite;
             buttons[buttonNumber].transform.GetChild(1).GetComponent<Text>().text = gm.builds[buildchoice].cost.ToString();
             CheckAffordability();
+            StartCoroutine(pi.GhostBuild());
         }
         else
         {
