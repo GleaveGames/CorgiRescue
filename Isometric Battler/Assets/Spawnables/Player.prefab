@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  loaded: 0
+  loaded: 1
   basePlaced: 0
   build: {fileID: 0}
   canvas: {fileID: 3919366697420038065, guid: b192b6e5b86fc774ba74364d072fe44f, type: 3}

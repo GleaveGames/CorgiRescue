@@ -14,6 +14,8 @@ public class PlayerInput : NetworkBehaviour
     public int team;
     [SerializeField]
     GameObject ghostBuild;
+    Coroutine coroutine;
+
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,9 @@ public class PlayerInput : NetworkBehaviour
         {
             gm = FindObjectOfType<GameManager>();
             gm.pi = this;
+            //gotta assign the build as the base at the start
+            build = gm.builds[0].build;
+            StartCoroutine(GhostBuild());
         }
         else 
         {
@@ -35,7 +40,6 @@ public class PlayerInput : NetworkBehaviour
         if (!isLocalPlayer) return;
         else if (loaded)
         {
-
             if (Input.GetMouseButtonDown(0))
             {
                 Vector3 v3 = Input.mousePosition;
@@ -82,17 +86,14 @@ public class PlayerInput : NetworkBehaviour
             float xRuff = v3.x / 1.4f + 0.5f * (v3.y / 0.815f - v3.x / 1.415f + gm.boundsY - 1);
             int y = Mathf.RoundToInt(yRuff);
             int x = Mathf.RoundToInt(xRuff);
-            Debug.Log("x " + x + "\ny " + y);
             if (gm.tiles[x, y] == 1)
             {
                 Vector3 spawn = transform.position;
                 spawn.x = (x - y) * 1.415f;
                 spawn.y = (x + y - gm.boundsY + 1) * 0.815f;
                 Ghost.transform.position = spawn;
-                Debug.Log("Inside If ghost ship");
             }
             yield return null;
-
         }
         Destroy(Ghost);
     }
