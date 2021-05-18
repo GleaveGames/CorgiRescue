@@ -70,7 +70,11 @@ public class Tower : NetworkBehaviour
                     if (team.things.Count > 0)
                     {
                         closestEnemy = team.things[0];
-                        closestDistance = Vector2.Distance(transform.position, team.things[0].transform.position);
+                        if(closestEnemy == null) 
+                        {
+                            return;
+                        }
+                        closestDistance = Vector2.Distance(transform.position, closestEnemy.transform.position);
                     }
                     else
                     {

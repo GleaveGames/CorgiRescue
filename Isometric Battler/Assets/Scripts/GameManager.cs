@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using Mirror;
+using UnityEngine.UI;
 
 
 public class GameManager : NetworkBehaviour
@@ -18,12 +19,62 @@ public class GameManager : NetworkBehaviour
     public Team[] teams;
     NetworkIdentity ni;
     public PlayerInput pi;
+    [SerializeField]
+    GameObject ResultCanvas;
+    bool GameEnded;
+    public bool GameStarted;
+    public GameObject P1Base;
+    public GameObject P2Base;
 
     private void Start()
     {
         nm = FindObjectOfType<NetworkManagerIso>();
         GetTiles();
     }
+
+    public void StartGame()
+    {
+        GameStarted = true;
+        P1Base = teams[0].things[0];
+        P2Base = teams[1].things[0];
+    }
+
+    private void Update()
+    {
+        if (GameStarted)
+        {
+            if (P1Base == null||P2Base == null)
+            //Above is the right code, but for testing I'll just make it AND so I can test the victory screen with 1 player;
+            //if (P1Base == null && P2Base == null)
+            {
+                if (!GameEnded)
+                {
+                    if (isServer) 
+                    {
+                        ClientEndGame();
+                    }
+                    GameEnded = true;
+                }
+            }
+        }
+    }
+
+    [ClientRpc]
+    private void ClientEndGame()
+    {
+        int team = pi.team;
+        int winningteam = 0;
+        if (P1Base == null) winningteam = 1;
+        else if (P2Base == null) winningteam = 0;
+        GameObject resultcanvas = Instantiate(ResultCanvas);
+        if (winningteam == team)
+        {
+            resultcanvas.transform.GetChild(0).GetComponent<Text>().text = "Victory";
+        }
+        else resultcanvas.transform.GetChild(0).GetComponent<Text>().text = "Defeat";
+    }
+    
+
     public void SpawnBush(Vector3 touchPos, string thing, int team)
     {
         float yRuff = 0.5f * (touchPos.y / 0.815f - touchPos.x / 1.415f + boundsY - 1);
@@ -61,12 +112,6 @@ public class GameManager : NetworkBehaviour
         NetworkServer.Spawn(building);
         SetVariablesBuild(building, objteam);
         pi.loaded = false;
-        /*
-        if (objthing == "Base")
-        {
-            pi.BasePlaced();
-        }
-        */
     }
 
     [ClientRpc]
@@ -74,6 +119,7 @@ public class GameManager : NetworkBehaviour
     {
         spawnedObj.GetComponent<CharacterStats>().team = team;
         spawnedObj.GetComponent<SpriteRenderer>().color = teams[team].color;
+        teams[team].things.Add(spawnedObj);
     }
 
     [ClientRpc]

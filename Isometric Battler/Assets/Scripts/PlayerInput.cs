@@ -15,6 +15,7 @@ public class PlayerInput : NetworkBehaviour
     [SerializeField]
     GameObject ghostBuild;
     Coroutine coroutine;
+    
 
 
     // Start is called before the first frame update
@@ -86,6 +87,13 @@ public class PlayerInput : NetworkBehaviour
             float xRuff = v3.x / 1.4f + 0.5f * (v3.y / 0.815f - v3.x / 1.415f + gm.boundsY - 1);
             int y = Mathf.RoundToInt(yRuff);
             int x = Mathf.RoundToInt(xRuff);
+            if (x > gm.boundsX-1)
+            {
+                x = gm.boundsX -1;
+            }
+            else if (x < 0) x = 0;
+            if (y > gm.boundsY-1) y = gm.boundsY-1;
+            else if (y < 0) y = 0;
             if (gm.tiles[x, y] == 1)
             {
                 Vector3 spawn = transform.position;
@@ -97,4 +105,6 @@ public class PlayerInput : NetworkBehaviour
         }
         Destroy(Ghost);
     }
+
+
 }
