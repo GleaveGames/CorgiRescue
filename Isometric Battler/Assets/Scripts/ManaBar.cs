@@ -47,16 +47,16 @@ public class ManaBar : MonoBehaviour
 
     public void UseMana(int cost) 
     {
-        if(mana != transform.childCount-1) 
+        if(mana != transform.childCount) 
         {
-            for (int i = mana + 1; i > mana - 1 - cost && i >= 0; i--)
+            for (int i = mana; i > mana - 1 - cost && i >= 0; i--)
             {
                 sprites[i].color = emtpyColor;
             }
         }
         else 
         {
-            for (int i = mana; i > mana - cost; i--)
+            for (int i = mana-1; i > mana - cost - 1 && i >= 0; i--)
             {
                 sprites[i].color = emtpyColor;
             }

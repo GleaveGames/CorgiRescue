@@ -61,10 +61,12 @@ public class GameManager : NetworkBehaviour
         NetworkServer.Spawn(building);
         SetVariablesBuild(building, objteam);
         pi.loaded = false;
+        /*
         if (objthing == "Base")
         {
             pi.BasePlaced();
         }
+        */
     }
 
     [ClientRpc]

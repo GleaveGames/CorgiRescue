@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Mirror;
+using System.Collections;
 using UnityEngine;
-using Mirror;
 
 public class CharacterStats : NetworkBehaviour
 {
@@ -53,9 +52,16 @@ public class CharacterStats : NetworkBehaviour
         {
             temp.a -= 0.08f;
             GetComponent<SpriteRenderer>().color = temp;
+            ClientDie(temp);
             yield return null;
         }
         Destroy(gameObject);
+    }
+
+    [ClientRpc]
+    private void ClientDie(Color temp)
+    {
+        GetComponent<SpriteRenderer>().color = temp;
     }
 
 

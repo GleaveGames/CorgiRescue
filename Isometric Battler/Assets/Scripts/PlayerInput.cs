@@ -23,6 +23,10 @@ public class PlayerInput : NetworkBehaviour
             gm = FindObjectOfType<GameManager>();
             gm.pi = this;
         }
+        else 
+        {
+            this.enabled = false;
+        }
     }
 
     // Update is called once per frame
@@ -53,11 +57,11 @@ public class PlayerInput : NetworkBehaviour
 
     public void BasePlaced() 
     {
-        Instantiate(canvas);
-        FindObjectOfType<BuildButtons>().pi = this;
-        basePlaced = true;
+        if (isLocalPlayer) 
+        {
+            Instantiate(canvas);
+            FindObjectOfType<BuildButtons>().pi = this;
+            basePlaced = true;
+        }
     }
-
-    
-
 }
