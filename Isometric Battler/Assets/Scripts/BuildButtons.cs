@@ -32,6 +32,7 @@ public class BuildButtons : MonoBehaviour
             int buildchoice = Random.Range(1, gm.builds.Length);
             buildnumber[z] = buildchoice;
             buttons[z].transform.GetChild(0).GetComponent<Image>().sprite = gm.builds[buildchoice].sprite;
+            buttons[z].transform.GetChild(1).GetComponent<Text>().text = gm.builds[buildchoice].cost.ToString();
         }
     }
 
@@ -45,6 +46,7 @@ public class BuildButtons : MonoBehaviour
             int buildchoice = Random.Range(1, gm.builds.Length);
             buildnumber[buttonNumber] = buildchoice;
             buttons[buttonNumber].transform.GetChild(0).GetComponent<Image>().sprite = gm.builds[buildchoice].sprite;
+            buttons[buttonNumber].transform.GetChild(1).GetComponent<Text>().text = gm.builds[buildchoice].cost.ToString();
             CheckAffordability();
         }
         else
@@ -60,10 +62,12 @@ public class BuildButtons : MonoBehaviour
             if (manabar.mana > gm.builds[buildnumber[i]].cost)
             {
                 buttons[i].GetComponent<Image>().color = affordable;
+                buttons[i].transform.GetChild(0).GetComponent<Image>().color = affordable;
             }
             else
             {
                 buttons[i].GetComponent<Image>().color = unaffordable;
+                buttons[i].transform.GetChild(0).GetComponent<Image>().color = unaffordable;
             }
         }
         tempmana = manabar.mana;
