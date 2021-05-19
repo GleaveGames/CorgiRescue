@@ -25,6 +25,8 @@ public class GameManager : NetworkBehaviour
     public bool GameStarted;
     public GameObject P1Base;
     public GameObject P2Base;
+    [SerializeField]
+    Button StartButton;
 
     private void Start()
     {
@@ -32,31 +34,25 @@ public class GameManager : NetworkBehaviour
         GetTiles();
     }
 
-    public void StartGame()
+    [Command(requiresAuthority =false)]
+    public void EndGame() 
     {
-        GameStarted = true;
-        P1Base = teams[0].things[0];
-        P2Base = teams[1].things[0];
+        ClientEndGame();
     }
 
-    private void Update()
+    [Command(requiresAuthority = false)]
+    public void StartGame() 
     {
-        if (GameStarted)
-        {
-            if (P1Base == null||P2Base == null)
-            //Above is the right code, but for testing I'll just make it AND so I can test the victory screen with 1 player;
-            //if (P1Base == null && P2Base == null)
-            {
-                if (!GameEnded)
-                {
-                    if (isServer) 
-                    {
-                        ClientEndGame();
-                    }
-                    GameEnded = true;
-                }
-            }
-        }
+        GameStarted = true;
+        StartGameClient();
+        StartButton.gameObject.SetActive(false);
+    }
+
+
+    [ClientRpc]
+    private void StartGameClient() 
+    {
+        pi.loaded = true;
     }
 
     [ClientRpc]
@@ -90,7 +86,7 @@ public class GameManager : NetworkBehaviour
 
             //if (thing == "SoldierCamp" || thing == "ArcherCamp" || thing == "ArcherTower" || thing == "SoldierStable" || thing == "ArcherStable")
             //{
-                CmdSpawnBuild_Server(spawn, thing, team, 2, x, y);
+                CmdSpawnBuild_Server(spawn, thing, team, 3, x, y);
             //}
             pi.loaded = false;
             if(thing == "Base")

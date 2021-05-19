@@ -6,14 +6,18 @@ using Mirror;
 [AddComponentMenu("")]
 public class NetworkManagerIso : NetworkManager
 {
-
     public Transform P1Spawn;
     public Transform P2Spawn;
 
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
-        Transform start = numPlayers == 0 ? P1Spawn : P2Spawn;
-        int team = numPlayers == 0 ? 1 : 0;
+        Transform start = P1Spawn;
+        int team = 0;
+        if(numPlayers == 1) 
+        {
+            start = P2Spawn;
+            team = 1;
+        }
         GameObject player = Instantiate(playerPrefab, start.position, start.rotation);
         player.GetComponent<PlayerInput>().team = team;
         NetworkServer.AddPlayerForConnection(conn, player);
@@ -25,14 +29,5 @@ public class NetworkManagerIso : NetworkManager
         return;
     }
 
-    /*
-    private void Awake()
-    {
-        gm = FindObjectOfType<GameManager>();
-        foreach(Builds b in gm.builds) 
-        {
-            spawnPrefabs.Add(b.build);
-        }
-    }
-    */
+    
 }

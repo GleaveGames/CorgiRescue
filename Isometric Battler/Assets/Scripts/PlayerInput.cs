@@ -28,9 +28,12 @@ public class PlayerInput : NetworkBehaviour
             //gotta assign the build as the base at the start
             build = gm.builds[0].build;
             StartCoroutine(GhostBuild());
+            GetComponent<SpriteRenderer>().color = gm.teams[team].color;
         }
         else 
         {
+            gm = FindObjectOfType<GameManager>();
+            GetComponent<SpriteRenderer>().color = gm.teams[team].color;
             this.enabled = false;
         }
     }
@@ -49,16 +52,6 @@ public class PlayerInput : NetworkBehaviour
                 gm.SpawnBush(v3, build.name, team);
             }
         }
-        else if (!basePlaced)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                Vector3 v3 = Input.mousePosition;
-                v3.z = 10.0f;
-                v3 = Camera.main.ScreenToWorldPoint(v3);
-                gm.SpawnBush(v3, "Base", team);
-            }
-        }
     }
 
     public void BasePlaced() 
@@ -73,6 +66,10 @@ public class PlayerInput : NetworkBehaviour
 
     public IEnumerator GhostBuild()
     {
+        while (!gm.GameStarted) 
+        {
+            yield return null;
+        }
         Vector3 v3 = Input.mousePosition;
         v3.z = 10.0f;
         v3 = Camera.main.ScreenToWorldPoint(v3);

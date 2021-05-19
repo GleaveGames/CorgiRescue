@@ -52,21 +52,21 @@ public class Archer : NetworkBehaviour
 
     private void GetAvailableTiles()
     {
-        if (tiles[currentTile.x + 1, currentTile.y + 1] == 1) dir[0] = 1;
+        if (tiles[currentTile.x + 1, currentTile.y + 1] == 1 || tiles[currentTile.x + 1, currentTile.y + 1] == 2) dir[0] = 1;
         else dir[0] = 0;
-        if (tiles[currentTile.x + 1, currentTile.y] == 1) dir[1] = 1;
+        if (tiles[currentTile.x + 1, currentTile.y] == 1 || tiles[currentTile.x + 1, currentTile.y] == 2) dir[1] = 1;
         else dir[1] = 0;
-        if (tiles[currentTile.x + 1, currentTile.y - 1] == 1) dir[2] = 1;
+        if (tiles[currentTile.x + 1, currentTile.y - 1] == 1 || tiles[currentTile.x + 1, currentTile.y - 1] == 2) dir[2] = 1;
         else dir[2] = 0;
-        if (tiles[currentTile.x, currentTile.y - 1] == 1) dir[3] = 1;
+        if (tiles[currentTile.x, currentTile.y - 1] == 1 || tiles[currentTile.x, currentTile.y - 1] == 2) dir[3] = 1;
         else dir[3] = 0;
-        if (tiles[currentTile.x - 1, currentTile.y - 1] == 1) dir[4] = 1;
+        if (tiles[currentTile.x - 1, currentTile.y - 1] == 1 || tiles[currentTile.x - 1, currentTile.y - 1] == 2) dir[4] = 1;
         else dir[4] = 0;
-        if (tiles[currentTile.x - 1, currentTile.y] == 1) dir[5] = 1;
+        if (tiles[currentTile.x - 1, currentTile.y] == 1 || tiles[currentTile.x - 1, currentTile.y] == 2) dir[5] = 1;
         else dir[5] = 0;
-        if (tiles[currentTile.x - 1, currentTile.y + 1] == 1) dir[6] = 1;
+        if (tiles[currentTile.x - 1, currentTile.y + 1] == 1 || tiles[currentTile.x - 1, currentTile.y + 1] == 2) dir[6] = 1;
         else dir[6] = 0;
-        if (tiles[currentTile.x, currentTile.y + 1] == 1) dir[7] = 1;
+        if (tiles[currentTile.x, currentTile.y + 1] == 1 || tiles[currentTile.x, currentTile.y + 1] == 2) dir[7] = 1;
         else dir[7] = 0;
     }
 

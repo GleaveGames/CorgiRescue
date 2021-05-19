@@ -28,6 +28,10 @@ public class CharacterStats : NetworkBehaviour
             {
                 dead = true;
                 StartCoroutine(Die());
+                if (transform.gameObject.name == "Base") 
+                {
+                    gm.EndGame();
+                }
             }
         }
     }
