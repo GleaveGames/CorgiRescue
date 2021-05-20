@@ -285,6 +285,7 @@ public class Soldier : NetworkBehaviour
             {
                 if(closestEnemy == null)
                 {
+                    //code below breaks when there aren't any enemies
                     if(team.things.Count > 0) 
                     {
                         closestEnemy = team.things[0];

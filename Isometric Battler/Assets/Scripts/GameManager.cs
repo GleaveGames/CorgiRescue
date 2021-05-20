@@ -46,6 +46,7 @@ public class GameManager : NetworkBehaviour
         GameStarted = true;
         StartGameClient();
         StartButton.gameObject.SetActive(false);
+        pi.loaded = true;
     }
 
 
@@ -107,7 +108,6 @@ public class GameManager : NetworkBehaviour
         tiles[objx, objy] = 2;
         NetworkServer.Spawn(building);
         SetVariablesBuild(building, objteam);
-        pi.loaded = false;
     }
 
     [ClientRpc]

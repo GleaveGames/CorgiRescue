@@ -21,13 +21,7 @@ public class NetworkManagerIso : NetworkManager
         GameObject player = Instantiate(playerPrefab, start.position, start.rotation);
         player.GetComponent<PlayerInput>().team = team;
         NetworkServer.AddPlayerForConnection(conn, player);
+        //i think that's just the original code below
         //base.OnServerAddPlayer(conn);
     }
-
-    public void SpawnBuilding(Vector3 objspawnpos, string objthing, int objteam, int objtilenumber, int objx, int objy) 
-    {
-        return;
-    }
-
-    
 }

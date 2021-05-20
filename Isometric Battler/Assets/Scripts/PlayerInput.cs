@@ -5,12 +5,14 @@ using Mirror;
 
 public class PlayerInput : NetworkBehaviour
 {
+    [SyncVar]
     public bool loaded;
     public bool basePlaced;
     public GameObject build;
     GameManager gm;
     [SerializeField]
     Canvas canvas;
+    [SyncVar]
     public int team;
     [SerializeField]
     GameObject ghostBuild;

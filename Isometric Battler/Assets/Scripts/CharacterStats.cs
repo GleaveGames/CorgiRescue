@@ -28,7 +28,7 @@ public class CharacterStats : NetworkBehaviour
             {
                 dead = true;
                 StartCoroutine(Die());
-                if (transform.gameObject.name == "Base") 
+                if (transform.gameObject.name.Contains("Base")) 
                 {
                     gm.EndGame();
                 }
@@ -46,6 +46,7 @@ public class CharacterStats : NetworkBehaviour
             }
         }
         gm.teams[team].things.Remove(gameObject);
+        if (isServer) ClientRemove();
         if (occupiesTile)
         {
             Vector2Int tile = GetCurrentTile();
@@ -56,16 +57,24 @@ public class CharacterStats : NetworkBehaviour
         {
             temp.a -= 0.08f;
             GetComponent<SpriteRenderer>().color = temp;
-            ClientDie(temp);
+            if (isServer) ClientFade(temp);
             yield return null;
         }
         Destroy(gameObject);
     }
 
+
+
     [ClientRpc]
-    private void ClientDie(Color temp)
+    private void ClientFade(Color temp)
     {
         GetComponent<SpriteRenderer>().color = temp;
+    }
+    
+    [ClientRpc]
+    private void ClientRemove()
+    {
+        gm.teams[team].things.Remove(gameObject);
     }
 
 
