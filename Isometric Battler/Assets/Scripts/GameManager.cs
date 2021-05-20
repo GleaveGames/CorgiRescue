@@ -53,6 +53,7 @@ public class GameManager : NetworkBehaviour
     [ClientRpc]
     private void StartGameClient() 
     {
+        GameStarted = true;
         pi.loaded = true;
     }
 
@@ -107,15 +108,16 @@ public class GameManager : NetworkBehaviour
         teams[objteam].things.Add(building);
         tiles[objx, objy] = 2;
         NetworkServer.Spawn(building);
-        SetVariablesBuild(building, objteam);
+        SetVariablesBuild(building, objteam, objx, objy, objtilenumber);
     }
 
     [ClientRpc]
-    void SetVariablesBuild(GameObject spawnedObj, int team) 
+    void SetVariablesBuild(GameObject spawnedObj, int team, int x, int y, int tile) 
     {
         spawnedObj.GetComponent<CharacterStats>().team = team;
         spawnedObj.GetComponent<SpriteRenderer>().color = teams[team].color;
         teams[team].things.Add(spawnedObj);
+        tiles[x, y] = tile;
     }
 
     [ClientRpc]
