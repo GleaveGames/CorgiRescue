@@ -73,13 +73,14 @@ public class GameManager : NetworkBehaviour
     }
     
 
-    public void SpawnBush(Vector3 touchPos, string thing, int team)
+    public void SpawnBuild(Vector3 touchPos, string thing, int team)
     {
         float yRuff = 0.5f * (touchPos.y / 0.815f - touchPos.x / 1.415f + boundsY - 1);
         float xRuff = touchPos.x / 1.4f + 0.5f * (touchPos.y / 0.815f - touchPos.x / 1.415f + boundsY - 1);
         int y = Mathf.RoundToInt(yRuff);
         int x = Mathf.RoundToInt(xRuff);
-        if (tiles[x, y] == 1)
+        Vector3Int pos = new Vector3Int(x-25, y-25, 0);
+        if (tiles[x, y] == 1 && (tilemap.GetColor(pos) == teams[team].areacolor1 || tilemap.GetColor(pos) == teams[team].areacolor2 || thing == "Base"))
         {
             Vector3 spawn = transform.position;
             spawn.x = (x - y) * 1.415f;
@@ -124,20 +125,20 @@ public class GameManager : NetworkBehaviour
 
     void ColorSurroundingTiles(int x, int y, int team) 
     {
-        StartCoroutine(ColorTile(x, y, teams[team].areacolor1, teams[team].color));
-        StartCoroutine(ColorTile(x + 1, y, teams[team].areacolor1, teams[team].color));
-        StartCoroutine(ColorTile(x - 1, y, teams[team].areacolor1, teams[team].color));
-        StartCoroutine(ColorTile(x, y - 1, teams[team].areacolor1, teams[team].color));
-        StartCoroutine(ColorTile(x, y + 1, teams[team].areacolor1, teams[team].color));
+        StartCoroutine(ColorTile(x, y, teams[team].areacolor1, team));
+        StartCoroutine(ColorTile(x + 1, y, teams[team].areacolor1, team));
+        StartCoroutine(ColorTile(x - 1, y, teams[team].areacolor1, team));
+        StartCoroutine(ColorTile(x, y - 1, teams[team].areacolor1, team));
+        StartCoroutine(ColorTile(x, y + 1, teams[team].areacolor1, team));
 
-        StartCoroutine(ColorTile(x, y+2, teams[team].areacolor2, teams[team].color));
-        StartCoroutine(ColorTile(x+1, y+1, teams[team].areacolor2, teams[team].color));
-        StartCoroutine(ColorTile(x+2, y, teams[team].areacolor2, teams[team].color));
-        StartCoroutine(ColorTile(x+1, y-1, teams[team].areacolor2, teams[team].color));
-        StartCoroutine(ColorTile(x, y-2, teams[team].areacolor2, teams[team].color));
-        StartCoroutine(ColorTile(x-1, y-1, teams[team].areacolor2, teams[team].color));
-        StartCoroutine(ColorTile(x-2, y, teams[team].areacolor2, teams[team].color));
-        StartCoroutine(ColorTile(x-1, y-1, teams[team].areacolor2, teams[team].color));
+        StartCoroutine(ColorTile(x, y+2, teams[team].areacolor2, team));
+        StartCoroutine(ColorTile(x+1, y+1, teams[team].areacolor2, team));
+        StartCoroutine(ColorTile(x+2, y, teams[team].areacolor2, team));
+        StartCoroutine(ColorTile(x+1, y-1, teams[team].areacolor2, team));
+        StartCoroutine(ColorTile(x, y-2, teams[team].areacolor2, team));
+        StartCoroutine(ColorTile(x-1, y-1, teams[team].areacolor2, team));
+        StartCoroutine(ColorTile(x-2, y, teams[team].areacolor2, team));
+        StartCoroutine(ColorTile(x-1, y-1, teams[team].areacolor2, team));
     }
 
 
@@ -200,26 +201,34 @@ public class GameManager : NetworkBehaviour
         }
     }
 
-    IEnumerator ColorTile(int x, int y, Color col, Color teamCol) 
+    IEnumerator ColorTile(int x, int y, Color col, int team) 
     {
+        Color teamCol = teams[team].color;
         Vector3Int pos = new Vector3Int(x - 25, y - 25, 0);
         tilemap.SetTileFlags(pos, TileFlags.None);
-        float speed = 4;
+        float colortime = 0.04f;
         if (tilemap.HasTile(pos))
         {
+            if (tilemap.GetColor(pos) == teams[team].areacolor1) yield break;
             Color temp = tilemap.GetColor(pos);
-            while (tilemap.GetColor(pos) != teamCol) 
+            float counter = 0;
+            while (counter < colortime) 
             {
-                temp = Color.Lerp(temp, teamCol, speed * Time.deltaTime);
+                temp = Color.Lerp(temp, teamCol, counter/colortime);
                 tilemap.SetColor(pos, temp);
+                counter += Time.deltaTime;
                 yield return null;
             }
-            while(tilemap.GetColor(pos) != col) 
+            counter = 0;
+            temp = tilemap.GetColor(pos);
+            while (counter < colortime) 
             {
-                temp = Color.Lerp(temp, col, speed/2 * Time.deltaTime);
+                temp = Color.Lerp(temp, col, counter/colortime);
                 tilemap.SetColor(pos, temp);
+                counter += Time.deltaTime;
                 yield return null;
             }
+            tilemap.SetColor(pos, col);
         }
     }
 

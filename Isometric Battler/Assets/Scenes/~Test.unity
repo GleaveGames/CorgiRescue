@@ -78146,13 +78146,13 @@ MonoBehaviour:
   teams:
   - name: Turtle
     color: {r: 0.5550907, g: 0.8727317, b: 0.990566, a: 1}
-    areacolor1: {r: 0.71132076, g: 0.92197853, b: 1, a: 1}
-    areacolor2: {r: 0.8528302, g: 0.9602244, b: 1, a: 1}
+    areacolor1: {r: 0.41304737, g: 0.558091, b: 0.6132076, a: 1}
+    areacolor2: {r: 0.6384478, g: 0.75278485, b: 0.7924528, a: 1}
     things: []
   - name: Hot Pink
     color: {r: 1, g: 0.56037736, b: 0.8000149, a: 1}
-    areacolor1: {r: 0.990566, g: 0.7139551, b: 0.8646093, a: 1}
-    areacolor2: {r: 0.9811321, g: 0.83673906, b: 0.9153817, a: 1}
+    areacolor1: {r: 0.6792453, g: 0.48956925, b: 0.591086, a: 1}
+    areacolor2: {r: 0.6603774, g: 0.5444999, b: 0.60713637, a: 1}
     things: []
   pi: {fileID: 0}
   ResultCanvas: {fileID: 8546576283274683562, guid: f82d8ee8e1325764ab64a08eadbeb724, type: 3}

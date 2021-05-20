@@ -48,7 +48,6 @@ public class Tower : NetworkBehaviour
                 Destroy(projectile);
                 if (closestEnemy != null)
                 {
-                    Debug.Log("ArrowDamage");
                     closestEnemy.GetComponent<CharacterStats>().health -= damage;
                 }
             }
