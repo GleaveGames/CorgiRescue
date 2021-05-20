@@ -107,6 +107,7 @@ public class GameManager : NetworkBehaviour
         building.GetComponent<SpriteRenderer>().color = teams[objteam].color;
         teams[objteam].things.Add(building);
         tiles[objx, objy] = 2;
+        ColorSurroundingTiles(objx, objy, objteam);
         NetworkServer.Spawn(building);
         SetVariablesBuild(building, objteam, objx, objy, objtilenumber);
     }
@@ -118,7 +119,28 @@ public class GameManager : NetworkBehaviour
         spawnedObj.GetComponent<SpriteRenderer>().color = teams[team].color;
         teams[team].things.Add(spawnedObj);
         tiles[x, y] = tile;
+        ColorSurroundingTiles(x, y, team);
     }
+
+    void ColorSurroundingTiles(int x, int y, int team) 
+    {
+        StartCoroutine(ColorTile(x, y, teams[team].areacolor1, teams[team].color));
+        StartCoroutine(ColorTile(x + 1, y, teams[team].areacolor1, teams[team].color));
+        StartCoroutine(ColorTile(x - 1, y, teams[team].areacolor1, teams[team].color));
+        StartCoroutine(ColorTile(x, y - 1, teams[team].areacolor1, teams[team].color));
+        StartCoroutine(ColorTile(x, y + 1, teams[team].areacolor1, teams[team].color));
+
+        StartCoroutine(ColorTile(x, y+2, teams[team].areacolor2, teams[team].color));
+        StartCoroutine(ColorTile(x+1, y+1, teams[team].areacolor2, teams[team].color));
+        StartCoroutine(ColorTile(x+2, y, teams[team].areacolor2, teams[team].color));
+        StartCoroutine(ColorTile(x+1, y-1, teams[team].areacolor2, teams[team].color));
+        StartCoroutine(ColorTile(x, y-2, teams[team].areacolor2, teams[team].color));
+        StartCoroutine(ColorTile(x-1, y-1, teams[team].areacolor2, teams[team].color));
+        StartCoroutine(ColorTile(x-2, y, teams[team].areacolor2, teams[team].color));
+        StartCoroutine(ColorTile(x-1, y-1, teams[team].areacolor2, teams[team].color));
+    }
+
+
 
     [ClientRpc]
     void SetVariablesTroop(GameObject spawnedObj, int team, GameObject parent) 
@@ -161,16 +183,6 @@ public class GameManager : NetworkBehaviour
                 TileBase tile = allTiles[x + y * boundsX];
                 if (tile!=null)
                 {
-                    /*
-                    if (tile.name == "grass")
-                    {
-                        tiles[x, y] = 1;
-                    }
-                    else
-                    {
-                        tiles[x, y] = 0;
-                    }
-                    */
                     if (tile.name.Contains("river") || tile.name.Contains("ice")) 
                     {
                         tiles[x, y] = 2;
@@ -184,6 +196,29 @@ public class GameManager : NetworkBehaviour
                 {
                     tiles[x, y] = 0;
                 }
+            }
+        }
+    }
+
+    IEnumerator ColorTile(int x, int y, Color col, Color teamCol) 
+    {
+        Vector3Int pos = new Vector3Int(x - 25, y - 25, 0);
+        tilemap.SetTileFlags(pos, TileFlags.None);
+        float speed = 4;
+        if (tilemap.HasTile(pos))
+        {
+            Color temp = tilemap.GetColor(pos);
+            while (tilemap.GetColor(pos) != teamCol) 
+            {
+                temp = Color.Lerp(temp, teamCol, speed * Time.deltaTime);
+                tilemap.SetColor(pos, temp);
+                yield return null;
+            }
+            while(tilemap.GetColor(pos) != col) 
+            {
+                temp = Color.Lerp(temp, col, speed/2 * Time.deltaTime);
+                tilemap.SetColor(pos, temp);
+                yield return null;
             }
         }
     }
@@ -210,6 +245,10 @@ public class Team
     public string name;
     [SyncVar]
     public Color color;
+    [SyncVar]
+    public Color areacolor1;  
+    [SyncVar]
+    public Color areacolor2;
     [SyncVar]
     public List<GameObject> things;
 }
