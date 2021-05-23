@@ -22,7 +22,9 @@ public class LobbySystem : MonoBehaviour
     public void HostGame() 
     {
         nm.StartHost();
-        for (int i = 1; i < canvas.transform.childCount; i++)
+
+        //i = 2 to stop startgame and dc being deactivated;
+        for (int i = 2; i < canvas.transform.childCount; i++)
         {
             canvas.transform.GetChild(i).gameObject.SetActive(false);
         }
@@ -57,5 +59,11 @@ public class LobbySystem : MonoBehaviour
         {
             StartGame.interactable = true;
         }
+    }
+
+    public void Disconnect() 
+    {
+        nm.StopServer();
+        nm.StopHost();
     }
 }
