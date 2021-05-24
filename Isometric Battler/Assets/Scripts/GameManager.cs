@@ -13,8 +13,7 @@ public class GameManager : NetworkBehaviour
     [SerializeField]
     Tilemap tilemap;
     public int boundsX, boundsY;
-    public Builds[] builds;
-
+    public Guild[] guilds;
     NetworkManager nm;
     public Team[] teams;
     NetworkIdentity ni;
@@ -273,4 +272,13 @@ public class Builds
     public int cost;
     [SyncVar]
     public Sprite sprite;
+}
+
+[System.Serializable]
+public class Guild 
+{
+    [SyncVar]
+    public string name;
+    [SyncVar]
+    public Builds[] builds;
 }

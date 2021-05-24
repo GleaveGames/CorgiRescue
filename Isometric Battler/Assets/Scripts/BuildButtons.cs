@@ -17,6 +17,8 @@ public class BuildButtons : MonoBehaviour
     Color affordable;
     int tempmana;
     Coroutine coroutine;
+    public int guild;
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,24 +32,24 @@ public class BuildButtons : MonoBehaviour
         }
         for (int z = 0; z < buttons.Count; z++)
         {
-            int buildchoice = Random.Range(1, gm.builds.Length);
+            int buildchoice = Random.Range(1, gm.guilds[guild].builds.Length);
             buildnumber[z] = buildchoice;
-            buttons[z].transform.GetChild(0).GetComponent<Image>().sprite = gm.builds[buildchoice].sprite;
-            buttons[z].transform.GetChild(1).GetComponent<Text>().text = gm.builds[buildchoice].cost.ToString();
+            buttons[z].transform.GetChild(0).GetComponent<Image>().sprite = gm.guilds[guild].builds[buildchoice].sprite;
+            buttons[z].transform.GetChild(1).GetComponent<Text>().text = gm.guilds[guild].builds[buildchoice].cost.ToString();
         }
     }
 
     public void ButtonPress(int buttonNumber) 
     {
-        if(manabar.mana > gm.builds[buildnumber[buttonNumber]].cost) 
+        if(manabar.mana > gm.guilds[guild].builds[buildnumber[buttonNumber]].cost) 
         {
             pi.loaded = true;
-            pi.build = gm.builds[buildnumber[buttonNumber]].build;
-            manabar.UseMana(gm.builds[buildnumber[buttonNumber]].cost);
-            int buildchoice = Random.Range(1, gm.builds.Length);
+            pi.build = gm.guilds[guild].builds[buildnumber[buttonNumber]].build;
+            manabar.UseMana(gm.guilds[guild].builds[buildnumber[buttonNumber]].cost);
+            int buildchoice = Random.Range(1, gm.guilds[guild].builds.Length);
             buildnumber[buttonNumber] = buildchoice;
-            buttons[buttonNumber].transform.GetChild(0).GetComponent<Image>().sprite = gm.builds[buildchoice].sprite;
-            buttons[buttonNumber].transform.GetChild(1).GetComponent<Text>().text = gm.builds[buildchoice].cost.ToString();
+            buttons[buttonNumber].transform.GetChild(0).GetComponent<Image>().sprite = gm.guilds[guild].builds[buildchoice].sprite;
+            buttons[buttonNumber].transform.GetChild(1).GetComponent<Text>().text = gm.guilds[guild].builds[buildchoice].cost.ToString();
             CheckAffordability();
             StartCoroutine(pi.GhostBuild());
         }
@@ -61,7 +63,7 @@ public class BuildButtons : MonoBehaviour
     {
         for (int i = 0; i < buttons.Count; i++)
         {
-            if (manabar.mana > gm.builds[buildnumber[i]].cost)
+            if (manabar.mana > gm.guilds[guild].builds[buildnumber[i]].cost)
             {
                 buttons[i].GetComponent<Image>().color = affordable;
                 buttons[i].transform.GetChild(0).GetComponent<Image>().color = affordable;

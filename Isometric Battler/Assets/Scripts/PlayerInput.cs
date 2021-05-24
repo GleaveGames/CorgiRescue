@@ -17,7 +17,7 @@ public class PlayerInput : NetworkBehaviour
     [SerializeField]
     GameObject ghostBuild;
     Coroutine coroutine;
-    
+    public int guild = 0;
 
 
     // Start is called before the first frame update
@@ -28,9 +28,10 @@ public class PlayerInput : NetworkBehaviour
             gm = FindObjectOfType<GameManager>();
             gm.pi = this;
             //gotta assign the build as the base at the start
-            build = gm.builds[0].build;
+            build = gm.guilds[guild].builds[0].build;
             StartCoroutine(GhostBuild());
             GetComponent<SpriteRenderer>().color = gm.teams[team].color;
+            FindObjectOfType<LobbySystem>().pi = this;
         }
         else 
         {
@@ -62,6 +63,7 @@ public class PlayerInput : NetworkBehaviour
         {
             Instantiate(canvas);
             FindObjectOfType<BuildButtons>().pi = this;
+            FindObjectOfType<BuildButtons>().guild = guild;
             basePlaced = true;
         }
     }
@@ -104,6 +106,8 @@ public class PlayerInput : NetworkBehaviour
         }
         Destroy(Ghost);
     }
+    
+
 
 
 }

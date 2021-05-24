@@ -13,10 +13,15 @@ public class LobbySystem : MonoBehaviour
     Canvas canvas;
     [SerializeField]
     Button StartGame;
+    [SerializeField]
+    GameObject TribeSelect;
+    public PlayerInput pi;
+
 
     private void Start()
     {
         nm = GetComponent<NetworkManagerIso>();
+        TribeSelect = canvas.transform.Find("TribeSelect").gameObject;
     }
 
     public void HostGame() 
@@ -28,7 +33,11 @@ public class LobbySystem : MonoBehaviour
         {
             canvas.transform.GetChild(i).gameObject.SetActive(false);
         }
+
+        
+        //StartButton
         canvas.transform.GetChild(0).gameObject.SetActive(true);
+        TribeSelect.SetActive(true);
     }
     
     public void JoinGame() 
@@ -36,17 +45,19 @@ public class LobbySystem : MonoBehaviour
         if (ip.text == "")
         {
             nm.networkAddress = "192.168.0.16";
-            nm.StartClient();
-            canvas.enabled = false;
             //something that says enter an ip;
             //return;
         }
         else 
         {
             nm.networkAddress = ip.text;
-            nm.StartClient();
-            canvas.enabled = false;
         }
+        nm.StartClient();
+        for (int i = 2; i < canvas.transform.childCount; i++)
+        {
+            canvas.transform.GetChild(i).gameObject.SetActive(false);
+        }
+        TribeSelect.SetActive(true);
     }
 
     private void Update()
@@ -65,5 +76,11 @@ public class LobbySystem : MonoBehaviour
     {
         nm.StopServer();
         nm.StopHost();
+    }
+
+    public void TribeSelected(int i) 
+    {
+        pi.guild = i;
+        TribeSelect.SetActive(false);
     }
 }
