@@ -28,8 +28,6 @@ public class PlayerInput : NetworkBehaviour
             gm = FindObjectOfType<GameManager>();
             gm.pi = this;
             //gotta assign the build as the base at the start
-            build = gm.guilds[guild].builds[0].build;
-            StartCoroutine(GhostBuild());
             GetComponent<SpriteRenderer>().color = gm.teams[team].color;
             FindObjectOfType<LobbySystem>().pi = this;
         }
@@ -39,6 +37,13 @@ public class PlayerInput : NetworkBehaviour
             GetComponent<SpriteRenderer>().color = gm.teams[team].color;
             this.enabled = false;
         }
+    }
+
+    public void TribeSelected(int tribe) 
+    {
+        guild = tribe;
+        build = gm.guilds[guild].builds[0].build;
+        StartCoroutine(GhostBuild());
     }
 
     // Update is called once per frame

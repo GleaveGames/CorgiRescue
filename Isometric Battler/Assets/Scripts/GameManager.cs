@@ -79,7 +79,7 @@ public class GameManager : NetworkBehaviour
         int y = Mathf.RoundToInt(yRuff);
         int x = Mathf.RoundToInt(xRuff);
         Vector3Int pos = new Vector3Int(x-25, y-25, 0);
-        if (tiles[x, y] == 1 && (tilemap.GetColor(pos) == teams[team].areacolor1 || tilemap.GetColor(pos) == teams[team].areacolor2 || thing == "Base"))
+        if (tiles[x, y] == 1 && (tilemap.GetColor(pos) == teams[team].areacolor1 || tilemap.GetColor(pos) == teams[team].areacolor2 || thing.Contains("Base")))
         {
             Vector3 spawn = transform.position;
             spawn.x = (x - y) * 1.415f;
@@ -91,7 +91,7 @@ public class GameManager : NetworkBehaviour
                 CmdSpawnBuild_Server(spawn, thing, team, 3, x, y);
             //}
             pi.loaded = false;
-            if(thing == "Base")
+            if(thing.Contains("Base"))
             {
                 pi.BasePlaced();
             }

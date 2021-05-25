@@ -80,7 +80,7 @@ public class LobbySystem : MonoBehaviour
 
     public void TribeSelected(int i) 
     {
-        pi.guild = i;
         TribeSelect.SetActive(false);
+        pi.TribeSelected(i);
     }
 }

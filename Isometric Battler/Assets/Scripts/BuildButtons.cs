@@ -32,11 +32,49 @@ public class BuildButtons : MonoBehaviour
         }
         for (int z = 0; z < buttons.Count; z++)
         {
+            /*
             int buildchoice = Random.Range(1, gm.guilds[guild].builds.Length);
             buildnumber[z] = buildchoice;
             buttons[z].transform.GetChild(0).GetComponent<Image>().sprite = gm.guilds[guild].builds[buildchoice].sprite;
             buttons[z].transform.GetChild(1).GetComponent<Text>().text = gm.guilds[guild].builds[buildchoice].cost.ToString();
+            */
+            StartCoroutine(GetNewUnit(z));
         }
+        CheckAffordability();
+    }
+
+    IEnumerator GetNewUnit(int buttonNumber) 
+    {
+        int buildchoice = Random.Range(1, gm.guilds[guild].builds.Length);
+        buildnumber[buttonNumber] = buildchoice;
+        buttons[buttonNumber].transform.GetChild(0).GetComponent<Image>().sprite = gm.guilds[guild].builds[buildchoice].sprite;
+        buttons[buttonNumber].transform.GetChild(1).GetComponent<Text>().text = gm.guilds[guild].builds[buildchoice].cost.ToString();
+        while(CheckIfButtonAlreadyExists(buildchoice, buttonNumber)) 
+        {
+            yield return new WaitForSeconds(0.05f);
+            buildchoice = Random.Range(1, gm.guilds[guild].builds.Length);
+            buildnumber[buttonNumber] = buildchoice;
+            buttons[buttonNumber].transform.GetChild(0).GetComponent<Image>().sprite = gm.guilds[guild].builds[buildchoice].sprite;
+            buttons[buttonNumber].transform.GetChild(1).GetComponent<Text>().text = gm.guilds[guild].builds[buildchoice].cost.ToString();
+            yield return null;
+        }
+        buttons[buttonNumber].transform.GetChild(0).GetComponent<Image>().sprite = gm.guilds[guild].builds[buildchoice].sprite;
+        buttons[buttonNumber].transform.GetChild(1).GetComponent<Text>().text = gm.guilds[guild].builds[buildchoice].cost.ToString();
+        CheckAffordability();
+    }
+
+    private bool CheckIfButtonAlreadyExists(int build, int buttonnumber) 
+    {
+        bool answer = false;
+        for (int i = 0; i < buildnumber.Length; i++) 
+        {
+            if (i == buttonnumber) continue;
+            else if(build == buildnumber[i]) 
+            {
+                answer = true;
+            }
+        }
+        return answer;
     }
 
     public void ButtonPress(int buttonNumber) 
@@ -46,10 +84,7 @@ public class BuildButtons : MonoBehaviour
             pi.loaded = true;
             pi.build = gm.guilds[guild].builds[buildnumber[buttonNumber]].build;
             manabar.UseMana(gm.guilds[guild].builds[buildnumber[buttonNumber]].cost);
-            int buildchoice = Random.Range(1, gm.guilds[guild].builds.Length);
-            buildnumber[buttonNumber] = buildchoice;
-            buttons[buttonNumber].transform.GetChild(0).GetComponent<Image>().sprite = gm.guilds[guild].builds[buildchoice].sprite;
-            buttons[buttonNumber].transform.GetChild(1).GetComponent<Text>().text = gm.guilds[guild].builds[buildchoice].cost.ToString();
+            StartCoroutine(GetNewUnit(buttonNumber));
             CheckAffordability();
             StartCoroutine(pi.GhostBuild());
         }
