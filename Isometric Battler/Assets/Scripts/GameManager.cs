@@ -26,6 +26,10 @@ public class GameManager : NetworkBehaviour
     public GameObject P2Base;
     [SerializeField]
     Button StartButton;
+    [SerializeField]
+    AnimationCurve buildJuiceCurve;
+    [SerializeField]
+    AnimationCurve colorJuiceCurve;
 
     private void Start()
     {
@@ -107,7 +111,6 @@ public class GameManager : NetworkBehaviour
         building.GetComponent<SpriteRenderer>().color = teams[objteam].color;
         teams[objteam].things.Add(building);
         tiles[objx, objy] = 2;
-        ColorSurroundingTiles(objx, objy, objteam);
         NetworkServer.Spawn(building);
         SetVariablesBuild(building, objteam, objx, objy, objtilenumber);
     }
@@ -119,7 +122,36 @@ public class GameManager : NetworkBehaviour
         spawnedObj.GetComponent<SpriteRenderer>().color = teams[team].color;
         teams[team].things.Add(spawnedObj);
         tiles[x, y] = tile;
-        ColorSurroundingTiles(x, y, team);
+        StartCoroutine(BuildJuice(spawnedObj, x, y, team));
+    }
+
+    private IEnumerator BuildJuice(GameObject spawnedObj, int x, int y, int team)
+    {
+        //might need to initailly set the a to 0 when it spawns in previous function
+        float counter = 0f;
+        Vector2 spawnorig = spawnedObj.transform.position;
+        float verticalOffset = 2;
+        Color tempCol = spawnedObj.GetComponent<SpriteRenderer>().color;
+        Color originalCol = tempCol;
+        tempCol.a = 0;
+        spawnedObj.GetComponent<SpriteRenderer>().color = tempCol;
+        float fallTime = 0.5f;
+        bool tilesColoured = false;
+        while (counter <= fallTime) 
+        {
+            if (!tilesColoured && buildJuiceCurve.Evaluate(counter / fallTime) < 0.02f)
+            {
+                ColorSurroundingTiles(x, y, team);
+                tilesColoured = true;
+            }
+            tempCol.a = colorJuiceCurve.Evaluate(counter / fallTime);
+            spawnedObj.GetComponent<SpriteRenderer>().color = tempCol;
+            spawnedObj.transform.position = new Vector2(spawnorig.x, spawnorig.y + verticalOffset*(buildJuiceCurve.Evaluate(counter/fallTime)));
+            counter += Time.deltaTime;
+            yield return null;
+        }
+        spawnedObj.transform.position = spawnorig;
+        spawnedObj.GetComponent<SpriteRenderer>().color = originalCol;
     }
 
     void ColorSurroundingTiles(int x, int y, int team) 
@@ -137,7 +169,7 @@ public class GameManager : NetworkBehaviour
         StartCoroutine(ColorTile(x, y-2, teams[team].areacolor2, team));
         StartCoroutine(ColorTile(x-1, y-1, teams[team].areacolor2, team));
         StartCoroutine(ColorTile(x-2, y, teams[team].areacolor2, team));
-        StartCoroutine(ColorTile(x-1, y-1, teams[team].areacolor2, team));
+        StartCoroutine(ColorTile(x-1, y+1, teams[team].areacolor2, team));
     }
 
 

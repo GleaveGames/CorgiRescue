@@ -19,7 +19,6 @@ public class BuildButtons : MonoBehaviour
     Coroutine coroutine;
     public int guild;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -43,21 +42,60 @@ public class BuildButtons : MonoBehaviour
         CheckAffordability();
     }
 
+    void SetBuild(int buttonNumber) 
+    {
+        int buildchoice = Random.Range(1, gm.guilds[guild].builds.Length);
+        while (buildchoice == buildnumber[buttonNumber])
+        {
+            buildchoice = Random.Range(1, gm.guilds[guild].builds.Length);
+        }
+        buildnumber[buttonNumber] = buildchoice;
+        buttons[buttonNumber].transform.GetChild(0).GetComponent<Image>().sprite = gm.guilds[guild].builds[buildchoice].sprite;
+        buttons[buttonNumber].transform.GetChild(1).GetComponent<Text>().text = gm.guilds[guild].builds[buildchoice].cost.ToString();
+        buttons[buttonNumber].GetComponent<Image>().color = unaffordable;
+        buttons[buttonNumber].transform.GetChild(0).GetComponent<Image>().color = unaffordable;
+    }
+
     IEnumerator GetNewUnit(int buttonNumber) 
     {
         int buildchoice = Random.Range(1, gm.guilds[guild].builds.Length);
         buildnumber[buttonNumber] = buildchoice;
         buttons[buttonNumber].transform.GetChild(0).GetComponent<Image>().sprite = gm.guilds[guild].builds[buildchoice].sprite;
         buttons[buttonNumber].transform.GetChild(1).GetComponent<Text>().text = gm.guilds[guild].builds[buildchoice].cost.ToString();
-        while(CheckIfButtonAlreadyExists(buildchoice, buttonNumber)) 
+        float counter = 0;
+        float minicounter = 0;
+        while (counter < 1)
         {
-            yield return new WaitForSeconds(0.05f);
-            buildchoice = Random.Range(1, gm.guilds[guild].builds.Length);
-            buildnumber[buttonNumber] = buildchoice;
-            buttons[buttonNumber].transform.GetChild(0).GetComponent<Image>().sprite = gm.guilds[guild].builds[buildchoice].sprite;
-            buttons[buttonNumber].transform.GetChild(1).GetComponent<Text>().text = gm.guilds[guild].builds[buildchoice].cost.ToString();
+            if(minicounter >= 0.05f) 
+            {
+                SetBuild(buttonNumber);
+                minicounter = 0;
+            }
+            counter += Time.deltaTime;
+            minicounter += Time.deltaTime;
             yield return null;
         }
+        float climbingcount = 0.05f;
+        yield return new WaitForSeconds(0.05f);
+        for (int i = 0; i <= 8; i++) 
+        {
+            while (minicounter < climbingcount)
+            {
+                minicounter += Time.deltaTime;
+                yield return null;
+            }
+            climbingcount *= 1.4f;
+            SetBuild(buttonNumber);
+            minicounter += Time.deltaTime;
+            yield return null;
+        }
+        yield return new WaitForSeconds(0.8f);
+        while (CheckIfButtonAlreadyExists(buildchoice, buttonNumber)) 
+        {
+            buildchoice = Random.Range(1, gm.guilds[guild].builds.Length);
+            yield return null;
+        }
+        buildnumber[buttonNumber] = buildchoice;
         buttons[buttonNumber].transform.GetChild(0).GetComponent<Image>().sprite = gm.guilds[guild].builds[buildchoice].sprite;
         buttons[buttonNumber].transform.GetChild(1).GetComponent<Text>().text = gm.guilds[guild].builds[buildchoice].cost.ToString();
         CheckAffordability();
