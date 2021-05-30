@@ -23,6 +23,8 @@ public class Beserker : NetworkBehaviour
     float jumpHeight;
     [SerializeField]
     Color ringCol;
+    [SerializeField]
+    float AOErange;
 
     GameManager gm;
     [SerializeField]
@@ -240,6 +242,11 @@ public class Beserker : NetworkBehaviour
             if (isServer) ClientRing(temp) ;
             yield return null;
         }
+        List<GameObject> EnemiesInRange = GetEnemiesAOE();
+        foreach(GameObject enemy in EnemiesInRange) 
+        {
+            enemy.GetComponent<CharacterStats>().health -= damage;
+        }
         ring.position = initialPos;
         ring.localScale = initialScale;
         ring.gameObject.GetComponent<SpriteRenderer>().color = ringCol;
@@ -270,6 +277,28 @@ public class Beserker : NetworkBehaviour
         CheckForEnemies();
         moving = false;
         attacking = false;
+    }
+
+    List<GameObject> GetEnemiesAOE() 
+    {
+        List<GameObject> enemies = new List<GameObject>();
+        foreach (Team team in gm.teams)
+        {
+            if (team.color != GetComponent<SpriteRenderer>().color)
+            {
+                foreach (GameObject thing in team.things)
+                {
+                    if (thing != null)
+                    {
+                        if (Vector2.Distance(transform.position, thing.transform.position) < AOErange)
+                        {
+                            enemies.Add(thing);
+                        }
+                    }
+                }
+            }
+        }
+        return enemies;
     }
 
     private void MoveTowardsEnemy()
