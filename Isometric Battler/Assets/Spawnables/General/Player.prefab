@@ -54,6 +54,7 @@ MonoBehaviour:
   canvas: {fileID: 3919366697420038065, guid: b192b6e5b86fc774ba74364d072fe44f, type: 3}
   team: 0
   ghostBuild: {fileID: 7896813253926772450, guid: 925d6e36ac6d5c34891521534a19bd23, type: 3}
+  guild: 0
 --- !u!114 &3959342992892631575
 MonoBehaviour:
   m_ObjectHideFlags: 0

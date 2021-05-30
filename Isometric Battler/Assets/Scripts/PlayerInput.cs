@@ -71,6 +71,7 @@ public class PlayerInput : NetworkBehaviour
             FindObjectOfType<BuildButtons>().guild = guild;
             basePlaced = true;
         }
+
     }
 
     public IEnumerator GhostBuild()

@@ -30,11 +30,20 @@ public class GameManager : NetworkBehaviour
     AnimationCurve buildJuiceCurve;
     [SerializeField]
     AnimationCurve colorJuiceCurve;
+    public int[,] teamtiles;
+    [SerializeField]
+    GameObject Line;
+    [SerializeField]
+    List<Sprite> outlineSprites;
+    [SerializeField]
+    Outline[] outlines;
 
     private void Start()
     {
         nm = FindObjectOfType<NetworkManagerIso>();
         GetTiles();
+        boundsX = tilemap.cellBounds.size.x;
+        boundsY = tilemap.cellBounds.size.y;
     }
 
     [Command(requiresAuthority =false)]
@@ -152,6 +161,7 @@ public class GameManager : NetworkBehaviour
         }
         spawnedObj.transform.position = spawnorig;
         spawnedObj.GetComponent<SpriteRenderer>().color = originalCol;
+        UpdateLineRenderers();
     }
 
     void ColorSurroundingTiles(int x, int y, int team) 
@@ -172,7 +182,90 @@ public class GameManager : NetworkBehaviour
         StartCoroutine(ColorTile(x-1, y+1, teams[team].areacolor2, team));
     }
 
+    void DestroyLines()
+    {
+        for (int i = 0; i < teams.Length; i++)
+        {
+            //DESTROY ALL LINES
+            for (int f = outlines[i].Lines.Count - 1; f >= 0; f--)
+            {
+                Destroy(outlines[i].Lines[f]);
+                outlines[i].Lines.RemoveAt(f);
+            }
+        }
+    }
 
+    void UpdateLineRenderers() 
+    {
+        //DESTROY ALL LINES
+        DestroyLines();
+        for (int i = 0; i < teams.Length; i++)
+        {
+            for(int x = 0; x < boundsX; x++) 
+            {
+                for(int y = 0; y < boundsY; y++) 
+                {
+                    if (teamtiles[x, y] == i)
+                    {
+                        /* CheckTiles()
+                              8  1  2
+                               7  xy 3
+                                6  5  4
+                        */
+
+                        Vector3 spawn = transform.position;
+                        spawn.x = (x - y) * 1.415f;
+                        //need to add a little offset to get centre of cell  eg the +1 below
+                        spawn.y = (x + y - boundsY + 1) * 0.815f;
+                        if (!CheckTeamTile(1, x, y, i)) 
+                        {
+                            GameObject line = Instantiate(Line, spawn, Quaternion.identity);
+                            line.GetComponent<SpriteRenderer>().sprite = outlineSprites[0];
+                            outlines[i].Lines.Add(line);
+                        }
+                        if (!CheckTeamTile(3, x, y, i)) 
+                        {
+                            GameObject line = Instantiate(Line, spawn, Quaternion.identity);
+                            line.GetComponent<SpriteRenderer>().sprite = outlineSprites[1];
+                            outlines[i].Lines.Add(line);
+                        }
+                        if (!CheckTeamTile(5, x, y, i))
+                        {
+                            GameObject line = Instantiate(Line, spawn, Quaternion.identity);
+                            line.GetComponent<SpriteRenderer>().sprite = outlineSprites[2];
+                            outlines[i].Lines.Add(line);
+                        }
+                        if (!CheckTeamTile(7, x, y, i))
+                        {
+                            GameObject line = Instantiate(Line, spawn, Quaternion.identity);
+                            line.GetComponent<SpriteRenderer>().sprite = outlineSprites[3];
+                            outlines[i].Lines.Add(line);
+                        }
+                    }
+                    else continue;
+                }
+            }
+            foreach (GameObject l in outlines[i].Lines)
+            {
+                l.GetComponent<SpriteRenderer>().color = outlines[i].col;
+            }
+        }
+    }
+
+    bool CheckTeamTile(int dir, int x, int y, int team) 
+    {
+        bool res = false;
+        if (dir == 1) if (teamtiles[x, y + 1] == team) res = true;
+        if (dir == 2) if (teamtiles[x + 1, y + 1] == team) res = true;
+        if (dir == 3) if (teamtiles[x + 1, y] == team) res = true;
+        if (dir == 4) if (teamtiles[x + 1, y-1] == team) res = true;
+        if (dir == 5) if (teamtiles[x, y-1] == team) res = true;
+        if (dir == 6) if (teamtiles[x-1, y-1] == team) res = true;
+        if (dir == 7) if (teamtiles[x-1, y] == team) res = true;
+        if (dir == 8) if (teamtiles[x-1, y+1] == team) res = true;
+        Debug.Log(res);
+        return res;
+    }
 
     [ClientRpc]
     void SetVariablesTroop(GameObject spawnedObj, int team, GameObject parent) 
@@ -207,6 +300,7 @@ public class GameManager : NetworkBehaviour
         boundsX = tilemap.cellBounds.size.x;
         boundsY = tilemap.cellBounds.size.y;
         tiles = new int[boundsX, boundsY];
+        teamtiles = new int[boundsX, boundsY];
         TileBase[] allTiles = tilemap.GetTilesBlock(tilemap.cellBounds);
         for (int x = 0; x < boundsX; x++) 
         {
@@ -228,6 +322,8 @@ public class GameManager : NetworkBehaviour
                 {
                     tiles[x, y] = 0;
                 }
+                //SETTING TEAM TILES TO -1 CUS TEAM COULD BE 0;
+                teamtiles[x, y] = -1;
             }
         }
     }
@@ -261,6 +357,7 @@ public class GameManager : NetworkBehaviour
             }
             tilemap.SetColor(pos, col);
         }
+        teamtiles[x, y] = team;
     }
 
     public void PrintMap()
@@ -313,4 +410,13 @@ public class Guild
     public string name;
     [SyncVar]
     public Builds[] builds;
+}
+
+[System.Serializable]
+class Outline 
+{
+    public Color col;
+    [SyncVar]
+    public List<GameObject> Lines;
+    public int team;
 }
