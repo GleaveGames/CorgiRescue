@@ -356,8 +356,8 @@ public class GameManager : NetworkBehaviour
                 yield return null;
             }
             tilemap.SetColor(pos, col);
+            teamtiles[x, y] = team;
         }
-        teamtiles[x, y] = team;
     }
 
     public void PrintMap()

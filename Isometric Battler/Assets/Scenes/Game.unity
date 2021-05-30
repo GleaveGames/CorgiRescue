@@ -45926,6 +45926,7 @@ MonoBehaviour:
   - {fileID: 3690318784697315613, guid: 25904e9128c9ead4fa36d0a4e9e065b5, type: 3}
   - {fileID: 5223011800279032933, guid: 6a8b7badd9540584d8ca90c1193fce2d, type: 3}
   - {fileID: 4569366539139361718, guid: b8c13e859f194724aa2e6c62663bc848, type: 3}
+  - {fileID: 5223011800279032933, guid: 69c01419b054f3a468e5909e8a374652, type: 3}
   P1Spawn: {fileID: 1577095385}
   P2Spawn: {fileID: 1267867440}
 --- !u!4 &687041747
@@ -79537,7 +79538,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9152bce05210fb34db3f742d50b9a933, type: 3}
   - {fileID: 21300000, guid: a707b336b54a5a14ba5567d4fd5ad477, type: 3}
   outlines:
-  - col: {r: 0.5220363, g: 0.9811321, b: 0.5564025, a: 0.69411767}
+  - col: {r: 0.16408658, g: 1, b: 0, a: 0.69411767}
     Lines: []
     team: 0
   - col: {r: 1, g: 0.56037736, b: 0.788996, a: 0.7254902}
