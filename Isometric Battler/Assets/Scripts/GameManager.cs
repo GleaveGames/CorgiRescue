@@ -272,7 +272,7 @@ public class GameManager : NetworkBehaviour
     {
         spawnedObj.GetComponent<CharacterStats>().team = team;
         spawnedObj.GetComponent<SpriteRenderer>().color = teams[team].color;
-        spawnedObj.transform.parent = parent.transform;
+        parent.GetComponent<Spawner>().childSoldiers.Add(spawnedObj);
         spawnedObj.transform.position = parent.transform.position;
     } 
 
@@ -282,7 +282,7 @@ public class GameManager : NetworkBehaviour
         GameObject troopy = Instantiate(nm.spawnPrefabs.Find(prefab => prefab.name == objthing), objspawnpos, Quaternion.identity);
         troopy.GetComponent<CharacterStats>().team = objteam;
         troopy.GetComponent<SpriteRenderer>().color = teams[objteam].color;
-        troopy.transform.parent = parent.transform;
+        parent.GetComponent<Spawner>().childSoldiers.Add(troopy);
         teams[objteam].things.Add(troopy);
         NetworkServer.Spawn(troopy);
         SetVariablesTroop(troopy, objteam, parent);
