@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 4569366539139361719}
   - component: {fileID: 5968930982523584874}
   - component: {fileID: 5920952726534841909}
-  - component: {fileID: 8513916370749430414}
-  - component: {fileID: 3326450456133900965}
+  - component: {fileID: 1796079989509182088}
+  - component: {fileID: -1109052907335660594}
   m_Layer: 0
-  m_Name: TrollArcherCampl
+  m_Name: TrollSoldierCamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 2190c6a5ec1fda14fbe3228120f5d293, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 08538d3ee60e6564dac2e2e1ab1e4094, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -184,9 +184,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  cooldown: 1
-  Troop: {fileID: 5223011800279032933, guid: 42be43b0c5e778143a019acf848f40be, type: 3}
-  poplimit: 2
+  cooldown: 1.6
+  Troop: {fileID: 5223011800279032933, guid: a225b8b062f4d1a47a299aa4c4b17e32, type: 3}
+  poplimit: 3
   childSoldiers: []
 --- !u!114 &5920952726534841909
 MonoBehaviour:
@@ -202,10 +202,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  health: 6
+  health: 10
   team: 1
   occupiesTile: 1
---- !u!114 &8513916370749430414
+--- !u!114 &1796079989509182088
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -222,7 +222,7 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 
   hasSpawned: 0
---- !u!114 &3326450456133900965
+--- !u!114 &-1109052907335660594
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

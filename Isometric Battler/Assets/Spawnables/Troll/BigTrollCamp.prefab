@@ -187,6 +187,7 @@ MonoBehaviour:
   cooldown: 5
   Troop: {fileID: 5223011800279032933, guid: 9f3b04c6300ee024489aaed0f94774e0, type: 3}
   poplimit: 1
+  childSoldiers: []
 --- !u!114 &5920952726534841909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,5 +241,5 @@ MonoBehaviour:
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
   compressRotation: 0
-  interpolateScale: 0
+  interpolateScale: 1
   syncScale: 1
