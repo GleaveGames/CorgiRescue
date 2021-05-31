@@ -31,7 +31,7 @@ public class Spawner : NetworkBehaviour
             this.enabled = false;
         }
         StartCoroutine(SpawnSoldier());
-        spawning = true;
+        spawning = true; 
         gm = FindObjectOfType<GameManager>();
         StartCoroutine(CheckChildSoldiers());
     }

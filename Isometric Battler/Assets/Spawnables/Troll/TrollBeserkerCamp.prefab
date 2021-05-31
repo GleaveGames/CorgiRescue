@@ -184,7 +184,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  cooldown: 2
+  cooldown: 5
   Troop: {fileID: 5223011800279032933, guid: 69c01419b054f3a468e5909e8a374652, type: 3}
   poplimit: 1
   childSoldiers: []
