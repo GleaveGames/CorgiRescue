@@ -13,10 +13,12 @@ public class CharacterStats : NetworkBehaviour
     bool occupiesTile;
     GameManager gm;
     Vector2 tile;
+    int initialHealth;
 
     private void Start()
     {
         gm = FindObjectOfType<GameManager>();
+        initialHealth = health;
     }
 
 
@@ -63,6 +65,23 @@ public class CharacterStats : NetworkBehaviour
         Destroy(gameObject);
     }
 
+    public void Convert(int newTeam)
+    {
+        health = initialHealth;
+        gm.teams[team].things.Remove(gameObject);
+        gm.teams[newTeam].things.Add(gameObject);
+        GetComponent<SpriteRenderer>().color = gm.teams[newTeam].color;
+        if (isServer) ClientConvert(newTeam);
+    }
+
+
+    [ClientRpc]
+    private void ClientConvert(int newTeam)
+    {
+        gm.teams[team].things.Remove(gameObject);
+        gm.teams[newTeam].things.Add(gameObject);
+        GetComponent<SpriteRenderer>().color = gm.teams[newTeam].color;
+    }
 
 
     [ClientRpc]

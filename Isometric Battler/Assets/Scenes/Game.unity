@@ -45848,6 +45848,11 @@ MonoBehaviour:
   - {fileID: 4569366539139361718, guid: b8c13e859f194724aa2e6c62663bc848, type: 3}
   - {fileID: 5223011800279032933, guid: 69c01419b054f3a468e5909e8a374652, type: 3}
   - {fileID: 4569366539139361718, guid: 9b6193b6358cdc245952bb6c52f4417d, type: 3}
+  - {fileID: 5027986345379660360, guid: 3b8c2eabc64bdcc4781a4f43fc7d2a58, type: 3}
+  - {fileID: 5223011800279032933, guid: 4cd57642516f1bb4888c5cd227617bda, type: 3}
+  - {fileID: 4569366539139361718, guid: 0a84104489cb0f941aa1c4184df5aa35, type: 3}
+  - {fileID: 5223011800279032933, guid: 1e5ccea7a42cb724e89307da26ebc6fd, type: 3}
+  - {fileID: 4569366539139361718, guid: 6c3bee812541e7d4b9dee0f962e7215c, type: 3}
   P1Spawn: {fileID: 1577095385}
   P2Spawn: {fileID: 1267867440}
 --- !u!4 &687041747
@@ -52625,6 +52630,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44de47eef87ae8f4dac2d7eca578f1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sizeMax: 25
+  sizeMin: 5
 --- !u!1 &932374903
 GameObject:
   m_ObjectHideFlags: 0
@@ -79151,24 +79158,28 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: fd64b353ef1ed5f4c9e9f9896cf72a65, type: 3}
     - name: SoldierCamp
       build: {fileID: 4569366539139361718, guid: ee3238fb46adf794fa05180f17baa35b, type: 3}
-      cost: 2
+      cost: 3
       sprite: {fileID: 21300000, guid: 08538d3ee60e6564dac2e2e1ab1e4094, type: 3}
     - name: ArcherCamp
       build: {fileID: 4569366539139361718, guid: 18ba2ae303b58ea45ad887b65f0b6516, type: 3}
-      cost: 2
+      cost: 3
       sprite: {fileID: 21300000, guid: a2413424ab2aa48498bb95daa845b67f, type: 3}
     - name: ArcherTower
       build: {fileID: 3690318784697315613, guid: 1f409a49d33d4c743937ccc6d8b56bda, type: 3}
-      cost: 3
+      cost: 5
       sprite: {fileID: 21300000, guid: 091cb95971190c7419e1cbd881847108, type: 3}
     - name: SoldierStable
       build: {fileID: 4569366539139361718, guid: a85d72f2c2a85b44f9b5871bf37d50b3, type: 3}
-      cost: 4
+      cost: 6
       sprite: {fileID: 21300000, guid: 4ed3303e8a160454fbf39e2e1e0739ec, type: 3}
     - name: ArcherStable
       build: {fileID: 4569366539139361718, guid: 2de093fa6279aeb41bfc933ae7b8d948, type: 3}
-      cost: 4
+      cost: 6
       sprite: {fileID: 21300000, guid: 2900d7f1c80a4f64094ef6718a6a4f6d, type: 3}
+    - name: Church
+      build: {fileID: 4569366539139361718, guid: 0a84104489cb0f941aa1c4184df5aa35, type: 3}
+      cost: 8
+      sprite: {fileID: 21300000, guid: 803d06f01c1d13242b205b0d9d55a6bb, type: 3}
   - name: Trolls
     builds:
     - name: Base
@@ -79177,23 +79188,23 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: 61dc8b11ff9139d47bef3d5f08732491, type: 3}
     - name: SoldierCampTroll
       build: {fileID: 4569366539139361718, guid: fdcae2dea29c69843a6851d8fabb59e3, type: 3}
-      cost: 2
+      cost: 3
       sprite: {fileID: 21300000, guid: 5cd139bfe91cb134798c90df34df2cd4, type: 3}
     - name: ArcherCampTroll
       build: {fileID: 4569366539139361718, guid: 82f8af5d65acadc4497418ef44435cdd, type: 3}
-      cost: 2
+      cost: 3
       sprite: {fileID: 21300000, guid: 4531df4ee4c49e64299af0d834ecd604, type: 3}
     - name: ArcherTowerTroll
       build: {fileID: 3690318784697315613, guid: 76637f70c57af3443b60f2608e911fcf, type: 3}
-      cost: 3
+      cost: 5
       sprite: {fileID: 21300000, guid: 14cc53528860c714daa2e25293c79074, type: 3}
     - name: BigTrollCamp
       build: {fileID: 4569366539139361718, guid: e8c2a5bf0a5267b40b2febc1c29a9570, type: 3}
-      cost: 8
+      cost: 10
       sprite: {fileID: 21300000, guid: 6f746770597823e4bbbcbca9502dfd75, type: 3}
     - name: TrollBeserkerCamp
       build: {fileID: 4569366539139361718, guid: 9b6193b6358cdc245952bb6c52f4417d, type: 3}
-      cost: 6
+      cost: 7
       sprite: {fileID: 21300000, guid: bc6cab99359c56049a4ed618878b5793, type: 3}
   - name: Undead
     builds:
@@ -79205,10 +79216,10 @@ MonoBehaviour:
       build: {fileID: 4569366539139361718, guid: b8c13e859f194724aa2e6c62663bc848, type: 3}
       cost: 2
       sprite: {fileID: 21300000, guid: e7dc1382ad4cabf49b0dbb5ccf231c03, type: 3}
-    - name: ArcherCampTroll
-      build: {fileID: 4569366539139361718, guid: 82f8af5d65acadc4497418ef44435cdd, type: 3}
+    - name: UndeadBigGrave
+      build: {fileID: 4569366539139361718, guid: 6c3bee812541e7d4b9dee0f962e7215c, type: 3}
       cost: 2
-      sprite: {fileID: 21300000, guid: 4531df4ee4c49e64299af0d834ecd604, type: 3}
+      sprite: {fileID: 21300000, guid: 872766bac27fa4a489e1809b7263f963, type: 3}
     - name: ArcherTowerTroll
       build: {fileID: 3690318784697315613, guid: 76637f70c57af3443b60f2608e911fcf, type: 3}
       cost: 3

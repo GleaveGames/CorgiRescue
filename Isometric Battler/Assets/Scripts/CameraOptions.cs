@@ -6,10 +6,10 @@ public class CameraOptions : MonoBehaviour
 {
     Camera cam;
     [SerializeField]
-    float sizeMax = 19;
+    float sizeMax = 25;
     [SerializeField]
     float sizeMin = 5;
-
+    Vector3 dragOrigin;
 
     private void Start()
     {
@@ -32,6 +32,22 @@ public class CameraOptions : MonoBehaviour
                 cam.orthographicSize++;
             }
         }
+        PanCamera();
     }
+    void PanCamera() 
+    {
+        if (Input.GetMouseButtonDown(1)) 
+        {
+            dragOrigin = cam.ScreenToWorldPoint(Input.mousePosition);
+        }
 
+        if (Input.GetMouseButton(1)) 
+        {
+            Vector3 difference = dragOrigin - cam.ScreenToWorldPoint(Input.mousePosition);
+
+            cam.transform.position += difference;
+        
+        }
+
+    }
 }
