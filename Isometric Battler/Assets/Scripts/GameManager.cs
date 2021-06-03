@@ -263,7 +263,6 @@ public class GameManager : NetworkBehaviour
         if (dir == 6) if (teamtiles[x-1, y-1] == team) res = true;
         if (dir == 7) if (teamtiles[x-1, y] == team) res = true;
         if (dir == 8) if (teamtiles[x-1, y+1] == team) res = true;
-        Debug.Log(res);
         return res;
     }
 
@@ -272,7 +271,7 @@ public class GameManager : NetworkBehaviour
     {
         spawnedObj.GetComponent<CharacterStats>().team = team;
         spawnedObj.GetComponent<SpriteRenderer>().color = teams[team].color;
-        parent.GetComponent<Spawner>().childSoldiers.Add(spawnedObj);
+        if(parent.TryGetComponent(out Spawner spawner)) spawner.childSoldiers.Add(spawnedObj);
         spawnedObj.transform.position = parent.transform.position;
     } 
 
@@ -282,7 +281,7 @@ public class GameManager : NetworkBehaviour
         GameObject troopy = Instantiate(nm.spawnPrefabs.Find(prefab => prefab.name == objthing), objspawnpos, Quaternion.identity);
         troopy.GetComponent<CharacterStats>().team = objteam;
         troopy.GetComponent<SpriteRenderer>().color = teams[objteam].color;
-        parent.GetComponent<Spawner>().childSoldiers.Add(troopy);
+        if (parent.TryGetComponent(out Spawner spawner)) spawner.childSoldiers.Add(troopy);
         teams[objteam].things.Add(troopy);
         NetworkServer.Spawn(troopy);
         SetVariablesTroop(troopy, objteam, parent);
