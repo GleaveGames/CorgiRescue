@@ -174,6 +174,10 @@ public class Troop : NetworkBehaviour
         GetAvailableTiles();
         //RandomMove();
         MoveTowardsEnemy();
+        bool flip = GetComponent<SpriteRenderer>().flipX;
+        if (transform.position.x < movepos.x) flip = false;
+        else if (transform.position.x > movepos.x) flip = true;
+        SetDirection(flip);
         while (new Vector2(transform.position.x, transform.position.y) != movepos)
         {
             transform.position = Vector2.MoveTowards(transform.position, movepos, speed * Time.deltaTime);
@@ -291,5 +295,17 @@ public class Troop : NetworkBehaviour
                 }
             }
         }
+    }
+
+    public void SetDirection(bool flip)
+    {
+        GetComponent<SpriteRenderer>().flipX = flip;
+        if (isServer) ClientSetDirection(flip);
+    }
+
+    [ClientRpc]
+    private void ClientSetDirection(bool flip)
+    {
+        GetComponent<SpriteRenderer>().flipX = flip;
     }
 }

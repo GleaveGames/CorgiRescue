@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 3866308774017873795}
   - component: {fileID: 9029304664513312256}
-  - component: {fileID: 4873019427458987265}
   - component: {fileID: 7245758917562213795}
-  - component: {fileID: 1967831953406533513}
-  - component: {fileID: 2067284057637720572}
+  - component: {fileID: 392500122663687121}
+  - component: {fileID: -1417144893278153073}
+  - component: {fileID: 3385827549480263767}
   m_Layer: 0
-  m_Name: UndeadBig
+  m_Name: UndeadArcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 872766bac27fa4a489e1809b7263f963, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1477270e4b14ff045b8e4509746d2056, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -86,31 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4873019427458987265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5223011800279032933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98312c60dd232f44c8d159df953df360, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  gm: {fileID: 0}
-  speed: 1.6
-  attackSpeed: 3
-  currentTile: {x: 0, y: 0}
-  dir: 
-  movepos: {x: 0, y: 0}
-  moving: 0
-  attacking: 0
-  closestEnemy: {fileID: 0}
-  attackRange: 2.5
-  damage: 5
 --- !u!114 &7245758917562213795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,10 +100,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  health: 20
+  health: 3
   team: 1
   occupiesTile: 0
---- !u!114 &1967831953406533513
+--- !u!114 &392500122663687121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5223011800279032933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d28e39ef126623c44afa46a12afe37ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  gm: {fileID: 0}
+  speed: 0.625
+  attackSpeed: 2
+  currentTile: {x: 0, y: 0}
+  dir: 
+  movepos: {x: 0, y: 0}
+  moving: 0
+  attacking: 0
+  closestEnemy: {fileID: 0}
+  attackRange: 6
+  damage: 1
+  Projectile: {fileID: 5027986345379660360, guid: d71445106ded0624290cace47fb046af, type: 3}
+  projectileSpeed: 6
+--- !u!114 &-1417144893278153073
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,7 +147,7 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 
   hasSpawned: 0
---- !u!114 &2067284057637720572
+--- !u!114 &3385827549480263767
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
