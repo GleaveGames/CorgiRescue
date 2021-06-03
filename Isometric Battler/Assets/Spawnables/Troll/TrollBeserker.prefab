@@ -157,6 +157,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  gm: {fileID: 0}
+  speed: 2
+  attackSpeed: 3
+  currentTile: {x: 0, y: 0}
+  dir: 
+  movepos: {x: 0, y: 0}
+  moving: 0
+  attacking: 0
+  closestEnemy: {fileID: 0}
+  attackRange: 3.6
+  damage: 2
   buildX:
     serializedVersion: 2
     m_Curve:
@@ -358,14 +369,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  buildtime: 1
+  buildtime: 0.7
   jumptime: 0.6
   jumpHeight: 1.5
   ringCol: {r: 1, g: 1, b: 1, a: 0}
   AOErange: 3.5
-  speed: 1
-  attackRange: 3
-  damage: 2
 --- !u!114 &6512604854334352196
 MonoBehaviour:
   m_ObjectHideFlags: 0

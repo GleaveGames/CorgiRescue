@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3866308774017873795}
   - component: {fileID: 9029304664513312256}
   - component: {fileID: 7245758917562213795}
-  - component: {fileID: 392500122663687121}
   - component: {fileID: -1417144893278153073}
   - component: {fileID: 3385827549480263767}
+  - component: {fileID: 7626014289522544353}
   m_Layer: 0
   m_Name: UndeadArcher
   m_TagString: Untagged
@@ -103,33 +103,6 @@ MonoBehaviour:
   health: 3
   team: 1
   occupiesTile: 0
---- !u!114 &392500122663687121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5223011800279032933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d28e39ef126623c44afa46a12afe37ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  gm: {fileID: 0}
-  speed: 0.625
-  attackSpeed: 2
-  currentTile: {x: 0, y: 0}
-  dir: 
-  movepos: {x: 0, y: 0}
-  moving: 0
-  attacking: 0
-  closestEnemy: {fileID: 0}
-  attackRange: 6
-  damage: 1
-  Projectile: {fileID: 5027986345379660360, guid: d71445106ded0624290cace47fb046af, type: 3}
-  projectileSpeed: 6
 --- !u!114 &-1417144893278153073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,3 +141,30 @@ MonoBehaviour:
   compressRotation: 0
   interpolateScale: 0
   syncScale: 0
+--- !u!114 &7626014289522544353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5223011800279032933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60b6c7621ca63ce4e9b7dc2209a34b94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  gm: {fileID: 0}
+  speed: 1.2
+  attackSpeed: 1
+  currentTile: {x: 0, y: 0}
+  dir: 
+  movepos: {x: 0, y: 0}
+  moving: 0
+  attacking: 0
+  closestEnemy: {fileID: 0}
+  attackRange: 6
+  damage: 1
+  Projectile: {fileID: 5027986345379660360, guid: 8889296df5263db4aac454f5548d9cef, type: 3}
+  projectileSpeed: 5

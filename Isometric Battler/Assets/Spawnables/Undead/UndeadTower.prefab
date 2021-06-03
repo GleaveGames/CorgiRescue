@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330832375219451524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.958, z: 0}
+  m_LocalPosition: {x: -0.009, y: 0.958, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5232816956873811709}
@@ -40,12 +40,12 @@ GameObject:
   m_Component:
   - component: {fileID: 5232816956873811709}
   - component: {fileID: 3963466818556531382}
-  - component: {fileID: 8314810751963962813}
   - component: {fileID: 962269546999904577}
   - component: {fileID: -1884330867831889520}
   - component: {fileID: -7435619212529462552}
+  - component: {fileID: 6484777899607282066}
   m_Layer: 0
-  m_Name: ArcherTower
+  m_Name: UndeadTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,7 +106,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e27a7338bfe0c8647917c027f141ac89, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a64edef28a115b941b48f360c70300c0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -117,25 +117,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8314810751963962813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3690318784697315613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f49675c9ec8c8b4e83e5bc9dd656a4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  range: 6
-  Projectile: {fileID: 5027986345379660360, guid: d71445106ded0624290cace47fb046af, type: 3}
-  attackRate: 0.5
-  projectileSpeed: 8
-  damage: 2
 --- !u!114 &962269546999904577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,3 +172,22 @@ MonoBehaviour:
   compressRotation: 0
   interpolateScale: 0
   syncScale: 0
+--- !u!114 &6484777899607282066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3690318784697315613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 094ec59d6be951749a710bf63e42c49b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  range: 7
+  Projectile: {fileID: 5027986345379660360, guid: 8889296df5263db4aac454f5548d9cef, type: 3}
+  attackRate: 0.7
+  projectileSpeed: 7
+  damage: 1

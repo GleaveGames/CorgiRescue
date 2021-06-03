@@ -5,19 +5,19 @@ using Mirror;
 public class Tower : NetworkBehaviour
 {
     Coroutine coroutine;
-    GameObject closestEnemy;
-    GameManager gm;
+    protected GameObject closestEnemy;
+    protected GameManager gm;
     [SerializeField]
-    float range;
+    protected float range;
     [SerializeField]
-    GameObject Projectile;
-    Transform firepos;
+    protected GameObject Projectile;
+    protected Transform firepos;
     [SerializeField]
-    float attackRate;
+    protected float attackRate;
     [SerializeField]
-    float projectileSpeed;
+    protected float projectileSpeed;
     [SerializeField]
-    int damage;
+    protected int damage;
 
     private void Start()
     {
@@ -27,7 +27,7 @@ public class Tower : NetworkBehaviour
         firepos = transform.GetChild(0);
     }
 
-    private IEnumerator EnemyCheckandAttack() 
+    protected virtual IEnumerator EnemyCheckandAttack() 
     {
         yield return new WaitForSeconds(attackRate);
         CheckForEnemies();
@@ -56,7 +56,7 @@ public class Tower : NetworkBehaviour
     }
 
 
-    private void CheckForEnemies()
+    protected void CheckForEnemies()
     {
         closestEnemy = null;
         float closestDistance = 99;
