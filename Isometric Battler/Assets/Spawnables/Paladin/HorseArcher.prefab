@@ -100,9 +100,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  health: 5
+  health: 40
   team: 1
   occupiesTile: 0
+  initialHealth: 0
 --- !u!114 &392500122663687121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +128,7 @@ MonoBehaviour:
   attacking: 0
   closestEnemy: {fileID: 0}
   attackRange: 6
-  damage: 1
+  damage: 3
   Projectile: {fileID: 5027986345379660360, guid: d71445106ded0624290cace47fb046af, type: 3}
   projectileSpeed: 8
 --- !u!114 &-6138603158101837078

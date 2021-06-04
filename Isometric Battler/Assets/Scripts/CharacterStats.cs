@@ -14,12 +14,15 @@ public class CharacterStats : NetworkBehaviour
     GameManager gm;
     Vector2 tile;
     public int initialHealth;
+    [SerializeField]
+    Sprite deadSprite;
 
     private void Start()
     {
         gm = FindObjectOfType<GameManager>();
         int temp = health;
         initialHealth = temp;
+        if (deadSprite == null) deadSprite = GetComponent<SpriteRenderer>().sprite;
     }
 
 
@@ -42,13 +45,7 @@ public class CharacterStats : NetworkBehaviour
 
     private IEnumerator Die() 
     {
-        if (TryGetComponent(out Spawner spawn))
-        {
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                if (transform.GetChild(i).TryGetComponent(out CharacterStats cs)) transform.GetChild(i).transform.parent = null;
-            }
-        }
+        if (isServer && TryGetComponent(out Troop troop)) troop.StopAllCoroutines();
         gm.teams[team].things.Remove(gameObject);
         if (isServer) ClientRemove();
         if (occupiesTile)
@@ -57,9 +54,11 @@ public class CharacterStats : NetworkBehaviour
             gm.tiles[tile.x, tile.y] = 1;
         }
         Color temp = GetComponent<SpriteRenderer>().color;
+        GetComponent<SpriteRenderer>().sprite = deadSprite;
+        if(isServer) ClientSpriteChange();
         while (temp.a > 0.2) 
         {
-            temp.a -= 0.08f;
+            temp.a -= 0.01f;
             GetComponent<SpriteRenderer>().color = temp;
             if (isServer) ClientFade(temp);
             yield return null;
@@ -108,6 +107,7 @@ public class CharacterStats : NetworkBehaviour
         int x = Mathf.RoundToInt(xRuff);
         return new Vector2Int(x, y);
     }
+
     [ClientRpc]
     public void UpdateClientHealthPriv(int serverhealth) 
     {
@@ -116,6 +116,12 @@ public class CharacterStats : NetworkBehaviour
 
     public void UpdateClientHealth() 
     {
-        UpdateClientHealthPriv(health);
+        if(isServer) UpdateClientHealthPriv(health);
+    }
+
+    [ClientRpc]
+    void ClientSpriteChange() 
+    {
+        GetComponent<SpriteRenderer>().sprite = deadSprite;
     }
 }

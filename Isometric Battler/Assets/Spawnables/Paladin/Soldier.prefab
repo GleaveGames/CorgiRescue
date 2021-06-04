@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6fca5c059fa73734dbe93156c28bde06, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eefbf47ee3c8f9b42b6e11877a4ca85f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,10 +100,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  gm: {fileID: 0}
   speed: 1
   attackSpeed: 5
+  currentTile: {x: 0, y: 0}
+  dir: 
+  movepos: {x: 0, y: 0}
+  moving: 0
+  attacking: 0
+  closestEnemy: {fileID: 0}
   attackRange: 2
-  damage: 1
+  damage: 3
 --- !u!114 &7245758917562213795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,9 +125,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  health: 3
+  health: 40
   team: 1
   occupiesTile: 0
+  initialHealth: 0
+  deadSprite: {fileID: 21300000, guid: 2eab1897454cc62449670c6ee7148d52, type: 3}
 --- !u!114 &1967831953406533513
 MonoBehaviour:
   m_ObjectHideFlags: 0

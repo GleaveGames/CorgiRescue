@@ -100,10 +100,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  gm: {fileID: 0}
   speed: 3
   attackSpeed: 5
+  currentTile: {x: 0, y: 0}
+  dir: 
+  movepos: {x: 0, y: 0}
+  moving: 0
+  attacking: 0
+  closestEnemy: {fileID: 0}
   attackRange: 3.5
-  damage: 2
+  damage: 6
 --- !u!114 &7245758917562213795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,9 +125,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  health: 5
+  health: 50
   team: 1
   occupiesTile: 0
+  initialHealth: 0
 --- !u!114 &-2483382063781503086
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -100,9 +100,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  health: 3
+  health: 50
   team: 1
   occupiesTile: 0
+  initialHealth: 0
+  deadSprite: {fileID: 21300000, guid: 38fbd8a734717ae4e9f1bb2fbea86002, type: 3}
 --- !u!114 &392500122663687121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,10 +119,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  gm: {fileID: 0}
   speed: 0.5
   attackSpeed: 1
+  currentTile: {x: 0, y: 0}
+  dir: 
+  movepos: {x: 0, y: 0}
+  moving: 0
+  attacking: 0
+  closestEnemy: {fileID: 0}
   attackRange: 8
-  damage: 2
+  damage: 10
   Projectile: {fileID: 5027986345379660360, guid: e3f610b6e4e0c6b4bb170396e6c494a4, type: 3}
   projectileSpeed: 5
 --- !u!114 &-1417144893278153073

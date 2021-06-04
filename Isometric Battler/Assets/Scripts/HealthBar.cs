@@ -18,7 +18,6 @@ public class HealthBar : MonoBehaviour
     {
         Vector2 scale = new Vector2(1,1);
         scale.x = (float)cs.health / cs.initialHealth;
-        Debug.Log(cs.health / cs.initialHealth);
         fill.localScale = scale;
         //////
         Vector2 pos = Vector2.zero;

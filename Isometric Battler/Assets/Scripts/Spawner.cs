@@ -12,18 +12,69 @@ public class Spawner : NetworkBehaviour
 
     [SerializeField]
     float cooldown;
-    Coroutine coroutine;
     [SerializeField]
     GameObject Troop;
     [SerializeField]
-    int poplimit;
-    bool spawning;
+    int batchSize;
     GameManager gm;
     [SyncVar]
     Vector3 spawnpos;
-    public List<GameObject> childSoldiers;
-    
+    float squeezeTime = 0.8f;
+    float depleteTime = 0.8f;
 
+
+    //public List<GameObject> childSoldiers;
+
+
+
+
+    private void Start()
+    {
+        if (!isServer)
+        {
+            this.enabled = false;
+        }
+        gm = FindObjectOfType<GameManager>();
+        StartCoroutine(SpawnBatch());
+        StartCoroutine(DepleteHealth());
+    }
+
+    private IEnumerator SpawnBatch() 
+    {
+        if (isServer)
+        {
+            for(int i = 0; i < batchSize; i++) 
+            {
+                Vector3 scale = transform.localScale;
+                Vector3 scaleinit = transform.localScale;
+                float counter = 0;
+                while (counter < squeezeTime)
+                {
+                    scale.x = SquirtX.Evaluate(counter / squeezeTime);
+                    scale.y = SquirtY.Evaluate(counter / squeezeTime);
+                    transform.localScale = scale;
+                    counter += Time.deltaTime;
+                    yield return null;
+                }
+                spawnpos = transform.position;
+                gm.SpawnTroop(Troop, this.gameObject, spawnpos);
+                transform.localScale = scaleinit;
+            }
+        }
+        yield return new WaitForSeconds(cooldown);
+        StartCoroutine(SpawnBatch());
+    }
+
+    private IEnumerator DepleteHealth()
+    {
+        yield return new WaitForSeconds(depleteTime);
+        GetComponent<CharacterStats>().health--;
+        GetComponent<CharacterStats>().UpdateClientHealth();
+        StartCoroutine(DepleteHealth());
+    }
+
+
+    /*
     void Start()
     {
         if (!isServer)
@@ -81,4 +132,5 @@ public class Spawner : NetworkBehaviour
         }
         StartCoroutine(CheckChildSoldiers());
     }
+    */
 }

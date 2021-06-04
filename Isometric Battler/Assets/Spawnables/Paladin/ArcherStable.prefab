@@ -185,10 +185,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  cooldown: 8
+  cooldown: 18
   Troop: {fileID: 5223011800279032933, guid: 6f3acf11f61f52f4b84d77b66fff0148, type: 3}
-  poplimit: 2
-  childSoldiers: []
+  batchSize: 2
 --- !u!114 &5920952726534841909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,9 +202,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  health: 8
+  health: 80
   team: 1
   occupiesTile: 1
+  initialHealth: 0
+  deadSprite: {fileID: 21300000, guid: 139259c2db639914887ee4911d7bb83a, type: 3}
 --- !u!114 &-2955382030815746023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,6 +255,10 @@ PrefabInstance:
     - target: {fileID: 8993330714115578802, guid: 31410bf8fc622744eb4fd902ca511e89, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8993330714115578802, guid: 31410bf8fc622744eb4fd902ca511e89, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.17
       objectReference: {fileID: 0}
     - target: {fileID: 8993330714115578802, guid: 31410bf8fc622744eb4fd902ca511e89, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
