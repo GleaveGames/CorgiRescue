@@ -79228,7 +79228,7 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: 872766bac27fa4a489e1809b7263f963, type: 3}
     - name: NecromancerHut
       build: {fileID: 4569366539139361718, guid: a0b460cfe974c7d4da2898ffcd2ab755, type: 3}
-      cost: 1
+      cost: 7
       sprite: {fileID: 21300000, guid: d4e2ee452f3427c498173ff4b4643170, type: 3}
     - name: UndeadArcherCamp
       build: {fileID: 4569366539139361718, guid: d6181fd4fdaf3684c8edf720bbffb78e, type: 3}
@@ -79364,7 +79364,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9152bce05210fb34db3f742d50b9a933, type: 3}
   - {fileID: 21300000, guid: a707b336b54a5a14ba5567d4fd5ad477, type: 3}
   outlines:
-  - col: {r: 0.16408658, g: 1, b: 0, a: 0.69411767}
+  - col: {r: 0.5568628, g: 0.8745099, b: 0.9921569, a: 0.69411767}
     Lines: []
     team: 0
   - col: {r: 1, g: 0.56037736, b: 0.788996, a: 0.7254902}
