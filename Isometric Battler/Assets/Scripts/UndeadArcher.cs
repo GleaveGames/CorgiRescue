@@ -34,6 +34,7 @@ public class UndeadArcher : RangedTroop
         {
             Debug.Log("ArrowDamage");
             closestEnemy.GetComponent<CharacterStats>().health -= damage;
+            closestEnemy.GetComponent<CharacterStats>().UpdateClientHealth();
             if (closestEnemy.TryGetComponent(out Troop troop)) troop.speed *= 0.6f;
         }
         CheckForEnemies();

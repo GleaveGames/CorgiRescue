@@ -100,6 +100,7 @@ public class Beserker : Troop
         foreach(GameObject enemy in EnemiesInRange) 
         {
             enemy.GetComponent<CharacterStats>().health -= damage;
+            closestEnemy.GetComponent<CharacterStats>().UpdateClientHealth();
         }
         ring.position = initialPos;
         ring.localScale = initialScale;

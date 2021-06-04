@@ -13,12 +13,13 @@ public class CharacterStats : NetworkBehaviour
     bool occupiesTile;
     GameManager gm;
     Vector2 tile;
-    int initialHealth;
+    public int initialHealth;
 
     private void Start()
     {
         gm = FindObjectOfType<GameManager>();
-        initialHealth = health;
+        int temp = health;
+        initialHealth = temp;
     }
 
 
@@ -36,6 +37,7 @@ public class CharacterStats : NetworkBehaviour
                 }
             }
         }
+       
     }
 
     private IEnumerator Die() 
@@ -72,6 +74,7 @@ public class CharacterStats : NetworkBehaviour
         gm.teams[newTeam].things.Add(gameObject);
         GetComponent<SpriteRenderer>().color = gm.teams[newTeam].color;
         if (isServer) ClientConvert(newTeam);
+        UpdateClientHealth();
     }
 
 
@@ -104,5 +107,15 @@ public class CharacterStats : NetworkBehaviour
         int y = Mathf.RoundToInt(yRuff);
         int x = Mathf.RoundToInt(xRuff);
         return new Vector2Int(x, y);
+    }
+    [ClientRpc]
+    public void UpdateClientHealthPriv(int serverhealth) 
+    {
+        health = serverhealth;
+    }
+
+    public void UpdateClientHealth() 
+    {
+        UpdateClientHealthPriv(health);
     }
 }

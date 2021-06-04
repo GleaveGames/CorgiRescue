@@ -49,6 +49,8 @@ public class Tower : NetworkBehaviour
                 if (closestEnemy != null)
                 {
                     closestEnemy.GetComponent<CharacterStats>().health -= damage;
+                    closestEnemy.GetComponent<CharacterStats>().UpdateClientHealth();
+
                 }
             }
         }

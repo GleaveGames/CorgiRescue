@@ -16,6 +16,7 @@ public class Soldier : Troop
         }
         if(closestEnemy != null) { 
             closestEnemy.GetComponent<CharacterStats>().health -= damage;
+            closestEnemy.GetComponent<CharacterStats>().UpdateClientHealth();
         }
         base.CheckForEnemies();
         while (new Vector2(transform.position.x, transform.position.y) != originalPos)

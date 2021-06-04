@@ -34,6 +34,7 @@ public class Archer : RangedTroop
         {
             Debug.Log("ArrowDamage");
             closestEnemy.GetComponent<CharacterStats>().health -= damage;
+            closestEnemy.GetComponent<CharacterStats>().UpdateClientHealth();
         }
         CheckForEnemies();
         while (new Vector2(transform.position.x, transform.position.y) != originalPos)
