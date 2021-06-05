@@ -99,6 +99,7 @@ public class Beserker : Troop
         List<GameObject> EnemiesInRange = GetEnemiesAOE();
         foreach(GameObject enemy in EnemiesInRange) 
         {
+            if (enemy == null) continue;
             enemy.GetComponent<CharacterStats>().health -= damage;
             closestEnemy.GetComponent<CharacterStats>().UpdateClientHealth();
         }

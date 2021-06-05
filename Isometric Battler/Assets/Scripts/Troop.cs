@@ -23,6 +23,7 @@ public class Troop : NetworkBehaviour
     public float attackRange;
     [SerializeField]
     public int damage;
+    public float minimumSpeed;
 
     public virtual void Start()
     {
@@ -34,6 +35,7 @@ public class Troop : NetworkBehaviour
         tiles = gm.tiles;
         dir = new int[8];
         movepos = transform.position;
+        minimumSpeed = speed/2;
     }
 
     private void GetCurrentTile()
@@ -67,7 +69,10 @@ public class Troop : NetworkBehaviour
 
     private void GetMovePos(int dir)
     {
-        movepos = transform.position;
+        movepos = Vector3.zero;
+        movepos.x = (currentTile.x - currentTile.y) * 1.415f;
+        //need to add a little offset to get centre of cell  eg the +1 below
+        movepos.y = (currentTile.x + currentTile.y - gm.boundsY + 1) * 0.815f;
         if (dir == 0)
         {
             movepos.y += 1.63f;
@@ -109,6 +114,8 @@ public class Troop : NetworkBehaviour
             Debug.Log("No move pos");
             movepos = transform.position;
         }
+        movepos.x += Random.Range(-0.5f, 0.5f);
+        movepos.y += Random.Range(-0.26f, 0.26f);
     }
 
     private Vector2 GetTilePos(int dir)
@@ -167,8 +174,8 @@ public class Troop : NetworkBehaviour
 
     public IEnumerator Move()
     {
+        Debug.Log("Move");
         moving = true;
-        yield return new WaitForSeconds(0.4f);
         //starting up going clockwise;
         GetCurrentTile();
         GetAvailableTiles();
@@ -258,6 +265,7 @@ public class Troop : NetworkBehaviour
             {
                 StartCoroutine(Move());
             }
+
         }
     }
 
