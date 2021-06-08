@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using Mirror;
 using UnityEngine.UI;
@@ -10,8 +9,7 @@ using UnityEngine.UI;
 public class GameManager : NetworkBehaviour
 {
     public int[,] tiles;
-    [SerializeField]
-    Tilemap tilemap;
+    public Tilemap tilemap;
     public int boundsX, boundsY;
     public Guild[] guilds;
     NetworkManager nm;
@@ -22,8 +20,6 @@ public class GameManager : NetworkBehaviour
     GameObject ResultCanvas;
     bool GameEnded;
     public bool GameStarted;
-    public GameObject P1Base;
-    public GameObject P2Base;
     [SerializeField]
     Button StartButton;
     [SerializeField]
@@ -41,10 +37,14 @@ public class GameManager : NetworkBehaviour
     private void Start()
     {
         nm = FindObjectOfType<NetworkManagerIso>();
-        GetTiles();
-        boundsX = tilemap.cellBounds.size.x;
-        boundsY = tilemap.cellBounds.size.y;
     }
+
+    public void MapSetup(Tilemap newtilemap) 
+    {
+        tilemap = newtilemap;
+        GetTiles();
+    }
+
 
     [Command(requiresAuthority =false)]
     public void EndGame() 
@@ -73,13 +73,14 @@ public class GameManager : NetworkBehaviour
     private void ClientEndGame()
     {
         int team = pi.team;
-        int winningteam = 0;
-        if (P1Base == null) winningteam = 1;
-        else if (P2Base == null) winningteam = 0;
         GameObject resultcanvas = Instantiate(ResultCanvas);
-        if (winningteam == team)
+        if (teams[team].things.Count > 0)
         {
-            resultcanvas.transform.GetChild(0).GetComponent<Text>().text = "Victory";
+            if (teams[team].things[0].gameObject.name.Contains("Base"))
+            {
+                resultcanvas.transform.GetChild(0).GetComponent<Text>().text = "Victory";
+            }
+            else resultcanvas.transform.GetChild(0).GetComponent<Text>().text = "Defeat";
         }
         else resultcanvas.transform.GetChild(0).GetComponent<Text>().text = "Defeat";
     }
@@ -91,7 +92,7 @@ public class GameManager : NetworkBehaviour
         float xRuff = touchPos.x / 1.4f + 0.5f * (touchPos.y / 0.815f - touchPos.x / 1.415f + boundsY - 1);
         int y = Mathf.RoundToInt(yRuff);
         int x = Mathf.RoundToInt(xRuff);
-        Vector3Int pos = new Vector3Int(x-25, y-25, 0);
+        Vector3Int pos = new Vector3Int(x-boundsX/2, y-boundsY/2, 0);
         if (tiles[x, y] == 1 && (tilemap.GetColor(pos) == teams[team].areacolor1 || tilemap.GetColor(pos) == teams[team].areacolor2 || thing.Contains("Base")))
         {
             Vector3 spawn = transform.position;
@@ -329,8 +330,9 @@ public class GameManager : NetworkBehaviour
 
     IEnumerator ColorTile(int x, int y, Color col, int team) 
     {
+        if (tiles[x, y] == 2) yield break; 
         Color teamCol = teams[team].color;
-        Vector3Int pos = new Vector3Int(x - 25, y - 25, 0);
+        Vector3Int pos = new Vector3Int(x - boundsX/2, y - boundsY/2, 0);
         tilemap.SetTileFlags(pos, TileFlags.None);
         float colortime = 0.04f;
         if (tilemap.HasTile(pos))

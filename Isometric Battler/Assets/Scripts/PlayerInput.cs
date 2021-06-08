@@ -19,15 +19,12 @@ public class PlayerInput : NetworkBehaviour
     Coroutine coroutine;
     public int guild = 0;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         if (isLocalPlayer)
         {
             gm = FindObjectOfType<GameManager>();
             gm.pi = this;
-            //gotta assign the build as the base at the start
             GetComponent<SpriteRenderer>().color = gm.teams[team].color;
             FindObjectOfType<LobbySystem>().pi = this;
         }
@@ -112,8 +109,4 @@ public class PlayerInput : NetworkBehaviour
         }
         Destroy(Ghost);
     }
-    
-
-
-
 }

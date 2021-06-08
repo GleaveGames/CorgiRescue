@@ -16,12 +16,13 @@ public class LobbySystem : MonoBehaviour
     [SerializeField]
     GameObject TribeSelect;
     public PlayerInput pi;
-
+    [SerializeField]
+    GameObject MapSelect;
 
     private void Start()
     {
         nm = GetComponent<NetworkManagerIso>();
-        TribeSelect = canvas.transform.Find("TribeSelect").gameObject;
+        //TribeSelect = canvas.transform.Find("TribeSelect").gameObject;
     }
 
     public void HostGame() 
@@ -29,15 +30,12 @@ public class LobbySystem : MonoBehaviour
         nm.StartHost();
 
         //i = 2 to stop startgame and dc being deactivated;
-        for (int i = 2; i < canvas.transform.childCount; i++)
-        {
-            canvas.transform.GetChild(i).gameObject.SetActive(false);
-        }
-
-        
+        canvas.transform.Find("Start").gameObject.SetActive(false);
+        canvas.transform.Find("Host").gameObject.SetActive(false);
+        canvas.transform.Find("Join").gameObject.SetActive(false);
         //StartButton
         canvas.transform.GetChild(0).gameObject.SetActive(true);
-        TribeSelect.SetActive(true);
+        MapSelect.SetActive(true);
     }
     
     public void JoinGame() 
@@ -57,7 +55,7 @@ public class LobbySystem : MonoBehaviour
         {
             canvas.transform.GetChild(i).gameObject.SetActive(false);
         }
-        TribeSelect.SetActive(true);
+        MapSelect.SetActive(true);
     }
 
     private void Update()
