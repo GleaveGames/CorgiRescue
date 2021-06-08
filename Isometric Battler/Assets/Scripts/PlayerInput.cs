@@ -94,7 +94,8 @@ public class PlayerInput : NetworkBehaviour
 
     public void StartGame() 
     {
-        Instantiate(canvas);
+        Canvas can = Instantiate(canvas);
+        can.transform.GetChild(0).GetComponent<Image>().color = gm.teams[team].color;
         FindObjectOfType<BuildButtons>().pi = this;
         FindObjectOfType<BuildButtons>().guild = guild;
     }

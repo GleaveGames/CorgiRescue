@@ -86,4 +86,6 @@ public class LobbySystem : MonoBehaviour
         pi.StartCoroutine("GhostBuild");
         StartCoroutine(ReadyEnable());
     }
+
+    
 }
