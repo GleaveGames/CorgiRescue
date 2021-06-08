@@ -55,18 +55,16 @@ public class GameManager : NetworkBehaviour
     [Command(requiresAuthority = false)]
     public void StartGame() 
     {
-        GameStarted = true;
         StartGameClient();
-        StartButton.gameObject.SetActive(false);
-        pi.loaded = true;
+        //StartButton.gameObject.SetActive(false);
     }
 
 
     [ClientRpc]
     private void StartGameClient() 
     {
-        GameStarted = true;
-        pi.loaded = true;
+        StartButton.gameObject.SetActive(false);
+        pi.StartCoroutine("StartCountdown");
     }
 
     [ClientRpc]

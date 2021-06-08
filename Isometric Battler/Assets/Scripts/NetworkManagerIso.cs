@@ -8,6 +8,8 @@ public class NetworkManagerIso : NetworkManager
 {
     public Transform P1Spawn;
     public Transform P2Spawn;
+    [SerializeField]
+    Canvas canvas;
 
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
@@ -17,6 +19,7 @@ public class NetworkManagerIso : NetworkManager
         {
             start = P2Spawn;
             team = 1;
+            canvas.transform.Find("MapSelect").gameObject.SetActive(true);
         }
         GameObject player = Instantiate(playerPrefab, start.position, start.rotation);
         player.GetComponent<PlayerInput>().team = team;

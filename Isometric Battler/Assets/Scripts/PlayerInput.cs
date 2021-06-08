@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using UnityEngine.UI;
 
 public class PlayerInput : NetworkBehaviour
 {
     [SyncVar]
     public bool loaded;
-    public bool basePlaced;
     public GameObject build;
     GameManager gm;
+    [SerializeField]
+    Canvas uiCanvas;
     [SerializeField]
     Canvas canvas;
     [SyncVar]
@@ -27,6 +29,7 @@ public class PlayerInput : NetworkBehaviour
             gm.pi = this;
             GetComponent<SpriteRenderer>().color = gm.teams[team].color;
             FindObjectOfType<LobbySystem>().pi = this;
+            uiCanvas = FindObjectOfType<Canvas>();
         }
         else 
         {
@@ -63,20 +66,41 @@ public class PlayerInput : NetworkBehaviour
     {
         if (isLocalPlayer) 
         {
+            uiCanvas.transform.Find("Start").gameObject.SetActive(true);
+            /*
             Instantiate(canvas);
             FindObjectOfType<BuildButtons>().pi = this;
             FindObjectOfType<BuildButtons>().guild = guild;
             basePlaced = true;
-        }
+       */
+            }
+    }
 
+    public IEnumerator StartCountdown() 
+    {
+        uiCanvas.transform.Find("Countdown").gameObject.SetActive(true);
+        Text text = uiCanvas.transform.Find("Countdown").gameObject.GetComponent<Text>();
+        text.text = "3";
+        yield return new WaitForSeconds(0.5f);
+        text.text = "2";
+        yield return new WaitForSeconds(0.5f);
+        text.text = "1";
+        yield return new WaitForSeconds(0.5f);
+        text.text = "Go!";
+        StartGame();
+        yield return new WaitForSeconds(1);
+        text.gameObject.SetActive(false);
+    }
+
+    public void StartGame() 
+    {
+        Instantiate(canvas);
+        FindObjectOfType<BuildButtons>().pi = this;
+        FindObjectOfType<BuildButtons>().guild = guild;
     }
 
     public IEnumerator GhostBuild()
     {
-        while (!gm.GameStarted) 
-        {
-            yield return null;
-        }
         Vector3 v3 = Input.mousePosition;
         v3.z = 10.0f;
         v3 = Camera.main.ScreenToWorldPoint(v3);

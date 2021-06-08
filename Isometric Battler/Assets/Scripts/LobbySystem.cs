@@ -18,6 +18,7 @@ public class LobbySystem : MonoBehaviour
     public PlayerInput pi;
     [SerializeField]
     GameObject MapSelect;
+    GameManager gm;
 
     private void Start()
     {
@@ -34,10 +35,8 @@ public class LobbySystem : MonoBehaviour
         canvas.transform.Find("Host").gameObject.SetActive(false);
         canvas.transform.Find("Join").gameObject.SetActive(false);
         //StartButton
-        canvas.transform.GetChild(0).gameObject.SetActive(true);
-        MapSelect.SetActive(true);
     }
-    
+
     public void JoinGame() 
     {
         if (ip.text == "")
@@ -55,22 +54,25 @@ public class LobbySystem : MonoBehaviour
         {
             canvas.transform.GetChild(i).gameObject.SetActive(false);
         }
-        MapSelect.SetActive(true);
     }
 
-    private void Update()
+    IEnumerator ReadyEnable() 
     {
-        if(nm.numPlayers < 2) 
+        gm = FindObjectOfType<GameManager>();
+        while (gm.teams[0].things.Count < 1 || gm.teams[1].things.Count < 1) 
         {
             StartGame.interactable = false;
+            Debug.Log("No interactable");
+
+            yield return null;
+
         }
-        else 
-        {
-            StartGame.interactable = true;
-        }
+        Debug.Log("Interactable");
+        Debug.Log(gm.teams[0].things.Count + "    " + gm.teams[1].things.Count);
+        StartGame.interactable = true;
     }
 
-    public void Disconnect() 
+    public void Disconnect()
     {
         nm.StopServer();
         nm.StopHost();
@@ -80,5 +82,8 @@ public class LobbySystem : MonoBehaviour
     {
         TribeSelect.SetActive(false);
         pi.TribeSelected(i);
+        pi.loaded = true;
+        pi.StartCoroutine("GhostBuild");
+        StartCoroutine(ReadyEnable());
     }
 }
