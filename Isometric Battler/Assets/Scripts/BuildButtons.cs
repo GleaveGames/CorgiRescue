@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using Lean.Gui;
 public class BuildButtons : MonoBehaviour
 {
     [SerializeField]
@@ -50,18 +50,18 @@ public class BuildButtons : MonoBehaviour
             buildchoice = Random.Range(1, gm.guilds[guild].builds.Length);
         }
         buildnumber[buttonNumber] = buildchoice;
-        buttons[buttonNumber].transform.GetChild(0).GetComponent<Image>().sprite = gm.guilds[guild].builds[buildchoice].sprite;
-        buttons[buttonNumber].transform.GetChild(1).GetComponent<Text>().text = gm.guilds[guild].builds[buildchoice].cost.ToString();
-        buttons[buttonNumber].GetComponent<Image>().color = unaffordable;
+        buttons[buttonNumber].transform.GetChild(2).GetComponent<Image>().sprite = gm.guilds[guild].builds[buildchoice].sprite;
+        buttons[buttonNumber].transform.GetChild(0).GetChild(0).GetComponent<Text>().text = gm.guilds[guild].builds[buildchoice].cost.ToString();
         buttons[buttonNumber].transform.GetChild(0).GetComponent<Image>().color = unaffordable;
+        buttons[buttonNumber].transform.GetChild(2).GetComponent<Image>().color = unaffordable;
     }
 
     IEnumerator GetNewUnit(int buttonNumber) 
     {
         int buildchoice = Random.Range(1, gm.guilds[guild].builds.Length);
         buildnumber[buttonNumber] = buildchoice;
-        buttons[buttonNumber].transform.GetChild(0).GetComponent<Image>().sprite = gm.guilds[guild].builds[buildchoice].sprite;
-        buttons[buttonNumber].transform.GetChild(1).GetComponent<Text>().text = gm.guilds[guild].builds[buildchoice].cost.ToString();
+        buttons[buttonNumber].transform.GetChild(2).GetComponent<Image>().sprite = gm.guilds[guild].builds[buildchoice].sprite;
+        buttons[buttonNumber].transform.GetChild(0).GetChild(0).GetComponent<Text>().text = gm.guilds[guild].builds[buildchoice].cost.ToString();
         float counter = 0;
         float minicounter = 0;
         while (counter < 1)
@@ -96,8 +96,8 @@ public class BuildButtons : MonoBehaviour
             yield return null;
         }
         buildnumber[buttonNumber] = buildchoice;
-        buttons[buttonNumber].transform.GetChild(0).GetComponent<Image>().sprite = gm.guilds[guild].builds[buildchoice].sprite;
-        buttons[buttonNumber].transform.GetChild(1).GetComponent<Text>().text = gm.guilds[guild].builds[buildchoice].cost.ToString();
+        buttons[buttonNumber].transform.GetChild(2).GetComponent<Image>().sprite = gm.guilds[guild].builds[buildchoice].sprite;
+        buttons[buttonNumber].transform.GetChild(0).GetChild(0).GetComponent<Text>().text = gm.guilds[guild].builds[buildchoice].cost.ToString();
         CheckAffordability();
     }
 
@@ -138,13 +138,13 @@ public class BuildButtons : MonoBehaviour
         {
             if (manabar.mana > gm.guilds[guild].builds[buildnumber[i]].cost)
             {
-                buttons[i].GetComponent<Image>().color = affordable;
                 buttons[i].transform.GetChild(0).GetComponent<Image>().color = affordable;
+                buttons[i].transform.GetChild(2).GetComponent<Image>().color = affordable;
             }
             else
             {
-                buttons[i].GetComponent<Image>().color = unaffordable;
                 buttons[i].transform.GetChild(0).GetComponent<Image>().color = unaffordable;
+                buttons[i].transform.GetChild(2).GetComponent<Image>().color = unaffordable;
             }
         }
         tempmana = manabar.mana;
