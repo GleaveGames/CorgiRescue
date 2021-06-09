@@ -734,6 +734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mana: 0
+  manaFloat: 0
   emtpyColor: {r: 1, g: 1, b: 1, a: 0.45490196}
   fullColor: {r: 1, g: 0.7764706, b: 0, a: 1}
   manaspeed: 5
@@ -1382,7 +1383,7 @@ MonoBehaviour:
   buttons: []
   pi: {fileID: 0}
   unaffordable: {r: 1, g: 1, b: 1, a: 0.5882353}
-  affordable: {r: 1, g: 1, b: 1, a: 1}
+  affordable: {r: 1, g: 0.974746, b: 0.89056605, a: 1}
   guild: 0
 --- !u!1001 &1932078677862823312
 PrefabInstance:
