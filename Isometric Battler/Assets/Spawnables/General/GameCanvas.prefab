@@ -736,7 +736,7 @@ MonoBehaviour:
   mana: 0
   emtpyColor: {r: 1, g: 1, b: 1, a: 0.45490196}
   fullColor: {r: 1, g: 0.7764706, b: 0, a: 1}
-  manaspeed: 6
+  manaspeed: 5
 --- !u!1 &3919366696972778395
 GameObject:
   m_ObjectHideFlags: 0

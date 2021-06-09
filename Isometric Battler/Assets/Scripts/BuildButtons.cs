@@ -31,12 +31,6 @@ public class BuildButtons : MonoBehaviour
         }
         for (int z = 0; z < buttons.Count; z++)
         {
-            /*
-            int buildchoice = Random.Range(1, gm.guilds[guild].builds.Length);
-            buildnumber[z] = buildchoice;
-            buttons[z].transform.GetChild(0).GetComponent<Image>().sprite = gm.guilds[guild].builds[buildchoice].sprite;
-            buttons[z].transform.GetChild(1).GetComponent<Text>().text = gm.guilds[guild].builds[buildchoice].cost.ToString();
-            */
             StartCoroutine(GetNewUnit(z));
         }
         CheckAffordability();
@@ -50,17 +44,17 @@ public class BuildButtons : MonoBehaviour
             buildchoice = Random.Range(1, gm.guilds[guild].builds.Length);
         }
         buildnumber[buttonNumber] = buildchoice;
-        buttons[buttonNumber].transform.GetChild(2).GetComponent<Image>().sprite = gm.guilds[guild].builds[buildchoice].sprite;
+        buttons[buttonNumber].transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = gm.guilds[guild].builds[buildchoice].sprite;
         buttons[buttonNumber].transform.GetChild(0).GetChild(0).GetComponent<Text>().text = gm.guilds[guild].builds[buildchoice].cost.ToString();
         buttons[buttonNumber].transform.GetChild(0).GetComponent<Image>().color = unaffordable;
-        buttons[buttonNumber].transform.GetChild(2).GetComponent<Image>().color = unaffordable;
+        buttons[buttonNumber].transform.GetChild(0).GetChild(1).GetComponent<Image>().color = unaffordable;
     }
 
     IEnumerator GetNewUnit(int buttonNumber) 
     {
         int buildchoice = Random.Range(1, gm.guilds[guild].builds.Length);
         buildnumber[buttonNumber] = buildchoice;
-        buttons[buttonNumber].transform.GetChild(2).GetComponent<Image>().sprite = gm.guilds[guild].builds[buildchoice].sprite;
+        buttons[buttonNumber].transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = gm.guilds[guild].builds[buildchoice].sprite;
         buttons[buttonNumber].transform.GetChild(0).GetChild(0).GetComponent<Text>().text = gm.guilds[guild].builds[buildchoice].cost.ToString();
         float counter = 0;
         float minicounter = 0;
@@ -96,7 +90,7 @@ public class BuildButtons : MonoBehaviour
             yield return null;
         }
         buildnumber[buttonNumber] = buildchoice;
-        buttons[buttonNumber].transform.GetChild(2).GetComponent<Image>().sprite = gm.guilds[guild].builds[buildchoice].sprite;
+        buttons[buttonNumber].transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = gm.guilds[guild].builds[buildchoice].sprite;
         buttons[buttonNumber].transform.GetChild(0).GetChild(0).GetComponent<Text>().text = gm.guilds[guild].builds[buildchoice].cost.ToString();
         CheckAffordability();
     }
@@ -117,7 +111,7 @@ public class BuildButtons : MonoBehaviour
 
     public void ButtonPress(int buttonNumber) 
     {
-        if(manabar.mana > gm.guilds[guild].builds[buildnumber[buttonNumber]].cost) 
+        if(manabar.mana >= gm.guilds[guild].builds[buildnumber[buttonNumber]].cost) 
         {
             pi.loaded = true;
             pi.build = gm.guilds[guild].builds[buildnumber[buttonNumber]].build;
@@ -134,20 +128,39 @@ public class BuildButtons : MonoBehaviour
 
     public void CheckAffordability() 
     {
+        Debug.Log("Checking Affordability");
         for (int i = 0; i < buttons.Count; i++)
         {
-            if (manabar.mana > gm.guilds[guild].builds[buildnumber[i]].cost)
+            if (manabar.mana >= gm.guilds[guild].builds[buildnumber[i]].cost)
             {
                 buttons[i].transform.GetChild(0).GetComponent<Image>().color = affordable;
-                buttons[i].transform.GetChild(2).GetComponent<Image>().color = affordable;
+                buttons[i].transform.GetChild(0).GetChild(1).GetComponent<Image>().color = affordable;
             }
             else
             {
                 buttons[i].transform.GetChild(0).GetComponent<Image>().color = unaffordable;
-                buttons[i].transform.GetChild(2).GetComponent<Image>().color = unaffordable;
+                buttons[i].transform.GetChild(0).GetChild(1).GetComponent<Image>().color = unaffordable;
             }
         }
         tempmana = manabar.mana;
     }
+    
 
+    //For GreyMask Stuff
+    private void Update()
+    {
+        for(int i = 0; i < buttons.Count; i++) 
+        {
+            if(manabar.mana < gm.guilds[guild].builds[buildnumber[i]].cost) 
+            {
+                buttons[i].transform.GetChild(0).GetChild(2).GetComponent<RectTransform>().localPosition = new Vector2(0, 60*manabar.manaFloat / gm.guilds[guild].builds[buildnumber[i]].cost);
+                buttons[i].transform.GetChild(0).GetChild(2).GetComponent<RectTransform>().sizeDelta = new Vector2(120, 120 * (1 - manabar.manaFloat / gm.guilds[guild].builds[buildnumber[i]].cost));
+            }
+            else 
+            {
+                buttons[i].transform.GetChild(0).GetChild(2).GetComponent<RectTransform>().localPosition = new Vector2(0, 0);
+                buttons[i].transform.GetChild(0).GetChild(2).GetComponent<RectTransform>().sizeDelta = new Vector2(120, 0);
+            }
+        }
+    }
 }

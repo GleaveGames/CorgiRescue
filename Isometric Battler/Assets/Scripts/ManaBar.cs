@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ManaBar : MonoBehaviour
 {
     public int mana;
+    public float manaFloat;
     Image[] sprites;
     [SerializeField]
     Color emtpyColor;
@@ -24,25 +25,28 @@ public class ManaBar : MonoBehaviour
         {
             sprites[i] = transform.GetChild(i).gameObject.GetComponent<Image>();
         }
+        StartCoroutine(ManaBuild());
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private IEnumerator ManaBuild()
     {
-        //if mana is full then move it up slightly?
-        if(sprites[transform.childCount-1].color != fullColor) 
+        if (mana == transform.childCount)
         {
-            for (int i = 0; i <transform.childCount; i++)  
-            {
-                if (sprites[i].color != fullColor) 
-                {
-                    sprites[i].color = Color.Lerp(sprites[i].color, fullColor, manaspeed*Time.deltaTime);
-                    mana = i+1;
-                    bb.CheckAffordability();
-                    return;
-                }
-            }
+            StartCoroutine(ManaBuild());
+            yield break;
         }
+        float counter = 0;
+        while(counter < manaspeed) 
+        {
+            manaFloat = mana + counter / manaspeed;
+            sprites[mana].color = Color.Lerp(emtpyColor, fullColor, counter / manaspeed);
+            counter += Time.deltaTime;
+            yield return null;
+        }
+        mana++;
+        manaFloat = mana;
+        bb.CheckAffordability();
+        StartCoroutine(ManaBuild());
     }
 
     public void UseMana(int cost) 
@@ -61,5 +65,7 @@ public class ManaBar : MonoBehaviour
                 sprites[i].color = emtpyColor;
             }
         }
+        mana -= cost;
+        manaFloat = mana;
     }
 }
