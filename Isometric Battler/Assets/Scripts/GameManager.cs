@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Mirror;
 using UnityEngine.UI;
+using Lean.Gui;
 
 
 public class GameManager : NetworkBehaviour
@@ -21,7 +22,7 @@ public class GameManager : NetworkBehaviour
     bool GameEnded;
     public bool GameStarted;
     [SerializeField]
-    Button StartButton;
+    LeanButton StartButton;
     [SerializeField]
     AnimationCurve buildJuiceCurve;
     [SerializeField]

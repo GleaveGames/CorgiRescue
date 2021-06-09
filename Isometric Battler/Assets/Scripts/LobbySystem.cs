@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Lean.Gui;
 
 public class LobbySystem : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class LobbySystem : MonoBehaviour
     [SerializeField]
     Canvas canvas;
     [SerializeField]
-    Button StartGame;
+    LeanButton StartGame;
     [SerializeField]
     GameObject TribeSelect;
     public PlayerInput pi;
@@ -62,13 +63,8 @@ public class LobbySystem : MonoBehaviour
         while (gm.teams[0].things.Count < 1 || gm.teams[1].things.Count < 1) 
         {
             StartGame.interactable = false;
-            Debug.Log("No interactable");
-
             yield return null;
-
         }
-        Debug.Log("Interactable");
-        Debug.Log(gm.teams[0].things.Count + "    " + gm.teams[1].things.Count);
         StartGame.interactable = true;
     }
 
