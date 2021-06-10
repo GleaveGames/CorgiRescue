@@ -631,9 +631,45 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   juiceTime: 0.5
-  anitJuice:
+  antiJuice:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0.9872039
+      outSlope: 0.9872039
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.12155544
+      value: 1.12
+      inSlope: 0.9872039
+      outSlope: -1.1245618
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.053025097
+    - serializedVersion: 3
+      time: 0.3794337
+      value: 0.83
+      inSlope: 0.12550369
+      outSlope: 0.12550369
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.27394336
+      outSlope: 0.27394336
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
