@@ -24,7 +24,7 @@ public class BuildButtons : MonoBehaviour
         buildnumber = new int[4];
         manabar = transform.GetChild(1).GetComponent<ManaBar>();
         gm = FindObjectOfType<GameManager>();
-        for(int i = 2; i < transform.childCount; i++) 
+        for(int i = 1; i < transform.childCount; i++) 
         {
             buttons.Add(transform.GetChild(i).gameObject);
         }
