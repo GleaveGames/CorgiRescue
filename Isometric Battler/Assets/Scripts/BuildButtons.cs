@@ -22,7 +22,7 @@ public class BuildButtons : MonoBehaviour
     void Start()
     {
         buildnumber = new int[4];
-        manabar = transform.GetChild(1).GetComponent<ManaBar>();
+        manabar = transform.GetChild(0).GetComponent<ManaBar>();
         gm = FindObjectOfType<GameManager>();
         for(int i = 1; i < transform.childCount; i++) 
         {

@@ -15,6 +15,12 @@ public class ManaBar : MonoBehaviour
     [SerializeField]
     float manaspeed;
     private BuildButtons bb;
+    [SerializeField]
+    AnimationCurve Juice;
+    [SerializeField]
+    float juiceTime;
+    [SerializeField]
+    AnimationCurve anitJuice;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +49,7 @@ public class ManaBar : MonoBehaviour
             counter += Time.deltaTime;
             yield return null;
         }
+        StartCoroutine(ManaJuice(mana));
         mana++;
         manaFloat = mana;
         bb.CheckAffordability();
@@ -67,5 +74,19 @@ public class ManaBar : MonoBehaviour
         }
         mana -= cost;
         manaFloat = mana;
+    }
+
+    private IEnumerator ManaJuice(int sprite) 
+    {
+        float counter = 0;
+        while(counter < juiceTime) 
+        {
+            float scale = 40 * Juice.Evaluate(counter / juiceTime);
+            sprites[sprite].GetComponent<RectTransform>().sizeDelta = new Vector2(scale, scale);
+            sprites[sprite].transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(scale, scale);
+            counter += Time.deltaTime;
+            yield return null;
+        }
+        sprites[sprite].GetComponent<RectTransform>().sizeDelta = new Vector2(40, 40);
     }
 }
