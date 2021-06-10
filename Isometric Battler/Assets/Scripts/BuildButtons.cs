@@ -16,16 +16,15 @@ public class BuildButtons : MonoBehaviour
     [SerializeField]
     Color affordable;
     int tempmana;
-    Coroutine coroutine;
     public int guild;
 
     // Start is called before the first frame update
     void Start()
     {
         buildnumber = new int[4];
-        manabar = transform.GetChild(0).GetComponent<ManaBar>();
+        manabar = transform.GetChild(1).GetComponent<ManaBar>();
         gm = FindObjectOfType<GameManager>();
-        for(int i = 1; i < transform.childCount; i++) 
+        for(int i = 2; i < transform.childCount; i++) 
         {
             buttons.Add(transform.GetChild(i).gameObject);
         }
