@@ -51,10 +51,9 @@ public class LobbySystem : MonoBehaviour
             nm.networkAddress = ip.text;
         }
         nm.StartClient();
-        for (int i = 2; i < canvas.transform.childCount; i++)
-        {
-            canvas.transform.GetChild(i).gameObject.SetActive(false);
-        }
+        canvas.transform.Find("Start").gameObject.SetActive(false);
+        canvas.transform.Find("Host").gameObject.SetActive(false);
+        canvas.transform.Find("Join").gameObject.SetActive(false);
     }
 
     IEnumerator ReadyEnable() 
