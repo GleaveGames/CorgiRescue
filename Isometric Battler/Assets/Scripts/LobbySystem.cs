@@ -32,9 +32,8 @@ public class LobbySystem : MonoBehaviour
         nm.StartHost();
 
         //i = 2 to stop startgame and dc being deactivated;
-        canvas.transform.Find("Start").gameObject.SetActive(false);
-        canvas.transform.Find("Host").gameObject.SetActive(false);
-        canvas.transform.Find("Join").gameObject.SetActive(false);
+        canvas.transform.Find("Host").GetComponent<ButtonJuice>().StartCoroutine("JuiceOutButton");
+        canvas.transform.Find("Join").GetComponent<ButtonJuice>().StartCoroutine("JuiceOutButton");
         //StartButton
     }
 
@@ -51,9 +50,8 @@ public class LobbySystem : MonoBehaviour
             nm.networkAddress = ip.text;
         }
         nm.StartClient();
-        canvas.transform.Find("Start").gameObject.SetActive(false);
-        canvas.transform.Find("Host").gameObject.SetActive(false);
-        canvas.transform.Find("Join").gameObject.SetActive(false);
+        canvas.transform.Find("Host").GetComponent<ButtonJuice>().StartCoroutine("JuiceOutButton");
+        canvas.transform.Find("Join").GetComponent<ButtonJuice>().StartCoroutine("JuiceOutButton");
     }
 
     IEnumerator ReadyEnable() 

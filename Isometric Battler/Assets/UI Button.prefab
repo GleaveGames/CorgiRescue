@@ -188,6 +188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8299254857215598036}
   - component: {fileID: 8299254857215598043}
+  - component: {fileID: 3844568314120895576}
   m_Layer: 5
   m_Name: UI Button
   m_TagString: Untagged
@@ -316,6 +317,86 @@ MonoBehaviour:
   onClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3844568314120895576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8299254857215598037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eafe97c4c729a684ca07b33a9513b57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  JuiceIn:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: -1
+      inSlope: 1.2119128
+      outSlope: 1.2119128
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.8414849
+      value: 0.019806255
+      inSlope: 0.543482
+      outSlope: 0.543482
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.124948695
+      outSlope: -0.124948695
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  JuiceOut:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.96769714
+      outSlope: 0.96769714
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.08612614
+    - serializedVersion: 3
+      time: 0.099699765
+      value: -0.029739372
+      inSlope: 0.98476386
+      outSlope: 0.98476386
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1.1437733
+      outSlope: 1.1437733
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  JuiceTime: 0.8
+  JuiceMultiplier: 1500
 --- !u!1 &8299254857449171181
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,7 +415,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8299254857449171180
 RectTransform:
   m_ObjectHideFlags: 0

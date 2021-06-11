@@ -13149,6 +13149,10 @@ PrefabInstance:
       propertyPath: m_Text
       value: HOST
       objectReference: {fileID: 0}
+    - target: {fileID: 8299254857144591321, guid: 0cc8f9ed9995e274285d5d3ff777185d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8299254857215598036, guid: 0cc8f9ed9995e274285d5d3ff777185d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -13269,6 +13273,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 0fd287ff2b4a2624491cd19540241545, type: 3}
+    - target: {fileID: 8299254857449171181, guid: 0cc8f9ed9995e274285d5d3ff777185d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0cc8f9ed9995e274285d5d3ff777185d, type: 3}
 --- !u!1 &504446724
@@ -34539,7 +34547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8299254857215598036, guid: 0cc8f9ed9995e274285d5d3ff777185d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -18
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8299254857215598036, guid: 0cc8f9ed9995e274285d5d3ff777185d, type: 3}
       propertyPath: m_AnchoredPosition.y
