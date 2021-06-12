@@ -45,49 +45,52 @@ public class Penguin : Living
             if (col.gameObject.tag == "Penguin") penguinsInWarmthRange.Add(col.gameObject);
         }
         currentWarmth = penguinsInWarmthRange.Count / 6f;
-        warmth += (currentWarmth - 0.5f)*warmthLossSpeed;
+        warmth += (currentWarmth - 0.6f)*warmthLossSpeed;
         ani.SetBool("hasEgg", hasEgg);
         SnowOnHead();
     }
 
     private void SnowOnHead() 
     {
-        if(warmth > 0.5f) 
+        if (!dead) 
         {
-            warmth = 0.5f;
+            if (warmth > 0.5f)
+            {
+                warmth = 0.5f;
+            }
+            if (warmth > 0)
+            {
+                snow.sprite = snowSprites[0];
+            }
+            else if (warmth < 0 && warmth > -0.2f)
+            {
+                snow.sprite = snowSprites[1];
+            }
+            else if (warmth < -0.2 && warmth > -0.4f)
+            {
+                snow.sprite = snowSprites[2];
+            }
+            else if (warmth < -0.4 && warmth > -0.6f)
+            {
+                snow.sprite = snowSprites[3];
+            }
+            else if (warmth < -0.6 && warmth > -1.2f)
+            {
+                snow.sprite = snowSprites[4];
+            }
+            if (warmth < -1.2f)
+            {
+                //die;
+                ani.speed = 1;
+                dead = true;
+                ani.SetTrigger("Dead");
+                rb.isKinematic = true;
+                rb.velocity = Vector2.zero;
+                gameObject.tag = "Untagged";
+                this.enabled = false;
+            }
         }
-        if(warmth > 0) 
-        {
-            snow.sprite = snowSprites[0];
-        }
-        else if (warmth < 0 && warmth > -0.2f) 
-        {
-            snow.sprite = snowSprites[1];
-        }
-        else if (warmth < -0.2 && warmth > -0.4f) 
-        {
-            snow.sprite = snowSprites[2];
-        }
-        else if (warmth < -0.4 && warmth > -0.6f) 
-        {
-            snow.sprite = snowSprites[3];
-        }
-        else if (warmth < -0.6 && warmth > -1.2f) 
-        {
-            snow.sprite = snowSprites[4];
-        }
-        if(warmth < -1.2f) 
-        {
-            //die;
-            ani.Play("PenguinDeath");
-            GetComponent<Living>().enabled = false;
-            rb.isKinematic = true;
-            rb.velocity = Vector2.zero;
-            gameObject.tag = "Untagged";
-        }
-
     }
-
 
     public void PickUpEgg()
     {

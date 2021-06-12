@@ -10,6 +10,7 @@ public class Living : MonoBehaviour
     public Animator ani;
     public float moveMag;
     public Vector2 lastMove;
+    public bool dead;
 
     protected virtual void Start()
     {
