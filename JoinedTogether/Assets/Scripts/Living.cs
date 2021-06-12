@@ -8,17 +8,35 @@ public class Living : MonoBehaviour
     public float moveSpeed;
     public Rigidbody2D rb;
     public Animator ani;
+    public float moveMag;
+    public Vector2 lastMove;
 
-    void Start()
+    protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
+    {
+        rb.AddForce(move * moveSpeed);
+    }
+
+    protected virtual void Update()
     {
         Movement();
-        rb.AddForce(move * moveSpeed);
+        moveMag = move.magnitude;
+        if (moveMag > 0.05f)
+        {
+            ani.SetBool("Idle", true);
+            lastMove = move;
+        }
+        else 
+        {
+            ani.SetBool("Idle", true);
+        }
+        ani.SetFloat("moveX", lastMove.x);
+        ani.SetFloat("moveY", lastMove.y);
     }
 
     public virtual void Movement()

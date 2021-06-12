@@ -4,20 +4,10 @@ using UnityEngine;
 
 public class PlayerControls : Penguin
 {
-    bool gotEgg;
-    public GameObject egg;
-    [SerializeField]
-    float eggSpeed;
-    [SerializeField]
-    float pickUpRange;
-    [SerializeField]
-    Transform eggPos;
-    float normalSpeed;
-
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         normalSpeed = (float)moveSpeed;
-        rb = GetComponent<Rigidbody2D>();
     }
 
     public override void Movement()
@@ -41,26 +31,14 @@ public class PlayerControls : Penguin
         }
 
         if (Input.GetKeyDown(KeyCode.Space)) 
-        { 
-            if(gotEgg)
+        {
+            if (hasEgg) 
             {
-                //dropEgg;
-                egg.transform.parent = null;
-                gotEgg = false;
-                egg.GetComponent<SpriteRenderer>().sortingOrder++;
-                moveSpeed = normalSpeed;
+                DropEgg();
             }
             else 
             {
-                if (Vector2.Distance(transform.position, egg.transform.position) < pickUpRange)
-                {
-                    //pickUp
-                    moveSpeed = eggSpeed;
-                    egg.transform.position = eggPos.position;
-                    egg.transform.parent = transform;
-                    egg.GetComponent<SpriteRenderer>().sortingOrder--;
-                    gotEgg = true;
-                }
+                PickUpEgg();
             }
         }
         
