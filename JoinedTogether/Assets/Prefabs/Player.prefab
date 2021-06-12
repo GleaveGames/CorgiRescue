@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1313492084070973266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.077, y: -0.106, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2476401631840667724}
@@ -224,8 +224,8 @@ MonoBehaviour:
   penguinRange: 0
   penguinsInWarmthRange: []
   penguinWarmthRange: 0.4
-  currentWarmth: 0
-  hasEgg: 0
+  currentWarmth: 0.5
+  hasEgg: 1
   eggSpeed: 6
   egg: {fileID: 9056721603836497058, guid: d1d5b98eab81da84b9874580b05487ac, type: 3}
   normalSpeed: 0
@@ -233,7 +233,7 @@ MonoBehaviour:
   eggs:
     serializedVersion: 2
     m_Bits: 256
-  warmthLossSpeed: 0.01
+  warmthLossSpeed: 0.003
   snowSprites:
   - {fileID: 21300000, guid: f9a65fe6e2da9f240bb4fc35f122b052, type: 3}
   - {fileID: 21300000, guid: f081ae31d758f294393954a0eb591382, type: 3}

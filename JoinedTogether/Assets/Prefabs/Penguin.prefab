@@ -224,7 +224,7 @@ MonoBehaviour:
   penguinRange: 2
   penguinsInWarmthRange: []
   penguinWarmthRange: 0.4
-  currentWarmth: 0
+  currentWarmth: 0.5
   hasEgg: 1
   eggSpeed: 5
   egg: {fileID: 9056721603836497058, guid: d1d5b98eab81da84b9874580b05487ac, type: 3}
@@ -233,7 +233,7 @@ MonoBehaviour:
   eggs:
     serializedVersion: 2
     m_Bits: 256
-  warmthLossSpeed: 0.01
+  warmthLossSpeed: 0.003
   snowSprites:
   - {fileID: 21300000, guid: f9a65fe6e2da9f240bb4fc35f122b052, type: 3}
   - {fileID: 21300000, guid: f081ae31d758f294393954a0eb591382, type: 3}
