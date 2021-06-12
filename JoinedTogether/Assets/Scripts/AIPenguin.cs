@@ -13,7 +13,7 @@ public class AIPenguin : Penguin
             penguinsCenter += (Vector2)pingu.transform.position;
         }
         penguinsCenter /= penguinsInRange.Count;
-        move = (penguinsCenter - (Vector2)transform.position).normalized*moveSpeed*Time.deltaTime*(1-warmth);
+        move = (penguinsCenter - (Vector2)transform.position).normalized*moveSpeed*Time.deltaTime*(1-currentWarmth);
     }
 
     

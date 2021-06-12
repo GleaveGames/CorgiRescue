@@ -4,24 +4,31 @@ using UnityEngine;
 
 public class Penguin : Living
 {
+    public float warmth;
     public List<GameObject> penguinsInRange;
     [SerializeField]
     float penguinRange;
     public List<GameObject> penguinsInWarmthRange;
     [SerializeField]
     float penguinWarmthRange;
-    public float warmth;
+    public float currentWarmth;
     public bool hasEgg;
     public float eggSpeed;
     public GameObject egg;
     public float normalSpeed;
     public float pickupRange;
     public LayerMask eggs;
+    private SpriteRenderer snow;
+    [SerializeField]
+    float warmthLossSpeed;
+    [SerializeField]
+    Sprite[] snowSprites;
 
     protected override void Start()
     {
         base.Start();
         if (hasEgg) moveSpeed = eggSpeed;
+        snow = transform.Find("Snow").GetComponent<SpriteRenderer>();
     }
 
     protected override void Update()
@@ -37,10 +44,45 @@ public class Penguin : Living
         {
             if (col.gameObject.tag == "Penguin") penguinsInWarmthRange.Add(col.gameObject);
         }
-        warmth = penguinsInWarmthRange.Count / 6f;
-        //if (warmth > 1) warmth = 1;
+        currentWarmth = penguinsInWarmthRange.Count / 6f;
+        warmth += (currentWarmth - 0.75f)*warmthLossSpeed;
         ani.SetBool("hasEgg", hasEgg);
+        SnowOnHead();
     }
+
+    private void SnowOnHead() 
+    {
+        if(warmth > 0.5f) 
+        {
+            warmth = 0.5f;
+        }
+        if(warmth > 0) 
+        {
+            snow.sprite = snowSprites[0];
+        }
+        else if (warmth < 0 && warmth > -0.2f) 
+        {
+            snow.sprite = snowSprites[1];
+        }
+        else if (warmth < -0.2 && warmth > -0.4f) 
+        {
+            snow.sprite = snowSprites[2];
+        }
+        else if (warmth < -0.4 && warmth > -0.6f) 
+        {
+            snow.sprite = snowSprites[3];
+        }
+        else if (warmth < -0.6 && warmth > -0.8f) 
+        {
+            snow.sprite = snowSprites[4];
+        }
+        if(warmth < -1) 
+        {
+            //die;
+            warmth = -1;
+        }
+    }
+
 
     public void PickUpEgg()
     {
