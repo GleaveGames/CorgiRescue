@@ -30,10 +30,12 @@ public class Living : MonoBehaviour
         {
             ani.SetBool("Idle", true);
             lastMove = move;
+            ani.speed = 1;
         }
         else 
         {
             ani.SetBool("Idle", true);
+            ani.speed = 0;
         }
         ani.SetFloat("moveX", lastMove.x);
         ani.SetFloat("moveY", lastMove.y);
