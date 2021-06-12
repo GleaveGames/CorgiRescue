@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d2226d34f1c2c684db479cfa10e4fb76, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a0b18b263073b2d40b9e225178ccb32c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -121,14 +121,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2594220041991291506}
+  - component: {fileID: 2298139548072949540}
   - component: {fileID: 2594220041991291507}
-  - component: {fileID: 5983008688694473121}
   - component: {fileID: 2594220041991291535}
   - component: {fileID: 2594220041991291532}
   - component: {fileID: 970073237490350414}
   m_Layer: 0
-  m_Name: Penguin
-  m_TagString: Penguin
+  m_Name: Seal
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,6 +150,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2298139548072949540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2594220041991291504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92f3452db2eb92346a567a1ee63fca53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  move: {x: 0, y: 0}
+  moveSpeed: 30
+  rb: {fileID: 0}
+  ani: {fileID: 0}
+  moveMag: 0
+  lastMove: {x: 0, y: 0}
+  dead: 0
+  gm: {fileID: 0}
 --- !u!212 &2594220041991291507
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -190,7 +210,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: dda6da78a7e41404097d1420d7256d01, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 09c254da30130cc4a88f3a87e226f4c0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -201,47 +221,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5983008688694473121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2594220041991291504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11ab682a29a04314e9e114a06828c639, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  move: {x: 0, y: 0}
-  moveSpeed: 10
-  rb: {fileID: 0}
-  ani: {fileID: 0}
-  moveMag: 0
-  lastMove: {x: 0, y: 0}
-  dead: 0
-  warmth: 0
-  penguinsInRange: []
-  penguinRange: 2
-  penguinsInWarmthRange: []
-  penguinWarmthRange: 0.4
-  currentWarmth: 0.5
-  hasEgg: 1
-  eggSpeed: 4
-  egg: {fileID: 9056721603836497058, guid: d1d5b98eab81da84b9874580b05487ac, type: 3}
-  normalSpeed: 7
-  pickupRange: 0.2
-  eggs:
-    serializedVersion: 2
-    m_Bits: 256
-  warmthLossSpeed: 0.2
-  snowSprites:
-  - {fileID: 21300000, guid: f9a65fe6e2da9f240bb4fc35f122b052, type: 3}
-  - {fileID: 21300000, guid: f081ae31d758f294393954a0eb591382, type: 3}
-  - {fileID: 21300000, guid: 508fda5c3cb995f45aaaded2c49d1b21, type: 3}
-  - {fileID: 21300000, guid: ccf04fdf4ca0c9542803274aa87706d3, type: 3}
-  - {fileID: 21300000, guid: c10526ac724322e42854b2e532738ba6, type: 3}
-  ClosestEgg: {fileID: 0}
 --- !u!50 &2594220041991291535
 Rigidbody2D:
   serializedVersion: 4
@@ -254,7 +233,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 7
   m_LinearDrag: 3
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -276,8 +255,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.004689187, y: -0.1041401}
-  m_Size: {x: 0.33145863, y: 0.35900724}
+  m_Offset: {x: 0.028454185, y: 0.08772668}
+  m_Size: {x: 0.4944185, y: 0.4944185}
   m_Direction: 0
 --- !u!95 &970073237490350414
 Animator:
@@ -289,7 +268,7 @@ Animator:
   m_GameObject: {fileID: 2594220041991291504}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4844c30f569e72f4b8cf374753f4ee68, type: 2}
+  m_Controller: {fileID: 9100000, guid: 962880bfd53ead34f8c250c86b597ad9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

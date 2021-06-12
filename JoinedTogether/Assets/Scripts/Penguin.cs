@@ -45,7 +45,7 @@ public class Penguin : Living
             if (col.gameObject.tag == "Penguin") penguinsInWarmthRange.Add(col.gameObject);
         }
         currentWarmth = penguinsInWarmthRange.Count / 6f;
-        warmth += (currentWarmth - 0.6f)*warmthLossSpeed;
+        warmth += (currentWarmth - 0.6f)*warmthLossSpeed*Time.deltaTime;
         ani.SetBool("hasEgg", hasEgg);
         SnowOnHead();
     }
@@ -87,6 +87,7 @@ public class Penguin : Living
                 rb.isKinematic = true;
                 rb.velocity = Vector2.zero;
                 gameObject.tag = "Untagged";
+                FindObjectOfType<GameManager>().penguins.Remove(gameObject);
                 this.enabled = false;
             }
         }

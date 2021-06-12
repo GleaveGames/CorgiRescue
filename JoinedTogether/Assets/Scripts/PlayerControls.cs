@@ -7,7 +7,6 @@ public class PlayerControls : Penguin
     protected override void Start()
     {
         base.Start();
-        normalSpeed = (float)moveSpeed;
     }
 
     public override void Movement()

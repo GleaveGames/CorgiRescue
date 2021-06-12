@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class Living : MonoBehaviour
 {
+    [HideInInspector]
     public Vector2 move;
     public float moveSpeed;
+    [HideInInspector]
     public Rigidbody2D rb;
+    [HideInInspector]
     public Animator ani;
+    [HideInInspector]
     public float moveMag;
+    [HideInInspector]
     public Vector2 lastMove;
     public bool dead;
 
@@ -29,13 +34,11 @@ public class Living : MonoBehaviour
         moveMag = move.magnitude;
         if (moveMag > 0.05f)
         {
-            ani.SetBool("Idle", true);
             lastMove = move;
             ani.speed = 1;
         }
         else 
         {
-            ani.SetBool("Idle", true);
             ani.speed = 0;
         }
         ani.SetFloat("moveX", lastMove.x);

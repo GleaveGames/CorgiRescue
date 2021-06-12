@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     Color White;
     [SerializeField]
     Color Night;
+    public List<GameObject> penguins;
 
     private void Start()
     {
@@ -24,6 +25,11 @@ public class GameManager : MonoBehaviour
         StartCoroutine(LevelTimer());
         canvas.SetActive(true);
         Time.timeScale = 0.05f;
+        GameObject[] guins = GameObject.FindGameObjectsWithTag("Penguin");
+        foreach(GameObject gui in guins) 
+        {
+            penguins.Add(gui);
+        }
     }
 
     public void LoadNextLevel()
