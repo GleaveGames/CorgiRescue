@@ -97,20 +97,23 @@ public class Penguin : Living
     {
         if (Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y - 0.4f), pickupRange, eggs))
         {
+            Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y - 0.4f), pickupRange, eggs).GetComponent<Egg>().StopAllCoroutines();
             Destroy(Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y - 0.4f), pickupRange, eggs).gameObject);
             moveSpeed = eggSpeed;
             hasEgg = true;
         }
     }
 
-    public void DropEgg() 
+    public GameObject DropEgg() 
     {
+        GameObject newEgg = null;
         if (hasEgg)
         {
             //dropEgg;
-            GameObject newEgg = Instantiate(egg, transform.GetChild(0).position, Quaternion.identity);
+            newEgg = Instantiate(egg, transform.GetChild(0).position, Quaternion.identity);
             hasEgg = false;
             moveSpeed = normalSpeed;
         }
+        return newEgg;
     }
 }

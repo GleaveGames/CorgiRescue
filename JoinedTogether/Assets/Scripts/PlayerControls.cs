@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class PlayerControls : Penguin
 {
+    public GameObject playerEgg;
     protected override void Start()
     {
         base.Start();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        if (playerEgg.GetComponent<Egg>().dead) 
+        {
+            FindObjectOfType<Canvas>().GetComponent<Animator>().Play("CanvasFrozenEgg");
+        }
     }
 
     public override void Movement()
@@ -33,7 +43,7 @@ public class PlayerControls : Penguin
         {
             if (hasEgg) 
             {
-                DropEgg();
+                playerEgg = DropEgg();
             }
             else 
             {
