@@ -53,7 +53,6 @@ public class Seal : Living
                 closestPenguin = pen.transform;
             } 
         }
-        Debug.Log("Getting closest Penguin");
         return closestPenguin;
     }
 }

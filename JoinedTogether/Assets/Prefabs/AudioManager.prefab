@@ -48,13 +48,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: N0
-    clip: {fileID: 8300000, guid: 372c2e873647b5e4e9ae76f8badc76c7, type: 3}
+    clip: {fileID: 8300000, guid: 6768fe754ef612b40bf30a47bc8c80c6, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: N1
-    clip: {fileID: 8300000, guid: a31af391af31dd24da441855a6d94cee, type: 3}
+    clip: {fileID: 8300000, guid: eccbe6b4502a4f94d91da46098ac4e15, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: N1
+    clip: {fileID: 8300000, guid: afcefcb8342a79b4eb981c879428d6b9, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: N1
+    clip: {fileID: 8300000, guid: 653fc484b1f3f3c4c87a708c3b8affe3, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: N1
+    clip: {fileID: 8300000, guid: 0fbc27790283d0e4190076ed75775de9, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0

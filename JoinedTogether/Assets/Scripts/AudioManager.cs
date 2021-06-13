@@ -27,24 +27,25 @@ public class AudioManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            PlayMusic("Are you holy");
+            PlayMusic("_yootiful");
+            DontDestroyOnLoad(gameObject);
+            foreach (Sound s in sounds)
+            {
+                s.source = gameObject.AddComponent<AudioSource>();
+                s.source.clip = s.clip;
+                s.source.volume = s.volume;
+                s.source.pitch = s.pitch;
+                s.source.loop = false;
+            }
         }
         else
         {
-            instance.PlayMusic("Are you holy");
+            instance.PlayMusic("_yootiful");
             Destroy(gameObject);
             return;
         }
 
-        DontDestroyOnLoad(gameObject);
-        foreach (Sound s in sounds)
-        {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
-            s.source.volume = s.volume;
-            s.source.pitch = s.pitch;
-            s.source.loop = s.loop;
-        }
+       
     }
 
     // Update is called once per frame
@@ -56,9 +57,9 @@ public class AudioManager : MonoBehaviour
             Debug.Log("Cannot find sound named " + name);
             return;
         }
-        GetComponent<AudioSource>().clip = s.clip;
-        naratorAS.GetComponent<AudioSource>().volume = s.volume;
-        naratorAS.GetComponent<AudioSource>().Play();
+        naratorAS.clip = s.clip;
+        naratorAS.volume = s.volume;
+        naratorAS.Play();
     }
     public void PlayMusic(string name)
     {
