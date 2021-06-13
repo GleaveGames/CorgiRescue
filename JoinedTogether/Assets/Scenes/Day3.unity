@@ -8629,7 +8629,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 72220385883684226, guid: 49005c25635876841adb59f0b83d1c16, type: 3}
       propertyPath: m_Text
-      value: Day 3
+      value: Day 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49005c25635876841adb59f0b83d1c16, type: 3}

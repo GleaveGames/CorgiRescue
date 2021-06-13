@@ -7250,11 +7250,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 72220384539341139, guid: 49005c25635876841adb59f0b83d1c16, type: 3}
       propertyPath: levelTime
-      value: 80
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 72220385883684226, guid: 49005c25635876841adb59f0b83d1c16, type: 3}
       propertyPath: m_Text
-      value: Day 34
+      value: Day 68
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49005c25635876841adb59f0b83d1c16, type: 3}
