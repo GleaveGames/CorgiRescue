@@ -1636,7 +1636,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Arrow Keys = Move
 
-    Space Pick Up and Drop Egg'
+    Space = Pick Up and Drop Egg'
 --- !u!222 &647553770
 CanvasRenderer:
   m_ObjectHideFlags: 0
