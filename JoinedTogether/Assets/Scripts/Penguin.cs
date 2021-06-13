@@ -23,12 +23,19 @@ public class Penguin : Living
     float warmthLossSpeed;
     [SerializeField]
     Sprite[] snowSprites;
+    AudioSource step;
+    [SerializeField]
+    bool isPlayer;
 
     protected override void Start()
     {
         base.Start();
         if (hasEgg) moveSpeed = eggSpeed;
         snow = transform.Find("Snow").GetComponent<SpriteRenderer>();
+        if (isPlayer)
+        {
+            step = GetComponent<AudioSource>();
+        }
     }
 
     protected override void Update()
@@ -45,9 +52,25 @@ public class Penguin : Living
             if (col.gameObject.tag == "Penguin") penguinsInWarmthRange.Add(col.gameObject);
         }
         currentWarmth = penguinsInWarmthRange.Count / 6f;
-        warmth += (currentWarmth - 0.6f)*warmthLossSpeed*Time.deltaTime;
+        warmth += (currentWarmth - 0.65f)*warmthLossSpeed*Time.deltaTime;
         ani.SetBool("hasEgg", hasEgg);
         SnowOnHead();
+
+        if(Vector2.Distance(transform.position, Vector2.zero) > 15) 
+        {
+            if (isPlayer)
+            {
+                FindObjectOfType<Canvas>().GetComponent<Animator>().Play("CanvasSeal");
+            }
+            ani.speed = 1;
+            dead = true;
+            ani.SetTrigger("Dead");
+            rb.isKinematic = true;
+            rb.velocity = Vector2.zero;
+            gameObject.tag = "Untagged";
+            FindObjectOfType<GameManager>().penguins.Remove(gameObject);
+            this.enabled = false;
+        }
     }
 
     private void SnowOnHead() 
@@ -80,6 +103,10 @@ public class Penguin : Living
             }
             if (warmth < -1.2f)
             {
+                if (isPlayer) 
+                {
+                    FindObjectOfType<Canvas>().GetComponent<Animator>().Play("CanvasYouFroze");
+                }
                 //die;
                 ani.speed = 1;
                 dead = true;
@@ -115,5 +142,14 @@ public class Penguin : Living
             moveSpeed = normalSpeed;
         }
         return newEgg;
+    }
+
+    public void PlayStep()
+    {
+        if (isPlayer) 
+        {
+            step.pitch = Random.Range(0.9f, 1.1f);
+            step.Play();
+        }
     }
 }

@@ -21,6 +21,12 @@ public class Seal : Living
         gm = FindObjectOfType<GameManager>();
         target = GetClosestPenguin();
         StartCoroutine(GetClosestPenguinDelay());
+        yield return new WaitForSeconds(Random.Range(0, 2.5f));
+        int chance = Random.Range(1, 4);
+        if(chance == 1)
+        {
+            GetComponent<AudioSource>().Play();
+        }
     }
     private IEnumerator GetClosestPenguinDelay() 
     {

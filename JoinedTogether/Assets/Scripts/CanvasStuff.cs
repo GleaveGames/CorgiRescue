@@ -25,6 +25,7 @@ public class CanvasStuff : MonoBehaviour
 
     public void LoadNextScene() 
     {
+        FindObjectOfType<AudioManager>().PlayNaration();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
@@ -56,5 +57,11 @@ public class CanvasStuff : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void StepSound() 
+    {
+        GetComponent<AudioSource>().pitch = Random.Range(0.8f, 1.2f);
+        GetComponent<AudioSource>().Play();
     }
 }
