@@ -241,6 +241,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 508fda5c3cb995f45aaaded2c49d1b21, type: 3}
   - {fileID: 21300000, guid: ccf04fdf4ca0c9542803274aa87706d3, type: 3}
   - {fileID: 21300000, guid: c10526ac724322e42854b2e532738ba6, type: 3}
+  playerEgg: {fileID: 0}
 --- !u!50 &2476401631840667825
 Rigidbody2D:
   serializedVersion: 4
@@ -367,7 +368,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: f9a65fe6e2da9f240bb4fc35f122b052, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -13,9 +13,12 @@ public class PlayerControls : Penguin
     protected override void Update()
     {
         base.Update();
-        if (playerEgg.GetComponent<Egg>().dead) 
+        if(playerEgg != null) 
         {
-            FindObjectOfType<Canvas>().GetComponent<Animator>().Play("CanvasFrozenEgg");
+            if (playerEgg.GetComponent<Egg>().dead)
+            {
+                FindObjectOfType<Canvas>().GetComponent<Animator>().Play("CanvasFrozenEgg");
+            }
         }
     }
 

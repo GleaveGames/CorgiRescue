@@ -2,8 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+
+
 public class CanvasStuff : MonoBehaviour
 {
+    Animator ani;
+    private void Start()
+    {
+        ani = GetComponent<Animator>();
+    }
+
+
     public void TimeToOne() 
     {
         Time.timeScale = 1;
@@ -21,5 +31,30 @@ public class CanvasStuff : MonoBehaviour
     public void ReloadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (transform.Find("Menu").gameObject.activeSelf)
+            {
+                ani.Play("CloseMenu");
+            }
+            else 
+            {
+                ani.Play("OpenMenu");
+            }
+        }
+    }
+
+    public void ResumeGame() 
+    {
+        ani.Play("CloseMenu");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

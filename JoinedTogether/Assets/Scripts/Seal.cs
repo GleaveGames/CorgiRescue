@@ -18,8 +18,8 @@ public class Seal : Living
     private IEnumerator LateStart()
     {
         yield return new WaitForEndOfFrame();
-        target = GetClosestPenguin();
         gm = FindObjectOfType<GameManager>();
+        target = GetClosestPenguin();
         StartCoroutine(GetClosestPenguinDelay());
     }
     private IEnumerator GetClosestPenguinDelay() 
