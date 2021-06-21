@@ -8,4 +8,9 @@ public class Menu : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    public void SwipeAnimation() 
+    {
+        GetComponent<Animator>().Play("ScreenSwipeIn");
+    }
 }
