@@ -79,7 +79,7 @@ public class CanPickUp : MonoBehaviour
     {        
         if (item != null)
         {
-            item.GetComponent<PickUpItem>().Drop();
+            item.GetComponent<PickUpBase>().Drop();
         }                
     }
     
@@ -119,7 +119,7 @@ public class CanPickUp : MonoBehaviour
                 //Debug.Log(closestDistance);
                 if (closestDistance <= pickUpRange)
                 {
-                    closestItem.GetComponent<PickUpItem>().PickUp(leftHand);
+                    closestItem.GetComponent<PickUpBase>().PickUp(leftHand);
                     item = closestItem;
                     Quaternion itemrot = Quaternion.LookRotation(transform.forward, transform.up);
                     item.transform.rotation = itemrot;
@@ -131,7 +131,7 @@ public class CanPickUp : MonoBehaviour
             {
                 if (item != null)
                 {
-                    item.GetComponent<PickUpItem>().Throw();
+                    item.GetComponent<PickUpBase>().Throw();
                 }
             }
         }

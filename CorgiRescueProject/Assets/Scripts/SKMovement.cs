@@ -72,7 +72,7 @@ public class SKMovement : MonoBehaviour
                     transform.position = Vector2.MoveTowards(transform.position, closestItem.transform.position, runsp * Time.deltaTime);
                     if (Vector2.Distance(transform.position, closestItem.transform.position) <= pickup.pickUpRange) 
                     {
-                        closestItem.GetComponent<PickUpItem>().PickUp(pickup.leftHand);
+                        closestItem.GetComponent<PickUpBase>().PickUp(pickup.leftHand);
                         pickup.item = closestItem;
                         pickup.item.GetComponent<DamagesPlayer>().canHurt = false;
                         Quaternion itemrot = Quaternion.LookRotation(transform.forward, -transform.right);

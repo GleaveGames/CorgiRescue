@@ -127,12 +127,12 @@ public class SKPickUp : MonoBehaviour
     {
         if (item != null)
         {
-            item.GetComponent<PickUpItem>().Drop();
+            item.GetComponent<PickUpBase>().Drop();
         }
     }
 
     public void ThrowItem()
     {
-        item.GetComponent<PickUpItem>().Throw();
+        item.GetComponent<PickUpBase>().Throw();
     }
 }

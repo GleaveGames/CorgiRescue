@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Damagable : MonoBehaviour
 {
-    private CharacterStats cs;
+    Living living;
     [SerializeField] 
     private bool SK = false;
     [SerializeField] 
@@ -35,7 +35,7 @@ public class Damagable : MonoBehaviour
     
     private void Start()
     {
-        cs = GetComponent<CharacterStats>();
+        living = GetComponent<Living>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -166,7 +166,7 @@ public class Damagable : MonoBehaviour
         }
         else
         {
-            cs.health -= collisionObj.GetComponent<DamageThisDoes>().damage;
+            living.health -= collisionObj.GetComponent<DamageThisDoes>().damage;
             Instantiate(littleBlood, transform.position, Quaternion.identity);
             Anger(collisionObj);
             StartCoroutine(Dizzy());
