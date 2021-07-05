@@ -124,8 +124,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 847d6dd51941c0143b92cd6deff19176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggered: 0
   speed: 4
+  stunned: 0
+  attacking: 0
+  pickupable: 0
+  ani: {fileID: 0}
+  currentState: 
+  player: {fileID: 0}
+  health: 1
+  blood: {fileID: 6310010033770557549, guid: 7be9f23a949dabd4395ea7df6d1c745f, type: 3}
   rotateTime: 1
 --- !u!61 &1034608871510261604
 BoxCollider2D:
@@ -333,7 +340,7 @@ MonoBehaviour:
   - {x: -0.23658863, y: 0.14025319, z: 0}
   m_ShapePathHash: 888740386
   m_Mesh: {fileID: 0}
-  m_InstanceId: 113878
+  m_InstanceId: 81174
 --- !u!114 &7865070789608767469
 MonoBehaviour:
   m_ObjectHideFlags: 0

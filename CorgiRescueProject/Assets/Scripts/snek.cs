@@ -2,15 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class snek : MonoBehaviour
+public class snek : Living
 {
-    private GameObject player;
-    [SerializeField]
-    private bool triggered;
-    [SerializeField]
-    private float speed;
-    private Animator ani;
-    private string currentState;
     private Quaternion rot;
     // Start is called before the first frame update
     private float timer;
@@ -20,16 +13,9 @@ public class snek : MonoBehaviour
     Coroutine coroutine;
     private RaycastHit2D hit;
 
-
-    void Start()
-    {        
-        player = GameObject.FindGameObjectWithTag("Player");
-        ani = GetComponent<Animator>();
-    }
-
     private IEnumerator Triggered()
     {
-        triggered = true;
+        attacking = true;
         while(transform.localScale.x < 1.5)
         {
             transform.localScale = new Vector2(transform.localScale.x + 0.04f, transform.localScale.y + 0.04f);
@@ -54,18 +40,14 @@ public class snek : MonoBehaviour
         }
         transform.rotation = Quaternion.identity;
         ChangeAnimationState("snekIdle");
-        triggered = false;
+        attacking = false;
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        if(player == null)
-        {
-            player = GameObject.FindGameObjectWithTag("Player");
-        }
-        //
-        if (!triggered)
+        base.Update();
+        if (!attacking)
         {
             RaycastHit2D closestHitR = ClosestRaycast(Vector2.right);
             if (closestHitR.collider.gameObject.CompareTag("Player"))
@@ -99,12 +81,6 @@ public class snek : MonoBehaviour
                 StartCoroutine("Triggered");
             }
         }            
-    }
-    void ChangeAnimationState(string newState)
-    {
-        if (currentState == newState) return;
-        ani.Play(newState);
-        currentState = newState;
     }
 
     private IEnumerator Hiss()
