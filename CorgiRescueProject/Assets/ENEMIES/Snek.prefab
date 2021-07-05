@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 4839327798055295640}
   - component: {fileID: 5686374190113552966}
   - component: {fileID: 2777830762697218060}
-  - component: {fileID: 8723173277201516478}
   - component: {fileID: 1732966639161765309}
   - component: {fileID: 7865070789608767469}
   - component: {fileID: 4392153889139557209}
@@ -133,6 +132,8 @@ MonoBehaviour:
   player: {fileID: 0}
   health: 1
   blood: {fileID: 6310010033770557549, guid: 7be9f23a949dabd4395ea7df6d1c745f, type: 3}
+  attackSoundPlayed: 0
+  attackSoundAudio: {fileID: 2777830762697218060}
   rotateTime: 1
 --- !u!61 &1034608871510261604
 BoxCollider2D:
@@ -301,20 +302,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8723173277201516478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 15094032670358419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d641eea33ece56f43abeccf85bf6e790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 3
-  blood: {fileID: 6310010033770557549, guid: 7be9f23a949dabd4395ea7df6d1c745f, type: 3}
 --- !u!114 &1732966639161765309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,7 +327,7 @@ MonoBehaviour:
   - {x: -0.23658863, y: 0.14025319, z: 0}
   m_ShapePathHash: 888740386
   m_Mesh: {fileID: 0}
-  m_InstanceId: 81174
+  m_InstanceId: 83598
 --- !u!114 &7865070789608767469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,7 +370,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 15094032670358419}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ea122672870bce4e8d8943b5ba83875, type: 3}
   m_Name: 

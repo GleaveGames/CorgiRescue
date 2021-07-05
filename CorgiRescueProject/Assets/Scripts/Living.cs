@@ -18,6 +18,10 @@ public class Living : MonoBehaviour
     private AudioManager am;
     [SerializeField]
     private GameObject blood;
+    public bool attackSoundPlayed;
+    [SerializeField]
+    AudioSource attackSoundAudio;
+
 
     protected virtual void Start()
     {
@@ -57,5 +61,41 @@ public class Living : MonoBehaviour
         Destroy(gameObject);
         Instantiate(blood, transform.position, Quaternion.identity);
         am.Play("Hit", transform.position, true);
+    }
+
+    protected RaycastHit2D ClosestRaycast(Vector2 direction)
+    {
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, direction);
+        RaycastHit2D closestValidHit = new RaycastHit2D();
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.transform.gameObject != gameObject && (closestValidHit.collider == null || closestValidHit.distance > hit.distance))
+            {
+                closestValidHit = hit;
+            }
+        }
+        return closestValidHit;
+    }
+
+    protected RaycastHit2D ClosestWall(Vector2 direction)
+    {
+        RaycastHit2D[] hitswall = Physics2D.RaycastAll(transform.position, direction);
+        RaycastHit2D closestValidHit = new RaycastHit2D();
+        Debug.DrawRay(transform.position, direction);
+        foreach (RaycastHit2D hit in hitswall)
+        {
+            if ((hit.transform.gameObject.tag == "Wall" | hit.transform.gameObject.tag == "Obsidian" | hit.transform.gameObject.tag == "Rock") && (closestValidHit.collider == null || closestValidHit.distance > hit.distance))
+            {
+                closestValidHit = hit;
+            }
+        }
+        return closestValidHit;
+    }
+
+    protected IEnumerator AttackSound()
+    {
+        attackSoundAudio.Play();
+        yield return new WaitForSeconds(3);
+        attackSoundPlayed = false;
     }
 }

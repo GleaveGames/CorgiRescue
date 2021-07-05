@@ -9,12 +9,12 @@ public class snek : Living
     private float timer;
     [SerializeField]
     private float rotateTime;
-    private bool hissed = false;
     Coroutine coroutine;
     private RaycastHit2D hit;
 
     private IEnumerator Triggered()
     {
+        //could clean this up lots with an animation curve
         attacking = true;
         while(transform.localScale.x < 1.5)
         {
@@ -29,10 +29,10 @@ public class snek : Living
         transform.localScale = new Vector2(1, 1);
         while (Vector2.Distance(hit.point, transform.position) > 0.2 && this.enabled)
         {
-            if (!hissed)
+            if (!attackSoundPlayed)
             {
-                StartCoroutine("Hiss");
-                hissed = true;
+                StartCoroutine(AttackSound());
+                attackSoundPlayed = true;
             }
             transform.position = Vector2.MoveTowards(transform.position, hit.point, speed * Time.deltaTime);
             ChangeAnimationState("Snek");
@@ -83,39 +83,5 @@ public class snek : Living
         }            
     }
 
-    private IEnumerator Hiss()
-    {        
-        GetComponent<AudioSource>().Play();
-        yield return new WaitForSeconds(3);
-        hissed = false;
-    }
-
-    private RaycastHit2D ClosestRaycast(Vector2 direction)
-    {
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, direction);
-        RaycastHit2D closestValidHit = new RaycastHit2D();
-        foreach (RaycastHit2D hit in hits)
-        {
-            if (hit.transform.gameObject != gameObject && (closestValidHit.collider == null || closestValidHit.distance > hit.distance))
-            {
-                closestValidHit = hit;
-            }
-        }
-        return closestValidHit;
-    }
-
-    private RaycastHit2D ClosestWall(Vector2 direction)
-    {
-        RaycastHit2D[] hitswall = Physics2D.RaycastAll(transform.position, direction);
-        RaycastHit2D closestValidHit = new RaycastHit2D();
-        Debug.DrawRay(transform.position, direction);
-        foreach (RaycastHit2D hit in hitswall)
-        {
-            if ((hit.transform.gameObject.tag == "Wall" | hit.transform.gameObject.tag == "Obsidian" | hit.transform.gameObject.tag == "Rock") && (closestValidHit.collider == null || closestValidHit.distance > hit.distance))
-            {
-                closestValidHit = hit;
-            }
-        }
-        return closestValidHit;
-    }
+    
 }
