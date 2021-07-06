@@ -14,12 +14,12 @@ GameObject:
   - component: {fileID: 806795444092703561}
   - component: {fileID: 1034608871510261604}
   - component: {fileID: 4839327798055295640}
+  - component: {fileID: 4623478165801078431}
   - component: {fileID: 5686374190113552966}
   - component: {fileID: 2777830762697218060}
   - component: {fileID: 1732966639161765309}
   - component: {fileID: 7865070789608767469}
   - component: {fileID: 4392153889139557209}
-  - component: {fileID: 4623478165801078431}
   m_Layer: 0
   m_Name: Snek
   m_TagString: Living
@@ -125,16 +125,70 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   stunned: 0
+  stunnable: 1
   attacking: 0
-  pickupable: 0
+  pickupable: 1
+  pickedUp: 0
+  angered: 0
   ani: {fileID: 0}
   currentState: 
   player: {fileID: 0}
-  health: 1
+  health: 3
   blood: {fileID: 6310010033770557549, guid: 7be9f23a949dabd4395ea7df6d1c745f, type: 3}
   attackSoundPlayed: 0
   attackSoundAudio: {fileID: 2777830762697218060}
-  rotateTime: 1
+  telegraphJuice:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 2.2099886
+      outSlope: 2.2099886
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.2242341
+      value: 1.4955548
+      inSlope: 0.20084363
+      outSlope: 0.20084363
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.49827847
+      value: 1
+      inSlope: 0.024977863
+      outSlope: 0.024977863
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.7682142
+      value: 1.50161
+      inSlope: -0.1529268
+      outSlope: -0.1529268
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -2.1641107
+      outSlope: -2.1641107
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  telegrpahTime: 0.8
 --- !u!61 &1034608871510261604
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -182,6 +236,19 @@ MonoBehaviour:
   canHurtPlayer: 1
   spawnsObjOnCollision: 0
   collisionObject: {fileID: 0}
+--- !u!114 &4623478165801078431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15094032670358419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bec58b531f80fc4f991dcdf5d0b5ecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  throwPower: 20
 --- !u!114 &5686374190113552966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,7 +394,7 @@ MonoBehaviour:
   - {x: -0.23658863, y: 0.14025319, z: 0}
   m_ShapePathHash: 888740386
   m_Mesh: {fileID: 0}
-  m_InstanceId: 85398
+  m_InstanceId: 78016
 --- !u!114 &7865070789608767469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,16 +430,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &4623478165801078431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 15094032670358419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bec58b531f80fc4f991dcdf5d0b5ecd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  throwPower: 10

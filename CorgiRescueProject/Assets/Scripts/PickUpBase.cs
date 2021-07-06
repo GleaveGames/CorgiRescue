@@ -25,10 +25,6 @@ public class PickUpBase : MonoBehaviour
             //rb.isKinematic = true;
             rb.velocity = new Vector3(0f, 0f, 0f);
         }
-        if (transform.parent == null)
-        {
-            lg.itemsForPickUp.Add(gameObject);
-        }
         am = FindObjectOfType<AudioManager>();
         damagethisdoesinit = GetComponent<DamageThisDoes>().damage;
     }
@@ -44,13 +40,10 @@ public class PickUpBase : MonoBehaviour
         leftHand = lH;
         //cc.isTrigger = true;
         // need to disable collider and re-enable because otherwise you can just run into enemies with a weapon and it will kill them
-        cc.enabled = false;
-        Debug.Log("cc.enabled = false");
+        DisableCollision();
         transform.position = lH.position;
         transform.parent = lH;
-        rb.isKinematic = true;
-        rb.velocity = new Vector3(0f, 0f, 0f);
-        lg.itemsForPickUp.Remove(gameObject);
+        Debug.Log(gameObject.name + " picked up");
     }
 
     public void Throw()
@@ -60,18 +53,10 @@ public class PickUpBase : MonoBehaviour
             sword.ChangeAnimationState("Idle");
         }
         am.Play("Throw", transform.position, true);
-        GetComponent<DamagesPlayer>().canHurt = false;
-        StartCoroutine("WaitforHurt");
-        transform.parent = null;
-        rb.isKinematic = false;
+        EnableCollision();
         rb.AddForce(leftHand.parent.up * throwPower, ForceMode2D.Impulse);
-        //cc.isTrigger = false;
-        //re-enable cc;
-        cc.enabled = true;
-
-        //SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetActiveScene());
-        lg.itemsForPickUp.Add(gameObject);
     }
+
     public void Drop()
     {
         if (TryGetComponent(out Sword sword))
@@ -79,14 +64,8 @@ public class PickUpBase : MonoBehaviour
             sword.ChangeAnimationState("Idle");
         }
         am.Play("Drop", transform.position, true);
-        GetComponent<DamagesPlayer>().canHurt = false;
-        StartCoroutine("WaitforHurt");
-        transform.parent = null;
-        rb.isKinematic = false;
+        EnableCollision();
         rb.AddForce(leftHand.parent.up * throwPower / 5, ForceMode2D.Impulse);
-        cc.isTrigger = false;
-        lg.itemsForPickUp.Add(gameObject);
-        //SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetActiveScene());
     }
 
     public IEnumerator WaitforHurt()
@@ -96,5 +75,24 @@ public class PickUpBase : MonoBehaviour
         //could make value above specific to item depending on its speed etc
         GetComponent<DamagesPlayer>().canHurt = true;
         GetComponent<DamageThisDoes>().damage = GetComponent<DamageThisDoes>().initialDamage;
+    }
+
+    public virtual void EnableCollision() 
+    {
+        GetComponent<DamagesPlayer>().canHurt = false;
+        StartCoroutine("WaitforHurt");
+        transform.parent = null;
+        rb.isKinematic = false;
+        cc.enabled = true;
+        cc.isTrigger = false;
+        lg.itemsForPickUp.Add(gameObject);
+    }
+
+    public virtual void DisableCollision() 
+    {
+        cc.enabled = false;
+        rb.isKinematic = true;
+        rb.velocity = new Vector3(0f, 0f, 0f);
+        lg.itemsForPickUp.Remove(gameObject);
     }
 }

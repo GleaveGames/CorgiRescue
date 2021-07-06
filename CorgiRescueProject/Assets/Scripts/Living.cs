@@ -6,8 +6,11 @@ public class Living : MonoBehaviour
 {
     public float speed;
     public bool stunned;
+    public bool stunnable;
     public bool attacking;
     public bool pickupable;
+    public bool pickedUp;
+    public bool angered;
     [HideInInspector]
     public Animator ani;
     public string currentState;
@@ -22,9 +25,12 @@ public class Living : MonoBehaviour
     [SerializeField]
     AudioSource attackSoundAudio;
 
-
     protected virtual void Start()
     {
+        if (!pickupable) 
+        {
+            Destroy(GetComponent<PickUpEnemy>());
+        }
         lg = FindObjectOfType<LevelGenerator>();
         am = FindObjectOfType<AudioManager>();
         ani = GetComponent<Animator>();
@@ -33,10 +39,7 @@ public class Living : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (health < 1)
-        {
-            Die();
-        }
+        if (health < 1) Die();
     }
 
     private IEnumerator GetPlayer() 

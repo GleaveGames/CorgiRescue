@@ -4,26 +4,23 @@ using UnityEngine;
 
 public class snek : Living
 {
-    private Quaternion rot;
-    // Start is called before the first frame update
-    private float timer;
     [SerializeField]
-    private float rotateTime;
     Coroutine coroutine;
     private RaycastHit2D hit;
+    [SerializeField]
+    AnimationCurve telegraphJuice;
+    [SerializeField]
+    float telegrpahTime;
 
     private IEnumerator Triggered()
     {
         //could clean this up lots with an animation curve
         attacking = true;
-        while(transform.localScale.x < 1.5)
+        float counter = 0;
+        while(counter <= telegrpahTime) 
         {
-            transform.localScale = new Vector2(transform.localScale.x + 0.04f, transform.localScale.y + 0.04f);
-            yield return null;
-        }
-        while(transform.localScale.x > 1)
-        {
-            transform.localScale = new Vector2(transform.localScale.x - 0.04f, transform.localScale.y - 0.04f);
+            transform.localScale = new Vector2(telegraphJuice.Evaluate(counter / telegrpahTime), telegraphJuice.Evaluate(counter / telegrpahTime));
+            counter += Time.deltaTime;
             yield return null;
         }
         transform.localScale = new Vector2(1, 1);
@@ -47,7 +44,7 @@ public class snek : Living
     protected override void Update()
     {
         base.Update();
-        if (!attacking)
+        if (!attacking && !stunned)
         {
             RaycastHit2D closestHitR = ClosestRaycast(Vector2.right);
             if (closestHitR.collider.gameObject.CompareTag("Player"))

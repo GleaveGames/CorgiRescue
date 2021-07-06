@@ -32,48 +32,23 @@ public class Damagable : MonoBehaviour
     [SerializeField]
     private GameObject Ducks;
     Coroutine coroutine;
-    
+    PickUpEnemy pickupenemy;
+
     private void Start()
     {
         living = GetComponent<Living>();
+        if (TryGetComponent(out PickUpEnemy pue)) pickupenemy = pue;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (Living)
+        if ((Living && collision.gameObject.CompareTag("Living")) ||
+            (PickUpItems && collision.gameObject.CompareTag("PickupItems")) ||
+            (Pick && collision.gameObject.CompareTag("Pick")) ||
+            (Bombs && collision.gameObject.name == "Bomb(Clone)") || 
+            (Traps && collision.gameObject.CompareTag("Trap")))
         {
-            if(collision.gameObject.CompareTag("Living"))
-            {
                 DoDamage(collision.gameObject);
-            }
-        }
-        if (PickUpItems)
-        {
-            if (collision.gameObject.CompareTag("PickupItems"))
-            {
-                DoDamage(collision.gameObject);
-            }
-        }
-        if (Pick)
-        {
-            if (collision.gameObject.CompareTag("Pick"))
-            {
-                DoDamage(collision.gameObject);
-            }
-        } 
-        if (Bombs)
-        {
-            if (collision.gameObject.name == "Bomb(Clone)")
-            {
-                DoDamage(collision.gameObject);
-            }
-        }
-        if (Traps)
-        {
-            if (collision.gameObject.CompareTag("Trap"))
-            {
-                DoDamage(collision.gameObject);
-            }
         }
 
         //JUST ADDED THIS SO THAT YOU CAN'T BUM RUSH SK 
@@ -88,13 +63,14 @@ public class Damagable : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (Living)
+        if ((Living && collision.gameObject.CompareTag("Living")) ||
+            (Pick && collision.gameObject.CompareTag("Pick")) ||
+            (Bombs && collision.gameObject.name == "Bomb(Clone)") ||
+            (Traps && collision.gameObject.CompareTag("Trap")))
         {
-            if(collision.gameObject.CompareTag("Living"))
-            {
-                DoDamage(collision.gameObject);
-            }
+            DoDamage(collision.gameObject);
         }
+
         if (PickUpItems)
         {
             if (collision.gameObject.CompareTag("PickupItems"))
@@ -112,28 +88,6 @@ public class Damagable : MonoBehaviour
                 }
             }
         }
-        if (Pick)
-        {
-            if (collision.gameObject.CompareTag("Pick"))
-            {
-                DoDamage(collision.gameObject);
-            }
-        } 
-        if (Bombs)
-        {
-            if (collision.gameObject.name == "Bomb(Clone)")
-            {
-                DoDamage(collision.gameObject);
-            }
-        }
-        if (Traps)
-        {
-            if (collision.gameObject.CompareTag("Trap"))
-            {
-                DoDamage(collision.gameObject);
-            }
-        } 
-        
     }
 
     private void Anger(GameObject target)
@@ -148,14 +102,7 @@ public class Damagable : MonoBehaviour
             GetComponent<SKMovement>().angered = true;
             GetComponent<SKPickUp>().Drop();
         }
-        if (mole)
-        {
-            GetComponent<Mole>().angered = true;
-        }
-        if (mong)
-        {
-            GetComponent<Mongoose>().angered = true;
-        }
+        living.angered = true;
     }
 
     private void DoDamage(GameObject collisionObj)
@@ -175,6 +122,11 @@ public class Damagable : MonoBehaviour
 
     private IEnumerator Dizzy()
     {
+        if (!living.stunnable) yield break;
+        if (living.health < 1) living.Die();
+        FindObjectOfType<LevelGenerator>().itemsForPickUp.Add(gameObject);
+        living.stunned = true;
+        living.attacking = false;
         if(TryGetComponent(out DamagesPlayer damplay)) 
         {
             damplay.canHurt = false;
@@ -188,61 +140,37 @@ public class Damagable : MonoBehaviour
         }
         GameObject ducko = Instantiate(Ducks, transform.position, Quaternion.identity);
         ducko.transform.parent = transform;
-        if (!SK) 
-        {
-            GetComponent<Animator>().enabled = false;
-        }
-        else 
+        if (SK) 
         {
             transform.GetChild(0).GetComponent<Animator>().enabled = false;
             GetComponent<SKMovement>().canMove = false;
             yield return new WaitForSeconds(stuntime);
             GetComponent<SKMovement>().canMove = true;
-        }
-        if (mole)
-        {
-            GetComponent<Mole>().enabled = false;
-            yield return new WaitForSeconds(stuntime);
-            GetComponent<Mole>().enabled = true;
-        }
-        else if (TryGetComponent(out snek s))
-        {
-            s.enabled = false;
-            yield return new WaitForSeconds(stuntime);
-            s.enabled = true; 
-        }
-        else if (TryGetComponent(out Bat b)) 
-        {
-            b.enabled = false;
-            transform.position = transform.position;
-            yield return new WaitForSeconds(stuntime);
-            b.enabled = true;
-        }
-        else if(TryGetComponent(out Penguin pen))
-        {
-            pen.enabled = false;
-            yield return new WaitForSeconds(stuntime);
-            pen.enabled = true;
-        }
-        else if(TryGetComponent(out Beetle beetle)) 
-        {
-            beetle.enabled = false;
-            yield return new WaitForSeconds(stuntime);
-            beetle.enabled = true;
-        }
-
-        if (!SK)
-        {
-            GetComponent<Animator>().enabled = true;
-        }
-        else
-        {
             transform.GetChild(0).GetComponent<Animator>().enabled = true;
         }
+        else if(TryGetComponent(out Living liv))
+        {
+            GetComponent<Animator>().enabled = false;
+            liv.enabled = false;
+            yield return new WaitForSeconds(stuntime);
+            liv.enabled = true;
+            GetComponent<Animator>().enabled = true;
+        }
+            
         if (TryGetComponent(out DamagesPlayer damplay2))
         {
             damplay2.canHurt = true;
         }
+        if (transform.parent != null) 
+        {
+            if (living.pickupable) GetComponent<PickUpEnemy>().EnableCollision();
+        }
         Destroy(ducko);
+        living.stunned = false;
+        if (living.pickupable)
+        {
+            FindObjectOfType<LevelGenerator>().itemsForPickUp.Remove(gameObject);
+        }
+        living.attacking = false;
     }
 }

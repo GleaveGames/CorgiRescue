@@ -10,6 +10,15 @@ public class PickUpItem : PickUpBase
     [SerializeField]
     private bool AmISword = false;
 
+    protected override void Start() 
+    {
+        base.Start();
+        if (transform.parent == null)
+        {
+            lg.itemsForPickUp.Add(gameObject);
+        }
+    }
+
     private void Update()
     {
         //could maybe put all this into the throw coroutine or something idk
@@ -35,4 +44,5 @@ public class PickUpItem : PickUpBase
             }
         }
     }
+
 }
