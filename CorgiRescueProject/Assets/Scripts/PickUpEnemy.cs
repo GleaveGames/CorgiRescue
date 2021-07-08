@@ -21,8 +21,20 @@ public class PickUpEnemy : PickUpBase
 
     public override void EnableCollision()
     {
-        base.EnableCollision();
-        living.pickedUp = false;
-        living.attacking = false;
+        if (living.stunned) 
+        {
+            GetComponent<DamagesPlayer>().canHurt = false;
+            transform.parent = null;
+            rb.isKinematic = false;
+            cc.enabled = true;
+            cc.isTrigger = false;
+            lg.itemsForPickUp.Add(gameObject);
+        }
+        else 
+        {
+            base.EnableCollision();
+            living.pickedUp = false;
+            living.attacking = false;
+        }
     }
 }

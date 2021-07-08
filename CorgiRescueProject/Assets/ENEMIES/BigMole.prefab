@@ -4887,7 +4887,6 @@ GameObject:
   - component: {fileID: 1754437765940581176}
   - component: {fileID: 877099927748864602}
   - component: {fileID: 3928088253915047735}
-  - component: {fileID: 6849332161571909667}
   - component: {fileID: 5712929639497512139}
   - component: {fileID: 1530432802778358798}
   - component: {fileID: 2479714998033567524}
@@ -4979,9 +4978,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 976483dba4a1e804a807eee36d99cff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  offset: -90
+  speed: 0
+  stunned: 0
+  stunnable: 1
+  attacking: 0
+  pickupable: 0
+  pickedUp: 0
   angered: 0
+  ani: {fileID: 0}
+  currentState: 
+  player: {fileID: 0}
+  health: 1
+  blood: {fileID: 6310010033770557549, guid: 7be9f23a949dabd4395ea7df6d1c745f, type: 3}
+  attackSoundPlayed: 0
+  attackSoundAudio: {fileID: 5712929639497512139}
+  offset: -90
   boss: 1
 --- !u!114 &425030333070423495
 MonoBehaviour:
@@ -5002,6 +5013,8 @@ MonoBehaviour:
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
   canHurtPlayer: 1
+  spawnsObjOnCollision: 0
+  collisionObject: {fileID: 0}
 --- !u!114 &7471924862020509358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5105,27 +5118,13 @@ MonoBehaviour:
   mong: 0
   bomby: 0
   littleBlood: {fileID: 1654121160770679037, guid: 58d437bff74a2aa4896badd67bce2666, type: 3}
-  stuntime: 3
+  stuntime: 1
   Living: 0
   PickUpItems: 1
   Pick: 1
   Bombs: 1
   Traps: 1
   Ducks: {fileID: 4289145125382618942, guid: ea340eaea3e3bd54cbda0557e8fd7669, type: 3}
---- !u!114 &6849332161571909667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7471924862020509344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d641eea33ece56f43abeccf85bf6e790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  blood: {fileID: 6310010033770557549, guid: 7be9f23a949dabd4395ea7df6d1c745f, type: 3}
 --- !u!82 &5712929639497512139
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5247,7 +5246,7 @@ MonoBehaviour:
   - {x: -0.38534164, y: 0.4270172, z: 0}
   m_ShapePathHash: -1923273035
   m_Mesh: {fileID: 0}
-  m_InstanceId: 63856
+  m_InstanceId: 65496
 --- !u!58 &2479714998033567524
 CircleCollider2D:
   m_ObjectHideFlags: 0

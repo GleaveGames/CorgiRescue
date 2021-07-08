@@ -17,11 +17,12 @@ GameObject:
   - component: {fileID: 877099927748864602}
   - component: {fileID: 2339519986214968521}
   - component: {fileID: 3928088253915047735}
-  - component: {fileID: 6849332161571909667}
   - component: {fileID: 5712929639497512139}
   - component: {fileID: 1530432802778358798}
   - component: {fileID: -2692561871608708002}
   - component: {fileID: 2299603676789532128}
+  - component: {fileID: 5488039739610052619}
+  - component: {fileID: 3385142414179241015}
   m_Layer: 0
   m_Name: Mole
   m_TagString: Living
@@ -213,9 +214,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 976483dba4a1e804a807eee36d99cff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
-  offset: -90
+  speed: 1
+  stunned: 0
+  stunnable: 1
+  attacking: 0
+  pickupable: 1
+  pickedUp: 0
   angered: 0
+  ani: {fileID: 0}
+  currentState: 
+  player: {fileID: 0}
+  health: 5
+  blood: {fileID: 6310010033770557549, guid: 7be9f23a949dabd4395ea7df6d1c745f, type: 3}
+  attackSoundPlayed: 0
+  attackSoundAudio: {fileID: 0}
+  offset: -90
   boss: 0
 --- !u!114 &3928088253915047735
 MonoBehaviour:
@@ -241,20 +254,6 @@ MonoBehaviour:
   Bombs: 1
   Traps: 1
   Ducks: {fileID: 4289145125382618942, guid: ea340eaea3e3bd54cbda0557e8fd7669, type: 3}
---- !u!114 &6849332161571909667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7471924862020509344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d641eea33ece56f43abeccf85bf6e790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 3
-  blood: {fileID: 6310010033770557549, guid: 7be9f23a949dabd4395ea7df6d1c745f, type: 3}
 --- !u!82 &5712929639497512139
 AudioSource:
   m_ObjectHideFlags: 0
@@ -376,7 +375,7 @@ MonoBehaviour:
   - {x: -0.38534164, y: 0.4270172, z: 0}
   m_ShapePathHash: -1923273035
   m_Mesh: {fileID: 0}
-  m_InstanceId: 112250
+  m_InstanceId: 70716
 --- !u!114 &-2692561871608708002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,3 +402,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0990266ada5e5b84297de08f0b94638b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5488039739610052619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7471924862020509344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bec58b531f80fc4f991dcdf5d0b5ecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  throwPower: 80
+--- !u!114 &3385142414179241015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7471924862020509344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4eed2d76eb24174096e29b9da39e75a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  percentageSlowed: 80

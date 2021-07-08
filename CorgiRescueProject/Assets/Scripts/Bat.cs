@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bat : MonoBehaviour
+public class Bat : Living
 {
     [SerializeField]
     private float swoopDist;
@@ -11,12 +11,8 @@ public class Bat : MonoBehaviour
 
     public LayerMask IgnoreMe;
     public bool inSwarm;
-    private GameObject player;
     public bool triggered;
     [SerializeField]
-    private float speed;
-    private Animator ani;
-    private string currentState;
     private Quaternion rot;
     private Vector3 targetPos;
     private float angle;
@@ -34,16 +30,15 @@ public class Bat : MonoBehaviour
     private bool triggerpause = true;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        ani = GetComponent<Animator>();
-        ani.speed = Random.Range(0.9f, 1.1f);
+        base.Start();
         quaternion = Quaternion.Euler(new Vector3(0, 0, Random.Range(1, 5) * 90 + angle + offset));
     }
 
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         if (inSwarm)
         {
             if (coreBat)
@@ -57,11 +52,6 @@ public class Bat : MonoBehaviour
         }
         else
         {
-            if (player == null)
-            {
-                player = GameObject.FindGameObjectWithTag("Player");
-            }
-
             if (triggered) 
             {
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up);
@@ -153,17 +143,10 @@ public class Bat : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         triggerpause = false;
     }
-    void ChangeAnimationState(string newState)
-    {
-        if (currentState == newState) return;
-
-        ani.Play(newState);
-
-        currentState = newState;
-    }
 
     private IEnumerator Swoop()
     {
+        //Can use animation curve to clean this up too
         if (coreBat)
         {
             ChangeAnimationState("CoreBatIdle");
@@ -187,7 +170,7 @@ public class Bat : MonoBehaviour
             yield return null;
         }
         transform.localScale = new Vector2(1, 1);
-        GetComponent<AudioSource>().Play();
+        AttackSound();
         if (coreBat)
         {
             ChangeAnimationState("CoreBatFly");
@@ -213,21 +196,6 @@ public class Bat : MonoBehaviour
         }
         yield return new WaitForSeconds(1);
         swooping = false;
-        Debug.Log("Finishes swoop");
     }
 
-
-    private RaycastHit2D ClosestRaycast(Vector2 direction)
-    {
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, direction);
-        RaycastHit2D closestValidHit = new RaycastHit2D();
-        foreach (RaycastHit2D hit in hits)
-        {
-            if (hit.transform.gameObject != gameObject && (closestValidHit.collider == null || closestValidHit.distance > hit.distance))
-            {
-                closestValidHit = hit;
-            }
-        }
-        return closestValidHit;
-    }
 }

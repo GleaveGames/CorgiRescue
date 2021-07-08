@@ -96,10 +96,7 @@ public class playerMovement : MonoBehaviour
 
     void Update()
     {
-        if(ps == null)
-        {
-            ps = FindObjectOfType<playerStats>();
-        }
+        runsp = ps.moveSpeed;
         if (canMove)
         {
             move = pc.Game.Move.ReadValue<Vector2>();

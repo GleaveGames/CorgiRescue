@@ -2,25 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mole : MonoBehaviour
+public class Mole : Living
 {
     private Vector3 dest;
-    [SerializeField]
-    private float moveSpeed;
     private float angeredSpeed;
-    private Animator ani;
     private float angle;
     [SerializeField]
     private float offset;
-    Coroutine coroutine;
-    private Rigidbody2D rb;
     private bool called;
     private bool digSoundDone = true;
-    public bool angered = false;
     [SerializeField]
     private bool boss;
-    private Transform player;
-    private string currentState;
     private ParticleSystem ZZZ;
     private bool charged = false;
     private bool charging = false;
@@ -28,15 +20,11 @@ public class Mole : MonoBehaviour
     private AudioManager am;
 
 
-    private void Start()
+    protected override void Start()
     {
-        ani = GetComponent<Animator>();
-        Vector3 temp = transform.position;
-        ani.speed = 1;
-        rb = GetComponent<Rigidbody2D>();
+        base.Start();
         if (boss)
         {
-            player = GameObject.FindGameObjectWithTag("Player").transform;
             ZZZ = transform.GetChild(0).GetComponent<ParticleSystem>();
             am = FindObjectOfType<AudioManager>();
             am.Play("Snore", transform.position, true);
@@ -45,12 +33,13 @@ public class Mole : MonoBehaviour
         {
             StartCoroutine("GetNewDest");
         }
-        angeredSpeed = 2 * moveSpeed;
+        angeredSpeed = 2 * speed;
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         if (boss)
         {
             if (!angered)
@@ -81,7 +70,7 @@ public class Mole : MonoBehaviour
                     }
                     else
                     {
-                        transform.position = Vector2.MoveTowards(transform.position, transform.position + transform.up, moveSpeed * Time.deltaTime);
+                        transform.position = Vector2.MoveTowards(transform.position, transform.position + transform.up, speed * Time.deltaTime);
                         TurnOnRockandObsidian();
                     }
                 }
@@ -92,7 +81,7 @@ public class Mole : MonoBehaviour
             if (angered)
             {
                 dest = transform.position;
-                moveSpeed = angeredSpeed;
+                speed = angeredSpeed;
                 angered = false;
             }
             if (transform.position == dest)
@@ -103,7 +92,7 @@ public class Mole : MonoBehaviour
             }
             else
             {
-                transform.position = Vector2.MoveTowards(transform.position, dest, moveSpeed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, dest, speed * Time.deltaTime);
                 called = false;
                 if (digSoundDone)
                 {
@@ -190,8 +179,6 @@ public class Mole : MonoBehaviour
         Debug.DrawRay(transform.position, transform.up);
         for (int j = 0; j < hit.Length; j++)
         {
-            //Debug.Log(hit[j].collider.name);
-            //check if hit
             if (hit[j].collider.gameObject.CompareTag("Rock") || hit[j].collider.gameObject.CompareTag("Obsidian"))
             {
                 if (!boss)
@@ -204,14 +191,6 @@ public class Mole : MonoBehaviour
                 }                
             }
         }
-    }
-    void ChangeAnimationState(string newState)
-    {
-        if (currentState == newState) return;
-
-        ani.Play(newState);
-
-        currentState = newState;
     }
 
     private void SnoreFromAni()

@@ -24,9 +24,11 @@ public class Living : MonoBehaviour
     public bool attackSoundPlayed;
     [SerializeField]
     AudioSource attackSoundAudio;
+    protected Rigidbody2D rb;
 
     protected virtual void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         if (!pickupable) 
         {
             Destroy(GetComponent<PickUpEnemy>());
@@ -34,6 +36,7 @@ public class Living : MonoBehaviour
         lg = FindObjectOfType<LevelGenerator>();
         am = FindObjectOfType<AudioManager>();
         ani = GetComponent<Animator>();
+        ani.speed = Random.Range(0.9f, 1.1f);
         StartCoroutine(GetPlayer());
     }
 
