@@ -2,13 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class creature : MonoBehaviour
+public class creature : Living
 {
-    [SerializeField]
-    private Transform player;
-    [SerializeField]
-    private float moveSpeed;
-    //private Rigidbody2D rb;
     private Vector3 targetPos;
     private float angle;
     public float offset;
@@ -16,7 +11,6 @@ public class creature : MonoBehaviour
     private AudioSource stompSound;
     [SerializeField]
     private AudioSource roarSound;
-    Coroutine coroutine;
     private cameraoptions co;
     [SerializeField]
     private bool boss;
@@ -29,11 +23,9 @@ public class creature : MonoBehaviour
     public float AimModifier;
     private bool charging;
     private bool punching;
-    private string currentState;
-    private Animator ani;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
         co = FindObjectOfType<cameraoptions>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -50,7 +42,7 @@ public class creature : MonoBehaviour
         if (!boss)
         {
             ChangeAnimationState("YetiWalk");
-            transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
             targetPos = player.position;
             targetPos.x = targetPos.x - transform.position.x;
             targetPos.y = targetPos.y - transform.position.y;
@@ -74,7 +66,7 @@ public class creature : MonoBehaviour
             }
             else if (charging)
             {
-                transform.position = Vector2.MoveTowards(transform.position, player.position, 1.3f * moveSpeed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, player.position, 1.3f * speed * Time.deltaTime);
                 targetPos = player.position;
                 targetPos.x = targetPos.x - transform.position.x;
                 targetPos.y = targetPos.y - transform.position.y;
@@ -83,7 +75,7 @@ public class creature : MonoBehaviour
             }
             else if (punching)
             {
-                transform.position = Vector2.MoveTowards(transform.position, player.position, 3f * moveSpeed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, player.position, 3f * speed * Time.deltaTime);
                 targetPos = player.position;
                 targetPos.x = targetPos.x - transform.position.x;
                 targetPos.y = targetPos.y - transform.position.y;
@@ -191,7 +183,7 @@ public class creature : MonoBehaviour
         roarSound.Play();
         StartCoroutine("resetRoar");
         co.shakeDuration = 1;
-        moveSpeed += 0.4f;
+        speed += 0.4f;
     }
 
     private IEnumerator resetRoar()
@@ -236,13 +228,5 @@ public class creature : MonoBehaviour
         targetPos.y = targetPos.y - transform.position.y;
         angle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + offset));
-    }
-
-
-    void ChangeAnimationState(string newState)
-    {
-        if (currentState == newState) return;
-        ani.Play(newState);
-        currentState = newState;
     }
 }

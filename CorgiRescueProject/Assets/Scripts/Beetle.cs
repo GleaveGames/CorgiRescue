@@ -6,7 +6,6 @@ public class Beetle : Living
 {
     bool idle, turning, midturn;
     float bumprange;
-    Coroutine coroutine;
     int RotationDir;
     [SerializeField]
     bool Big;

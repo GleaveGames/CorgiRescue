@@ -2,22 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Penguin : MonoBehaviour
+public class Penguin : Living
 {
-    private GameObject player;
     [SerializeField]
     private bool triggered;
-    [SerializeField]
-    private float speed;
-    private Animator ani;
-    private string currentState;
     private Vector3 rot;
     // Start is called before the first frame update
     private float timer;
     [SerializeField]
     private float rotateTime;
-    private bool hissed = false;
-    Coroutine coroutine;
     private RaycastHit2D hit;
     private Vector3 quaternion;
     private float angle;
@@ -39,21 +32,9 @@ public class Penguin : MonoBehaviour
      * */
 
 
-
-    void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-        ani = GetComponent<Animator>();
-    }
-
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        if (player == null)
-        {
-            player = GameObject.FindGameObjectWithTag("Player");
-        }
-        //
         if (!triggered)
         {
             hit = Physics2D.Raycast(transform.position, transform.up);
@@ -100,11 +81,7 @@ public class Penguin : MonoBehaviour
             hit = Physics2D.Raycast(transform.position, transform.up);
             if (Vector2.Distance(hit.point, transform.position) > 0.4 && hit.collider.gameObject != gameObject)
             {
-                if (!hissed)
-                {
-                    StartCoroutine("Hiss");
-                    hissed = true;
-                }
+                AttackSound();
                 transform.position +=  tempDir.normalized * speed * Time.deltaTime;
                 ChangeAnimationState("PenguinDive");
             }
@@ -115,32 +92,5 @@ public class Penguin : MonoBehaviour
                 triggered = false;
             }
         }
-    }
-    void ChangeAnimationState(string newState)
-    {
-        if (currentState == newState) return;
-        ani.Play(newState);
-        currentState = newState;
-    }
-
-    private IEnumerator Hiss()
-    {
-        GetComponent<AudioSource>().Play();
-        yield return new WaitForSeconds(3);
-        hissed = false;
-    }
-
-    private RaycastHit2D ClosestRaycast(Vector2 direction)
-    {
-        RaycastHit2D[] hitright = Physics2D.RaycastAll(transform.position, direction);
-        RaycastHit2D closestValidHit = new RaycastHit2D();
-        foreach (RaycastHit2D hit in hitright)
-        {
-            if (hit.transform.gameObject != gameObject && (closestValidHit.collider == null || closestValidHit.distance > hit.distance))
-            {
-                closestValidHit = hit;
-            }
-        }
-        return closestValidHit;
     }
 }

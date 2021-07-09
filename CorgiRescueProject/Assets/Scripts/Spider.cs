@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Spider : Living
 {
-    Coroutine coroutine;
     bool triggered;
     [SerializeField]
     float walkTime;

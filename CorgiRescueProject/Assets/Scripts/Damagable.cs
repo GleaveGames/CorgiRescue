@@ -158,7 +158,6 @@ public class Damagable : MonoBehaviour
             
         }
         living.stunned = false;
-
         if (TryGetComponent(out DamagesPlayer damplay2))
         {
             damplay2.canHurt = true;
@@ -168,10 +167,7 @@ public class Damagable : MonoBehaviour
             if (living.pickupable) GetComponent<PickUpEnemy>().EnableCollision();
         }
         Destroy(ducko);
-        if (living.pickupable)
-        {
-            FindObjectOfType<LevelGenerator>().itemsForPickUp.Remove(gameObject);
-        }
+        if (living.pickupable) FindObjectOfType<LevelGenerator>().itemsForPickUp.Remove(gameObject);
         living.attacking = false;
     }
 }

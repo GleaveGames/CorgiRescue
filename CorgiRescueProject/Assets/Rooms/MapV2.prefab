@@ -334,7 +334,7 @@ MonoBehaviour:
   mong: {fileID: 15094032670358419, guid: 8a26f5f7d484fff4bbabcf8ef96fcfcc, type: 3}
   mongEnabled: 0
   bomby: {fileID: 3691337205146848114, guid: 0f1eacc51d4d5fb43a55feceef4969cf, type: 3}
-  bombyEnabled: 1
+  bombyEnabled: 0
   pebble: {fileID: 5020420758543740405, guid: 0e3ff7031044bfb418f342415528e0bf, type: 3}
   metalCrate: {fileID: 7688553074688750316, guid: 41da8a0f01302984ca42f88139c09f4f, type: 3}
   woodCrate: {fileID: 7688553074688750316, guid: f5d819c55f963794d99102353ca843d9, type: 3}

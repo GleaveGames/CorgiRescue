@@ -11,6 +11,7 @@ public class Living : MonoBehaviour
     public bool pickupable;
     public bool pickedUp;
     public bool angered;
+    protected Coroutine coroutine;
     [HideInInspector]
     public Animator ani;
     public string currentState;
