@@ -1885,10 +1885,10 @@ MonoBehaviour:
   DiamondChance: 140
   GoldChance: 100
   SilverChance: 60
-  BeetleChance: 30
+  BeetleChance: 60
   SpiderChance: 0
-  SnekChance: 20
-  MoleChance: 50
+  SnekChance: 60
+  MoleChance: 80
   BatChance: 60
   MongChance: 40
   BombyChance: 60

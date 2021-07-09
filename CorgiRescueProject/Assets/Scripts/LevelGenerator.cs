@@ -224,7 +224,8 @@ public class LevelGenerator : MonoBehaviour
                 emptiesSum++;
             }
         }
-        SetGemsandEms();
+        SetEmsAndItems();
+        SetGems();
         player.GetComponent<playerMovement>().canMove = true;
         player.GetComponent<Rigidbody2D>().isKinematic = false;
         player.GetComponent<CircleCollider2D>().enabled = true;
@@ -539,11 +540,11 @@ public class LevelGenerator : MonoBehaviour
         livingThings.Add(player);        
     }
 
-    private void SetGemsandEms()
+    private void SetEmsAndItems()
     {
         for (int p = 0; p < empties.Length; p++) 
         {
-            if(empties[p] == 1) 
+            if (empties[p] == 1) 
             {
                 int i = p / 121;
                 int y = (p % 121) / 11;
@@ -584,7 +585,6 @@ public class LevelGenerator : MonoBehaviour
                     {
                         if (Random.Range(0, BeetleChance) < 1)
                         {
-                        
                             Instantiate(beetle, spawnpoint, Quaternion.identity);
                             continue;
                         }
@@ -593,7 +593,6 @@ public class LevelGenerator : MonoBehaviour
                     {
                         if (Random.Range(0, SpiderChance) < 1)
                         {
-                        
                             Instantiate(spider, spawnpoint, Quaternion.identity);
                             continue;
                         }
@@ -602,7 +601,6 @@ public class LevelGenerator : MonoBehaviour
                     {
                         if (Random.Range(0, MoleChance) < 1)
                         {
-                        
                             Instantiate(mole, spawnpoint, Quaternion.identity);
                             continue;
                         }
@@ -632,7 +630,6 @@ public class LevelGenerator : MonoBehaviour
                     {
                         if (Random.Range(0, SpikeChance) < 1)
                         {
-                        
                             Instantiate(spikes, spawnpoint, Quaternion.identity);
                             continue;
                         }
@@ -648,206 +645,67 @@ public class LevelGenerator : MonoBehaviour
                 }
             }
         }
+        GetLivingThings();
+    }
 
 
+    private void SetGems()
+    {
+           Tilemap wall = nodes[0].transform.GetChild(0).Find("Walls").gameObject.GetComponent<Tilemap>();
+           Tilemap rock = nodes[0].transform.GetChild(0).Find("Rock").gameObject.GetComponent<Tilemap>();
+           Tilemap obsidian = nodes[0].transform.GetChild(0).Find("Obsidian").gameObject.GetComponent<Tilemap>();
+
+           BoundsInt bounds = wall.cellBounds;
+           if (rock.cellBounds.size.x > bounds.size.x)
+           {
+               bounds = rock.cellBounds;
+           }
+           if(obsidian.cellBounds.size.x > bounds.size.x)
+           {
+               bounds = obsidian.cellBounds;
+           }
+
+           TileBase[] wallTiles = wall.GetTilesBlock(bounds);         
+           TileBase[] rockTiles = rock.GetTilesBlock(bounds);         
+           TileBase[] obsidianTiles = obsidian.GetTilesBlock(bounds);
+
+           //quickfixfornew 2 - 1 not working cus of there being no walls
+           //replacing bounds.size.x and y with new vec 2 called fakebounds.x andy;
+
+           Vector2Int fakebounds = new Vector2Int(33, 44);
 
 
-            /*
-            Tilemap wall = nodes[0].transform.GetChild(0).Find("Walls").gameObject.GetComponent<Tilemap>();
-            Tilemap rock = nodes[0].transform.GetChild(0).Find("Rock").gameObject.GetComponent<Tilemap>();
-            Tilemap obsidian = nodes[0].transform.GetChild(0).Find("Obsidian").gameObject.GetComponent<Tilemap>();
-
-            BoundsInt bounds = wall.cellBounds;
-            if (rock.cellBounds.size.x > bounds.size.x)
-            {
-                bounds = rock.cellBounds;
-            }
-            if(obsidian.cellBounds.size.x > bounds.size.x)
-            {
-                bounds = obsidian.cellBounds;
-            }
-
-            TileBase[] wallTiles = wall.GetTilesBlock(bounds);         
-            TileBase[] rockTiles = rock.GetTilesBlock(bounds);         
-            TileBase[] obsidianTiles = obsidian.GetTilesBlock(bounds);
-
-            //quickfixfornew 2 - 1 not working cus of there being no walls
-            //replacing bounds.size.x and y with new vec 2 called fakebounds.x andy;
-
-            Vector2Int fakebounds = new Vector2Int(33, 44);
-
-
-            for (int x = 0; x < fakebounds.x; x++)
-            {
-                for (int y = 0; y < fakebounds.y; y++)
-                {
-                    TileBase rockTile = rockTiles[x + y * fakebounds.x]; 
-                    TileBase wallTile = wallTiles[x + y * fakebounds.x];
-                    TileBase obsidianTile = obsidianTiles[x + y * fakebounds.x];
-                    //checks if tile there = FALSE
-                    if (wallTile == null && rockTile == null && obsidianTile == null)
+           for (int x = 0; x < fakebounds.x; x++)
+           {
+               for (int y = 0; y < fakebounds.y; y++)
+               {
+                   TileBase rockTile = rockTiles[x + y * fakebounds.x]; 
+                   TileBase wallTile = wallTiles[x + y * fakebounds.x];
+                   TileBase obsidianTile = obsidianTiles[x + y * fakebounds.x];
+                    if (CheckBool("gems", XYtoP(x,y)))
                     {
-                        if (CheckBool("enemies", x, y))
+                        if (wallTile != null)
                         {
-                            if (Random.Range(0,SnekChance) < 1)
+                            if (wallTile.name.Contains("Dirt"))
                             {
-                                if (snekEnabled)
-                                {
-                                    Vector3 spawnpoint = wall.transform.position;
-                                    spawnpoint.x = spawnpoint.x + x - 0.5f;
-                                    spawnpoint.y = spawnpoint.y + y - 9.5f;
-                                    Instantiate(snek, spawnpoint, Quaternion.identity);
-                                }
-                            }
-                            else if (Random.Range(0, BatChance) < 1)
-                            {
-                                if (batEnabled)
-                                {
-                                    Vector3 spawnpoint = wall.transform.position;
-                                    spawnpoint.x = spawnpoint.x + x - 0.5f;
-                                    spawnpoint.y = spawnpoint.y + y - 9.5f;
-                                    Instantiate(bat, spawnpoint, Quaternion.identity);
-                                }
-                            }
-                            else if (Random.Range(0, BombyChance) < 1)
-                            {
-                                if (bombyEnabled)
-                                {
-                                    Vector3 spawnpoint = wall.transform.position;
-                                    spawnpoint.x = spawnpoint.x + x - 0.5f;
-                                    spawnpoint.y = spawnpoint.y + y - 9.5f;
-                                    Instantiate(bomby, spawnpoint, Quaternion.identity);
-                                }
-                            }
-                            else if (Random.Range(0, BeetleChance) < 1)
-                            {
-                                if (beetleEnabled)
-                                {
-                                    Vector3 spawnpoint = wall.transform.position;
-                                    spawnpoint.x = spawnpoint.x + x - 0.5f;
-                                    spawnpoint.y = spawnpoint.y + y - 9.5f;
-                                    Instantiate(beetle, spawnpoint, Quaternion.identity);
-                                }
-                            }
-                            else if (Random.Range(0, SpiderChance) < 1)
-                            {
-                                if (spiderEnabled)
-                                {
-                                    Vector3 spawnpoint = wall.transform.position;
-                                    spawnpoint.x = spawnpoint.x + x - 0.5f;
-                                    spawnpoint.y = spawnpoint.y + y - 9.5f;
-                                    Instantiate(spider, spawnpoint, Quaternion.identity);
-                                }
+                                if (Random.Range(0, DiamondChance) < 1) wall.SetTile(new Vector3Int(x - 1, y - 10, 0), Diamond);
+                                else if (Random.Range(0, GoldChance) < 1) wall.SetTile(new Vector3Int(x - 1, y - 10, 0), Gold);
+                                else if (Random.Range(0, SilverChance) < 1) wall.SetTile(new Vector3Int(x - 1, y - 10, 0), Silver);
+
                             }
                         }
-                        if (CheckBool("items", x, y))
+                        else if (rockTile != null)
                         {
-                            if (Random.Range(0, PebbleChance) < 1)
+                            if (rockTile.name.Contains("Rock"))
                             {
-                                Vector3 spawnpoint = wall.transform.position;
-                                spawnpoint.x = spawnpoint.x + x - 0.5f;
-                                spawnpoint.y = spawnpoint.y + y - 9.5f;
-                                Instantiate(pebble, spawnpoint, Quaternion.identity);
-                            }
-                            else if (Random.Range(0, MetalCrateChance) < 1)
-                            {
-                                Vector3 spawnpoint = wall.transform.position;
-                                spawnpoint.x = spawnpoint.x + x - 0.5f;
-                                spawnpoint.y = spawnpoint.y + y - 9.5f;
-                                Instantiate(metalCrate, spawnpoint, Quaternion.identity);
-                            }
-                            else if (Random.Range(0, WoodCrateChance) < 1)
-                            {
-                                Vector3 spawnpoint = wall.transform.position;
-                                spawnpoint.x = spawnpoint.x + x - 0.5f;
-                                spawnpoint.y = spawnpoint.y + y - 9.5f;
-                                Instantiate(woodCrate, spawnpoint, Quaternion.identity);
-                            }
-                        }
-                        if (CheckBool("spikes", x, y))
-                        {
-                            if (Random.Range(0, SpikeChance) < 1)
-                            {
-                                if (spikesEnabled)
-                                {
-                                    Vector3 spawnpoint = wall.transform.position;
-                                    spawnpoint.x = spawnpoint.x + x - 0.5f;
-                                    spawnpoint.y = spawnpoint.y + y - 9.5f;
-                                    Instantiate(spikes, spawnpoint, Quaternion.identity);
-                                }
-                            }
-                            else if (Random.Range(0, ArrowTrapChance) < 1)
-                            {
-                                if (arrowTrapEnabled)
-                                {
-                                    Vector3 spawnpoint = wall.transform.position;
-                                    spawnpoint.x = spawnpoint.x + x - 0.5f;
-                                    spawnpoint.y = spawnpoint.y + y - 9.5f;
-                                    Instantiate(arrowTrap, spawnpoint, Quaternion.identity);
-                                }
+                                if (Random.Range(0, DiamondChance) < 1) rock.SetTile(new Vector3Int(x - 1, y - 10, 0), DiamondRock);
+                                else if (Random.Range(0, GoldChance) < 1) rock.SetTile(new Vector3Int(x - 1, y - 10, 0), GoldRock);
+                                else if (Random.Range(0, SilverChance) < 1) rock.SetTile(new Vector3Int(x - 1, y - 10, 0), SilverRock);
                             }
                         }
                     }
-                    else
-                    {
-                        //Debug.Log("x:" + x + " y:" + y + " tile:" + tile.name);
-                        if (CheckBool("gems", x, y))
-                        {
-                            if (wallTile != null)
-                            {
-                                if (wallTile.name.Contains("Dirt"))
-                                {
-                                    if (Random.Range(0, DiamondChance) < 1) wall.SetTile(new Vector3Int(x - 1, y - 10, 0), Diamond);
-                                    else if (Random.Range(0, GoldChance) < 1) wall.SetTile(new Vector3Int(x - 1, y - 10, 0), Gold);
-                                    else if (Random.Range(0, SilverChance) < 1) wall.SetTile(new Vector3Int(x - 1, y - 10, 0), Silver);
-
-                                }
-                            }
-                            else if (rockTile != null)
-                            {
-                                if (rockTile.name.Contains("Rock"))
-                                {
-                                    if (Random.Range(0, DiamondChance) < 1) rock.SetTile(new Vector3Int(x - 1, y - 10, 0), DiamondRock);
-                                    else if (Random.Range(0, GoldChance) < 1) rock.SetTile(new Vector3Int(x - 1, y - 10, 0), GoldRock);
-                                    else if (Random.Range(0, SilverChance) < 1) rock.SetTile(new Vector3Int(x - 1, y - 10, 0), SilverRock);
-                                }
-                            }
-                        }
-                        if (CheckBool("enemies", x, y))
-                        {
-                            if (wallTile != null)
-                            {
-                                if (wallTile.name.Contains("Dirt"))
-                                {
-                                    if (Random.Range(0, MongChance) < 1)
-                                    {
-                                        if (mongEnabled)
-                                        {
-                                            Vector3 spawnpoint = wall.transform.position;
-                                            spawnpoint.x = spawnpoint.x + x - 0.5f;
-                                            spawnpoint.y = spawnpoint.y + y - 9.5f;
-                                            Instantiate(mong, spawnpoint, Quaternion.Euler(0, 0, Random.Range(0, 360)));
-                                        }
-                                    }
-                                    else if (Random.Range(0, MoleChance) < 1)
-                                    {
-                                        if (moleEnabled)
-                                        {
-                                            Vector3 spawnpoint = wall.transform.position;
-                                            spawnpoint.x = spawnpoint.x + x - 0.5f;
-                                            spawnpoint.y = spawnpoint.y + y - 9.5f;
-                                            Instantiate(mole, spawnpoint, Quaternion.Euler(0, 0, Random.Range(0, 360)));
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-            }
-            */
-            GetLivingThings();
+               }
+           }
     }
 
     private bool CheckBool(string type, int x)
@@ -1040,7 +898,6 @@ public class LevelGenerator : MonoBehaviour
         //NEW METHOD
         BoundsInt bounds = nodes[0].transform.GetChild(0).GetChild(0).gameObject.GetComponent<Tilemap>().cellBounds;
 
-        
         int spot = Random.Range(0,emptiesSum);
         int temp = 0;
         for(int p = 0; p < empties.Length; p++)
@@ -1063,5 +920,12 @@ public class LevelGenerator : MonoBehaviour
                 break;
             }
         }
+    }
+
+    private int XYtoP(int x, int y) 
+    {
+        int node = (x / 11) + (y / 11);
+        int p = node * 121 + x % 11 + (y % 11) * 11;
+        return p;
     }
 }
