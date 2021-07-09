@@ -15,10 +15,11 @@ GameObject:
   - component: {fileID: 1306530015506773599}
   - component: {fileID: 5717769411846116154}
   - component: {fileID: 6509142213604438465}
-  - component: {fileID: 321157577835021342}
   - component: {fileID: 7850544521196491456}
   - component: {fileID: 1508191824868838818}
   - component: {fileID: 3575435809316767317}
+  - component: {fileID: 8229132825578689431}
+  - component: {fileID: 7309419256027261270}
   m_Layer: 0
   m_Name: Beetle
   m_TagString: Living
@@ -52,6 +53,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aecb1d1506970e43974eb9bf30be00a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
+  stunned: 0
+  stunnable: 1
+  attacking: 0
+  pickupable: 1
+  pickedUp: 0
+  angered: 0
+  ani: {fileID: 0}
+  currentState: 
+  player: {fileID: 0}
+  health: 1
+  blood: {fileID: 6310010033770557549, guid: 7be9f23a949dabd4395ea7df6d1c745f, type: 3}
+  attackSoundPlayed: 0
+  attackSoundAudio: {fileID: 3575435809316767317}
   Big: 0
   moveSpeedBig: 2
   bigHealth: 3
@@ -197,20 +212,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.34415245, y: 0.51966953}
   m_EdgeRadius: 0
---- !u!114 &321157577835021342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1080977945638850635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d641eea33ece56f43abeccf85bf6e790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 1
-  blood: {fileID: 6310010033770557549, guid: 7be9f23a949dabd4395ea7df6d1c745f, type: 3}
 --- !u!114 &7850544521196491456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,7 +239,7 @@ MonoBehaviour:
   - {x: -0.32573032, y: 0.043174744, z: 0}
   m_ShapePathHash: -1639424611
   m_Mesh: {fileID: 0}
-  m_InstanceId: 65310
+  m_InstanceId: 68320
 --- !u!95 &1508191824868838818
 Animator:
   serializedVersion: 3
@@ -354,3 +355,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8229132825578689431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080977945638850635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bec58b531f80fc4f991dcdf5d0b5ecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  throwPower: 40
+--- !u!50 &7309419256027261270
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080977945638850635}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 5
+  m_AngularDrag: 5
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

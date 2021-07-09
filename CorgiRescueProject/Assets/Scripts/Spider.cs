@@ -2,18 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spider : MonoBehaviour
+public class Spider : Living
 {
-    string currentState;
-    Animator ani;
     Coroutine coroutine;
     bool triggered;
     [SerializeField]
     float walkTime;
     [SerializeField]
     float idleTime;
-    [SerializeField]
-    float movespeed;
     bool walking;
     //1 is upleft, 2 is upright, 3 is downright, 4 is downleft;
     int direction;
@@ -21,28 +17,26 @@ public class Spider : MonoBehaviour
     float bumprange;
     [SerializeField]
     float viewRange;
-    Transform player;
     bool checking;
     [SerializeField]
     float rotationspeed;
-    bool attacking;
     [SerializeField]
     GameObject WebBall;
     [SerializeField]
     float shotpower;
     Vector2 attackpoint;
 
-    private void Start()
+    protected override void Start()
     {
-        ani = GetComponent<Animator>();
+        base.Start();
         direction = Random.Range(1, 5);
         Rotate();
         StartCoroutine(Idle());
-        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         if (walking) 
         {
             RaycastHit2D hitforward = Physics2D.Raycast(transform.position, transform.up);
@@ -87,7 +81,6 @@ public class Spider : MonoBehaviour
                 }
             }
         }
-        
     }
 
     private IEnumerator CanSeeCheck() 
@@ -132,7 +125,7 @@ public class Spider : MonoBehaviour
         ChangeAnimationState("SpiderWalk");
         while (!triggered && timer < walkTime)
         {
-            transform.position = Vector2.MoveTowards(transform.position, transform.position + transform.up, movespeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, transform.position + transform.up, speed * Time.deltaTime);
             timer += Time.deltaTime;
             yield return null;
         }
@@ -188,15 +181,6 @@ public class Spider : MonoBehaviour
         else Debug.Log("invalid direction for spider");
     }
 
-    void ChangeAnimationState(string newState)
-    {
-        if (currentState == newState) return;
-
-        ani.Play(newState);
-
-        currentState = newState;
-    }
-
     private void AttackingEnd() 
     {
         attacking = false;
@@ -207,5 +191,6 @@ public class Spider : MonoBehaviour
     {
         GameObject web = Instantiate(WebBall, transform.position - transform.up / 2, Quaternion.identity);
         web.GetComponent<Rigidbody2D>().AddForce((attackpoint - new Vector2(transform.position.x, transform.position.y)).normalized * shotpower, ForceMode2D.Impulse);
+        
     }
 }

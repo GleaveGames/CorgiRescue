@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 1306530015506773599}
   - component: {fileID: 5717769411846116154}
   - component: {fileID: 6509142213604438465}
-  - component: {fileID: 321157577835021342}
   - component: {fileID: 7850544521196491456}
   - component: {fileID: 1508191824868838818}
+  - component: {fileID: 7896147624022010266}
+  - component: {fileID: 4345923630833781186}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Living
@@ -51,9 +52,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9f948a059ed25b48b7deaa330522252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 3
+  stunned: 0
+  stunnable: 1
+  attacking: 0
+  pickupable: 1
+  pickedUp: 0
+  angered: 0
+  ani: {fileID: 0}
+  currentState: 
+  player: {fileID: 0}
+  health: 3
+  blood: {fileID: 6310010033770557549, guid: 7be9f23a949dabd4395ea7df6d1c745f, type: 3}
+  attackSoundPlayed: 0
+  attackSoundAudio: {fileID: 0}
   walkTime: 4
   idleTime: 2
-  movespeed: 2
   bumprange: 0.4
   viewRange: 8
   rotationspeed: 12
@@ -167,6 +181,8 @@ MonoBehaviour:
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
   canHurtPlayer: 1
+  spawnsObjOnCollision: 0
+  collisionObject: {fileID: 0}
 --- !u!61 &6509142213604438465
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -193,20 +209,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.34415245, y: 0.51966953}
   m_EdgeRadius: 0
---- !u!114 &321157577835021342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1080977945638850635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d641eea33ece56f43abeccf85bf6e790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 1
-  blood: {fileID: 6310010033770557549, guid: 7be9f23a949dabd4395ea7df6d1c745f, type: 3}
 --- !u!114 &7850544521196491456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,7 +236,7 @@ MonoBehaviour:
   - {x: -0.32573032, y: 0.043174744, z: 0}
   m_ShapePathHash: -1639424611
   m_Mesh: {fileID: 0}
-  m_InstanceId: 100590
+  m_InstanceId: 74802
 --- !u!95 &1508191824868838818
 Animator:
   serializedVersion: 3
@@ -254,3 +256,37 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!50 &7896147624022010266
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080977945638850635}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 5
+  m_AngularDrag: 3
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &4345923630833781186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080977945638850635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bec58b531f80fc4f991dcdf5d0b5ecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  throwPower: 10

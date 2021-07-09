@@ -47,7 +47,7 @@ public class Web : MonoBehaviour
         if (collision.gameObject.CompareTag("Player")) 
         {
             Player = collision.gameObject;
-            Player.GetComponent<playerMovement>().runsp = FindObjectOfType<playerStats>().moveSpeed / 6;
+            FindObjectOfType<playerStats>().moveSpeed /= 6;
             am.Play("Web", transform.position, false);
         }
     }
@@ -56,7 +56,7 @@ public class Web : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player")) 
         {
-            Player.GetComponent<playerMovement>().runsp = FindObjectOfType<playerStats>().moveSpeed;
+            FindObjectOfType<playerStats>().moveSpeed *= 6;
         }
     }
 }

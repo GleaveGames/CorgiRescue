@@ -2,18 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Beetle : MonoBehaviour
+public class Beetle : Living
 {
     bool idle, turning, midturn;
     float bumprange;
-    float movespeed;
     Coroutine coroutine;
     int RotationDir;
-    Animator ani;
-    string currentState;
-
-
-
     [SerializeField]
     bool Big;
 
@@ -38,39 +32,33 @@ public class Beetle : MonoBehaviour
     float bumpRangeLittle = 0.2f;
     AudioSource crawlsound;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         crawlsound = GetComponent<AudioSource>();
         if(Random.Range(0,2) < 1) Big = true; 
-        ani = GetComponent<Animator>();
         idle = true;
         Rerotate();
-        if (Big) 
-        {
-            BigStats();
-        }
-        else 
-        {
-            LittleStats();
-        }
+        if (Big) BigStats();
+        else LittleStats();
     }
 
     private void BigStats() 
     {
-        movespeed = moveSpeedBig;
-        GetComponent<CharacterStats>().health = bigHealth;
+        speed = moveSpeedBig;
+        health = bigHealth;
         ani.runtimeAnimatorController = bigAni;
         bumprange = bumpRangeBig;
+        rb.mass = 5;
     }
 
     private void LittleStats() 
     {
-        movespeed = moveSpeedLittle;
-        GetComponent<CharacterStats>().health = littleHealth;
+        speed = moveSpeedLittle;
+        health = littleHealth;
         ani.runtimeAnimatorController = littleAni;
         bumprange = bumpRangeLittle;
     }
-
 
     private void FixedUpdate()
     {
@@ -82,17 +70,14 @@ public class Beetle : MonoBehaviour
             if (Vector2.Distance(hit.point, transform.position) > bumprange && Vector2.Distance(hit1.point, transform.position) > bumprange && Vector2.Distance(hit2.point, transform.position) > bumprange && !turning)
             {
                 //move forward;
-                transform.position = Vector2.MoveTowards(transform.position, hit.point, movespeed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, hit.point, speed * Time.deltaTime);
                 midturn = false;
             }
             else
             //pause, rotate 90 left or right;
             {
                 turning = true;
-                if (!midturn) 
-                {
-                    StartCoroutine(Turn());
-                }
+                if (!midturn) StartCoroutine(Turn());
             }
         }
     }
@@ -121,14 +106,4 @@ public class Beetle : MonoBehaviour
         else if (RotationDir == 3) transform.up = Vector2.down;
         else if (RotationDir == 4) transform.up = Vector2.left;
     }
-
-    void ChangeAnimationState(string newState)
-    {
-        if (currentState == newState) return;
-
-        ani.Play(newState);
-
-        currentState = newState;
-    }
-
 }
