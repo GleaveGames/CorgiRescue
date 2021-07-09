@@ -29,10 +29,7 @@ public class Living : MonoBehaviour
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        if (!pickupable) 
-        {
-            Destroy(GetComponent<PickUpEnemy>());
-        }
+        if (!pickupable) Destroy(GetComponent<PickUpEnemy>());
         lg = FindObjectOfType<LevelGenerator>();
         am = FindObjectOfType<AudioManager>();
         ani = GetComponent<Animator>();

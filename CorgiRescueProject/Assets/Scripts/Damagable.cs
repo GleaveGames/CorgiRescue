@@ -155,8 +155,10 @@ public class Damagable : MonoBehaviour
             yield return new WaitForSeconds(stuntime);
             liv.enabled = true;
             GetComponent<Animator>().enabled = true;
-        }
             
+        }
+        living.stunned = false;
+
         if (TryGetComponent(out DamagesPlayer damplay2))
         {
             damplay2.canHurt = true;
@@ -166,7 +168,6 @@ public class Damagable : MonoBehaviour
             if (living.pickupable) GetComponent<PickUpEnemy>().EnableCollision();
         }
         Destroy(ducko);
-        living.stunned = false;
         if (living.pickupable)
         {
             FindObjectOfType<LevelGenerator>().itemsForPickUp.Remove(gameObject);
