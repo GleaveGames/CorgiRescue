@@ -85,7 +85,8 @@ public class cameraoptions : MonoBehaviour
         }
         else
         {
-            Vector2 move = pc.Game.Move.ReadValue<Vector2>();
+            //just hacked in aim instaed of move here cus it would work better :)
+            Vector2 move = pc.Game.Aim.ReadValue<Vector2>();
             if (player == null)
             {
                 player = GameObject.FindGameObjectWithTag("Player").transform;

@@ -125,13 +125,11 @@ public class playerMovement : MonoBehaviour
                 else
                 {
                     newRot.z = Mathf.Rad2Deg * Mathf.Atan(-aim.x / aim.y);
-
                 }
                 Quaternion quaternion = Quaternion.Euler(newRot.x, newRot.y, newRot.z);
                 Quaternion rot = Quaternion.Lerp(transform.rotation, quaternion, turnSpeed);
                 //child.transform.eulerAngles = newRot;
                 transform.rotation = rot;
-
             }
 
 
@@ -308,7 +306,6 @@ public class playerMovement : MonoBehaviour
         {
             GetComponent<DebugStuff.Debugger>().enabled = true;
         }
-
     }
 
     private void OnEnable()
