@@ -27,15 +27,8 @@ public class Miner : MonoBehaviour
     public GameObject rockParticles;
     public GameObject obsidianParticles;
     public GameObject iceParticles;
+    public GameObject woodParticles;
 
-    [SerializeField]
-    private int diamondWorth;
-    [SerializeField]
-    private int goldWorth;
-    [SerializeField]
-    private int silverWorth;
-    private playerStats ps;
-    private GameObject newParticles;
     [SerializeField]
     private AudioManager am;
     [SerializeField]
@@ -43,7 +36,6 @@ public class Miner : MonoBehaviour
 
     private void Start()
     {
-        ps = FindObjectOfType<playerStats>();
         am = FindObjectOfType<AudioManager>();
         tilemaps = new Tilemap[3];
         tilemaps[0] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("Walls").GetComponent<Tilemap>();
@@ -110,40 +102,45 @@ public class Miner : MonoBehaviour
         if (name.Contains("Diamond"))
         {
             sound = "Dirt";
-            var newParticles = Instantiate(diamondParticles, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
+            Instantiate(diamondParticles, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
         }
         else if (name.Contains("Gold"))
         {
             sound = "Dirt";
-            var newParticles = Instantiate(goldParticles, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
+            Instantiate(goldParticles, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
         }
         else if (name.Contains("Silver"))
         {
             sound = "Dirt";
-            var newParticles = Instantiate(silverParticles, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
+            Instantiate(silverParticles, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
         }
         else if (name.Contains("Dirt"))
         {
             sound = "Dirt";
-            var newParticles = Instantiate(dirtParticles, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
-            if (Random.Range(0, 250) < 1) Instantiate(pebble, hitPosition, UnityEngine.Quaternion.identity);
+            Instantiate(dirtParticles, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
+            if (Random.Range(0, 100) < 1) Instantiate(pebble, hitPosition, UnityEngine.Quaternion.identity);
         }
         else if (name.Contains("Rock"))
         {
             sound = "Rock";
             if (Random.Range(0, 100) < 1) Instantiate(pebble, hitPosition, UnityEngine.Quaternion.identity);
-            var newParticles = Instantiate(rockParticles, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
+            Instantiate(rockParticles, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
         }
         
         else if (name.Contains("Snow"))
         {
             sound = "Snow";
-            var newParticles = Instantiate(snowParticles, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
+            Instantiate(snowParticles, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
         }
         else if (name.Contains("Ice"))
         {
             sound = "Ice";
-            var newParticles = Instantiate(iceParticles, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
+            Instantiate(iceParticles, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
+        }
+        else if (name.Contains("Wood")) 
+        {
+            sound = "Wood";
+            Instantiate(woodParticles, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
         }
         else{
             Debug.Log(name + " tile hasn't been configured.");

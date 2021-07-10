@@ -138,6 +138,7 @@ MonoBehaviour:
   rockParticles: {fileID: 6310010033770557549, guid: 26d1cb29dd6205947b8c2f8b58f63827, type: 3}
   obsidianParticles: {fileID: 6310010033770557549, guid: 26d1cb29dd6205947b8c2f8b58f63827, type: 3}
   iceParticles: {fileID: 6310010033770557549, guid: 5a2aa885808012549917e1040dcc4765, type: 3}
+  woodParticles: {fileID: 6310010033770557549, guid: 0937982c73c8fec4e8835cba807e442e, type: 3}
   diamondWorth: 1000
   goldWorth: 500
   silverWorth: 100
@@ -162,6 +163,8 @@ MonoBehaviour:
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
   canHurtPlayer: 0
+  spawnsObjOnCollision: 0
+  collisionObject: {fileID: 0}
 --- !u!114 &496949969147489691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,7 +374,7 @@ MonoBehaviour:
   - {x: -0.28731337, y: 0.010089253, z: 0}
   m_ShapePathHash: 543634639
   m_Mesh: {fileID: 0}
-  m_InstanceId: 58202
+  m_InstanceId: 94826
 --- !u!114 &8841328252463168419
 MonoBehaviour:
   m_ObjectHideFlags: 0
