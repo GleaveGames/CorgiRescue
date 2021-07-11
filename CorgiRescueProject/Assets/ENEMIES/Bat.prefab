@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: -3494325401532709634}
   - component: {fileID: 2307276744979374918}
   - component: {fileID: 6051957505586171004}
+  - component: {fileID: 3345040816621690900}
   m_Layer: 2
   m_Name: Bat
   m_TagString: Living
@@ -166,6 +167,8 @@ MonoBehaviour:
   pickupable: 0
   pickedUp: 0
   angered: 0
+  canMove: 0
+  knockbackable: 1
   ani: {fileID: 0}
   currentState: 
   player: {fileID: 0}
@@ -201,7 +204,9 @@ MonoBehaviour:
   bomby: 0
   littleBlood: {fileID: 1654121160770679037, guid: 58d437bff74a2aa4896badd67bce2666, type: 3}
   stuntime: 3
-  Living: 0
+  knockbackPower: 20
+  knockbackTime: 0.3
+  Living: 1
   PickUpItems: 1
   Pick: 1
   Bombs: 1
@@ -342,7 +347,7 @@ MonoBehaviour:
   - {x: -0.50734544, y: -0.003279686, z: 0}
   m_ShapePathHash: 1116525385
   m_Mesh: {fileID: 0}
-  m_InstanceId: 26082
+  m_InstanceId: 70434
 --- !u!114 &2307276744979374918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,3 +374,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0990266ada5e5b84297de08f0b94638b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &3345040816621690900
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8621365850395960104}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

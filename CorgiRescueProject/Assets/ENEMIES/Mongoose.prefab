@@ -100,6 +100,8 @@ MonoBehaviour:
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
   canHurtPlayer: 1
+  spawnsObjOnCollision: 0
+  collisionObject: {fileID: 0}
 --- !u!114 &5686374190113552966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,7 +120,9 @@ MonoBehaviour:
   bomby: 0
   littleBlood: {fileID: 1654121160770679037, guid: 58d437bff74a2aa4896badd67bce2666, type: 3}
   stuntime: 3
-  Living: 0
+  knockbackPower: 20
+  knockbackTime: 0.3
+  Living: 1
   PickUpItems: 1
   Pick: 1
   Bombs: 1

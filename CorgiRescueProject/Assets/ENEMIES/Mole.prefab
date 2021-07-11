@@ -142,9 +142,6 @@ MonoBehaviour:
   obsidianParticles: {fileID: 6310010033770557549, guid: 26d1cb29dd6205947b8c2f8b58f63827, type: 3}
   iceParticles: {fileID: 288472715338334145, guid: 6bbdcc5d58ea4e349954de110e42584c, type: 3}
   woodParticles: {fileID: 6310010033770557549, guid: 0937982c73c8fec4e8835cba807e442e, type: 3}
-  diamondWorth: 0
-  goldWorth: 0
-  silverWorth: 0
   am: {fileID: 0}
   pebble: {fileID: 5020420758543740405, guid: 0e3ff7031044bfb418f342415528e0bf, type: 3}
 --- !u!58 &7471924862020509357
@@ -222,6 +219,8 @@ MonoBehaviour:
   pickupable: 1
   pickedUp: 0
   angered: 0
+  canMove: 0
+  knockbackable: 1
   ani: {fileID: 0}
   currentState: 
   player: {fileID: 0}
@@ -249,7 +248,9 @@ MonoBehaviour:
   bomby: 0
   littleBlood: {fileID: 1654121160770679037, guid: 58d437bff74a2aa4896badd67bce2666, type: 3}
   stuntime: 3
-  Living: 0
+  knockbackPower: 20
+  knockbackTime: 0.3
+  Living: 1
   PickUpItems: 1
   Pick: 1
   Bombs: 1

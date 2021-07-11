@@ -61,6 +61,8 @@ MonoBehaviour:
   pickupable: 1
   pickedUp: 0
   angered: 0
+  canMove: 0
+  knockbackable: 1
   ani: {fileID: 0}
   currentState: 
   player: {fileID: 0}
@@ -181,7 +183,9 @@ MonoBehaviour:
   bomby: 0
   littleBlood: {fileID: 1654121160770679037, guid: 58d437bff74a2aa4896badd67bce2666, type: 3}
   stuntime: 3
-  Living: 0
+  knockbackPower: 20
+  knockbackTime: 0.3
+  Living: 1
   PickUpItems: 1
   Pick: 1
   Bombs: 1

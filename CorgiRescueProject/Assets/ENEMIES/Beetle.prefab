@@ -60,6 +60,8 @@ MonoBehaviour:
   pickupable: 1
   pickedUp: 0
   angered: 0
+  canMove: 0
+  knockbackable: 1
   ani: {fileID: 0}
   currentState: 
   player: {fileID: 0}
@@ -145,6 +147,8 @@ MonoBehaviour:
   bomby: 0
   littleBlood: {fileID: 1654121160770679037, guid: 58d437bff74a2aa4896badd67bce2666, type: 3}
   stuntime: 3
+  knockbackPower: 20
+  knockbackTime: 0.3
   Living: 1
   PickUpItems: 1
   Pick: 1
@@ -239,7 +243,7 @@ MonoBehaviour:
   - {x: -0.32573032, y: 0.043174744, z: 0}
   m_ShapePathHash: -1639424611
   m_Mesh: {fileID: 0}
-  m_InstanceId: 68320
+  m_InstanceId: 62640
 --- !u!95 &1508191824868838818
 Animator:
   serializedVersion: 3
@@ -367,7 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bec58b531f80fc4f991dcdf5d0b5ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwPower: 40
+  throwPower: 100
 --- !u!50 &7309419256027261270
 Rigidbody2D:
   serializedVersion: 4

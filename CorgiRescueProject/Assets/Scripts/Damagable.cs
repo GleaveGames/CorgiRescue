@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Damagable : MonoBehaviour
 {
+
     Living living;
     [SerializeField] 
     private bool SK = false;
@@ -17,6 +18,11 @@ public class Damagable : MonoBehaviour
     private ParticleSystem littleBlood;
     [SerializeField]
     private float stuntime = 3f;
+    [SerializeField]
+    private float knockbackPower = 7;
+    [SerializeField]
+    float knockbackTime = 0.3f;
+
 
     [Header("Damaged By: ")]
     [SerializeField]
@@ -33,6 +39,7 @@ public class Damagable : MonoBehaviour
     private GameObject Ducks;
     Coroutine coroutine;
     PickUpEnemy pickupenemy;
+    
 
     private void Start()
     {
@@ -42,7 +49,8 @@ public class Damagable : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if ((Living && collision.gameObject.CompareTag("Living")) ||
+        //making it so living only does damage if the thing that is colliding with it is stunned
+        if ((Living && collision.gameObject.CompareTag("Living") && collision.gameObject.GetComponent<Living>().stunned) ||
             (PickUpItems && collision.gameObject.CompareTag("PickupItems")) ||
             (Pick && collision.gameObject.CompareTag("Pick")) ||
             (Bombs && collision.gameObject.name == "Bomb(Clone)") || 
@@ -63,7 +71,7 @@ public class Damagable : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if ((Living && collision.gameObject.CompareTag("Living")) ||
+        if ((Living && collision.gameObject.CompareTag("Living") && collision.gameObject.GetComponent<Living>().stunned) ||
             (Pick && collision.gameObject.CompareTag("Pick")) ||
             (Bombs && collision.gameObject.name == "Bomb(Clone)") ||
             (Traps && collision.gameObject.CompareTag("Trap")))
@@ -117,6 +125,7 @@ public class Damagable : MonoBehaviour
             Instantiate(littleBlood, transform.position, Quaternion.identity);
             Anger(collisionObj);
             StartCoroutine(Dizzy());
+            if(living.knockbackable) living.KnockBack(knockbackTime,  (transform.position - collisionObj.transform.position).normalized * knockbackPower);
         }
     }
 

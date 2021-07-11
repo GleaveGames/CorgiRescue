@@ -148,6 +148,8 @@ MonoBehaviour:
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
   canHurtPlayer: 1
+  spawnsObjOnCollision: 0
+  collisionObject: {fileID: 0}
 --- !u!114 &496949969147489691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,9 +193,7 @@ MonoBehaviour:
   rockParticles: {fileID: 6310010033770557549, guid: 26d1cb29dd6205947b8c2f8b58f63827, type: 3}
   obsidianParticles: {fileID: 6310010033770557549, guid: 26d1cb29dd6205947b8c2f8b58f63827, type: 3}
   iceParticles: {fileID: 0}
-  diamondWorth: 1000
-  goldWorth: 300
-  silverWorth: 100
+  woodParticles: {fileID: 0}
   am: {fileID: 0}
   pebble: {fileID: 5020420758543740405, guid: 0e3ff7031044bfb418f342415528e0bf, type: 3}
 --- !u!114 &8200399939212217065
@@ -419,6 +419,8 @@ MonoBehaviour:
   bomby: 1
   littleBlood: {fileID: 0}
   stuntime: 3
+  knockbackPower: 20
+  knockbackTime: 0.3
   Living: 1
   PickUpItems: 1
   Pick: 1

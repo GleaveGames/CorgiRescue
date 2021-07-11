@@ -55,7 +55,7 @@ public class playerStats : MonoBehaviour
         money = 0;
         health = 5;
         bombs = 5;
-        miningSpeed = 0.6f;
+        miningSpeed = 1;
         moveSpeed = 6;
         spikegloves = false;
         steeltoes = false;

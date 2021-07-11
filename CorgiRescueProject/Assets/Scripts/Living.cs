@@ -11,6 +11,8 @@ public class Living : MonoBehaviour
     public bool pickupable;
     public bool pickedUp;
     public bool angered;
+    public bool canMove;
+    public bool knockbackable = true;
     protected Coroutine coroutine;
     [HideInInspector]
     public Animator ani;
@@ -41,6 +43,7 @@ public class Living : MonoBehaviour
     protected virtual void Update()
     {
         if (health < 1) Die();
+        if(!canMove) return;
     }
 
     private IEnumerator GetPlayer() 
@@ -101,5 +104,18 @@ public class Living : MonoBehaviour
         attackSoundAudio.Play();
         yield return new WaitForSeconds(3);
         attackSoundPlayed = false;
+    }
+
+    public void KnockBack(float time, Vector3 force)
+    {
+        StartCoroutine(StartKnockBack(force, time));
+    }
+
+    public IEnumerator StartKnockBack(Vector2 knockbackForce, float time)
+    {
+        rb.AddForce(knockbackForce, ForceMode2D.Impulse);
+        canMove = false;
+        yield return new WaitForSeconds(time);
+        canMove = true;
     }
 }
