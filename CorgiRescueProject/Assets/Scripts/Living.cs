@@ -28,6 +28,8 @@ public class Living : MonoBehaviour
     [SerializeField]
     AudioSource attackSoundAudio;
     protected Rigidbody2D rb;
+    [SerializeField]
+    LayerMask tiles;
 
     protected virtual void Start()
     {
@@ -85,18 +87,10 @@ public class Living : MonoBehaviour
     }
 
     protected RaycastHit2D ClosestWall(Vector2 direction)
-    {
-        RaycastHit2D[] hitswall = Physics2D.RaycastAll(transform.position, direction);
-        RaycastHit2D closestValidHit = new RaycastHit2D();
-        Debug.DrawRay(transform.position, direction);
-        foreach (RaycastHit2D hit in hitswall)
-        {
-            if ((hit.transform.gameObject.tag == "Wall" | hit.transform.gameObject.tag == "Obsidian" | hit.transform.gameObject.tag == "Rock") && (closestValidHit.collider == null || closestValidHit.distance > hit.distance))
-            {
-                closestValidHit = hit;
-            }
-        }
-        return closestValidHit;
+    { 
+        //working YOU MUST USE A DISTANCE FOR LAYERMASK TO WORK
+        RaycastHit2D closestWall = Physics2D.Raycast(transform.position, direction, 9999, tiles);
+        return closestWall;
     }
 
     protected IEnumerator AttackSound()

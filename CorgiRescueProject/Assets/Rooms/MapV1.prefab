@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 66988454608132661}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Node (11)
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 66988454866533268}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Node (3)
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 66988455015379934}
   - component: {fileID: 66988455015379933}
   - component: {fileID: 66988455015379932}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Tilemap
   m_TagString: Obsidian
   m_Icon: {fileID: 0}
@@ -1836,7 +1836,7 @@ GameObject:
   - component: {fileID: 66988455113154807}
   - component: {fileID: 66988455113154800}
   - component: {fileID: 8819094462478425751}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: MapV1
   m_TagString: Map
   m_Icon: {fileID: 0}
@@ -1989,7 +1989,7 @@ MonoBehaviour:
   spider: {fileID: 0}
   spiderEnabled: 0
   bat: {fileID: 8621365850395960104, guid: afc07b170c172824c95d0fef2afcff5b, type: 3}
-  batEnabled: 0
+  batEnabled: 1
   mole: {fileID: 7471924862020509344, guid: 10f6b3f98f59a4e49b0230c216ac6187, type: 3}
   moleEnabled: 1
   mong: {fileID: 15094032670358419, guid: 8a26f5f7d484fff4bbabcf8ef96fcfcc, type: 3}
@@ -2004,6 +2004,9 @@ MonoBehaviour:
   spikesEnabled: 1
   arrowTrap: {fileID: 0}
   arrowTrapEnabled: 0
+  tilesLayer:
+    serializedVersion: 2
+    m_Bits: 8192
 --- !u!114 &8819094462478425751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2055,7 +2058,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 66988455185720444}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Node (9)
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -2086,7 +2089,7 @@ GameObject:
   m_Component:
   - component: {fileID: 66988455407270188}
   - component: {fileID: 66988455407270189}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: OuterWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2130,7 +2133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 66988455443833932}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Node (6)
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -2160,7 +2163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 66988455496040562}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Node (2)
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -2190,7 +2193,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 66988455678535546}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Node (4)
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -2220,7 +2223,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 66988455777756154}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Node (5)
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -2250,7 +2253,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 66988455821818403}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Node (8)
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -2280,7 +2283,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 66988455895123359}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Node (10)
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -2310,7 +2313,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 66988456075720493}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Node (7)
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -2340,7 +2343,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 66988456269944631}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Node (1)
   m_TagString: Node1
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -2370,7 +2373,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 66988456557933683}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Node (12)
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -2398,6 +2401,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 66988455407270188}
     m_Modifications:
+    - target: {fileID: 560008634993258992, guid: a4b0942f4f933a34389ac3042f0a4e57, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862292373580731208, guid: a4b0942f4f933a34389ac3042f0a4e57, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236850827137436930, guid: a4b0942f4f933a34389ac3042f0a4e57, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 4551508298240449611, guid: a4b0942f4f933a34389ac3042f0a4e57, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2445,6 +2460,14 @@ PrefabInstance:
     - target: {fileID: 7284497500383868637, guid: a4b0942f4f933a34389ac3042f0a4e57, type: 3}
       propertyPath: m_Name
       value: OuterWalls
+      objectReference: {fileID: 0}
+    - target: {fileID: 7284497500383868637, guid: a4b0942f4f933a34389ac3042f0a4e57, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 9144365924980161767, guid: a4b0942f4f933a34389ac3042f0a4e57, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4b0942f4f933a34389ac3042f0a4e57, type: 3}

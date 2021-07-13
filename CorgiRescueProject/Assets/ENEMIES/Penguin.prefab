@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 5710956553597079401}
   - component: {fileID: 882750228717935243}
   - component: {fileID: 5160885419247695953}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Penguin
   m_TagString: Living
   m_Icon: {fileID: 0}
@@ -70,6 +70,9 @@ MonoBehaviour:
   blood: {fileID: 6310010033770557549, guid: 7be9f23a949dabd4395ea7df6d1c745f, type: 3}
   attackSoundPlayed: 0
   attackSoundAudio: {fileID: 2777830762697218060}
+  tiles:
+    serializedVersion: 2
+    m_Bits: 8192
   triggered: 0
   rotateTime: 1
   lookDist: 6

@@ -159,8 +159,6 @@ public class LevelGenerator : MonoBehaviour
     private int[] empties = new int[1452];
     int emptiesSum = 0;
 
-
-
     void Start()
     {
         if (LV0)
@@ -883,7 +881,8 @@ public class LevelGenerator : MonoBehaviour
                     }
                 }
             }
-        }        
+        }
+        SetLayerToTiles();
     }
 
 
@@ -927,5 +926,14 @@ public class LevelGenerator : MonoBehaviour
         int node = (x / 11) + (y / 11);
         int p = node * 121 + x % 11 + (y % 11) * 11;
         return p;
+    }
+
+    private void SetLayerToTiles() 
+    {
+        transform.GetChild(0).GetChild(0).gameObject.layer = 13;
+        for(int i = 0; i < transform.GetChild(0).GetChild(0).childCount; i++)
+        {
+            transform.GetChild(0).GetChild(0).GetChild(i).gameObject.layer = 13;
+        }
     }
 }

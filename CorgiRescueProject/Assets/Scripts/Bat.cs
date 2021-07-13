@@ -9,7 +9,8 @@ public class Bat : Living
     private bool swooping;
     private bool swoopend;
 
-    public LayerMask IgnoreMe;
+    [SerializeField]
+    LayerMask IgnoreMe;
     public bool inSwarm;
     public bool triggered;
     [SerializeField]
@@ -54,7 +55,8 @@ public class Bat : Living
         {
             if (triggered) 
             {
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up);
+                //ignoring ground enemies
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 9999, ~IgnoreMe);
                 if (Vector2.Distance(hit.point, transform.position) > 0.2 || triggerpause)
                 {
                     if (!swooping)

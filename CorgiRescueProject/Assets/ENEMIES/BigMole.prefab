@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8765779107476305637}
   - component: {fileID: 4717086444592006037}
   - component: {fileID: 6608820596123985820}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: ZZZ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4893,7 +4893,7 @@ GameObject:
   - component: {fileID: -1647094339106059303}
   - component: {fileID: 3737241601477930650}
   - component: {fileID: 7179978413368813153}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: BigMole
   m_TagString: Living
   m_Icon: {fileID: 0}
@@ -4994,6 +4994,9 @@ MonoBehaviour:
   blood: {fileID: 6310010033770557549, guid: 7be9f23a949dabd4395ea7df6d1c745f, type: 3}
   attackSoundPlayed: 0
   attackSoundAudio: {fileID: 5712929639497512139}
+  tiles:
+    serializedVersion: 2
+    m_Bits: 8192
   offset: -90
   boss: 1
 --- !u!114 &425030333070423495

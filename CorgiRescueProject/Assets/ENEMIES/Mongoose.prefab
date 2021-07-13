@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 8187029979794119533}
   - component: {fileID: 6151886795089866090}
   - component: {fileID: 8419975821476376457}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Mongoose
   m_TagString: Living
   m_Icon: {fileID: 0}
@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 411445329521766469}
   - component: {fileID: 202157502354717866}
   - component: {fileID: 8193888317692980052}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: New Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -431,7 +431,7 @@ GameObject:
   - component: {fileID: 88099378760239079}
   - component: {fileID: 6113448500787427530}
   - component: {fileID: 2595558580050754910}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: DigParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}

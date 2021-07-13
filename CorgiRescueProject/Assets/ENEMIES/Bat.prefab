@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 2307276744979374918}
   - component: {fileID: 6051957505586171004}
   - component: {fileID: 3345040816621690900}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: Bat
   m_TagString: Living
   m_Icon: {fileID: 0}
@@ -176,10 +176,13 @@ MonoBehaviour:
   blood: {fileID: 6310010033770557549, guid: 7be9f23a949dabd4395ea7df6d1c745f, type: 3}
   attackSoundPlayed: 0
   attackSoundAudio: {fileID: 7823091621566323761}
+  tiles:
+    serializedVersion: 2
+    m_Bits: 8192
   swoopDist: 2.6
   IgnoreMe:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 16896
   inSwarm: 0
   triggered: 0
   rot: {x: 0, y: 0, z: 0, w: 0}
@@ -347,7 +350,7 @@ MonoBehaviour:
   - {x: -0.50734544, y: -0.003279686, z: 0}
   m_ShapePathHash: 1116525385
   m_Mesh: {fileID: 0}
-  m_InstanceId: 70434
+  m_InstanceId: 86390
 --- !u!114 &2307276744979374918
 MonoBehaviour:
   m_ObjectHideFlags: 0

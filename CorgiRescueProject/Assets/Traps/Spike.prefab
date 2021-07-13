@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 7505516332068713107}
   - component: {fileID: 7323460058625879162}
   - component: {fileID: 7940437099766981804}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Spike
   m_TagString: Trap
   m_Icon: {fileID: 0}
@@ -170,6 +170,8 @@ MonoBehaviour:
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
   canHurtPlayer: 1
+  spawnsObjOnCollision: 0
+  collisionObject: {fileID: 0}
 --- !u!82 &4880988713419339161
 AudioSource:
   m_ObjectHideFlags: 0
@@ -319,7 +321,7 @@ MonoBehaviour:
   - {x: -0.35813046, y: 0.3613956, z: 0}
   m_ShapePathHash: -558115459
   m_Mesh: {fileID: 0}
-  m_InstanceId: 57762
+  m_InstanceId: 83964
 --- !u!114 &7940437099766981804
 MonoBehaviour:
   m_ObjectHideFlags: 0

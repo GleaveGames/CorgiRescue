@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 2503999288548449287}
   - component: {fileID: 6395548067137857559}
   - component: {fileID: 1606944083723503383}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: WoodCrate
   m_TagString: PickupItems
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ MonoBehaviour:
   - {x: -0.34823036, y: 0.3448949, z: 0}
   m_ShapePathHash: 407443349
   m_Mesh: {fileID: 0}
-  m_InstanceId: 71996
+  m_InstanceId: 83856
 --- !u!114 &4159018020417223413
 MonoBehaviour:
   m_ObjectHideFlags: 0

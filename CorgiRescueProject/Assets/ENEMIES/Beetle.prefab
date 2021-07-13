@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 3575435809316767317}
   - component: {fileID: 8229132825578689431}
   - component: {fileID: 7309419256027261270}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Beetle
   m_TagString: Living
   m_Icon: {fileID: 0}
@@ -69,6 +69,9 @@ MonoBehaviour:
   blood: {fileID: 6310010033770557549, guid: 7be9f23a949dabd4395ea7df6d1c745f, type: 3}
   attackSoundPlayed: 0
   attackSoundAudio: {fileID: 3575435809316767317}
+  tiles:
+    serializedVersion: 2
+    m_Bits: 8192
   Big: 0
   moveSpeedBig: 2
   bigHealth: 3

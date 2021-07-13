@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class snek : Living
 {
-    [SerializeField]
-    Coroutine coroutine;
     private RaycastHit2D hit;
     [SerializeField]
     AnimationCurve telegraphJuice;

@@ -32,12 +32,12 @@ TagManager:
   - 
   - 
   - Bullets
-  - Bats
+  - FlyingEnemy
   - IceSpikeSpawn
   - BigSnowBall
   - IceSpike
-  - 
-  - 
+  - Tiles
+  - GroundEnemy
   - 
   - 
   - 
