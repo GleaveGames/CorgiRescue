@@ -1,25 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class Living : MonoBehaviour
 {
+    [Header ("Saved Variables")]
     public float speed;
-    public bool stunned;
     public bool stunnable;
-    public bool attacking;
     public bool pickupable;
+    public bool knockbackable = true;
+    public int health = 1;
+    public float mass;
+    public float linearDrag;
+    public float angularDrag;
+
+    [Header ("Other")]
+    public bool stunned;
+    public bool attacking;
     public bool pickedUp;
     public bool angered;
     public bool canMove;
-    public bool knockbackable = true;
     protected Coroutine coroutine;
     [HideInInspector]
     public Animator ani;
     public string currentState;
     [HideInInspector]
     public Transform player;
-    public int health = 1;
     private LevelGenerator lg;
     private AudioManager am;
     [SerializeField]
@@ -31,6 +38,7 @@ public class Living : MonoBehaviour
     [SerializeField]
     LayerMask tiles;
 
+
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -40,6 +48,7 @@ public class Living : MonoBehaviour
         ani = GetComponent<Animator>();
         ani.speed = Random.Range(0.9f, 1.1f);
         StartCoroutine(GetPlayer());
+        JsonInitialisation();
     }
 
     protected virtual void Update()
@@ -113,4 +122,51 @@ public class Living : MonoBehaviour
         canMove = true;
     }
 
+    private class LivingVariables 
+    {
+        public float speed;
+        public bool stunnable;
+        public bool pickupable;
+        public bool knockbackable = true;
+        public int health = 1;
+        public float mass;
+        public float linearDrag;
+        public float angularDrag;
+    }
+
+    private void JsonInitialisation() 
+    {
+        //SET
+        if (!File.Exists(Application.dataPath + "/Data/" + gameObject.name + "Variables.json"))
+        {
+            LivingVariables vars = new LivingVariables();
+            vars.speed = speed;
+            vars.stunnable = stunnable;
+            vars.pickupable = pickupable;
+            vars.knockbackable = knockbackable;
+            vars.health = health;
+            vars.mass = rb.mass;
+            vars.linearDrag = rb.drag;
+            vars.angularDrag = rb.angularDrag;
+
+            string newjson = JsonUtility.ToJson(vars);
+            Debug.Log(newjson);
+            File.WriteAllText(Application.dataPath + "/Data/" + gameObject.name + "Variables.json", newjson);
+        }
+        //GET
+        else
+        {
+            string varsImport = File.ReadAllText(Application.dataPath + "/Data/" + gameObject.name + "Variables.json");
+            LivingVariables vars = JsonUtility.FromJson<LivingVariables>(varsImport);
+            speed = vars.speed;
+            stunnable = vars.stunnable;
+            pickupable = vars.pickupable;
+            knockbackable = vars.knockbackable;
+            health = vars.health;
+            rb.mass = vars.mass;
+            rb.drag = vars.linearDrag;
+            rb.angularDrag = vars.angularDrag;
+        }
+    }
 }
+
