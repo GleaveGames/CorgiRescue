@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea122672870bce4e8d8943b5ba83875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwPower: 10
+  throwPower: 30
   AmIBomb: 1
   AmISword: 0
 --- !u!50 &7335320053887418911

@@ -1886,7 +1886,7 @@ MonoBehaviour:
   GoldChance: 100
   SilverChance: 60
   BeetleChance: 60
-  SpiderChance: 0
+  SpiderChance: 60
   SnekChance: 60
   MoleChance: 80
   BatChance: 60
@@ -2004,9 +2004,6 @@ MonoBehaviour:
   spikesEnabled: 1
   arrowTrap: {fileID: 0}
   arrowTrapEnabled: 0
-  tilesLayer:
-    serializedVersion: 2
-    m_Bits: 8192
 --- !u!114 &8819094462478425751
 MonoBehaviour:
   m_ObjectHideFlags: 0

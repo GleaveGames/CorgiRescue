@@ -213,18 +213,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  stunned: 0
   stunnable: 1
-  attacking: 0
   pickupable: 1
+  knockbackable: 1
+  health: 5
+  mass: 0
+  linearDrag: 0
+  angularDrag: 0
+  stunned: 0
+  attacking: 0
   pickedUp: 0
   angered: 0
   canMove: 0
-  knockbackable: 1
   ani: {fileID: 0}
   currentState: 
   player: {fileID: 0}
-  health: 5
   blood: {fileID: 6310010033770557549, guid: 7be9f23a949dabd4395ea7df6d1c745f, type: 3}
   attackSoundPlayed: 0
   attackSoundAudio: {fileID: 0}
@@ -419,7 +422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bec58b531f80fc4f991dcdf5d0b5ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwPower: 120
+  throwPower: 30
 --- !u!114 &3385142414179241015
 MonoBehaviour:
   m_ObjectHideFlags: 0
