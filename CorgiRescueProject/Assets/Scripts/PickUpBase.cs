@@ -14,6 +14,8 @@ public class PickUpBase : MonoBehaviour
     protected LevelGenerator lg;
     protected AudioManager am;
     protected int damagethisdoesinit;
+    protected LayerMask initLayer;
+
 
     protected virtual void Start()
     {
@@ -27,6 +29,7 @@ public class PickUpBase : MonoBehaviour
         }
         am = FindObjectOfType<AudioManager>();
         damagethisdoesinit = GetComponent<DamageThisDoes>().damage;
+        initLayer = gameObject.layer;
     }
 
 

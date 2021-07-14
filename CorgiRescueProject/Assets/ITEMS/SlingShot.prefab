@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4578655771106575543}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: BulletSpawnPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 4802225057804522137}
   - component: {fileID: 2858472316713619231}
   - component: {fileID: 1435975279345846554}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: SlingShot
   m_TagString: PickupItems
   m_Icon: {fileID: 0}
@@ -212,6 +212,8 @@ MonoBehaviour:
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
   canHurtPlayer: 0
+  spawnsObjOnCollision: 0
+  collisionObject: {fileID: 0}
 --- !u!82 &8467640212453393434
 AudioSource:
   m_ObjectHideFlags: 0
@@ -351,7 +353,7 @@ MonoBehaviour:
   - {x: -0.0578866, y: -0.034616947, z: 0}
   m_ShapePathHash: 1060713789
   m_Mesh: {fileID: 0}
-  m_InstanceId: 40888
+  m_InstanceId: 96788
 --- !u!114 &4802225057804522137
 MonoBehaviour:
   m_ObjectHideFlags: 0

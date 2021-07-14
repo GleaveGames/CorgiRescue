@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 2521188547143017862}
   - component: {fileID: 5075143066011929031}
   - component: {fileID: 8841328252463168419}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Bomb
   m_TagString: PickupItems
   m_Icon: {fileID: 0}
@@ -139,9 +139,6 @@ MonoBehaviour:
   obsidianParticles: {fileID: 6310010033770557549, guid: 26d1cb29dd6205947b8c2f8b58f63827, type: 3}
   iceParticles: {fileID: 6310010033770557549, guid: 5a2aa885808012549917e1040dcc4765, type: 3}
   woodParticles: {fileID: 6310010033770557549, guid: 0937982c73c8fec4e8835cba807e442e, type: 3}
-  diamondWorth: 1000
-  goldWorth: 500
-  silverWorth: 100
   am: {fileID: 0}
   pebble: {fileID: 5020420758543740405, guid: 0e3ff7031044bfb418f342415528e0bf, type: 3}
 --- !u!114 &4887783930180008139
@@ -374,7 +371,7 @@ MonoBehaviour:
   - {x: -0.28731337, y: 0.010089253, z: 0}
   m_ShapePathHash: 543634639
   m_Mesh: {fileID: 0}
-  m_InstanceId: 94826
+  m_InstanceId: 102740
 --- !u!114 &8841328252463168419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,6 +395,10 @@ PrefabInstance:
     - target: {fileID: 4658814828361453957, guid: ebd8cbf3650466f4d9633c75087b979f, type: 3}
       propertyPath: m_Name
       value: BasicTrail
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658814828361453957, guid: ebd8cbf3650466f4d9633c75087b979f, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5190038618824641912, guid: ebd8cbf3650466f4d9633c75087b979f, type: 3}
       propertyPath: m_RootOrder

@@ -6,6 +6,13 @@ public class PickUpEnemy : PickUpBase
 {
     Living living;
 
+    private void Update()
+    {
+        if (living.stunned && rb.velocity.magnitude >= 0.8f) gameObject.layer = 0;
+        else gameObject.layer = initLayer;
+    }
+
+
     protected override void Start()
     {
         base.Start();

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7282444070375149819}
   - component: {fileID: 3011198022237279737}
   - component: {fileID: 5609201411892959428}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Snowball
   m_TagString: PickupItems
   m_Icon: {fileID: 0}
@@ -175,6 +175,8 @@ MonoBehaviour:
   destroyOnCollision: 1
   collisionParticles: {fileID: 3438405790397959564, guid: d0d0ff8bc3286024280378b5da2d0d63, type: 3}
   canHurtPlayer: 0
+  spawnsObjOnCollision: 0
+  collisionObject: {fileID: 0}
 --- !u!114 &3011198022237279737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,7 +220,7 @@ MonoBehaviour:
   - {x: -0.12066388, y: 0.0029232502, z: 0}
   m_ShapePathHash: 441573077
   m_Mesh: {fileID: 0}
-  m_InstanceId: 28118
+  m_InstanceId: 97028
 --- !u!1001 &2260491162401083214
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -229,6 +231,10 @@ PrefabInstance:
     - target: {fileID: 4658814828361453957, guid: ebd8cbf3650466f4d9633c75087b979f, type: 3}
       propertyPath: m_Name
       value: BasicTrail
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658814828361453957, guid: ebd8cbf3650466f4d9633c75087b979f, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5190038618824641912, guid: ebd8cbf3650466f4d9633c75087b979f, type: 3}
       propertyPath: m_RootOrder

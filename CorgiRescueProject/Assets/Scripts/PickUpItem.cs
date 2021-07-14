@@ -27,9 +27,11 @@ public class PickUpItem : PickUpBase
             if (rb.velocity.magnitude <= 3)
             {
                 GetComponent<DamagesPlayer>().canHurt = false;
+                gameObject.layer = initLayer;
             }
             else
             {
+                gameObject.layer = 0;
                 StartCoroutine("WaitforHurt");
                 GetComponent<DamageThisDoes>().damage = damagethisdoesinit;
             }

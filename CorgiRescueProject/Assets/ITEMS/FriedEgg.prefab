@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4818468924248635614}
   - component: {fileID: 1860548160251188379}
   - component: {fileID: 6407510246282477432}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: FriedEgg
   m_TagString: Untagged
   m_Icon: {fileID: 0}

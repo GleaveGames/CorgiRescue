@@ -644,7 +644,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.3
+  m_Intensity: 0.6
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
@@ -730,9 +730,6 @@ MonoBehaviour:
   obsidianParticles: {fileID: 6310010033770557549, guid: 26d1cb29dd6205947b8c2f8b58f63827, type: 3}
   iceParticles: {fileID: 6310010033770557549, guid: 5a2aa885808012549917e1040dcc4765, type: 3}
   woodParticles: {fileID: 6310010033770557549, guid: 0937982c73c8fec4e8835cba807e442e, type: 3}
-  diamondWorth: 1000
-  goldWorth: 300
-  silverWorth: 100
   am: {fileID: 0}
   pebble: {fileID: 5020420758543740405, guid: 0e3ff7031044bfb418f342415528e0bf, type: 3}
 --- !u!58 &3219390707801440996

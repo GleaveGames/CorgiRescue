@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4818468924248635614}
   - component: {fileID: 1860548160251188379}
   - component: {fileID: 6407510246282477432}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Snack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,4 +169,4 @@ MonoBehaviour:
   - {x: -0.30773902, y: -0.14483166, z: 0}
   m_ShapePathHash: -419039928
   m_Mesh: {fileID: 0}
-  m_InstanceId: 81392
+  m_InstanceId: 96860

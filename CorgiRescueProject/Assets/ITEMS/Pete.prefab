@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3011198022237279737}
   - component: {fileID: 5609201411892959428}
   - component: {fileID: 9055930957415257037}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Pete
   m_TagString: PickupItems
   m_Icon: {fileID: 0}
@@ -175,6 +175,8 @@ MonoBehaviour:
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
   canHurtPlayer: 0
+  spawnsObjOnCollision: 0
+  collisionObject: {fileID: 0}
 --- !u!114 &3011198022237279737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,7 +232,7 @@ MonoBehaviour:
   - {x: -0.18084264, y: 0.09020686, z: 0}
   m_ShapePathHash: -1854471451
   m_Mesh: {fileID: 0}
-  m_InstanceId: 327474
+  m_InstanceId: 96450
 --- !u!95 &9055930957415257037
 Animator:
   serializedVersion: 3

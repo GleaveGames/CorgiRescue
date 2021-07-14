@@ -112,4 +112,5 @@ public class Living : MonoBehaviour
         yield return new WaitForSeconds(time);
         canMove = true;
     }
+
 }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 748085045279830165}
   - component: {fileID: 847621069935235345}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: BasicTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 3103768266205328026}
   - component: {fileID: 7634173072355788389}
   - component: {fileID: -6514227041368718050}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: Arrow
   m_TagString: PickupItems
   m_Icon: {fileID: 0}

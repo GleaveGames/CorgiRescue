@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4830005684024144234}
   - component: {fileID: 4660881465462714877}
   - component: {fileID: 2652619570924512440}
-  m_Layer: 14
+  m_Layer: 13
   m_Name: MetalCrate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,4 +196,4 @@ MonoBehaviour:
   - {x: -0.34823036, y: 0.3448949, z: 0}
   m_ShapePathHash: 407443349
   m_Mesh: {fileID: 0}
-  m_InstanceId: 83896
+  m_InstanceId: 102522

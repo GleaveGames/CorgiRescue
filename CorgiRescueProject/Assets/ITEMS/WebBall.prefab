@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1860192330718673706}
   - component: {fileID: 6097199093380178810}
   - component: {fileID: 1452706054328087786}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: WebBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 9213497172822480417}
   - component: {fileID: 3933491198959293523}
   - component: {fileID: 6026772203406905958}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Boomerang
   m_TagString: PickupItems
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea122672870bce4e8d8943b5ba83875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwPower: 3
+  throwPower: 1
   AmIBomb: 0
   AmISword: 0
 --- !u!50 &7249542480218401027
@@ -339,7 +339,7 @@ GameObject:
   - component: {fileID: 329234847870214156}
   - component: {fileID: 8900277608653442233}
   - component: {fileID: 1103829224981917570}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Ani
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -455,7 +455,7 @@ MonoBehaviour:
   - {x: -0.12919211, y: 0.031740427, z: 0}
   m_ShapePathHash: -18482651
   m_Mesh: {fileID: 0}
-  m_InstanceId: 86248
+  m_InstanceId: 96042
 --- !u!1001 &258346615826470512
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -466,6 +466,10 @@ PrefabInstance:
     - target: {fileID: 4658814828361453957, guid: ebd8cbf3650466f4d9633c75087b979f, type: 3}
       propertyPath: m_Name
       value: BasicTrail
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658814828361453957, guid: ebd8cbf3650466f4d9633c75087b979f, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5190038618824641912, guid: ebd8cbf3650466f4d9633c75087b979f, type: 3}
       propertyPath: m_RootOrder

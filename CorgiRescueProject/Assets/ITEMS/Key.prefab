@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 8895876795393229117}
   - component: {fileID: 861239475097080733}
   - component: {fileID: 5284610155127131388}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Key
   m_TagString: PickupItems
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7525842085912745204}
   - component: {fileID: 3238662097198710229}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: BasicTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}

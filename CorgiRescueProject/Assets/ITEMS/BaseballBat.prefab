@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 1435975279345846554}
   - component: {fileID: 7392834014282990093}
   - component: {fileID: 3250937277273289061}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: BaseballBat
   m_TagString: PickupItems
   m_Icon: {fileID: 0}
