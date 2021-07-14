@@ -124,18 +124,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  stunned: 0
   stunnable: 1
-  attacking: 0
   pickupable: 1
+  knockbackable: 1
+  health: 3
+  mass: 0
+  linearDrag: 0
+  angularDrag: 0
+  stunned: 0
+  attacking: 0
   pickedUp: 0
   angered: 0
   canMove: 0
-  knockbackable: 1
   ani: {fileID: 0}
   currentState: 
   player: {fileID: 0}
-  health: 3
   blood: {fileID: 6310010033770557549, guid: 7be9f23a949dabd4395ea7df6d1c745f, type: 3}
   attackSoundPlayed: 0
   attackSoundAudio: {fileID: 2777830762697218060}
@@ -253,7 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bec58b531f80fc4f991dcdf5d0b5ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwPower: 20
+  throwPower: 30
 --- !u!114 &5686374190113552966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,7 +404,7 @@ MonoBehaviour:
   - {x: -0.23658863, y: 0.14025319, z: 0}
   m_ShapePathHash: 888740386
   m_Mesh: {fileID: 0}
-  m_InstanceId: 98590
+  m_InstanceId: 68150
 --- !u!114 &7865070789608767469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,7 +433,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 5
-  m_AngularDrag: 0
+  m_AngularDrag: 5
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0

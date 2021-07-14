@@ -129,15 +129,19 @@ public class Living : MonoBehaviour
         public bool pickupable;
         public bool knockbackable = true;
         public int health = 1;
+        [HideInInspector]
         public float mass;
+        [HideInInspector]
         public float linearDrag;
+        [HideInInspector]
         public float angularDrag;
     }
 
     private void JsonInitialisation() 
     {
         //SET
-        if (!File.Exists(Application.dataPath + "/Data/" + gameObject.name + "Variables.json"))
+
+        if (!File.Exists(Application.dataPath + "/Data/" + RemoveCloneFromName(gameObject.name) + "Variables.json"))
         {
             LivingVariables vars = new LivingVariables();
             vars.speed = speed;
@@ -151,12 +155,12 @@ public class Living : MonoBehaviour
 
             string newjson = JsonUtility.ToJson(vars);
             Debug.Log(newjson);
-            File.WriteAllText(Application.dataPath + "/Data/" + gameObject.name + "Variables.json", newjson);
+            File.WriteAllText(Application.dataPath + "/Data/" + RemoveCloneFromName(gameObject.name) + "Variables.json", newjson);
         }
         //GET
         else
         {
-            string varsImport = File.ReadAllText(Application.dataPath + "/Data/" + gameObject.name + "Variables.json");
+            string varsImport = File.ReadAllText(Application.dataPath + "/Data/" + RemoveCloneFromName(gameObject.name) + "Variables.json");
             LivingVariables vars = JsonUtility.FromJson<LivingVariables>(varsImport);
             speed = vars.speed;
             stunnable = vars.stunnable;
@@ -167,6 +171,16 @@ public class Living : MonoBehaviour
             rb.drag = vars.linearDrag;
             rb.angularDrag = vars.angularDrag;
         }
+    }
+
+    private string RemoveCloneFromName(string name) 
+    {
+        string newname = name;
+        if (name.Contains("(Clone)"))
+        {
+            newname = (name.Substring(0, name.Length - 7));
+        }
+        return newname;
     }
 }
 
