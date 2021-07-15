@@ -74,6 +74,7 @@ MonoBehaviour:
   tiles:
     serializedVersion: 2
     m_Bits: 8192
+  json: {fileID: 4900000, guid: f0481a39a3ee6614d8a058f33c3fc435, type: 3}
   walkTime: 4
   idleTime: 2
   bumprange: 0.4
@@ -299,4 +300,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bec58b531f80fc4f991dcdf5d0b5ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwPower: 30
+  throwPowerModifier: 1

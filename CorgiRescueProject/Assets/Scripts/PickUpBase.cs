@@ -8,13 +8,14 @@ public class PickUpBase : MonoBehaviour
     protected Transform leftHand;
     protected Rigidbody2D rb;
     [SerializeField]
-    protected float throwPower;
+    protected float throwPowerModifier = 1;
     protected Collider2D cc;
     Coroutine coroutine;
     protected LevelGenerator lg;
     protected AudioManager am;
     protected int damagethisdoesinit;
     protected LayerMask initLayer;
+    playerStats ps;
 
 
     protected virtual void Start()
@@ -22,6 +23,7 @@ public class PickUpBase : MonoBehaviour
         lg = FindObjectOfType<LevelGenerator>();
         rb = GetComponent<Rigidbody2D>();
         cc = GetComponent<Collider2D>();
+        ps = FindObjectOfType<playerStats>();
         if (transform.parent != null)
         {
             //rb.isKinematic = true;
@@ -46,7 +48,6 @@ public class PickUpBase : MonoBehaviour
         DisableCollision();
         transform.position = lH.position;
         transform.parent = lH;
-        Debug.Log(gameObject.name + " picked up");
     }
 
     public void Throw()
@@ -57,7 +58,7 @@ public class PickUpBase : MonoBehaviour
         }
         am.Play("Throw", transform.position, true);
         EnableCollision();
-        rb.AddForce(leftHand.parent.up * throwPower, ForceMode2D.Impulse);
+        rb.AddForce(leftHand.parent.up * throwPowerModifier * ps.throwPower, ForceMode2D.Impulse);
     }
 
     public void Drop()
@@ -68,7 +69,7 @@ public class PickUpBase : MonoBehaviour
         }
         am.Play("Drop", transform.position, true);
         EnableCollision();
-        rb.AddForce(leftHand.parent.up * throwPower / 5, ForceMode2D.Impulse);
+        rb.AddForce(leftHand.parent.up * ps.throwPower * throwPowerModifier / 5, ForceMode2D.Impulse);
     }
 
     public IEnumerator WaitforHurt()

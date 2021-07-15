@@ -35,7 +35,9 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField]
     private float SilverChance;
     [SerializeField]
-    float BeetleChance;
+    float BeetleLittleChance;
+    [SerializeField]
+    float BeetleBigChance;
     [SerializeField]
     float SpiderChance;
     [SerializeField]
@@ -109,9 +111,13 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField]
     private bool snekEnabled;
     [SerializeField]
-    private GameObject beetle;
+    private GameObject beetlelittle;
     [SerializeField]
-    bool beetleEnabled;
+    bool beetlelittleEnabled;
+    [SerializeField]
+    private GameObject beetlebig;
+    [SerializeField]
+    bool beetlebigEnabled;
     [SerializeField]
     GameObject spider;
     [SerializeField]
@@ -579,11 +585,19 @@ public class LevelGenerator : MonoBehaviour
                             continue;
                         }
                     }
-                    if (beetleEnabled)
+                    if (beetlelittleEnabled)
                     {
-                        if (Random.Range(0, BeetleChance) < 1)
+                        if (Random.Range(0, BeetleLittleChance) < 1)
                         {
-                            Instantiate(beetle, spawnpoint, Quaternion.identity);
+                            Instantiate(beetlelittle, spawnpoint, Quaternion.identity);
+                            continue;
+                        }
+                    }
+                    if (beetlebigEnabled)
+                    {
+                        if (Random.Range(0, BeetleBigChance) < 1)
+                        {
+                            Instantiate(beetlebig, spawnpoint, Quaternion.identity);
                             continue;
                         }
                     }

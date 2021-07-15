@@ -4,69 +4,29 @@ using UnityEngine;
 
 public class Beetle : Living
 {
-    bool idle, turning, midturn;
-    float bumprange;
+    protected bool idle, turning, midturn;
     int RotationDir;
-    [SerializeField]
-    bool Big;
 
-    [Header("BIG BEATLE STATS")]
     [SerializeField]
-    float moveSpeedBig;
-    [SerializeField]
-    int bigHealth = 3;
-    [SerializeField]
-    RuntimeAnimatorController bigAni;
-    [SerializeField]
-    float bumpRangeBig = 0.5f;
-
-    [Header("LITTLE BEATLE STATS")]
-    [SerializeField]
-    float moveSpeedLittle;
-    [SerializeField]
-    int littleHealth = 1;
-    [SerializeField]
-    RuntimeAnimatorController littleAni;
-    [SerializeField]
-    float bumpRangeLittle = 0.2f;
-    AudioSource crawlsound;
+    protected float bumpRange = 0.5f;
+    protected AudioSource crawlsound;
 
     protected override void Start()
     {
         base.Start();
         crawlsound = GetComponent<AudioSource>();
-        if(Random.Range(0,2) < 1) Big = true; 
         idle = true;
         Rerotate();
-        if (Big) BigStats();
-        else LittleStats();
-    }
-
-    private void BigStats() 
-    {
-        speed = moveSpeedBig;
-        health = bigHealth;
-        ani.runtimeAnimatorController = bigAni;
-        bumprange = bumpRangeBig;
-        rb.mass = 5;
-    }
-
-    private void LittleStats() 
-    {
-        speed = moveSpeedLittle;
-        health = littleHealth;
-        ani.runtimeAnimatorController = littleAni;
-        bumprange = bumpRangeLittle;
     }
 
     private void FixedUpdate()
     {
         if (idle) 
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up);
-            RaycastHit2D hit1 = Physics2D.Raycast(transform.position - transform.right/3, transform.up);
-            RaycastHit2D hit2 = Physics2D.Raycast(transform.position + transform.right/3, transform.up);
-            if (Vector2.Distance(hit.point, transform.position) > bumprange && Vector2.Distance(hit1.point, transform.position) > bumprange && Vector2.Distance(hit2.point, transform.position) > bumprange && !turning)
+            RaycastHit2D hit = ClosestWall(transform.up);
+            RaycastHit2D hit1 = Physics2D.Raycast(transform.position - transform.right/3, transform.up, 999, 13);
+            RaycastHit2D hit2 = Physics2D.Raycast(transform.position + transform.right/3, transform.up, 999, 13);
+            if (Vector2.Distance(hit.point, transform.position) > bumpRange && Vector2.Distance(hit1.point, transform.position) > bumpRange && Vector2.Distance(hit2.point, transform.position) > bumpRange && !turning)
             {
                 //move forward;
                 transform.position = Vector2.MoveTowards(transform.position, hit.point, speed * Time.deltaTime);
@@ -81,23 +41,13 @@ public class Beetle : Living
         }
     }
 
-    private IEnumerator Turn()
-    {
-        crawlsound.Stop();
-        if (Big) ChangeAnimationState("BeetleIdleBig");
-        else ChangeAnimationState("BeetleIdleSmall");
-        midturn = true;
-        yield return new WaitForSeconds(1);
-        Rerotate();
-        yield return new WaitForSeconds(0.5f);
-        turning = false;
-        midturn = false;
-        if (Big) ChangeAnimationState("BeetleMoveBig");
-        else ChangeAnimationState("BeetleMoveSmall");
-        crawlsound.Play();
+    protected virtual IEnumerator Turn()
+    {       
+        Debug.Log("turn in beetle");
+        return null;
     }
 
-    private void Rerotate() 
+    protected void Rerotate() 
     {
         RotationDir = Random.Range(1, 5);
         if (RotationDir == 1) transform.up = Vector2.up;

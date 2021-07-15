@@ -276,7 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea122672870bce4e8d8943b5ba83875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwPower: 0.4
+  throwPowerModifier: 0.05
   AmIBomb: 0
   AmISword: 0
 --- !u!50 &1177465007607926279

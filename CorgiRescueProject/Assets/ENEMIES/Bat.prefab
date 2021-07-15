@@ -161,24 +161,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  stunned: 0
   stunnable: 1
-  attacking: 0
   pickupable: 0
+  knockbackable: 1
+  health: 1
+  mass: 0
+  linearDrag: 0
+  angularDrag: 0
+  stunned: 0
+  attacking: 0
   pickedUp: 0
   angered: 0
   canMove: 0
-  knockbackable: 1
   ani: {fileID: 0}
   currentState: 
   player: {fileID: 0}
-  health: 1
   blood: {fileID: 6310010033770557549, guid: 7be9f23a949dabd4395ea7df6d1c745f, type: 3}
   attackSoundPlayed: 0
   attackSoundAudio: {fileID: 7823091621566323761}
   tiles:
     serializedVersion: 2
     m_Bits: 8192
+  json: {fileID: 4900000, guid: bc93acbf5d5d365468cce47ef24861d0, type: 3}
   swoopDist: 2.6
   IgnoreMe:
     serializedVersion: 2
@@ -350,7 +354,7 @@ MonoBehaviour:
   - {x: -0.50734544, y: -0.003279686, z: 0}
   m_ShapePathHash: 1116525385
   m_Mesh: {fileID: 0}
-  m_InstanceId: 86390
+  m_InstanceId: 123996
 --- !u!114 &2307276744979374918
 MonoBehaviour:
   m_ObjectHideFlags: 0

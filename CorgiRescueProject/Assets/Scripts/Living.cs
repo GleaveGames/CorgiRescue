@@ -11,8 +11,11 @@ public class Living : MonoBehaviour
     public bool pickupable;
     public bool knockbackable = true;
     public int health = 1;
+    [HideInInspector]
     public float mass;
+    [HideInInspector]
     public float linearDrag;
+    [HideInInspector]
     public float angularDrag;
 
     [Header ("Other")]
@@ -28,7 +31,7 @@ public class Living : MonoBehaviour
     [HideInInspector]
     public Transform player;
     private LevelGenerator lg;
-    private AudioManager am;
+    protected AudioManager am;
     [SerializeField]
     private GameObject blood;
     public bool attackSoundPlayed;
@@ -37,7 +40,8 @@ public class Living : MonoBehaviour
     protected Rigidbody2D rb;
     [SerializeField]
     LayerMask tiles;
-
+    [SerializeField]
+    TextAsset json;
 
     protected virtual void Start()
     {
@@ -129,11 +133,8 @@ public class Living : MonoBehaviour
         public bool pickupable;
         public bool knockbackable = true;
         public int health = 1;
-        [HideInInspector]
         public float mass;
-        [HideInInspector]
         public float linearDrag;
-        [HideInInspector]
         public float angularDrag;
     }
 
@@ -141,7 +142,7 @@ public class Living : MonoBehaviour
     {
         //SET
 
-        if (!File.Exists(Application.dataPath + "/Data/" + RemoveCloneFromName(gameObject.name) + "Variables.json"))
+        if (json == null)
         {
             LivingVariables vars = new LivingVariables();
             vars.speed = speed;
@@ -155,12 +156,12 @@ public class Living : MonoBehaviour
 
             string newjson = JsonUtility.ToJson(vars);
             Debug.Log(newjson);
-            File.WriteAllText(Application.dataPath + "/Data/" + RemoveCloneFromName(gameObject.name) + "Variables.json", newjson);
+            File.WriteAllText(Application.dataPath + "/Data/" + RemoveCloneFromName(gameObject.name) + "Vars.json", newjson);
         }
         //GET
         else
         {
-            string varsImport = File.ReadAllText(Application.dataPath + "/Data/" + RemoveCloneFromName(gameObject.name) + "Variables.json");
+            string varsImport = json.text;
             LivingVariables vars = JsonUtility.FromJson<LivingVariables>(varsImport);
             speed = vars.speed;
             stunnable = vars.stunnable;

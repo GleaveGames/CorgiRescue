@@ -1,0 +1,10 @@
+{
+	"speed":1.0,
+	"stunnable":true,
+	"pickupable":true,
+	"knockbackable":true,
+	"health":5,
+	"mass":2.4,
+	"linearDrag":10,
+	"angularDrag":10
+}

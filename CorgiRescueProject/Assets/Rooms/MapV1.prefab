@@ -1885,7 +1885,8 @@ MonoBehaviour:
   DiamondChance: 140
   GoldChance: 100
   SilverChance: 60
-  BeetleChance: 60
+  BeetleLittleChance: 60
+  BeetleBigChance: 80
   SpiderChance: 60
   SnekChance: 60
   MoleChance: 80
@@ -1984,10 +1985,12 @@ MonoBehaviour:
   SilverRock: {fileID: 11400000, guid: c98d18104288b4645b18b61d994f58a5, type: 2}
   snek: {fileID: 15094032670358419, guid: 67d1b535a72970442986c2d88ba66b37, type: 3}
   snekEnabled: 1
-  beetle: {fileID: 1080977945638850635, guid: 2e75c02e66b9afb458db4bc3f81a0b42, type: 3}
-  beetleEnabled: 1
-  spider: {fileID: 0}
-  spiderEnabled: 0
+  beetlelittle: {fileID: 1080977945638850635, guid: 2e75c02e66b9afb458db4bc3f81a0b42, type: 3}
+  beetlelittleEnabled: 1
+  beetlebig: {fileID: 1080977945638850635, guid: a9c3318c02cbee447a9f68f3eba54ac3, type: 3}
+  beetlebigEnabled: 1
+  spider: {fileID: 1080977945638850635, guid: 890c603d6bf350148b31fbff021fcad4, type: 3}
+  spiderEnabled: 1
   bat: {fileID: 8621365850395960104, guid: afc07b170c172824c95d0fef2afcff5b, type: 3}
   batEnabled: 1
   mole: {fileID: 7471924862020509344, guid: 10f6b3f98f59a4e49b0230c216ac6187, type: 3}

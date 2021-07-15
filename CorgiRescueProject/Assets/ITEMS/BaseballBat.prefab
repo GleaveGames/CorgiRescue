@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea122672870bce4e8d8943b5ba83875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwPower: 30
+  throwPowerModifier: 1
   AmIBomb: 0
   AmISword: 1
 --- !u!212 &1435047480065279769
@@ -148,7 +148,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 3
+  m_Mass: 2
   m_LinearDrag: 3.6
   m_AngularDrag: 0.6
   m_GravityScale: 0

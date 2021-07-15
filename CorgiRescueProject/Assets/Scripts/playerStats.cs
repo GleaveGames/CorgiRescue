@@ -7,6 +7,7 @@ public class playerStats : MonoBehaviour
     public int money = 0;
     public int health = 5;
     public int bombs = 5;
+    public float throwPower = 30;
     public float miningSpeed;
     public float moveSpeed;
     public GameObject holdItem;

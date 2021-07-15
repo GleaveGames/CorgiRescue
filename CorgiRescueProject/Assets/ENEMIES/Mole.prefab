@@ -234,6 +234,7 @@ MonoBehaviour:
   tiles:
     serializedVersion: 2
     m_Bits: 8192
+  json: {fileID: 4900000, guid: 80d34d5ac95b6d4439b620544c6b4a6b, type: 3}
   offset: -90
   boss: 0
 --- !u!114 &3928088253915047735
@@ -383,7 +384,7 @@ MonoBehaviour:
   - {x: -0.38534164, y: 0.4270172, z: 0}
   m_ShapePathHash: -1923273035
   m_Mesh: {fileID: 0}
-  m_InstanceId: 94922
+  m_InstanceId: 124410
 --- !u!114 &-2692561871608708002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,7 +423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bec58b531f80fc4f991dcdf5d0b5ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwPower: 30
+  throwPowerModifier: 1
 --- !u!114 &3385142414179241015
 MonoBehaviour:
   m_ObjectHideFlags: 0

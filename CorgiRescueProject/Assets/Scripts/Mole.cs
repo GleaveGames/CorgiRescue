@@ -17,7 +17,6 @@ public class Mole : Living
     private bool charged = false;
     private bool charging = false;
     private Vector3 targetPos;
-    private AudioManager am;
 
 
     protected override void Start()
@@ -26,7 +25,6 @@ public class Mole : Living
         if (boss)
         {
             ZZZ = transform.GetChild(0).GetComponent<ParticleSystem>();
-            am = FindObjectOfType<AudioManager>();
             am.Play("Snore", transform.position, true);
         }
         else

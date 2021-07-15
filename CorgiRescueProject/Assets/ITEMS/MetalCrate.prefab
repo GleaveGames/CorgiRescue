@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 2652619570924512440}
   - component: {fileID: -8958518973516244930}
   - component: {fileID: 8655835994573536876}
+  - component: {fileID: -2790693566720778327}
+  - component: {fileID: -5848802632626249442}
   m_Layer: 13
   m_Name: MetalCrate
   m_TagString: Untagged
@@ -211,7 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea122672870bce4e8d8943b5ba83875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwPower: 0
+  throwPower: 20
   AmIBomb: 0
   AmISword: 0
 --- !u!114 &8655835994573536876
@@ -227,3 +229,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   percentageSlowed: 100
+--- !u!114 &-2790693566720778327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7688553074688750316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6c8a87603030ef47a316185a91b87aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 2
+  initialDamage: 0
+--- !u!114 &-5848802632626249442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7688553074688750316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d8aa628b6065cf46b78979e90d5934c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger: 0
+  damage: 2
+  canHurt: 1
+  knockbackTime: 0.6
+  destroyOnCollision: 0
+  collisionParticles: {fileID: 0}
+  canHurtPlayer: 1
+  spawnsObjOnCollision: 0
+  collisionObject: {fileID: 0}
