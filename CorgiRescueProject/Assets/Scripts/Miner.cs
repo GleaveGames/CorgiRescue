@@ -37,27 +37,24 @@ public class Miner : MonoBehaviour
     private void Start()
     {
         am = FindObjectOfType<AudioManager>();
-        tilemaps = new Tilemap[3];
+        tilemaps = new Tilemap[4];
+        StartCoroutine(WaitToGetTiles());
+    }
+
+    private IEnumerator WaitToGetTiles() 
+    {
+        yield return new WaitForSeconds(2);
         tilemaps[0] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("Walls").GetComponent<Tilemap>();
         tilemaps[1] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("Rock").GetComponent<Tilemap>();
         tilemaps[2] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("Obsidian").GetComponent<Tilemap>();
-    }
-    private void Update()
-    {
-        if(tilemaps[0] == null)
-        {
-            tilemaps[0] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("Walls").GetComponent<Tilemap>();
-            tilemaps[1] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("Rock").GetComponent<Tilemap>();
-            tilemaps[2] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("Obsidian").GetComponent<Tilemap>();
-        }
+        tilemaps[3] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("GemsTilemap(Clone)").GetComponent<Tilemap>();
     }
     void OnCollisionStay2D(Collision2D collision)
     {
         if (canMine)
         {
             int contactCount = collision.contactCount;
-            if (contactCount > contacts.Length)
-                contacts = new ContactPoint2D[contactCount];
+            if (contactCount > contacts.Length) contacts = new ContactPoint2D[contactCount];
             collision.GetContacts(contacts);
             UnityEngine.Vector3 hitPosition = UnityEngine.Vector3.zero;
             for (int i = 0; i != contactCount; ++i)
@@ -96,25 +93,33 @@ public class Miner : MonoBehaviour
             }
         }        
     }
+
+    private void GemDestroy(UnityEngine.Vector3 hitPosition)
+    {
+        if (tilemaps[3].GetSprite(tilemaps[3].WorldToCell(hitPosition)) != null)
+        {
+            string name = tilemaps[3].GetSprite(tilemaps[3].WorldToCell(hitPosition)).name;
+            tilemaps[3].SetTile(tilemaps[3].WorldToCell(hitPosition), null);
+            if (name.Contains("Diamond"))
+            {
+                Instantiate(diamondParticles, new UnityEngine.Vector3(tilemaps[3].WorldToCell(hitPosition).x + 0.5f, tilemaps[3].WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
+            }
+            else if (name.Contains("Gold"))
+            {
+                Instantiate(goldParticles, new UnityEngine.Vector3(tilemaps[3].WorldToCell(hitPosition).x + 0.5f, tilemaps[3].WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
+            }
+            else if (name.Contains("Silver"))
+            {
+                Instantiate(silverParticles, new UnityEngine.Vector3(tilemaps[3].WorldToCell(hitPosition).x + 0.5f, tilemaps[3].WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
+            }
+        }
+    }
+
+
     private void TileDestroy(string name, Tilemap Tm, UnityEngine.Vector3 hitPosition)
     {
         string sound = null;
-        if (name.Contains("Diamond"))
-        {
-            sound = "Dirt";
-            Instantiate(diamondParticles, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
-        }
-        else if (name.Contains("Gold"))
-        {
-            sound = "Dirt";
-            Instantiate(goldParticles, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
-        }
-        else if (name.Contains("Silver"))
-        {
-            sound = "Dirt";
-            Instantiate(silverParticles, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
-        }
-        else if (name.Contains("Dirt"))
+        if (name.Contains("Dirt"))
         {
             sound = "Dirt";
             Instantiate(dirtParticles, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
@@ -149,5 +154,6 @@ public class Miner : MonoBehaviour
         {
             am.Play(sound, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), false);
         }
+        GemDestroy(hitPosition);
     }
 }

@@ -3,7 +3,35 @@ guid: 311b9d4d093bb924bb2430d058aa3766
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - gemstilemap: {fileID: 6092003323350077972, guid: b9cd50473ea705049a2c3cb12e9c7c57, type: 3}
+  - player: {instanceID: 0}
+  - creature: {instanceID: 0}
+  - DirtRule: {instanceID: 0}
+  - SnowRule: {instanceID: 0}
+  - RockRule: {instanceID: 0}
+  - ObsidianRule: {instanceID: 0}
+  - Wood: {instanceID: 0}
+  - Diamond: {instanceID: 0}
+  - DiamondRock: {instanceID: 0}
+  - Gold: {instanceID: 0}
+  - Silver: {instanceID: 0}
+  - GoldRock: {instanceID: 0}
+  - SilverRock: {instanceID: 0}
+  - snek: {instanceID: 0}
+  - beetlelittle: {instanceID: 0}
+  - beetlebig: {instanceID: 0}
+  - spider: {instanceID: 0}
+  - bat: {instanceID: 0}
+  - mole: {instanceID: 0}
+  - mong: {instanceID: 0}
+  - bomby: {instanceID: 0}
+  - pebble: {instanceID: 0}
+  - metalCrate: {instanceID: 0}
+  - woodCrate: {instanceID: 0}
+  - key: {instanceID: 0}
+  - spikes: {instanceID: 0}
+  - arrowTrap: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

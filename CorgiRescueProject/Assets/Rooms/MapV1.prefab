@@ -1898,6 +1898,7 @@ MonoBehaviour:
   MetalCrateChance: 400
   SpikeChance: 40
   ArrowTrapChance: 40
+  gemstilemap: {fileID: 6092003323350077972, guid: b9cd50473ea705049a2c3cb12e9c7c57, type: 3}
   LV0: 0
   MoleBoss: 0
   itemsForPickUp: []

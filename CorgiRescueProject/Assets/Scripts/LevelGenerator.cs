@@ -60,7 +60,8 @@ public class LevelGenerator : MonoBehaviour
     private float SpikeChance;
     [SerializeField]
     private float ArrowTrapChance;
-
+    [SerializeField]
+    GameObject gemstilemap;
 
 
 
@@ -663,61 +664,77 @@ public class LevelGenerator : MonoBehaviour
 
     private void SetGems()
     {
-           Tilemap wall = nodes[0].transform.GetChild(0).Find("Walls").gameObject.GetComponent<Tilemap>();
-           Tilemap rock = nodes[0].transform.GetChild(0).Find("Rock").gameObject.GetComponent<Tilemap>();
-           Tilemap obsidian = nodes[0].transform.GetChild(0).Find("Obsidian").gameObject.GetComponent<Tilemap>();
+        Tilemap wall = nodes[0].transform.GetChild(0).Find("Walls").gameObject.GetComponent<Tilemap>();
+        Tilemap rock = nodes[0].transform.GetChild(0).Find("Rock").gameObject.GetComponent<Tilemap>();
+        Tilemap obsidian = nodes[0].transform.GetChild(0).Find("Obsidian").gameObject.GetComponent<Tilemap>();
+        GameObject GemsTilemap = Instantiate(gemstilemap, nodes[0].transform.position, Quaternion.identity);
+        GemsTilemap.transform.parent = nodes[0].transform.GetChild(0);
+        Tilemap gems = GemsTilemap.GetComponent<Tilemap>();    
+        BoundsInt bounds = wall.cellBounds;
+        if (rock.cellBounds.size.x > bounds.size.x) bounds = rock.cellBounds;
+        if(obsidian.cellBounds.size.x > bounds.size.x) bounds = obsidian.cellBounds;
+        if (gems.cellBounds.size.x > bounds.size.x) bounds = gems.cellBounds;
 
-           BoundsInt bounds = wall.cellBounds;
-           if (rock.cellBounds.size.x > bounds.size.x)
-           {
-               bounds = rock.cellBounds;
-           }
-           if(obsidian.cellBounds.size.x > bounds.size.x)
-           {
-               bounds = obsidian.cellBounds;
-           }
+        TileBase[] wallTiles = wall.GetTilesBlock(bounds);         
+        TileBase[] rockTiles = rock.GetTilesBlock(bounds);         
+        TileBase[] obsidianTiles = obsidian.GetTilesBlock(bounds);
+        TileBase[] gemTiles = gems.GetTilesBlock(bounds);
 
-           TileBase[] wallTiles = wall.GetTilesBlock(bounds);         
-           TileBase[] rockTiles = rock.GetTilesBlock(bounds);         
-           TileBase[] obsidianTiles = obsidian.GetTilesBlock(bounds);
+        //quickfixfornew 2 - 1 not working cus of there being no walls
+        //replacing bounds.size.x and y with new vec 2 called fakebounds.x andy;
 
-           //quickfixfornew 2 - 1 not working cus of there being no walls
-           //replacing bounds.size.x and y with new vec 2 called fakebounds.x andy;
-
-           Vector2Int fakebounds = new Vector2Int(33, 44);
+        Vector2Int fakebounds = new Vector2Int(33, 44);
 
 
-           for (int x = 0; x < fakebounds.x; x++)
-           {
-               for (int y = 0; y < fakebounds.y; y++)
-               {
-                   TileBase rockTile = rockTiles[x + y * fakebounds.x]; 
-                   TileBase wallTile = wallTiles[x + y * fakebounds.x];
-                   TileBase obsidianTile = obsidianTiles[x + y * fakebounds.x];
-                    if (CheckBool("gems", XYtoP(x,y)))
+        for (int x = 0; x < fakebounds.x; x++)
+        {
+            for (int y = 0; y < fakebounds.y; y++)
+            {
+                TileBase rockTile = rockTiles[x + y * fakebounds.x]; 
+                TileBase wallTile = wallTiles[x + y * fakebounds.x];
+                TileBase obsidianTile = obsidianTiles[x + y * fakebounds.x];
+                if (CheckBool("gems", XYtoP(x,y)))
+                {
+                    if(wallTile != null)
                     {
-                        if (wallTile != null)
+                        if (Random.Range(0, DiamondChance) < 1) gems.SetTile(new Vector3Int(x - 1, y - 10, 0), Diamond);
+                        else if (Random.Range(0, GoldChance) < 1) gems.SetTile(new Vector3Int(x - 1, y - 10, 0), Gold);
+                        else if (Random.Range(0, SilverChance) < 1) gems.SetTile(new Vector3Int(x - 1, y - 10, 0), Silver);
+                    }
+                    else if(rockTile != null) 
+                    {
+                        if (rockTile.name.Contains("Rock"))
                         {
-                            if (wallTile.name.Contains("Dirt"))
-                            {
-                                if (Random.Range(0, DiamondChance) < 1) wall.SetTile(new Vector3Int(x - 1, y - 10, 0), Diamond);
-                                else if (Random.Range(0, GoldChance) < 1) wall.SetTile(new Vector3Int(x - 1, y - 10, 0), Gold);
-                                else if (Random.Range(0, SilverChance) < 1) wall.SetTile(new Vector3Int(x - 1, y - 10, 0), Silver);
-
-                            }
-                        }
-                        else if (rockTile != null)
-                        {
-                            if (rockTile.name.Contains("Rock"))
-                            {
-                                if (Random.Range(0, DiamondChance) < 1) rock.SetTile(new Vector3Int(x - 1, y - 10, 0), DiamondRock);
-                                else if (Random.Range(0, GoldChance) < 1) rock.SetTile(new Vector3Int(x - 1, y - 10, 0), GoldRock);
-                                else if (Random.Range(0, SilverChance) < 1) rock.SetTile(new Vector3Int(x - 1, y - 10, 0), SilverRock);
-                            }
+                            if (Random.Range(0, DiamondChance) < 1) rock.SetTile(new Vector3Int(x - 1, y - 10, 0), DiamondRock);
+                            else if (Random.Range(0, GoldChance) < 1) rock.SetTile(new Vector3Int(x - 1, y - 10, 0), GoldRock);
+                            else if (Random.Range(0, SilverChance) < 1) rock.SetTile(new Vector3Int(x - 1, y - 10, 0), SilverRock);
                         }
                     }
-               }
-           }
+
+                    /*
+                    if (wallTile != null)
+                    {
+                        if (wallTile.name.Contains("Dirt"))
+                        {
+                            if (Random.Range(0, DiamondChance) < 1) wall.SetTile(new Vector3Int(x - 1, y - 10, 0), Diamond);
+                            else if (Random.Range(0, GoldChance) < 1) wall.SetTile(new Vector3Int(x - 1, y - 10, 0), Gold);
+                            else if (Random.Range(0, SilverChance) < 1) wall.SetTile(new Vector3Int(x - 1, y - 10, 0), Silver);
+
+                        }
+                    }
+                    else if (rockTile != null)
+                    {
+                        if (rockTile.name.Contains("Rock"))
+                        {
+                            if (Random.Range(0, DiamondChance) < 1) rock.SetTile(new Vector3Int(x - 1, y - 10, 0), DiamondRock);
+                            else if (Random.Range(0, GoldChance) < 1) rock.SetTile(new Vector3Int(x - 1, y - 10, 0), GoldRock);
+                            else if (Random.Range(0, SilverChance) < 1) rock.SetTile(new Vector3Int(x - 1, y - 10, 0), SilverRock);
+                        }
+                    }
+                    */
+                }
+            }
+        }
     }
 
     private bool CheckBool(string type, int x)
@@ -832,13 +849,10 @@ public class LevelGenerator : MonoBehaviour
                 if (wall.gameObject.name == "Walls")
                 {
                     for (int i = 0; i < nodes.Length - 1; i++)
-                    //for (int i = 0; i < 1; i++)
                     {
                         for (int x = 0; x < bounds.size.x; x++)
-                        //for (int x = 0; x < 2; x++)
                         {
                             for (int y = 0; y < bounds.size.y; y++)
-                            //for (int y = 10; y < 11; y++)
                             {
                                 if (walls[i * 121 + x + y * bounds.size.x] == 1)
                                 {
@@ -855,13 +869,10 @@ public class LevelGenerator : MonoBehaviour
                 if (wall.gameObject.name == "Rock")
                 {
                     for (int i = 0; i < nodes.Length - 1; i++)
-                    //for (int i = 0; i < 1; i++)
                     {
                         for (int x = 0; x < bounds.size.x; x++)
-                        //for (int x = 0; x < 2; x++)
                         {
                             for (int y = 0; y < bounds.size.y; y++)
-                            //for (int y = 10; y < 11; y++)
                             {
                                 if (rocks[i * 121 + x + y * bounds.size.x] == 1)
                                 {
@@ -878,13 +889,10 @@ public class LevelGenerator : MonoBehaviour
                 if (wall.gameObject.name == "Obsidian")
                 {
                     for (int i = 0; i < nodes.Length - 1; i++)
-                    //for (int i = 0; i < 1; i++)
                     {
                         for (int x = 0; x < bounds.size.x; x++)
-                        //for (int x = 0; x < 2; x++)
                         {
                             for (int y = 0; y < bounds.size.y; y++)
-                            //for (int y = 10; y < 11; y++)
                             {
                                 if (obsidians[i * 121 + x + y * bounds.size.x] == 1)
                                 {
