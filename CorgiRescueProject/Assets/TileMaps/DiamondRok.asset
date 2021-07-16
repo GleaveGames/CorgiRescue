@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: GoldRok
+  m_Name: DiamondRok
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 47d0927e7855559429dea0de06f76ade, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0daea8937db3a0547857c0ec61bb03f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

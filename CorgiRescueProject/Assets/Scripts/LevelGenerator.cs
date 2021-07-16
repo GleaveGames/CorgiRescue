@@ -705,9 +705,9 @@ public class LevelGenerator : MonoBehaviour
                     {
                         if (rockTile.name.Contains("Rock"))
                         {
-                            if (Random.Range(0, DiamondChance) < 1) rock.SetTile(new Vector3Int(x - 1, y - 10, 0), DiamondRock);
-                            else if (Random.Range(0, GoldChance) < 1) rock.SetTile(new Vector3Int(x - 1, y - 10, 0), GoldRock);
-                            else if (Random.Range(0, SilverChance) < 1) rock.SetTile(new Vector3Int(x - 1, y - 10, 0), SilverRock);
+                            if (Random.Range(0, DiamondChance) < 1) gems.SetTile(new Vector3Int(x - 1, y - 10, 0), DiamondRock);
+                            else if (Random.Range(0, GoldChance) < 1) gems.SetTile(new Vector3Int(x - 1, y - 10, 0), GoldRock);
+                            else if (Random.Range(0, SilverChance) < 1) gems.SetTile(new Vector3Int(x - 1, y - 10, 0), SilverRock);
                         }
                     }
 
