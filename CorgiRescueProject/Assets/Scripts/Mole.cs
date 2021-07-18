@@ -22,6 +22,15 @@ public class Mole : Living
     protected override void Start()
     {
         base.Start();
+        StartCoroutine(MoleWaitBeforeStart());
+        dest = transform.position;
+    }
+
+    private IEnumerator MoleWaitBeforeStart() 
+    {
+        canMove = false;
+        yield return new WaitForSeconds(3);
+        canMove = true;
         if (boss)
         {
             ZZZ = transform.GetChild(0).GetComponent<ParticleSystem>();

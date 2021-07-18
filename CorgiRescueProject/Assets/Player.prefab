@@ -716,9 +716,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0f04bfb71a00a34f803b32b8736a58f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OneAtATime: 1
   tilemaps: []
   canMine: 1
   canBreakRock: 0
+  canDamageRock: 1
   canBreakObsidian: 0
   soundOn: 1
   dirtParticles: {fileID: 6310010033770557549, guid: 94cb80fb58e44db408f7e8ada366d17f, type: 3}
@@ -727,9 +729,15 @@ MonoBehaviour:
   silverParticles: {fileID: 6310010033770557549, guid: a87f23ef6da5bff4eaea8d87ef31e9da, type: 3}
   snowParticles: {fileID: 6310010033770557549, guid: e57a64a1a716f8f41afd317494eed7bc, type: 3}
   rockParticles: {fileID: 6310010033770557549, guid: 26d1cb29dd6205947b8c2f8b58f63827, type: 3}
+  littleRockParticles: {fileID: 6310010033770557549, guid: 5efcf2778e764fd41b96f857d7225981, type: 3}
   obsidianParticles: {fileID: 6310010033770557549, guid: 26d1cb29dd6205947b8c2f8b58f63827, type: 3}
   iceParticles: {fileID: 6310010033770557549, guid: 5a2aa885808012549917e1040dcc4765, type: 3}
   woodParticles: {fileID: 6310010033770557549, guid: 0937982c73c8fec4e8835cba807e442e, type: 3}
+  rockTiles:
+  - {fileID: 11400000, guid: 474d54790ca501b488cbf196c27d778b, type: 2}
+  - {fileID: 11400000, guid: 17e249926ea380d44bc313f4ccce78c3, type: 2}
+  - {fileID: 11400000, guid: 277d355c4241ab844a208749db370d82, type: 2}
+  - {fileID: 11400000, guid: 41fd13de902f43547adc556f4d0231b3, type: 2}
   am: {fileID: 0}
   pebble: {fileID: 5020420758543740405, guid: 0e3ff7031044bfb418f342415528e0bf, type: 3}
 --- !u!58 &3219390707801440996

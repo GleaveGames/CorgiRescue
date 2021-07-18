@@ -6,6 +6,9 @@ using UnityEngine.Tilemaps;
 
 public class Miner : MonoBehaviour
 {
+    [SerializeField]
+    bool OneAtATime = false;
+
     [HideInInspector]
     public Tilemap[] tilemaps;
     [HideInInspector]
@@ -13,6 +16,8 @@ public class Miner : MonoBehaviour
     public bool canMine = false;
     [SerializeField]
     private bool canBreakRock = false;
+    [SerializeField]
+    private bool canDamageRock = false;
     [SerializeField]
     private bool canBreakObsidian = false;
     [SerializeField]
@@ -25,9 +30,14 @@ public class Miner : MonoBehaviour
     public GameObject silverParticles;
     public GameObject snowParticles;
     public GameObject rockParticles;
+    public GameObject littleRockParticles;
     public GameObject obsidianParticles;
     public GameObject iceParticles;
     public GameObject woodParticles;
+
+    [Header("Rock Tiles")]
+    [SerializeField]
+    private TileBase[] rockTiles; 
 
     [SerializeField]
     private AudioManager am;
@@ -41,13 +51,33 @@ public class Miner : MonoBehaviour
         StartCoroutine(WaitToGetTiles());
     }
 
+    private IEnumerator MinePause() 
+    {
+        canMine = false;
+        yield return new WaitForSeconds(0.3f);
+        canMine = true;
+    }
+
     private IEnumerator WaitToGetTiles() 
     {
-        yield return new WaitForSeconds(2);
-        tilemaps[0] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("Walls").GetComponent<Tilemap>();
-        tilemaps[1] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("Rock").GetComponent<Tilemap>();
-        tilemaps[2] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("Obsidian").GetComponent<Tilemap>();
-        tilemaps[3] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("GemsTilemap(Clone)").GetComponent<Tilemap>();
+        if (canMine)
+        {
+            canMine = false;
+            yield return new WaitForSeconds(1.5f);
+            tilemaps[0] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("Walls").GetComponent<Tilemap>();
+            tilemaps[1] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("Rock").GetComponent<Tilemap>();
+            tilemaps[2] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("Obsidian").GetComponent<Tilemap>();
+            tilemaps[3] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("GemsTilemap(Clone)").GetComponent<Tilemap>();
+            canMine = true;
+        }
+        else 
+        {
+            yield return new WaitForSeconds(1.5f);
+            tilemaps[0] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("Walls").GetComponent<Tilemap>();
+            tilemaps[1] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("Rock").GetComponent<Tilemap>();
+            tilemaps[2] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("Obsidian").GetComponent<Tilemap>();
+            tilemaps[3] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("GemsTilemap(Clone)").GetComponent<Tilemap>();
+        }
     }
     void OnCollisionStay2D(Collision2D collision)
     {
@@ -80,6 +110,18 @@ public class Miner : MonoBehaviour
                             TileDestroy(collisionSprite, tilemaps[1], hitPosition);
                         }
                     }
+                    //TEST CODE
+                    else if(canDamageRock)
+                    {
+                        if (tilemaps[1].GetSprite(tilemaps[1].WorldToCell(hitPosition)) != null)
+                        {
+                            collisionSprite = tilemaps[1].GetSprite(tilemaps[1].WorldToCell(hitPosition)).name;
+                            if (collisionSprite.Contains("Rock"))
+                            {
+                                RockTileUpdate(collisionSprite, hitPosition);   
+                            }
+                        }
+                    }
                     if (canBreakObsidian)
                     {
                         if (tilemaps[2].GetSprite(tilemaps[1].WorldToCell(hitPosition)) != null)
@@ -92,6 +134,32 @@ public class Miner : MonoBehaviour
                 }
             }
         }        
+    }
+
+
+
+    private void RockTileUpdate(string collisionSprite, UnityEngine.Vector3 hitPosition)
+    {
+        //if(collisionSprite == rockTiles[rockTiles.Length - 1].name) 
+        if(collisionSprite.Contains("3"))
+        {
+            tilemaps[1].SetTile(tilemaps[1].WorldToCell(hitPosition), null);
+            TileDestroy(collisionSprite, tilemaps[1], hitPosition);
+        }
+        else 
+        {
+            if (collisionSprite.Contains("1")) tilemaps[1].SetTile(tilemaps[1].WorldToCell(hitPosition), rockTiles[2]);
+            else if (collisionSprite.Contains("2")) tilemaps[1].SetTile(tilemaps[1].WorldToCell(hitPosition), rockTiles[3]);
+            //etc
+            else tilemaps[1].SetTile(tilemaps[1].WorldToCell(hitPosition), rockTiles[1]);
+            if (Random.Range(0, 100) < 1) Instantiate(pebble, hitPosition, UnityEngine.Quaternion.identity);
+            Instantiate(littleRockParticles, new UnityEngine.Vector3(tilemaps[1].WorldToCell(hitPosition).x + 0.5f, tilemaps[1].WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
+            if (soundOn)
+            {
+                am.Play("Rock", new UnityEngine.Vector3(tilemaps[1].WorldToCell(hitPosition).x + 0.5f, tilemaps[1].WorldToCell(hitPosition).y + 0.5f, 0), false);
+            }
+        }
+        if (OneAtATime) StartCoroutine(MinePause());
     }
 
     private void GemDestroy(UnityEngine.Vector3 hitPosition)
@@ -155,5 +223,6 @@ public class Miner : MonoBehaviour
             am.Play(sound, new UnityEngine.Vector3(Tm.WorldToCell(hitPosition).x + 0.5f, Tm.WorldToCell(hitPosition).y + 0.5f, 0), false);
         }
         GemDestroy(hitPosition);
+        if (OneAtATime) StartCoroutine(MinePause());
     }
 }
