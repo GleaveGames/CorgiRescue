@@ -716,7 +716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0f04bfb71a00a34f803b32b8736a58f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OneAtATime: 1
+  oneatatime: 1
   tilemaps: []
   canMine: 1
   canBreakRock: 0

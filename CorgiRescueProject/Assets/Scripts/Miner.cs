@@ -6,10 +6,12 @@ using UnityEngine.Tilemaps;
 
 public class Miner : MonoBehaviour
 {
+    [SerializeField]
+    private bool oneatatime = false;
     [HideInInspector]
     public Tilemap[] tilemaps;
-    [HideInInspector]
-    public ContactPoint2D[] contacts = new ContactPoint2D[10];
+    //[HideInInspector]
+    //public ContactPoint2D[] contacts = new ContactPoint2D[10];
     public bool canMine = false;
     [SerializeField]
     private bool canBreakRock = false;
@@ -69,18 +71,21 @@ public class Miner : MonoBehaviour
             tilemaps[3] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("GemsTilemap(Clone)").GetComponent<Tilemap>();
         }
     }
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionStay2D(Collision2D collision)
     {
         if (canMine)
         {
             int contactCount = collision.contactCount;
-            if (contactCount > contacts.Length) contacts = new ContactPoint2D[contactCount];
+            ContactPoint2D[] contacts = new ContactPoint2D[contactCount];
             collision.GetContacts(contacts);
+            if (contactCount > contacts.Length) contacts = new ContactPoint2D[contactCount];
             UnityEngine.Vector3 hitPosition = UnityEngine.Vector3.zero;
+            Debug.Log(contactCount);
             for (int i = 0; i != contactCount; ++i)
             {
                 hitPosition.x = contacts[i].point.x;
                 hitPosition.y = contacts[i].point.y;
+                hitPosition += (hitPosition - transform.position).normalized * 0.1f;
                 string collisionSprite = null;
                 //Below actually gives true for any tile in that position in any of the tilemaps.
                 if (tilemaps[0].WorldToCell(hitPosition) != null)
@@ -90,6 +95,7 @@ public class Miner : MonoBehaviour
                         collisionSprite = tilemaps[0].GetSprite(tilemaps[0].WorldToCell(hitPosition)).name;
                         tilemaps[0].SetTile(tilemaps[0].WorldToCell(hitPosition), null);
                         TileDestroy(collisionSprite, tilemaps[0], hitPosition);
+                        continue;
                     }
                     if (canBreakRock)
                     {
@@ -98,17 +104,24 @@ public class Miner : MonoBehaviour
                             collisionSprite = tilemaps[1].GetSprite(tilemaps[1].WorldToCell(hitPosition)).name;
                             tilemaps[1].SetTile(tilemaps[1].WorldToCell(hitPosition), null);
                             TileDestroy(collisionSprite, tilemaps[1], hitPosition);
+                            break;
+
                         }
                     }
                     //TEST CODE
-                    else if(canDamageRock)
+                    else if (canDamageRock)
                     {
                         if (tilemaps[1].GetSprite(tilemaps[1].WorldToCell(hitPosition)) != null)
                         {
                             collisionSprite = tilemaps[1].GetSprite(tilemaps[1].WorldToCell(hitPosition)).name;
                             if (collisionSprite.Contains("Rock"))
                             {
-                                RockTileUpdate(collisionSprite, hitPosition);   
+                                RockTileUpdate(collisionSprite, hitPosition);
+                                if (oneatatime)
+                                {
+                                    break;
+                                }
+                                continue;
                             }
                         }
                     }
@@ -119,6 +132,7 @@ public class Miner : MonoBehaviour
                             collisionSprite = tilemaps[2].GetSprite(tilemaps[2].WorldToCell(hitPosition)).name;
                             tilemaps[2].SetTile(tilemaps[2].WorldToCell(hitPosition), null);
                             TileDestroy(collisionSprite, tilemaps[2], hitPosition);
+                            continue;
                         }
                     }
                 }
