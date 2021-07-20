@@ -6,8 +6,6 @@ using UnityEngine.Tilemaps;
 
 public class Miner : MonoBehaviour
 {
-    [SerializeField]
-    private bool oneatatime = false;
     [HideInInspector]
     public Tilemap[] tilemaps;
     //[HideInInspector]
@@ -117,10 +115,6 @@ public class Miner : MonoBehaviour
                             if (collisionSprite.Contains("Rock"))
                             {
                                 RockTileUpdate(collisionSprite, hitPosition);
-                                if (oneatatime)
-                                {
-                                    break;
-                                }
                                 continue;
                             }
                         }
