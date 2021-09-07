@@ -20,19 +20,15 @@ public class SKPickUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (itemsForPickUp.Count == 0)
-        {
-            itemsForPickUp = FindObjectOfType<LevelGenerator>().itemsForPickUp;
-        }
         if(leftHand.childCount < 1)
         {
             item = null;
         }
-        
     }
 
     public GameObject GetItem()
     {
+        //this not working
         GameObject closestItem = null;
         GameObject[] closestItems = GetNearestItem();
         if(closestItems != null)
@@ -93,6 +89,8 @@ public class SKPickUp : MonoBehaviour
 
     public GameObject[] GetNearestItem()
     {
+        //this working
+        itemsForPickUp = FindObjectOfType<LevelGenerator>().itemsForPickUp;
         if (itemsForPickUp.Count > 0)
         {
             GameObject closestItem = itemsForPickUp[0];
@@ -117,7 +115,7 @@ public class SKPickUp : MonoBehaviour
             three[0] = closestItem;
             three[1] = closestItem2;
             three[2] = closestItem3;
-            //Debug.Log(three[0].name + three[1].name + three[2].name);
+            Debug.Log(three[0].name + three[1].name + three[2].name);
             return three;
         }
         else

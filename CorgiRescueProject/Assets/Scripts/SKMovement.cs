@@ -20,7 +20,6 @@ public class SKMovement : Living
     public List<GameObject> livingthings;
     [SerializeField]
     private bool[] walls;
-    private int targetDirection;
     [SerializeField]
     private float wallRange;
     private Vector2 tempdir;
@@ -32,20 +31,24 @@ public class SKMovement : Living
     public bool invinc;
     private bool canSeeTarget;
     private float patrolCount;
+    Vector2 lastSpotted;
+    Vector2 movePoint;
 
-    private void Start()
+    protected override void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         child = transform.GetChild(0).gameObject;
         ani = child.GetComponent<Animator>();
         ChangeAnimationState("SKIdle");
         pickup = GetComponent<SKPickUp>();
-        //livingthings = FindObjectOfType<LevelGenerator>().livingThings;        
         pickup.viewRange = viewRange;
         if (FindObjectOfType<playerStats>().wanted)
         {
             angered = true;
         }
+        rb = GetComponent<Rigidbody2D>();
+        if (!pickupable) Destroy(GetComponent<PickUpEnemy>());
+        lg = FindObjectOfType<LevelGenerator>();
+        am = FindObjectOfType<AudioManager>();
     }
 
     protected override void Update()
@@ -57,17 +60,8 @@ public class SKMovement : Living
             {
                 case skState.Wander:
                 {
-                        if (pickup.item == null)
-                        {
-                            _currentState = skState.Arm;
-                        }
-                        if (angered)
-                        {
-                            _currentState = skState.Chase;
-                        }
-
-
-
+                        if (pickup.item == null) _currentState = skState.Arm;
+                        if (angered) _currentState = skState.Chase;
 
                         if (patrolCount < 2)
                         {
@@ -99,6 +93,7 @@ public class SKMovement : Living
                             closestItem = pickup.GetItem();
                             if (closestItem != null)
                             {
+                                Debug.Log(closestItem.name);
                                 transform.position = Vector2.MoveTowards(transform.position, closestItem.transform.position, runsp * Time.deltaTime);
                                 if (Vector2.Distance(transform.position, closestItem.transform.position) <= pickup.pickUpRange)
                                 {
@@ -112,6 +107,7 @@ public class SKMovement : Living
                             }
                             else
                             {
+                                Debug.Log("No closest Item");
                                 runsp = angeredspeed;
                                 ani.speed = 1;
                                 RandomlyMove();
@@ -129,11 +125,17 @@ public class SKMovement : Living
                         if (target == null) _currentState = skState.Wander;
                         FaceTarget();
                         if (CheckLOS()) _currentState = skState.Attack;
-                        else RandomlyMove();
+                        else 
+                        {
+                            
+                            transform.position = Vector2.MoveTowards(transform.position, lastSpotted, runsp * Time.deltaTime);
+                            FaceTarget();
+                        }
                         break;
                 }
                 case skState.Attack:
                 {
+                        FaceTarget();
                         if (pickup.item == null) { _currentState = skState.Arm; break;}
                         if (target == null) { _currentState = skState.Wander; break; }
                         if (target == null)
@@ -168,115 +170,13 @@ public class SKMovement : Living
                         {
                             _currentState = skState.Chase;
                         }
+                        lastSpotted = target.transform.position;
                         break;
                 }
             }
         }
     }
 
-    /*
-    private void FixedUpdate()
-    {
-        if (canMove)
-        {
-            if (pickup.item == null && findNewItem)
-            {
-                runsp = angeredspeed;
-                ani.speed = 1;
-                ChangeAnimationState("SKmove");
-                closestItem = pickup.GetItem();
-                if(closestItem != null)
-                {
-                    transform.position = Vector2.MoveTowards(transform.position, closestItem.transform.position, runsp * Time.deltaTime);
-                    if (Vector2.Distance(transform.position, closestItem.transform.position) <= pickup.pickUpRange) 
-                    {
-                        closestItem.GetComponent<PickUpBase>().PickUp(pickup.leftHand);
-                        pickup.item = closestItem;
-                        pickup.item.GetComponent<DamagesPlayer>().canHurt = false;
-                        Quaternion itemrot = Quaternion.LookRotation(transform.forward, -transform.right);
-                        pickup.item.transform.rotation = itemrot;
-                        //skm.findNewItem = false;
-                    }
-                }
-                else
-                {
-                    runsp = angeredspeed;
-                    ani.speed = 1;
-                    RandomlyMove();
-                }
-            }
-           
-            else if (!angered || !findNewItem)
-            {
-                //ChangeAnimationState("SKIdle");
-                if (patrolCount < 2)
-                {
-                    RandomlyMove();
-                    runsp = patrolspeed;
-                    ani.speed = 0.7f;
-                    patrolCount += Time.deltaTime;
-                    ChangeAnimationState("SKmove");
-                }
-                else if (patrolCount > 4)
-                {
-                    patrolCount = 0;
-                }
-                else
-                {
-                    patrolCount += Time.deltaTime;
-                    ChangeAnimationState("SKIdle");
-                }
-                return;
-            }
-            else if (angered)
-            {
-                runsp = angeredspeed;
-                ani.speed = 1;
-                //GetTarget();
-                //Debug.Log(target.name);
-                if (target != null)
-                {
-                    FaceTarget();
-                    if (!CheckLOS())
-                    {
-                        RandomlyMove();
-                    }
-                    else
-                    {
-                        if (Vector2.Distance(transform.position, target.transform.position) < 2)
-                        {
-                            transform.position = Vector2.MoveTowards(transform.position, 2 * transform.position - target.transform.position, runsp * Time.deltaTime);
-                        }
-                        else if (Vector2.Distance(transform.position, target.transform.position) > 4)
-                        {
-                            transform.position = Vector2.MoveTowards(transform.position, target.transform.position, runsp * Time.deltaTime);
-                        }
-                        if (pickup.item.TryGetComponent(out shotgun Gun))
-                        {
-                            Gun.Fire();
-                        }
-                        else if (pickup.item.TryGetComponent(out Boomerang Boom))
-                        {
-                            Boom.Fire();
-                            StartCoroutine("WaitAfterThrow");
-                            findNewItem = false;
-                        }
-                        else
-                        {
-                            pickup.ThrowItem();
-                            StartCoroutine("WaitAfterThrow");
-                            findNewItem = false;
-                        }
-                    }
-                }
-                else
-                {
-                    angered = false;                    
-                }
-            }
-        }     
-    }
-    */
 
     private bool CheckLOS()
     {
@@ -325,39 +225,6 @@ public class SKMovement : Living
             targetPos.y = targetPos.y - transform.position.y;
             angle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + -90));
-        }
-    }
-
-    public void TargetDirection()
-    {
-        if (target != null)
-        {
-            //0 is topleft // 1 is topright // 2 is bottomright // 3 is bottomleft
-            if (transform.position.x < target.transform.position.x)
-            {
-                //target to the right
-                if (transform.position.y < target.transform.position.y)
-                {
-                    //top
-                    targetDirection = 12;
-                }
-                else
-                {
-
-                    targetDirection = 23;
-                }
-            }
-            else
-            {
-                if (transform.position.y < target.transform.position.y)
-                {
-                    targetDirection = 03;
-                }
-                else
-                {
-                    targetDirection = 01;
-                }
-            }
         }
     }
 

@@ -61,7 +61,6 @@ public class Damagable : MonoBehaviour
             {
                 if (TryGetComponent(out SKMovement skm))
                 {
-                    skm.TargetDirection();
                     GetComponent<AudioSource>().Play();
                     GetComponent<SKPickUp>().Drop();
                 }
@@ -148,20 +147,27 @@ public class Damagable : MonoBehaviour
     {
         if (!living.stunnable) yield break;
         if (living.health < 1) living.Die();
-        FindObjectOfType<LevelGenerator>().itemsForPickUp.Add(gameObject);
         living.stunned = true;
         living.attacking = false;
         if(TryGetComponent(out DamagesPlayer damplay)) 
         {
             damplay.canHurt = false;
         }
-        if (transform.childCount > 0)
+        if (SK)
+        {
+            if(transform.childCount > 1)
+            {
+                yield break;
+            }
+        }
+        else if (transform.childCount > 0)
         {
             if (transform.GetChild(transform.childCount-1).gameObject.name.Contains("Duck"))
             {
                 yield break;
             }
         }
+        if(living.pickupable) FindObjectOfType<LevelGenerator>().itemsForPickUp.Add(gameObject);
         GameObject ducko = Instantiate(Ducks, transform.position, Quaternion.identity);
         ducko.transform.parent = transform;
         if (SK) 

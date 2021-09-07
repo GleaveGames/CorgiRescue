@@ -30,7 +30,8 @@ public class Living : MonoBehaviour
     public string currentState;
     [HideInInspector]
     public Transform player;
-    private LevelGenerator lg;
+    [HideInInspector]
+    public LevelGenerator lg;
     protected AudioManager am;
     [SerializeField]
     private GameObject blood;
