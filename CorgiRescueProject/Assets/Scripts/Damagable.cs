@@ -157,6 +157,8 @@ public class Damagable : MonoBehaviour
         {
             if(transform.childCount > 1)
             {
+                Debug.Log(transform.childCount);
+                Debug.Log("Already Stunned");
                 yield break;
             }
         }
@@ -170,21 +172,13 @@ public class Damagable : MonoBehaviour
         if(living.pickupable) FindObjectOfType<LevelGenerator>().itemsForPickUp.Add(gameObject);
         GameObject ducko = Instantiate(Ducks, transform.position, Quaternion.identity);
         ducko.transform.parent = transform;
-        if (SK) 
+        if(TryGetComponent(out Living liv))
         {
-            transform.GetChild(0).GetComponent<Animator>().enabled = false;
-            GetComponent<SKMovement>().canMove = false;
-            yield return new WaitForSeconds(stuntime);
-            GetComponent<SKMovement>().canMove = true;
-            transform.GetChild(0).GetComponent<Animator>().enabled = true;
-        }
-        else if(TryGetComponent(out Living liv))
-        {
-            GetComponent<Animator>().enabled = false;
+            liv.ani.enabled = false;
             liv.enabled = false;
             yield return new WaitForSeconds(stuntime);
             liv.enabled = true;
-            GetComponent<Animator>().enabled = true;
+            liv.ani.enabled = true;
             
         }
         living.stunned = false;

@@ -484,7 +484,7 @@ MonoBehaviour:
   mong: 0
   bomby: 0
   littleBlood: {fileID: 1654121160770679037, guid: 58d437bff74a2aa4896badd67bce2666, type: 3}
-  stuntime: 1
+  stuntime: 3
   knockbackPower: 3
   knockbackTime: 0.2
   Living: 1
