@@ -243,10 +243,11 @@ GameObject:
   - component: {fileID: 7433238085111626215}
   - component: {fileID: 3395587979383381893}
   - component: {fileID: 3331172430760222192}
-  - component: {fileID: 7520242457641350019}
   - component: {fileID: 5688952886985692455}
   - component: {fileID: 2188399892995217790}
   - component: {fileID: 3617075016014499176}
+  - component: {fileID: 8982284679640069629}
+  - component: {fileID: 827507044957996481}
   m_Layer: 0
   m_Name: ShopKeep
   m_TagString: SK
@@ -298,12 +299,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15f07418e324bda4b92a50107113e2f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 5
+  stunnable: 1
+  pickupable: 1
+  knockbackable: 1
+  health: 10
+  mass: 0
+  linearDrag: 0
+  angularDrag: 0
+  stunned: 0
+  attacking: 0
+  pickedUp: 0
+  angered: 0
+  canMove: 1
+  ani: {fileID: 0}
+  currentState: 
+  player: {fileID: 0}
+  blood: {fileID: 6310010033770557549, guid: 7be9f23a949dabd4395ea7df6d1c745f, type: 3}
+  attackSoundPlayed: 0
+  attackSoundAudio: {fileID: 5688952886985692455}
+  tiles:
+    serializedVersion: 2
+    m_Bits: 0
+  json: {fileID: 0}
   runsp: 5
   patrolspeed: 1
   angeredspeed: 4
-  canMove: 1
-  blood: {fileID: 6310010033770557549, guid: 7be9f23a949dabd4395ea7df6d1c745f, type: 3}
-  angered: 0
   target: {fileID: 0}
   viewRange: 100
   livingthings: []
@@ -340,29 +361,15 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 10
+  m_LinearDrag: 5
+  m_AngularDrag: 2
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &7520242457641350019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3331172430760222196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d641eea33ece56f43abeccf85bf6e790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 15
-  blood: {fileID: 6310010033770557549, guid: 7be9f23a949dabd4395ea7df6d1c745f, type: 3}
 --- !u!82 &5688952886985692455
 AudioSource:
   m_ObjectHideFlags: 0
@@ -476,7 +483,9 @@ MonoBehaviour:
   mong: 0
   bomby: 0
   littleBlood: {fileID: 1654121160770679037, guid: 58d437bff74a2aa4896badd67bce2666, type: 3}
-  stuntime: 3
+  stuntime: 1
+  knockbackPower: 3
+  knockbackTime: 0.2
   Living: 1
   PickUpItems: 1
   Pick: 1
@@ -497,3 +506,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   initialDamage: 0
+--- !u!114 &8982284679640069629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3331172430760222196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bec58b531f80fc4f991dcdf5d0b5ecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  throwPowerModifier: 3
+--- !u!114 &827507044957996481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3331172430760222196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d8aa628b6065cf46b78979e90d5934c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger: 1
+  damage: 0
+  canHurt: 1
+  knockbackTime: 1
+  destroyOnCollision: 0
+  collisionParticles: {fileID: 0}
+  canHurtPlayer: 1
+  spawnsObjOnCollision: 0
+  collisionObject: {fileID: 0}

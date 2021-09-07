@@ -56,7 +56,16 @@ public class Damagable : MonoBehaviour
             (Bombs && collision.gameObject.name == "Bomb(Clone)") || 
             (Traps && collision.gameObject.CompareTag("Trap")))
         {
-                DoDamage(collision.gameObject);
+            DoDamage(collision.gameObject);
+            if (SK)
+            {
+                if (TryGetComponent(out SKMovement skm))
+                {
+                    skm.TargetDirection();
+                    GetComponent<AudioSource>().Play();
+                    GetComponent<SKPickUp>().Drop();
+                }
+            }
         }
 
         //JUST ADDED THIS SO THAT YOU CAN'T BUM RUSH SK 
@@ -104,10 +113,16 @@ public class Damagable : MonoBehaviour
         {
             if (target.CompareTag("Pick"))
             {
-                target = target.transform.root.gameObject;
+                GetComponent<SKMovement>().target = target.transform.root.gameObject;
             }
-            GetComponent<SKMovement>().target = target; 
-            GetComponent<SKMovement>().angered = true;
+            else if (!target.TryGetComponent(out Living liv))
+            {
+                GetComponent<SKMovement>().target = FindObjectOfType<playerMovement>().gameObject;
+            }
+            else
+            {
+                GetComponent<SKMovement>().target = target;
+            }
             GetComponent<SKPickUp>().Drop();
         }
         living.angered = true;

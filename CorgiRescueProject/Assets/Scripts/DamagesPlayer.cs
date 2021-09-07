@@ -56,24 +56,6 @@ public class DamagesPlayer : MonoBehaviour
                     }
                 }
             }            
-            if(collision.gameObject.CompareTag("SK"))
-            {
-                if (TryGetComponent(out SKMovement skm))
-                {
-                    skm.angered = true;
-                    skm.TargetDirection();
-                }
-                if (!collision.gameObject.GetComponent<SKMovement>().invinc)
-                {
-                    GetComponent<AudioSource>().Play();
-                    collision.gameObject.GetComponent<CharacterStats>().health -= damage;
-                    collision.gameObject.GetComponent<SKMovement>().invinc = true;
-                    collision.gameObject.GetComponent<SKMovement>().StartInvinc();
-                    collision.gameObject.GetComponent<SKMovement>().KnockBack(0.3f, (collision.gameObject.transform.position - transform.position).normalized * 7f);
-                    collision.gameObject.GetComponent<SKPickUp>().Drop();
-                }    
-                
-            }
         }
         if(destroyOnCollision)
         {
@@ -112,24 +94,6 @@ public class DamagesPlayer : MonoBehaviour
                             Debug.Log("notInvinc");
                         }
                     }
-                }
-                if (collision.gameObject.CompareTag("SK"))
-                {
-                    if (TryGetComponent(out SKMovement skm))
-                    {
-                        skm.angered = true;
-                        skm.TargetDirection();
-                    }
-                    if (!collision.gameObject.GetComponent<SKMovement>().invinc)
-                    {
-                        GetComponent<AudioSource>().Play();
-                        collision.gameObject.GetComponent<CharacterStats>().health -= damage;
-                        collision.gameObject.GetComponent<SKMovement>().invinc = true;
-                        collision.gameObject.GetComponent<SKMovement>().StartInvinc();
-                        collision.gameObject.GetComponent<SKMovement>().KnockBack(0.3f, (collision.gameObject.transform.position - transform.position).normalized * 7f);
-                        collision.gameObject.GetComponent<SKPickUp>().Drop();
-                    }
-
                 }
             }
             if (destroyOnCollision)

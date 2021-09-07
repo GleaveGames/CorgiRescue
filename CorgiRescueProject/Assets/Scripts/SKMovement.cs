@@ -2,23 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SKMovement : MonoBehaviour
+public class SKMovement : Living
 {
+    private skState _currentState;
+
     Vector2 move;
     public float runsp = 1.5f;
     public float patrolspeed = 1f;
     public float angeredspeed = 1.5f;
-    private Rigidbody2D rb;
     private GameObject child;
-    private Animator ani;
-    private string currentState;
-    public bool canMove = true;
-    [SerializeField]
-    private GameObject blood;
-    Coroutine coroutine;
-    private float knockbackTime;
-    private Vector3 knockbackForce;
-    public bool angered;
     public GameObject target;
     private Vector3 targetPos;
     private float angle;
@@ -54,9 +46,135 @@ public class SKMovement : MonoBehaviour
         {
             angered = true;
         }
-
     }
 
+    protected override void Update()
+    {
+        base.Update();
+        if (canMove)
+        {
+            switch (_currentState)
+            {
+                case skState.Wander:
+                {
+                        if (pickup.item == null)
+                        {
+                            _currentState = skState.Arm;
+                        }
+                        if (angered)
+                        {
+                            _currentState = skState.Chase;
+                        }
+
+
+
+
+                        if (patrolCount < 2)
+                        {
+                            RandomlyMove();
+                            runsp = patrolspeed;
+                            ani.speed = 0.7f;
+                            patrolCount += Time.deltaTime;
+                            ChangeAnimationState("SKmove");
+                        }
+                        else if (patrolCount > 4)
+                        {
+                            patrolCount = 0;
+                        }
+                        else
+                        {
+                            patrolCount += Time.deltaTime;
+                            ChangeAnimationState("SKIdle");
+                        }
+                        
+                    break;
+                }
+                case skState.Arm:
+                {
+                        if(pickup.item == null && findNewItem)
+                        {
+                            runsp = angeredspeed;
+                            ani.speed = 1;
+                            ChangeAnimationState("SKmove");
+                            closestItem = pickup.GetItem();
+                            if (closestItem != null)
+                            {
+                                transform.position = Vector2.MoveTowards(transform.position, closestItem.transform.position, runsp * Time.deltaTime);
+                                if (Vector2.Distance(transform.position, closestItem.transform.position) <= pickup.pickUpRange)
+                                {
+                                    closestItem.GetComponent<PickUpBase>().PickUp(pickup.leftHand);
+                                    pickup.item = closestItem;
+                                    pickup.item.GetComponent<DamagesPlayer>().canHurt = false;
+                                    Quaternion itemrot = Quaternion.LookRotation(transform.forward, transform.up);
+                                    pickup.item.transform.rotation = itemrot;
+                                    //skm.findNewItem = false;
+                                }
+                            }
+                            else
+                            {
+                                runsp = angeredspeed;
+                                ani.speed = 1;
+                                RandomlyMove();
+                            }
+                        }
+                        else
+                        {
+                            _currentState = skState.Wander;
+                        }
+                    break;
+                }
+                case skState.Chase:
+                {
+                        if (pickup.item == null) _currentState = skState.Arm;
+                        if (target == null) _currentState = skState.Wander;
+                        FaceTarget();
+                        if (CheckLOS()) _currentState = skState.Attack;
+                        else RandomlyMove();
+                        break;
+                }
+                case skState.Attack:
+                {
+                        if (pickup.item == null) { _currentState = skState.Arm; break;}
+                        if (target == null) { _currentState = skState.Wander; break; }
+                        if (target == null)
+                        {
+                            _currentState = skState.Wander;
+                        }
+                        if (Vector2.Distance(transform.position, target.transform.position) < 2)
+                        {
+                            transform.position = Vector2.MoveTowards(transform.position, 2 * transform.position - target.transform.position, runsp * Time.deltaTime);
+                        }
+                        else if (Vector2.Distance(transform.position, target.transform.position) > 4)
+                        {
+                            transform.position = Vector2.MoveTowards(transform.position, target.transform.position, runsp * Time.deltaTime);
+                        }
+                        if (pickup.item.TryGetComponent(out shotgun Gun))
+                        {
+                            Gun.Fire();
+                        }
+                        else if (pickup.item.TryGetComponent(out Boomerang Boom))
+                        {
+                            Boom.Fire();
+                            StartCoroutine("WaitAfterThrow");
+                            findNewItem = false;
+                        }
+                        else
+                        {
+                            pickup.ThrowItem();
+                            StartCoroutine("WaitAfterThrow");
+                            findNewItem = false;
+                        }
+                        if (!CheckLOS())
+                        {
+                            _currentState = skState.Chase;
+                        }
+                        break;
+                }
+            }
+        }
+    }
+
+    /*
     private void FixedUpdate()
     {
         if (canMove)
@@ -158,6 +276,7 @@ public class SKMovement : MonoBehaviour
             }
         }     
     }
+    */
 
     private bool CheckLOS()
     {
@@ -168,42 +287,6 @@ public class SKMovement : MonoBehaviour
             canSeeTarget = true;
         }
         return canSeeTarget;
-    }
-
-    void ChangeAnimationState(string newState)
-    {
-        if (currentState == newState) return;
-
-        ani.Play(newState);
-
-        currentState = newState;
-    }
-
-    public void KnockBack(float time, Vector3 force)
-    {
-        knockbackForce = force;
-        knockbackTime = time;
-        StartCoroutine("StartKnockBack");
-    }
-
-    public IEnumerator StartKnockBack()
-    {
-        rb.AddForce(knockbackForce, ForceMode2D.Impulse);
-        canMove = false;
-        yield return new WaitForSeconds(knockbackTime);
-        canMove = true;
-    }
-
-    private IEnumerator InvincibilityFrames()
-    {
-        //Debug.Log("invinsibilty rourotine triggered");
-        yield return new WaitForSeconds(invincTime);
-        invinc = false;
-    } 
-
-    public void StartInvinc()
-    {
-        StartCoroutine("InvincibilityFrames");
     }
 
     public void GetNearestThing()
@@ -235,39 +318,45 @@ public class SKMovement : MonoBehaviour
 
     private void FaceTarget()
     {
-        targetPos = target.transform.position;
-        targetPos.x = targetPos.x - transform.position.x;
-        targetPos.y = targetPos.y - transform.position.y;
-        angle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + -90));
+        if (target != null)
+        {
+            targetPos = target.transform.position;
+            targetPos.x = targetPos.x - transform.position.x;
+            targetPos.y = targetPos.y - transform.position.y;
+            angle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + -90));
+        }
     }
 
     public void TargetDirection()
     {
-        //0 is topleft // 1 is topright // 2 is bottomright // 3 is bottomleft
-        if (transform.position.x < target.transform.position.x)
+        if (target != null)
         {
-            //target to the right
-            if (transform.position.y < target.transform.position.y)
+            //0 is topleft // 1 is topright // 2 is bottomright // 3 is bottomleft
+            if (transform.position.x < target.transform.position.x)
             {
-                //top
-                targetDirection = 12;
-            }
-            else
-            {
+                //target to the right
+                if (transform.position.y < target.transform.position.y)
+                {
+                    //top
+                    targetDirection = 12;
+                }
+                else
+                {
 
-                targetDirection = 23;
-            }
-        }
-        else
-        {
-            if (transform.position.y < target.transform.position.y)
-            {
-                targetDirection = 03;
+                    targetDirection = 23;
+                }
             }
             else
             {
-                targetDirection = 01;
+                if (transform.position.y < target.transform.position.y)
+                {
+                    targetDirection = 03;
+                }
+                else
+                {
+                    targetDirection = 01;
+                }
             }
         }
     }
@@ -452,4 +541,12 @@ public class SKMovement : MonoBehaviour
         Quaternion rot = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(transform.forward, tempdir), 0.5f);
         transform.rotation = rot;
     }
+}
+
+public enum skState
+{
+    Wander,
+    Chase,
+    Attack,
+    Arm
 }

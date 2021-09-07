@@ -328,7 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runsp: 5
-  acceleration: 0.7
+  acceleration: 3
   turnSpeed: 0.5
   bomb: {fileID: 3691337205146848114, guid: 03a5dc2d75cae544c86f808f9bb3ac78, type: 3}
   pickPos: {fileID: 0}
@@ -716,7 +716,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0f04bfb71a00a34f803b32b8736a58f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oneatatime: 1
   tilemaps: []
   canMine: 1
   canBreakRock: 0

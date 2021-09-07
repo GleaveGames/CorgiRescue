@@ -11,6 +11,7 @@ public class SKPickUp : MonoBehaviour
     private SKMovement skm;
     public float viewRange;
 
+
     private void Start()
     {
         skm = GetComponent<SKMovement>();
@@ -27,11 +28,12 @@ public class SKPickUp : MonoBehaviour
         {
             item = null;
         }
+        
     }
 
     public GameObject GetItem()
     {
-        item = null;
+        GameObject closestItem = null;
         GameObject[] closestItems = GetNearestItem();
         if(closestItems != null)
         {
@@ -75,12 +77,12 @@ public class SKPickUp : MonoBehaviour
                 {
                     if (TargetDistance < WallDistance)
                     {
-                        item = closestItems[i];
-                        return item;
+                        closestItem = closestItems[i];
+                        return closestItem;
                     }
                 }
             }
-            return item;
+            return closestItem;
         }
         else
         {

@@ -48,6 +48,13 @@ public class Miner : MonoBehaviour
         StartCoroutine(WaitToGetTiles());
     }
 
+    private void OnLevelWasLoaded()
+    {
+        am = FindObjectOfType<AudioManager>();
+        tilemaps = new Tilemap[4];
+        StartCoroutine(WaitToGetTiles());
+    }
+
     private IEnumerator WaitToGetTiles() 
     {
         if (canMine)
