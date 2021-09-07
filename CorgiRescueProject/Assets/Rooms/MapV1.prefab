@@ -1984,22 +1984,33 @@ MonoBehaviour:
   Silver: {fileID: 11400000, guid: 160a2b1d22ee4d242b4d352f75842fa5, type: 2}
   GoldRock: {fileID: 11400000, guid: c537b8d412d1d3b4e8265766f55fe6f0, type: 2}
   SilverRock: {fileID: 11400000, guid: c98d18104288b4645b18b61d994f58a5, type: 2}
-  snek: {fileID: 15094032670358419, guid: 67d1b535a72970442986c2d88ba66b37, type: 3}
-  snekEnabled: 1
-  beetlelittle: {fileID: 1080977945638850635, guid: 2e75c02e66b9afb458db4bc3f81a0b42, type: 3}
-  beetlelittleEnabled: 1
-  beetlebig: {fileID: 1080977945638850635, guid: a9c3318c02cbee447a9f68f3eba54ac3, type: 3}
-  beetlebigEnabled: 1
-  spider: {fileID: 1080977945638850635, guid: 890c603d6bf350148b31fbff021fcad4, type: 3}
-  spiderEnabled: 1
-  bat: {fileID: 8621365850395960104, guid: afc07b170c172824c95d0fef2afcff5b, type: 3}
-  batEnabled: 1
-  mole: {fileID: 7471924862020509344, guid: 10f6b3f98f59a4e49b0230c216ac6187, type: 3}
-  moleEnabled: 1
-  mong: {fileID: 15094032670358419, guid: 8a26f5f7d484fff4bbabcf8ef96fcfcc, type: 3}
-  mongEnabled: 0
-  bomby: {fileID: 3691337205146848114, guid: 0f1eacc51d4d5fb43a55feceef4969cf, type: 3}
-  bombyEnabled: 0
+  enemies:
+  - go: {fileID: 15094032670358419, guid: 67d1b535a72970442986c2d88ba66b37, type: 3}
+    spawnChance: 60
+    enemyEnabled: 1
+  - go: {fileID: 8621365850395960104, guid: afc07b170c172824c95d0fef2afcff5b, type: 3}
+    spawnChance: 100
+    enemyEnabled: 1
+  - go: {fileID: 1080977945638850635, guid: 2e75c02e66b9afb458db4bc3f81a0b42, type: 3}
+    spawnChance: 70
+    enemyEnabled: 1
+  - go: {fileID: 1080977945638850635, guid: a9c3318c02cbee447a9f68f3eba54ac3, type: 3}
+    spawnChance: 120
+    enemyEnabled: 1
+  items:
+  - go: {fileID: 5020420758543740405, guid: 0e3ff7031044bfb418f342415528e0bf, type: 3}
+    spawnChance: 100
+    itemEnabled: 1
+  - go: {fileID: 7688553074688750316, guid: f5d819c55f963794d99102353ca843d9, type: 3}
+    spawnChance: 100
+    itemEnabled: 1
+  - go: {fileID: 7688553074688750316, guid: 41da8a0f01302984ca42f88139c09f4f, type: 3}
+    spawnChance: 250
+    itemEnabled: 1
+  traps:
+  - go: {fileID: 2933420508104443894, guid: 4e31bdb7a46f3c04da7acff1b354e813, type: 3}
+    spawnChance: 100
+    trapEnabled: 1
   pebble: {fileID: 5020420758543740405, guid: 0e3ff7031044bfb418f342415528e0bf, type: 3}
   metalCrate: {fileID: 7688553074688750316, guid: 41da8a0f01302984ca42f88139c09f4f, type: 3}
   woodCrate: {fileID: 7688553074688750316, guid: f5d819c55f963794d99102353ca843d9, type: 3}

@@ -78,7 +78,6 @@ public class Miner : MonoBehaviour
             collision.GetContacts(contacts);
             if (contactCount > contacts.Length) contacts = new ContactPoint2D[contactCount];
             UnityEngine.Vector3 hitPosition = UnityEngine.Vector3.zero;
-            Debug.Log(contactCount);
             for (int i = 0; i != contactCount; ++i)
             {
                 hitPosition.x = contacts[i].point.x;
