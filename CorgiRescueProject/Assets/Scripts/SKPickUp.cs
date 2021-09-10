@@ -115,7 +115,6 @@ public class SKPickUp : MonoBehaviour
             three[0] = closestItem;
             three[1] = closestItem2;
             three[2] = closestItem3;
-            Debug.Log(three[0].name + three[1].name + three[2].name);
             return three;
         }
         else

@@ -49,6 +49,7 @@ public class SKMovement : Living
         if (!pickupable) Destroy(GetComponent<PickUpEnemy>());
         lg = FindObjectOfType<LevelGenerator>();
         am = FindObjectOfType<AudioManager>();
+        StartCoroutine(GetPlayer());
     }
 
     protected override void Update()
@@ -59,7 +60,7 @@ public class SKMovement : Living
             switch (_currentState)
             {
                 case skState.Wander:
-                {
+                    {
                         if (pickup.item == null) _currentState = skState.Arm;
                         if (angered) _currentState = skState.Chase;
 
@@ -80,12 +81,12 @@ public class SKMovement : Living
                             patrolCount += Time.deltaTime;
                             ChangeAnimationState("SKIdle");
                         }
-                        
-                    break;
-                }
+
+                        break;
+                    }
                 case skState.Arm:
-                {
-                        if(pickup.item == null && findNewItem)
+                    {
+                        if (pickup.item == null && findNewItem)
                         {
                             runsp = angeredspeed;
                             ani.speed = 1;
@@ -93,7 +94,6 @@ public class SKMovement : Living
                             closestItem = pickup.GetItem();
                             if (closestItem != null)
                             {
-                                Debug.Log(closestItem.name);
                                 transform.position = Vector2.MoveTowards(transform.position, closestItem.transform.position, runsp * Time.deltaTime);
                                 if (Vector2.Distance(transform.position, closestItem.transform.position) <= pickup.pickUpRange)
                                 {
@@ -117,26 +117,40 @@ public class SKMovement : Living
                         {
                             _currentState = skState.Wander;
                         }
-                    break;
-                }
+                        break;
+                    }
                 case skState.Chase:
-                {
+                    {
+                        if (pickup.item == null) { _currentState = skState.Arm; break; }
+                        if (target == null) { _currentState = skState.Wander; break; }
+                        FaceTarget();
+                        if (CheckLOS()) { _currentState = skState.Attack; break; }
+                        else if (!CanSeeLastPosition()) _currentState = skState.Search;
+                        else if (Vector2.Distance(transform.position, lastSpotted) > 0.2f)
+                        {
+                            transform.position = Vector2.MoveTowards(transform.position, lastSpotted, runsp * Time.deltaTime);
+                            FaceTarget();
+                        }
+                        else _currentState = skState.Search;
+                        break;
+                    }
+                case skState.Search:
+                    {
                         if (pickup.item == null) _currentState = skState.Arm;
                         if (target == null) _currentState = skState.Wander;
                         FaceTarget();
                         if (CheckLOS()) _currentState = skState.Attack;
-                        else 
+                        else
                         {
-                            
-                            transform.position = Vector2.MoveTowards(transform.position, lastSpotted, runsp * Time.deltaTime);
                             FaceTarget();
+                            Search();
                         }
                         break;
-                }
+                    }
                 case skState.Attack:
-                {
+                    {
                         FaceTarget();
-                        if (pickup.item == null) { _currentState = skState.Arm; break;}
+                        if (pickup.item == null) { _currentState = skState.Arm; break; }
                         if (target == null) { _currentState = skState.Wander; break; }
                         if (target == null)
                         {
@@ -172,7 +186,7 @@ public class SKMovement : Living
                         }
                         lastSpotted = target.transform.position;
                         break;
-                }
+                    }
             }
         }
     }
@@ -182,11 +196,25 @@ public class SKMovement : Living
     {
         bool canSeeTarget = false;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, target.transform.position - transform.position, viewRange);
-        if(hit.collider.gameObject == target)
+        if (hit.collider.gameObject == target)
         {
             canSeeTarget = true;
         }
         return canSeeTarget;
+    }
+
+    private bool CanSeeLastPosition()
+    {
+        bool canSeeLastPos = false;
+        int layerMask = LayerMask.GetMask("Tiles");
+        Debug.DrawRay(transform.position, lastSpotted - new Vector2(transform.position.x, transform.position.y), Color.green);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, lastSpotted - new Vector2(transform.position.x, transform.position.y), viewRange, layerMask);
+        if (!hit)
+        {
+            canSeeLastPos = true;
+        }
+        else Debug.Log(hit.collider.gameObject.name);
+        return canSeeLastPos;
     }
 
     public void GetNearestThing()
@@ -200,7 +228,7 @@ public class SKMovement : Living
         }
         for (int i = 1; i < livingthings.Count; i++)
         {
-            if(livingthings[i] != null)
+            if (livingthings[i] != null)
             {
                 if (livingthings[i] == gameObject)
                 {
@@ -263,7 +291,7 @@ public class SKMovement : Living
         GameObject[] three = new GameObject[3];
         three[0] = closestThing;
         three[1] = closestThing2;
-        three[2] = closestThing3; 
+        three[2] = closestThing3;
         return three;
     }
 
@@ -298,7 +326,7 @@ public class SKMovement : Living
                     {
                         WallDistance = Vector2.Distance(transform.position, hit[j].point);
                     }
-                }              
+                }
             }
             if (HitTarget)
             {
@@ -311,7 +339,7 @@ public class SKMovement : Living
         }
     }
 
-    private void RandomlyMove()
+    private void GetWalls()
     {
         RaycastHit2D[] hitLeft = Physics2D.RaycastAll(transform.position, Vector2.left, wallRange);
         walls[0] = false;
@@ -362,7 +390,11 @@ public class SKMovement : Living
                 }
             }
         }
-        //Vector2.MoveTowards(transform.position, tempdir, runsp);
+    }
+
+    private void RandomlyMove()
+    {
+        GetWalls();
         if (walls[0] && walls[1])
         {
             tempdir = new Vector2(Random.Range(0f, 1f), Random.Range(-1f, 0f));
@@ -408,12 +440,42 @@ public class SKMovement : Living
         Quaternion rot = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(transform.forward, tempdir), 0.5f);
         transform.rotation = rot;
     }
+
+    public int CardinalPlayerDirection()
+    {
+        int dir = 0;
+        float currentMax = -Mathf.Infinity;
+        Vector2 vecToPlayer = player.position - transform.position;
+        if (Vector2.Dot(vecToPlayer, Vector2.up) > currentMax) { dir = 1; currentMax = Vector2.Dot(vecToPlayer, Vector2.up); } 
+        if(Vector2.Dot(vecToPlayer, Vector2.right) > currentMax) { dir = 2; currentMax = Vector2.Dot(vecToPlayer, Vector2.right); }
+        if (Vector2.Dot(vecToPlayer, Vector2.down) > currentMax) { dir = 3; currentMax = Vector2.Dot(vecToPlayer, Vector2.down); }
+        if (Vector2.Dot(vecToPlayer, Vector2.left) > currentMax) { dir = 4; currentMax = Vector2.Dot(vecToPlayer, Vector2.left); }
+        return dir;
+    }
+
+    private void Search()
+    {
+        //head towards the player
+        GetWalls();
+        int compass = CardinalPlayerDirection();
+        Debug.Log(compass);
+
+
+        
+
+
+
+        //on raycast hit with wall, travel along the wall until you can turn towards the player.
+    }
 }
+
+
 
 public enum skState
 {
     Wander,
     Chase,
+    Search,
     Attack,
     Arm
 }

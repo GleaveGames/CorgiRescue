@@ -62,7 +62,7 @@ public class Living : MonoBehaviour
         if(!canMove) return;
     }
 
-    private IEnumerator GetPlayer() 
+    public IEnumerator GetPlayer() 
     {
         while(player == null)
         {
