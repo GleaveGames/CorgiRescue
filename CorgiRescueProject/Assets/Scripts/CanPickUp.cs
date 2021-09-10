@@ -124,7 +124,6 @@ public class CanPickUp : MonoBehaviour
                     Quaternion itemrot = Quaternion.LookRotation(transform.forward, transform.up);
                     item.transform.rotation = itemrot;
                 }
-                else print("no items in range");
                 //Debug.Log(closestDistance);
             }
             else

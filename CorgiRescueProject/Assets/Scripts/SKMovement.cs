@@ -5,7 +5,10 @@ using UnityEngine;
 public class SKMovement : Living
 {
     private skState _currentState;
-
+    [SerializeField]
+    float wallDelay;   
+    [SerializeField]
+    float getWeightsDelay;
     Vector2 move;
     public float runsp = 1.5f;
     public float patrolspeed = 1f;
@@ -33,6 +36,10 @@ public class SKMovement : Living
     private float patrolCount;
     Vector2 lastSpotted;
     Vector2 movePoint;
+    private bool canGetWeights = true;
+    float[] weights;
+    int[] weightsOrder;
+   
 
     protected override void Start()
     {
@@ -61,8 +68,22 @@ public class SKMovement : Living
             {
                 case skState.Wander:
                     {
-                        if (pickup.item == null) _currentState = skState.Arm;
-                        if (angered) _currentState = skState.Chase;
+                        if (pickup.item == null)
+                        {
+                            _currentState = skState.Arm;
+                            runsp = angeredspeed;
+                            ani.speed = 1;
+                            ChangeAnimationState("SKmove");
+                            return;
+                        }
+                        if (angered) 
+                        {
+                            _currentState = skState.Chase;
+                            runsp = angeredspeed;
+                            ani.speed = 1;
+                            ChangeAnimationState("SKmove");
+                            return;
+                        };
 
                         if (patrolCount < 2)
                         {
@@ -88,9 +109,6 @@ public class SKMovement : Living
                     {
                         if (pickup.item == null && findNewItem)
                         {
-                            runsp = angeredspeed;
-                            ani.speed = 1;
-                            ChangeAnimationState("SKmove");
                             closestItem = pickup.GetItem();
                             if (closestItem != null)
                             {
@@ -138,11 +156,9 @@ public class SKMovement : Living
                     {
                         if (pickup.item == null) _currentState = skState.Arm;
                         if (target == null) _currentState = skState.Wander;
-                        FaceTarget();
                         if (CheckLOS()) _currentState = skState.Attack;
                         else
                         {
-                            FaceTarget();
                             Search();
                         }
                         break;
@@ -207,13 +223,11 @@ public class SKMovement : Living
     {
         bool canSeeLastPos = false;
         int layerMask = LayerMask.GetMask("Tiles");
-        Debug.DrawRay(transform.position, lastSpotted - new Vector2(transform.position.x, transform.position.y), Color.green);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, lastSpotted - new Vector2(transform.position.x, transform.position.y), viewRange, layerMask);
         if (!hit)
         {
             canSeeLastPos = true;
         }
-        else Debug.Log(hit.collider.gameObject.name);
         return canSeeLastPos;
     }
 
@@ -341,55 +355,69 @@ public class SKMovement : Living
 
     private void GetWalls()
     {
-        RaycastHit2D[] hitLeft = Physics2D.RaycastAll(transform.position, Vector2.left, wallRange);
-        walls[0] = false;
-        if (hitLeft.Length > 0)
+        if (!walls[0])
         {
-            for (int f = 0; f < hitLeft.Length; f++)
+            RaycastHit2D[] hitLeft = Physics2D.RaycastAll(transform.position, Vector2.left, wallRange);
+            if (hitLeft.Length > 0)
             {
-                if (hitLeft[f].collider.gameObject.CompareTag("Wall") || hitLeft[f].collider.gameObject.CompareTag("Rock") || hitLeft[f].collider.gameObject.CompareTag("Obsidian"))
+                for (int f = 0; f < hitLeft.Length; f++)
                 {
-                    walls[0] = true;
+                    if (hitLeft[f].collider.gameObject.CompareTag("Wall") || hitLeft[f].collider.gameObject.CompareTag("Rock") || hitLeft[f].collider.gameObject.CompareTag("Obsidian"))
+                    {
+                        StartCoroutine(WallDelay(0));
+                    }
                 }
             }
         }
-        RaycastHit2D[] hitUp = Physics2D.RaycastAll(transform.position, Vector2.up, wallRange);
-        walls[1] = false;
-        if (hitUp.Length > 0)
-        {
-            for (int p = 0; p < hitUp.Length; p++)
+        if (!walls[1]) { 
+            RaycastHit2D[] hitUp = Physics2D.RaycastAll(transform.position, Vector2.up, wallRange);
+            if (hitUp.Length > 0)
             {
-                if (hitUp[p].collider.gameObject.CompareTag("Wall") || hitUp[p].collider.gameObject.CompareTag("Rock") || hitUp[p].collider.gameObject.CompareTag("Obsidian"))
+                for (int p = 0; p < hitUp.Length; p++)
                 {
-                    walls[1] = true;
+                    if (hitUp[p].collider.gameObject.CompareTag("Wall") || hitUp[p].collider.gameObject.CompareTag("Rock") || hitUp[p].collider.gameObject.CompareTag("Obsidian"))
+                    {
+                        StartCoroutine(WallDelay(1));
+                    }
                 }
             }
         }
-        RaycastHit2D[] hitRight = Physics2D.RaycastAll(transform.position, Vector2.right, wallRange);
-        walls[2] = false;
-        if (hitRight.Length > 0)
+        if (!walls[2])
         {
+            RaycastHit2D[] hitRight = Physics2D.RaycastAll(transform.position, Vector2.right, wallRange);
+            if (hitRight.Length > 0)
+            {
 
-            for (int b = 0; b < hitRight.Length; b++)
-            {
-                if (hitRight[b].collider.gameObject.CompareTag("Wall") || hitRight[b].collider.gameObject.CompareTag("Rock") || hitRight[b].collider.gameObject.CompareTag("Obsidian"))
+                for (int b = 0; b < hitRight.Length; b++)
                 {
-                    walls[2] = true;
+                    if (hitRight[b].collider.gameObject.CompareTag("Wall") || hitRight[b].collider.gameObject.CompareTag("Rock") || hitRight[b].collider.gameObject.CompareTag("Obsidian"))
+                    {
+                        StartCoroutine(WallDelay(2));
+                    }
                 }
             }
         }
-        RaycastHit2D[] hitDown = Physics2D.RaycastAll(transform.position, Vector2.down, wallRange);
-        walls[3] = false;
-        if (hitDown.Length > 0)
+        if (!walls[3])
         {
-            for (int m = 0; m < hitDown.Length; m++)
+            RaycastHit2D[] hitDown = Physics2D.RaycastAll(transform.position, Vector2.down, wallRange);
+            if (hitDown.Length > 0)
             {
-                if (hitDown[m].collider.gameObject.CompareTag("Wall") || hitDown[m].collider.gameObject.CompareTag("Rock") || hitDown[m].collider.gameObject.CompareTag("Obsidian"))
+                for (int m = 0; m < hitDown.Length; m++)
                 {
-                    walls[3] = true;
+                    if (hitDown[m].collider.gameObject.CompareTag("Wall") || hitDown[m].collider.gameObject.CompareTag("Rock") || hitDown[m].collider.gameObject.CompareTag("Obsidian"))
+                    {
+                        StartCoroutine(WallDelay(3));
+                    }
                 }
             }
         }
+    }
+
+    private IEnumerator WallDelay(int wall)
+    {
+        walls[wall] = true;
+        yield return new WaitForSeconds(wallDelay);
+        walls[wall] = false;
     }
 
     private void RandomlyMove()
@@ -441,31 +469,78 @@ public class SKMovement : Living
         transform.rotation = rot;
     }
 
-    public int CardinalPlayerDirection()
+    public float[] CardinalPlayerDirections()
     {
-        int dir = 0;
+        /*
+        Vector2 dir = Vector2.up;
         float currentMax = -Mathf.Infinity;
         Vector2 vecToPlayer = player.position - transform.position;
-        if (Vector2.Dot(vecToPlayer, Vector2.up) > currentMax) { dir = 1; currentMax = Vector2.Dot(vecToPlayer, Vector2.up); } 
-        if(Vector2.Dot(vecToPlayer, Vector2.right) > currentMax) { dir = 2; currentMax = Vector2.Dot(vecToPlayer, Vector2.right); }
-        if (Vector2.Dot(vecToPlayer, Vector2.down) > currentMax) { dir = 3; currentMax = Vector2.Dot(vecToPlayer, Vector2.down); }
-        if (Vector2.Dot(vecToPlayer, Vector2.left) > currentMax) { dir = 4; currentMax = Vector2.Dot(vecToPlayer, Vector2.left); }
+        if (Vector2.Dot(vecToPlayer, Vector2.up) > currentMax) { dir = Vector2.up; currentMax = Vector2.Dot(vecToPlayer, Vector2.up); } 
+        if(Vector2.Dot(vecToPlayer, Vector2.right) > currentMax) { dir = Vector2.right; currentMax = Vector2.Dot(vecToPlayer, Vector2.right); }
+        if (Vector2.Dot(vecToPlayer, Vector2.down) > currentMax) { dir = Vector2.down; currentMax = Vector2.Dot(vecToPlayer, Vector2.down); }
+        if (Vector2.Dot(vecToPlayer, Vector2.left) > currentMax) { dir = Vector2.left; currentMax = Vector2.Dot(vecToPlayer, Vector2.left); }
         return dir;
+    */
+        Vector2 vecToPlayer = player.position - transform.position;
+        float[] weights = new float[4];
+        weights[0] = Vector2.Dot(vecToPlayer, Vector2.left);
+        weights[1] = Vector2.Dot(vecToPlayer, Vector2.up);
+        weights[2] = Vector2.Dot(vecToPlayer, Vector2.right);
+        weights[3] = Vector2.Dot(vecToPlayer, Vector2.down);
+        return weights;
     }
 
     private void Search()
     {
         //head towards the player
         GetWalls();
-        int compass = CardinalPlayerDirection();
-        Debug.Log(compass);
-
-
-        
-
-
-
+        if (canGetWeights)
+        {
+            StartCoroutine(GetWeights());
+        }
+        for (int i = 0; i < 4; i++) {
+            if (!walls[weightsOrder[i]])
+            {
+                transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, transform.position.y) + GetDirFromInt(weightsOrder[i]), runsp * Time.deltaTime);
+                Quaternion rot = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(transform.forward, GetDirFromInt(weightsOrder[i])), 0.2f);
+                transform.rotation = rot;
+                break;
+            }
+        }
         //on raycast hit with wall, travel along the wall until you can turn towards the player.
+    }
+
+    private IEnumerator GetWeights()
+    {
+        canGetWeights = false;
+        weights = CardinalPlayerDirections();
+        weightsOrder = new int[4] { 0, 1, 2, 3 };
+        for (int repeat = 0; repeat < weights.Length; repeat++)
+        {
+            for (int i = weights.Length - 1; i > 0; i--)
+            {
+                if (weights[i] > weights[i - 1])
+                {
+                    float temp = weights[i - 1];
+                    weights[i - 1] = weights[i];
+                    weights[i] = temp;
+                    int tempint = weightsOrder[i - 1];
+                    weightsOrder[i - 1] = weightsOrder[i];
+                    weightsOrder[i] = tempint;
+                }
+            }
+        }
+        yield return new WaitForSeconds(getWeightsDelay);
+        canGetWeights = true;
+    }
+    private Vector2 GetDirFromInt(int compassNum)
+    {
+        Vector2 dir = Vector2.left;
+        if (compassNum == 1) dir = Vector2.up;
+        else if (compassNum == 2) dir = Vector2.right;
+        else if (compassNum == 3) dir = Vector2.down;
+
+        return dir;
     }
 }
 

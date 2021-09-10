@@ -323,13 +323,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   json: {fileID: 0}
+  wallDelay: 0.5
+  getWeightsDelay: 1.3
   runsp: 5
   patrolspeed: 1
   angeredspeed: 4
   target: {fileID: 0}
   viewRange: 100
   livingthings: []
-  walls: 01010101
+  walls: 00000000
   wallRange: 0.5
   findNewItem: 1
   invincTime: 0.15
