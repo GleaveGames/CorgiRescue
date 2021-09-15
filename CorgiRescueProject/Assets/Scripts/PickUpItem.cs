@@ -32,7 +32,7 @@ public class PickUpItem : PickUpBase
             else
             {
                 gameObject.layer = 0;
-                StartCoroutine("WaitforHurt");
+                StartCoroutine(WaitForHurtBump());
                 GetComponent<DamageThisDoes>().damage = damagethisdoesinit;
             }
         }

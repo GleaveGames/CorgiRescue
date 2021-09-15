@@ -219,7 +219,7 @@ public class SKMovement : Living
     private bool CheckLOS()
     {
         bool canSeeTarget = false;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, target.transform.position - transform.position, viewRange);
+        RaycastHit2D hit = Physics2D.Raycast(pickup.leftHand.position, target.transform.position - transform.position, viewRange);
         if (hit.collider.gameObject == target)
         {
             canSeeTarget = true;

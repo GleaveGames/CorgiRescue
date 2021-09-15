@@ -55,6 +55,7 @@ public class PickUpBase : MonoBehaviour
 
     public void Throw()
     {
+        transform.position = leftHand.parent.position + leftHand.parent.up/3;
         if (TryGetComponent(out Sword sword))
         {
             sword.ChangeAnimationState("Idle");
@@ -77,9 +78,19 @@ public class PickUpBase : MonoBehaviour
 
     public IEnumerator WaitforHurt()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
         //seems to work for now
         //could make value above specific to item depending on its speed etc
+        GetComponent<DamagesPlayer>().canHurt = true;
+        GetComponent<DamageThisDoes>().damage = GetComponent<DamageThisDoes>().initialDamage;
+        yield return new WaitForSeconds(0.6f);
+        if(!lg.itemsForPickUp.Contains(gameObject)) lg.itemsForPickUp.Add(gameObject);
+    }
+
+    public IEnumerator WaitForHurtBump()
+    {
+        //For when you bump into an item that's not been thrown or anything
+        yield return new WaitForSeconds(0.1f);
         GetComponent<DamagesPlayer>().canHurt = true;
         GetComponent<DamageThisDoes>().damage = GetComponent<DamageThisDoes>().initialDamage;
     }
@@ -87,12 +98,11 @@ public class PickUpBase : MonoBehaviour
     public virtual void EnableCollision() 
     {
         GetComponent<DamagesPlayer>().canHurt = false;
-        StartCoroutine("WaitforHurt");
+        StartCoroutine(WaitforHurt());
         transform.parent = null;
         rb.isKinematic = false;
         cc.enabled = true;
         cc.isTrigger = false;
-        lg.itemsForPickUp.Add(gameObject);
     }
 
     public virtual void DisableCollision() 

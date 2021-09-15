@@ -66,6 +66,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwPowerModifier: 1
+  attackRange: 5
   AmIBomb: 0
   AmISword: 0
 --- !u!212 &1435047480065279769
@@ -174,7 +175,7 @@ MonoBehaviour:
   knockbackTime: 1
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
-  canHurtPlayer: 0
+  canHurtPlayer: 1
   spawnsObjOnCollision: 0
   collisionObject: {fileID: 0}
 --- !u!114 &3011198022237279737

@@ -303,7 +303,7 @@ MonoBehaviour:
   stunnable: 1
   pickupable: 0
   knockbackable: 1
-  health: 100
+  health: 20
   mass: 0
   linearDrag: 0
   angularDrag: 0
@@ -323,7 +323,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   json: {fileID: 0}
-  wallDelay: 0.5
+  wallDelay: 0.8
   getWeightsDelay: 1.3
   runsp: 5
   patrolspeed: 1
@@ -486,10 +486,10 @@ MonoBehaviour:
   mong: 0
   bomby: 0
   littleBlood: {fileID: 1654121160770679037, guid: 58d437bff74a2aa4896badd67bce2666, type: 3}
-  stuntime: 3
+  stuntime: 0.5
   knockbackPower: 3
   knockbackTime: 0.2
-  Living: 1
+  Living: 0
   PickUpItems: 1
   Pick: 1
   Bombs: 1
@@ -522,6 +522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwPowerModifier: 3
+  attackRange: 5
 --- !u!114 &827507044957996481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -536,10 +537,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trigger: 1
   damage: 0
-  canHurt: 1
+  canHurt: 0
   knockbackTime: 1
+  canHurtPlayer: 1
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
-  canHurtPlayer: 1
   spawnsObjOnCollision: 0
   collisionObject: {fileID: 0}

@@ -67,7 +67,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea122672870bce4e8d8943b5ba83875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwPower: 1
+  throwPowerModifier: 1
+  attackRange: 5
   AmIBomb: 0
   AmISword: 0
 --- !u!50 &7249542480218401027
@@ -121,9 +122,9 @@ MonoBehaviour:
   damage: 2
   canHurt: 1
   knockbackTime: 1
+  canHurtPlayer: 1
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
-  canHurtPlayer: 0
   spawnsObjOnCollision: 0
   collisionObject: {fileID: 0}
 --- !u!212 &8159845754584394734

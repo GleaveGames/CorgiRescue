@@ -13,6 +13,8 @@ public class DamagesPlayer : MonoBehaviour
     private playerStats ps;
     [SerializeField]
     private float knockbackTime = 0.6f;
+    public bool canHurtPlayer = true;
+
 
     [Header("For Bullets")]
     [SerializeField]
@@ -20,7 +22,6 @@ public class DamagesPlayer : MonoBehaviour
     [SerializeField]
     private ParticleSystem collisionParticles;
     private cameraoptions co;
-    public bool canHurtPlayer = true;
     [SerializeField]
     bool spawnsObjOnCollision;
     [SerializeField]
