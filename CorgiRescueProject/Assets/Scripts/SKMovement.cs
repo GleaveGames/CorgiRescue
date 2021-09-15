@@ -39,7 +39,8 @@ public class SKMovement : Living
     private bool canGetWeights = true;
     float[] weights;
     int[] weightsOrder;
-   
+    float weaponRange;
+
 
     protected override void Start()
     {
@@ -123,6 +124,7 @@ public class SKMovement : Living
                                     pickup.item.GetComponent<DamagesPlayer>().canHurt = false;
                                     Quaternion itemrot = Quaternion.LookRotation(transform.forward, transform.up);
                                     pickup.item.transform.rotation = itemrot;
+                                    weaponRange = pickup.item.GetComponent<PickUpBase>().attackRange;
                                     //skm.findNewItem = false;
                                 }
                             }
@@ -179,25 +181,28 @@ public class SKMovement : Living
                         {
                             transform.position = Vector2.MoveTowards(transform.position, 2 * transform.position - target.transform.position, runsp * Time.deltaTime);
                         }
-                        else if (Vector2.Distance(transform.position, target.transform.position) > 4)
+                        else if (Vector2.Distance(transform.position, target.transform.position) > weaponRange - 0.5f)
                         {
                             transform.position = Vector2.MoveTowards(transform.position, target.transform.position, runsp * Time.deltaTime);
                         }
-                        if (pickup.item.TryGetComponent(out shotgun Gun))
+                        if(Vector2.Distance(transform.position, target.transform.position) <= weaponRange)
                         {
-                            Gun.Fire();
-                        }
-                        else if (pickup.item.TryGetComponent(out Boomerang Boom))
-                        {
-                            Boom.Fire();
-                            StartCoroutine("WaitAfterThrow");
-                            findNewItem = false;
-                        }
-                        else
-                        {
-                            pickup.ThrowItem();
-                            StartCoroutine("WaitAfterThrow");
-                            findNewItem = false;
+                            if (pickup.item.TryGetComponent(out shotgun Gun))
+                            {
+                                Gun.Fire();
+                            }
+                            else if (pickup.item.TryGetComponent(out Boomerang Boom))
+                            {
+                                Boom.Fire();
+                                StartCoroutine("WaitAfterThrow");
+                                findNewItem = false;
+                            }
+                            else
+                            {
+                                pickup.ThrowItem();
+                                StartCoroutine("WaitAfterThrow");
+                                findNewItem = false;
+                            }
                         }
                         if (!CheckLOS())
                         {

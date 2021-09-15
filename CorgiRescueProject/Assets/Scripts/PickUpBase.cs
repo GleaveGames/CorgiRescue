@@ -9,6 +9,8 @@ public class PickUpBase : MonoBehaviour
     protected Rigidbody2D rb;
     [SerializeField]
     protected float throwPowerModifier = 1;
+    [SerializeField]
+    public float attackRange = 5;
     protected Collider2D cc;
     Coroutine coroutine;
     protected LevelGenerator lg;
@@ -16,6 +18,7 @@ public class PickUpBase : MonoBehaviour
     protected int damagethisdoesinit;
     protected LayerMask initLayer;
     playerStats ps;
+
 
 
     protected virtual void Start()
