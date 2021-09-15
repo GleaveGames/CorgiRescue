@@ -43,6 +43,9 @@ public class SKMovement : Living
 
     protected override void Start()
     {
+        //this needs to be changed at some point
+        weightsOrder = new int[4] { 0, 1, 2, 3 };
+        
         child = transform.GetChild(0).gameObject;
         ani = child.GetComponent<Animator>();
         ChangeAnimationState("SKIdle");
@@ -76,7 +79,7 @@ public class SKMovement : Living
                             ChangeAnimationState("SKmove");
                             return;
                         }
-                        if (angered) 
+                        if (angered && target != null) 
                         {
                             _currentState = skState.Chase;
                             runsp = angeredspeed;
@@ -416,7 +419,9 @@ public class SKMovement : Living
     private IEnumerator WallDelay(int wall)
     {
         walls[wall] = true;
-        yield return new WaitForSeconds(wallDelay);
+        //custom wall delay for most desired direction;
+        if (wall != weightsOrder[0]) yield return new WaitForSeconds(wallDelay);
+        else yield return new WaitForSeconds(0.1f);
         walls[wall] = false;
     }
 
@@ -493,11 +498,11 @@ public class SKMovement : Living
     private void Search()
     {
         //head towards the player
-        GetWalls();
         if (canGetWeights)
         {
             StartCoroutine(GetWeights());
         }
+        GetWalls();
         for (int i = 0; i < 4; i++) {
             if (!walls[weightsOrder[i]])
             {
