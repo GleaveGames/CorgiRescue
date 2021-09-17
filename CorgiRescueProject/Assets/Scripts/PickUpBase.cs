@@ -18,6 +18,7 @@ public class PickUpBase : MonoBehaviour
     protected int damagethisdoesinit;
     protected LayerMask initLayer;
     playerStats ps;
+    public GameObject thrower;
 
 
 
@@ -55,6 +56,8 @@ public class PickUpBase : MonoBehaviour
 
     public void Throw()
     {
+        StartCoroutine(delayOnHurtThrower(leftHand.parent.parent.gameObject));
+        Debug.Log("Thrower is " + leftHand.parent.parent.name);
         transform.position = leftHand.parent.position + leftHand.parent.up/3;
         if (TryGetComponent(out Sword sword))
         {
@@ -64,7 +67,12 @@ public class PickUpBase : MonoBehaviour
         EnableCollision();
         rb.AddForce(leftHand.parent.up * throwPowerModifier * ps.throwPower, ForceMode2D.Impulse);
     }
-
+    public IEnumerator delayOnHurtThrower(GameObject go)
+    {
+        thrower = go;
+        yield return new WaitForSeconds(0.3f);
+        thrower = null;
+    }
     public void Drop()
     {
         if (TryGetComponent(out Sword sword))
@@ -78,7 +86,7 @@ public class PickUpBase : MonoBehaviour
 
     public IEnumerator WaitforHurt()
     {
-        yield return new WaitForSeconds(0.05f);
+        //yield return new WaitForSeconds(0.05f);
         //seems to work for now
         //could make value above specific to item depending on its speed etc
         GetComponent<DamagesPlayer>().canHurt = true;

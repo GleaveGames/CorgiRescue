@@ -68,6 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throwPowerModifier: 0.5
   attackRange: 2
+  thrower: {fileID: 0}
   AmIBomb: 0
   AmISword: 0
 --- !u!212 &1435047480065279769
@@ -134,7 +135,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 0.4
-  m_LinearDrag: 4.5
+  m_LinearDrag: 10
   m_AngularDrag: 10
   m_GravityScale: 0
   m_Material: {fileID: 0}

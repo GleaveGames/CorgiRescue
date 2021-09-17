@@ -95,6 +95,10 @@ public class Damagable : MonoBehaviour
                 {
                     if (collision.gameObject.GetComponent<DamagesPlayer>().canHurt)
                     {
+                        if (collision.gameObject.TryGetComponent(out PickUpBase pub))
+                        {
+                            if (pub.thrower == gameObject) return;
+                        }
                         DoDamage(collision.gameObject);
                     }
                 }
@@ -129,6 +133,10 @@ public class Damagable : MonoBehaviour
 
     private void DoDamage(GameObject collisionObj)
     {
+        if (collisionObj.gameObject.TryGetComponent(out PickUpBase pub))
+        {
+            if (pub.thrower == gameObject) { Debug.Log("No damage as the thrower " + pub.thrower.name + " hit itself " + gameObject.name); return; }
+        }
         if (bomby)
         {
             GetComponent<Bomby>().triggered = true;

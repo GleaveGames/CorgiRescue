@@ -27,7 +27,6 @@ public class DamagesPlayer : MonoBehaviour
     [SerializeField]
     GameObject collisionObject;
 
-
     private void Start()
     {
         ps = FindObjectOfType<playerStats>();
@@ -42,6 +41,10 @@ public class DamagesPlayer : MonoBehaviour
         { 
             if (canHurtPlayer)
             {
+                if(TryGetComponent(out PickUpBase pub))
+                {
+                    if (pub.thrower == collision.gameObject) { Debug.Log("player threw this so can't hurt player"); return; }
+                }
                 if (collision.gameObject.CompareTag("Player"))
                 {
                     co.shakeDuration = 0.08f;
@@ -71,6 +74,10 @@ public class DamagesPlayer : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+
+    
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

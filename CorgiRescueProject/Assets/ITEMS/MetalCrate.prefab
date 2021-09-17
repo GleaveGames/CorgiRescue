@@ -132,27 +132,14 @@ MonoBehaviour:
   wood: 0
   present: 0
   items:
-  - {fileID: 3691337205146848114, guid: 1f889a8faaed05747bfa0b4c25329773, type: 3}
-  - {fileID: 5020420758543740405, guid: 3cccba9921ea63f47961052ae22d0512, type: 3}
+  - {fileID: 3691337205146848114, guid: e43b08a55bca92b47b3762aeb0ca18fc, type: 3}
   - {fileID: 3691337205146848114, guid: df23bcbadc87e1d4ea2c9e568c082f6c, type: 3}
-  - {fileID: 5020420758543740405, guid: 331b514eb1b9c9c4c842f92d083efa65, type: 3}
+  - {fileID: 3691337205146848114, guid: 5f87dc6a6e0580647bd6305e3ee85f9a, type: 3}
+  - {fileID: 3691337205146848114, guid: 79ee780a479beaf48b20af5f9070c6d4, type: 3}
+  - {fileID: 3691337205146848114, guid: 2a1fddefbdaf2364a91e327301d00bd7, type: 3}
   - {fileID: 3691337205146848114, guid: 1f889a8faaed05747bfa0b4c25329773, type: 3}
-  - {fileID: 3691337205146848114, guid: 1f889a8faaed05747bfa0b4c25329773, type: 3}
-  - {fileID: 3691337205146848114, guid: 1f889a8faaed05747bfa0b4c25329773, type: 3}
-  - {fileID: 15094032670358419, guid: 67d1b535a72970442986c2d88ba66b37, type: 3}
-  - {fileID: 5020420758543740405, guid: 3cccba9921ea63f47961052ae22d0512, type: 3}
-  - {fileID: 3691337205146848114, guid: df23bcbadc87e1d4ea2c9e568c082f6c, type: 3}
-  - {fileID: 3691337205146848114, guid: df23bcbadc87e1d4ea2c9e568c082f6c, type: 3}
-  - {fileID: 5020420758543740405, guid: 0e3ff7031044bfb418f342415528e0bf, type: 3}
-  - {fileID: 5020420758543740405, guid: 0e3ff7031044bfb418f342415528e0bf, type: 3}
-  - {fileID: 3691337205146848114, guid: 1f889a8faaed05747bfa0b4c25329773, type: 3}
-  - {fileID: 8989476970006806844, guid: 5eed1453165872941978a7e0cbd68e6c, type: 3}
-  - {fileID: 8989476970006806844, guid: 5eed1453165872941978a7e0cbd68e6c, type: 3}
-  - {fileID: 8989476970006806844, guid: 5eed1453165872941978a7e0cbd68e6c, type: 3}
-  - {fileID: 8989476970006806844, guid: 5eed1453165872941978a7e0cbd68e6c, type: 3}
-  - {fileID: 8989476970006806844, guid: 5eed1453165872941978a7e0cbd68e6c, type: 3}
-  - {fileID: 8989476970006806844, guid: 5eed1453165872941978a7e0cbd68e6c, type: 3}
-  - {fileID: 5020420758543740405, guid: 9021b3817d3d32241aa747b62d8fbb2c, type: 3}
+  - {fileID: 3691337205146848114, guid: 9e9701c3f124f68449f25feb99ffe2c0, type: 3}
+  - {fileID: 3691337205146848114, guid: 9889d0ba4c10bb64d9aa08f1dcb4a3a3, type: 3}
   crateparticles: {fileID: 5061643180660836750, guid: a6d4fef50e43ae243956257225c90fca, type: 3}
 --- !u!50 &4660881465462714877
 Rigidbody2D:
@@ -213,7 +200,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea122672870bce4e8d8943b5ba83875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwPower: 20
+  throwPowerModifier: 1
+  attackRange: 5
   AmIBomb: 0
   AmISword: 0
 --- !u!114 &8655835994573536876
@@ -259,8 +247,8 @@ MonoBehaviour:
   damage: 2
   canHurt: 1
   knockbackTime: 0.6
+  canHurtPlayer: 1
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
-  canHurtPlayer: 1
   spawnsObjOnCollision: 0
   collisionObject: {fileID: 0}
