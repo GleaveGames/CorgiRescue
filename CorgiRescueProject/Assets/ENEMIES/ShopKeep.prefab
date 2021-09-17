@@ -486,7 +486,7 @@ MonoBehaviour:
   mong: 0
   bomby: 0
   littleBlood: {fileID: 1654121160770679037, guid: 58d437bff74a2aa4896badd67bce2666, type: 3}
-  stuntime: 0.5
+  stuntime: 1
   knockbackPower: 3
   knockbackTime: 0.2
   Living: 0
@@ -523,6 +523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throwPowerModifier: 3
   attackRange: 5
+  thrower: {fileID: 0}
 --- !u!114 &827507044957996481
 MonoBehaviour:
   m_ObjectHideFlags: 0

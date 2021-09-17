@@ -130,10 +130,41 @@ public class SKMovement : Living
                             }
                             else
                             {
-                                Debug.Log("No closest Item");
-                                runsp = angeredspeed;
-                                ani.speed = 1;
-                                RandomlyMove();
+                                if (angered)
+                                {
+                                    Debug.Log("Bum Rush Player");
+                                    if (CheckLOS())
+                                    {
+                                        FaceTarget();
+                                        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, runsp * Time.deltaTime);
+                                    }
+                                    else
+                                    {
+                                        Search();
+                                    }
+                                }
+                                else
+                                {
+                                    Debug.Log("No closest Item");
+                                    if (patrolCount < 2)
+                                    {
+                                        RandomlyMove();
+                                        runsp = patrolspeed;
+                                        ani.speed = 0.7f;
+                                        patrolCount += Time.deltaTime;
+                                        ChangeAnimationState("SKmove");
+                                    }
+                                    else if (patrolCount > 4)
+                                    {
+                                        patrolCount = 0;
+                                    }
+                                    else
+                                    {
+                                        patrolCount += Time.deltaTime;
+                                        ChangeAnimationState("SKIdle");
+                                    }
+                                }
+                                
                             }
                         }
                         else
