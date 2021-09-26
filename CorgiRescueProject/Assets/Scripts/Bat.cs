@@ -29,14 +29,87 @@ public class Bat : Living
     private Vector3 swooppos;
     private Vector3 swooppos2;
     private bool triggerpause = true;
+    [SerializeField]
+    AnimationCurve speedFlying;
+    float speedFlyingCounter = 0;
+    batState _currentState;
+    int RotationDir;
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        quaternion = Quaternion.Euler(new Vector3(0, 0, Random.Range(1, 5) * 90 + angle + offset));
+        RotationDir = Random.Range(1, 5);
+        if (RotationDir == 1) transform.up = Vector2.up;
+        else if (RotationDir == 2) transform.up = Vector2.right;
+        else if (RotationDir == 3) transform.up = Vector2.down;
+        else if (RotationDir == 4) transform.up = Vector2.left;
+        RaycastHit2D wall = ClosestWall(transform.up);
+        transform.position = wall.point;
+    }
+    
+    protected override void Update()
+    {
+        base.Update();
+        if (!inSwarm)
+        {
+            if (canMove)
+            {
+                switch (_currentState)
+                {
+                    case batState.Idle:
+                        {
+                            RaycastHit2D hit = ClosestRaycast(-transform.up);
+                            RaycastHit2D wall = ClosestWall(transform.up);
+                            if (hit.transform == player || wall.distance > 0.2f) { _currentState = batState.Chase; StartCoroutine(TriggerPause()); transform.up = -transform.up; }
+                            ChangeAnimationState("BatIdle");
+                            break;
+                        }
+                    case batState.Chase:
+                        {
+                            RaycastHit2D wall = ClosestWall(transform.up);
+                            if (wall.distance > 0.2f || triggerpause)
+                            {
+                                ChangeAnimationState("BatFly");
+                                //arbritrary turn speed below
+                                transform.up = Vector2.Lerp(transform.up, player.transform.position - transform.position, 4 * Time.deltaTime);
+                                if (speedFlyingCounter > 0.8f)
+                                {
+                                    speedFlyingCounter = 0;
+                                }
+                                transform.position = Vector2.MoveTowards(transform.position, player.position, (speedFlying.Evaluate(speedFlyingCounter / 0.8f) + speed) * Time.deltaTime);
+                                speedFlyingCounter += Time.deltaTime;
+                            }
+                            else
+                            {
+                                _currentState = batState.Idle;
+                                transform.up = -wall.normal;
+                            }
+                            break;
+                        }
+                }
+            }
+        }
+        else
+        {
+            if (coreBat)
+            {
+                ChangeAnimationState("CoreBatFly");
+            }
+            else
+            {
+                ChangeAnimationState("BatFly");
+            }
+        }
     }
 
+    
+
+
+
+
+
+    /*
     protected override void Update()
     {
         base.Update();
@@ -76,8 +149,15 @@ public class Bat : Living
                             {
                                 ChangeAnimationState("BatFly");
                             }
-                            transform.up = player.transform.position - transform.position;
-                            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+                            //arbritrary turn speed below
+                            transform.up = Vector2.Lerp(transform.up, player.transform.position - transform.position, 4*Time.deltaTime);
+
+                            if (speedFlyingCounter > 0.8f)
+                            {
+                                speedFlyingCounter = 0;
+                            }
+                            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speedFlying.Evaluate(speedFlyingCounter / 0.8f) + speed * Time.deltaTime);
+                            speedFlyingCounter += Time.deltaTime;
                         }
                     }
                     else
@@ -200,4 +280,19 @@ public class Bat : Living
         swooping = false;
     }
 
+    */
+
+    private IEnumerator TriggerPause()
+    {
+        triggerpause = true;
+        triggered = true;
+        yield return new WaitForSeconds(0.3f);
+        triggerpause = false;
+    }
+
+    public enum batState
+    {
+        Idle,
+        Chase
+    }
 }
