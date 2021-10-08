@@ -69,6 +69,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throwPowerModifier: 1
   attackRange: 5
+  thrower: {fileID: 0}
   AmIBomb: 0
   AmISword: 0
 --- !u!50 &7249542480218401027
@@ -456,7 +457,7 @@ MonoBehaviour:
   - {x: -0.12919211, y: 0.031740427, z: 0}
   m_ShapePathHash: -18482651
   m_Mesh: {fileID: 0}
-  m_InstanceId: 96042
+  m_InstanceId: 85708
 --- !u!1001 &258346615826470512
 PrefabInstance:
   m_ObjectHideFlags: 0

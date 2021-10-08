@@ -40,10 +40,11 @@ public class Bat : Living
     {
         base.Start();
         RotationDir = Random.Range(1, 5);
-        if (RotationDir == 1) transform.up = Vector2.up;
+        if (RotationDir == 1) transform.up = Vector2.down;
         else if (RotationDir == 2) transform.up = Vector2.right;
         else if (RotationDir == 3) transform.up = Vector2.down;
         else if (RotationDir == 4) transform.up = Vector2.left;
+        
         RaycastHit2D wall = ClosestWall(transform.up);
         transform.position = wall.point;
     }
@@ -60,8 +61,9 @@ public class Bat : Living
                     case batState.Idle:
                         {
                             RaycastHit2D hit = ClosestRaycast(-transform.up);
-                            RaycastHit2D wall = ClosestWall(transform.up);
-                            if (hit.transform == player || wall.distance > 0.2f) { _currentState = batState.Chase; StartCoroutine(TriggerPause()); transform.up = -transform.up; }
+                            //RaycastHit2D wall = ClosestWall(transform.up);
+                            // checking for wall isn't working atm, can't get it to work. Ideally the bat would be triggered if you destroy the thing it's attached to
+                            if (hit.transform == player) { _currentState = batState.Chase; StartCoroutine(TriggerPause()); transform.up = -transform.up; }
                             ChangeAnimationState("BatIdle");
                             break;
                         }
