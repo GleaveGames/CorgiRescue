@@ -1885,19 +1885,6 @@ MonoBehaviour:
   DiamondChance: 140
   GoldChance: 100
   SilverChance: 60
-  BeetleLittleChance: 60
-  BeetleBigChance: 80
-  SpiderChance: 60
-  SnekChance: 60
-  MoleChance: 80
-  BatChance: 60
-  MongChance: 40
-  BombyChance: 60
-  PebbleChance: 60
-  WoodCrateChance: 60
-  MetalCrateChance: 400
-  SpikeChance: 40
-  ArrowTrapChance: 40
   gemstilemap: {fileID: 6092003323350077972, guid: b9cd50473ea705049a2c3cb12e9c7c57, type: 3}
   LV0: 0
   MoleBoss: 0
@@ -1997,6 +1984,9 @@ MonoBehaviour:
   - go: {fileID: 1080977945638850635, guid: a9c3318c02cbee447a9f68f3eba54ac3, type: 3}
     spawnChance: 120
     enemyEnabled: 1
+  - go: {fileID: 7471924862020509344, guid: 10f6b3f98f59a4e49b0230c216ac6187, type: 3}
+    spawnChance: 120
+    enemyEnabled: 1
   items:
   - go: {fileID: 5020420758543740405, guid: 0e3ff7031044bfb418f342415528e0bf, type: 3}
     spawnChance: 100
@@ -2011,14 +2001,7 @@ MonoBehaviour:
   - go: {fileID: 2933420508104443894, guid: 4e31bdb7a46f3c04da7acff1b354e813, type: 3}
     spawnChance: 100
     trapEnabled: 1
-  pebble: {fileID: 5020420758543740405, guid: 0e3ff7031044bfb418f342415528e0bf, type: 3}
-  metalCrate: {fileID: 7688553074688750316, guid: 41da8a0f01302984ca42f88139c09f4f, type: 3}
-  woodCrate: {fileID: 7688553074688750316, guid: f5d819c55f963794d99102353ca843d9, type: 3}
   key: {fileID: 5020420758543740405, guid: 1a3e7a2912968a54c9643acf43dd5d4e, type: 3}
-  spikes: {fileID: 2933420508104443894, guid: 4e31bdb7a46f3c04da7acff1b354e813, type: 3}
-  spikesEnabled: 1
-  arrowTrap: {fileID: 0}
-  arrowTrapEnabled: 0
 --- !u!114 &8819094462478425751
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,1 +1,1 @@
-{"speed":0.0,"stunnable":true,"pickupable":false,"knockbackable":true,"health":1,"mass":10.0,"linearDrag":1.0,"angularDrag":2.0}
+{"speed":7.0,"stunnable":false,"pickupable":false,"knockbackable":true,"health":15,"mass":25.0,"linearDrag":10.0,"angularDrag":5.0}

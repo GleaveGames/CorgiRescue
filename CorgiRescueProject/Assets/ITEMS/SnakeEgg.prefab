@@ -70,6 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throwPowerModifier: 1
   attackRange: 5
+  thrower: {fileID: 0}
   AmIBomb: 0
   AmISword: 0
 --- !u!212 &1435047480065279769
@@ -135,15 +136,15 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.4
-  m_LinearDrag: 4.5
-  m_AngularDrag: 0.6
+  m_Mass: 1.5
+  m_LinearDrag: 3
+  m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3deb95c06fa32984e8728e32741fe90a, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &380269276905970587
 CircleCollider2D:
   m_ObjectHideFlags: 0

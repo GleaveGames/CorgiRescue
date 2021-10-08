@@ -24,6 +24,11 @@ public class Mole : Living
         base.Start();
         StartCoroutine(MoleWaitBeforeStart());
         dest = transform.position;
+        if (boss)
+        {
+            ZZZ = transform.GetChild(0).GetComponent<ParticleSystem>();
+            am.Play("Snore", transform.position, true);
+        }
     }
 
     private IEnumerator MoleWaitBeforeStart() 
@@ -31,12 +36,7 @@ public class Mole : Living
         canMove = false;
         yield return new WaitForSeconds(3);
         canMove = true;
-        if (boss)
-        {
-            ZZZ = transform.GetChild(0).GetComponent<ParticleSystem>();
-            am.Play("Snore", transform.position, true);
-        }
-        else
+        if(!boss)
         {
             StartCoroutine("GetNewDest");
         }
@@ -161,7 +161,7 @@ public class Mole : Living
         ani.speed = 2;
         ChangeAnimationState("BigMoleIdle");
         charging = true;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1.5f);
         charging = false;
         ani.speed = 1;
         rb.isKinematic = false;
@@ -178,24 +178,23 @@ public class Mole : Living
         if(boss)
         {
             hit = Physics2D.RaycastAll(transform.position, transform.up, 1.2f);
+            for (int j = 0; j < hit.Length; j++)
+            {
+                if (hit[j].collider.gameObject.CompareTag("Obsidian"))
+                {
+                    charged = false;
+                }
+            }
         }
         else
         {
             hit = Physics2D.RaycastAll(transform.position, transform.up, 0.3f);
-        }
-        Debug.DrawRay(transform.position, transform.up);
-        for (int j = 0; j < hit.Length; j++)
-        {
-            if (hit[j].collider.gameObject.CompareTag("Rock") || hit[j].collider.gameObject.CompareTag("Obsidian"))
+            for (int j = 0; j < hit.Length; j++)
             {
-                if (!boss)
+                if (hit[j].collider.gameObject.CompareTag("Rock") || hit[j].collider.gameObject.CompareTag("Obsidian"))
                 {
                     dest = 2 * transform.position - dest;
                 }
-                else
-                {
-                    charged = false;
-                }                
             }
         }
     }
@@ -213,10 +212,13 @@ public class Mole : Living
             {
                 dest = 2 * transform.position - dest;
             }
-            else
+            /*
+            else if (collision.collider.CompareTag("Obsidian"))
             {
                 charged = false;
             }
+            */
         }
+        
     }
 }
