@@ -139,6 +139,7 @@ MonoBehaviour:
   ani: {fileID: 0}
   currentState: 
   player: {fileID: 0}
+  lg: {fileID: 0}
   blood: {fileID: 6310010033770557549, guid: 7be9f23a949dabd4395ea7df6d1c745f, type: 3}
   attackSoundPlayed: 0
   attackSoundAudio: {fileID: 2777830762697218060}
@@ -198,6 +199,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   telegrpahTime: 0.8
+  viewRange: 8
 --- !u!61 &1034608871510261604
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -240,9 +242,9 @@ MonoBehaviour:
   damage: 1
   canHurt: 1
   knockbackTime: 1
+  canHurtPlayer: 1
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
-  canHurtPlayer: 1
   spawnsObjOnCollision: 0
   collisionObject: {fileID: 0}
 --- !u!114 &4623478165801078431
@@ -258,6 +260,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwPowerModifier: 1
+  attackRange: 5
+  thrower: {fileID: 0}
 --- !u!114 &5686374190113552966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,7 +409,7 @@ MonoBehaviour:
   - {x: -0.23658863, y: 0.14025319, z: 0}
   m_ShapePathHash: 888740386
   m_Mesh: {fileID: 0}
-  m_InstanceId: 68150
+  m_InstanceId: 87596
 --- !u!114 &7865070789608767469
 MonoBehaviour:
   m_ObjectHideFlags: 0

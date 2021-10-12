@@ -9,7 +9,8 @@ public class snek : Living
     AnimationCurve telegraphJuice;
     [SerializeField]
     float telegrpahTime;
-
+    [SerializeField]
+    float viewRange;
     private IEnumerator Triggered()
     {
         //could clean this up lots with an animation curve
@@ -45,7 +46,7 @@ public class snek : Living
         if (!attacking && !stunned)
         {
             RaycastHit2D closestHitR = ClosestRaycast(Vector2.right);
-            if (closestHitR.collider.gameObject.CompareTag("Player"))
+            if (closestHitR.collider.gameObject.CompareTag("Player") && closestHitR.distance < viewRange)
             {
                 transform.rotation = Quaternion.Euler(0, 0, 0);
                 hit = ClosestWall(Vector2.right);
@@ -53,7 +54,7 @@ public class snek : Living
             }
             //
             RaycastHit2D closestHitL = ClosestRaycast(-Vector2.right);
-            if (closestHitL.collider.gameObject.CompareTag("Player"))
+            if (closestHitL.collider.gameObject.CompareTag("Player") && closestHitL.distance < viewRange)
             {
                 transform.rotation = Quaternion.Euler(0, 0, 180);
                 hit = ClosestWall(-Vector2.right);
@@ -61,7 +62,7 @@ public class snek : Living
             }
             //
             RaycastHit2D closestHitU = ClosestRaycast(Vector2.up);
-            if (closestHitU.collider.gameObject.CompareTag("Player"))
+            if (closestHitU.collider.gameObject.CompareTag("Player") && closestHitU.distance < viewRange)
             {
                 transform.rotation = Quaternion.Euler(0, 0, 90);
                 hit = ClosestWall(Vector2.up);
@@ -69,7 +70,7 @@ public class snek : Living
             }
             //
             RaycastHit2D closestHitD = ClosestRaycast(-Vector2.up);
-            if (closestHitD.collider.gameObject.CompareTag("Player"))
+            if (closestHitD.collider.gameObject.CompareTag("Player") && closestHitD.distance < viewRange)
             {
                 transform.rotation = Quaternion.Euler(0, 0, 270);
                 hit = ClosestWall(-Vector2.up);

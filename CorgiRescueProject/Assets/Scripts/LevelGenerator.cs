@@ -707,7 +707,7 @@ public class LevelGenerator : MonoBehaviour
                                     TileBase tile = allTiles[x + y * bounds.size.x];
                                     if (tile != null)
                                     {
-                                        if (tile.name == "WoodWall")
+                                        if (tile.name.Contains("Wood"))
                                         {
                                             woods[i * 121 + x + y * bounds.size.x] = 1;
                                         }
