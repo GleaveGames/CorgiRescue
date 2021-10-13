@@ -101,9 +101,12 @@ public class LevelGenerator : MonoBehaviour
     private int[] obsidians = new int[1452];
     private int[] empties = new int[1452];
     int emptiesSum = 0;
+    [HideInInspector]
+    public bool finishedLoading;
 
     void Start()
     {
+        finishedLoading = false;
         if (LV0)
         {
             FindObjectOfType<playerStats>().health = 5;
@@ -805,6 +808,7 @@ public class LevelGenerator : MonoBehaviour
             }
         }
         SetLayerToTiles();
+        finishedLoading = true;
     }
 
 

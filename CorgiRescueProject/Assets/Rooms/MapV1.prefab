@@ -2002,6 +2002,7 @@ MonoBehaviour:
     spawnChance: 100
     trapEnabled: 1
   key: {fileID: 5020420758543740405, guid: 1a3e7a2912968a54c9643acf43dd5d4e, type: 3}
+  finishedLoading: 0
 --- !u!114 &8819094462478425751
 MonoBehaviour:
   m_ObjectHideFlags: 0
