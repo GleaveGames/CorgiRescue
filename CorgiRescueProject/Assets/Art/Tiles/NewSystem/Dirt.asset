@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a55c28586d153d48b8ac4a135052995, type: 3}
   m_Name: Dirt
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: -6536475633307553873, guid: 62e81c7923706a4498dbb320385aa8ab, type: 3}
@@ -272,3 +272,5 @@ MonoBehaviour:
     - {x: 0, y: -1, z: 0}
     - {x: -1, y: 0, z: 0}
     m_RuleTransform: 0
+  customField: 0
+  siblingGroup: 0
