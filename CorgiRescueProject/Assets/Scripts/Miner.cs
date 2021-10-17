@@ -14,6 +14,8 @@ public class Miner : MonoBehaviour
     [SerializeField]
     private bool canBreakRock = false;
     [SerializeField]
+    private bool canBreakWood = false;
+    [SerializeField]
     private bool canDamageRock = false;
     [SerializeField]
     private bool canBreakObsidian = false;
@@ -51,7 +53,7 @@ public class Miner : MonoBehaviour
     private void OnLevelWasLoaded()
     {
         am = FindObjectOfType<AudioManager>();
-        tilemaps = new Tilemap[4];
+        tilemaps = new Tilemap[2];
         StartCoroutine(WaitToGetTiles());
     }
 
@@ -62,18 +64,14 @@ public class Miner : MonoBehaviour
             canMine = false;
             yield return new WaitForSeconds(1.5f);
             tilemaps[0] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("Walls").GetComponent<Tilemap>();
-            tilemaps[1] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("Rock").GetComponent<Tilemap>();
-            tilemaps[2] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("Obsidian").GetComponent<Tilemap>();
-            tilemaps[3] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("GemsTilemap(Clone)").GetComponent<Tilemap>();
+            tilemaps[1] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("GemsTilemap(Clone)").GetComponent<Tilemap>();
             canMine = true;
         }
         else 
         {
             yield return new WaitForSeconds(1.5f);
             tilemaps[0] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("Walls").GetComponent<Tilemap>();
-            tilemaps[1] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("Rock").GetComponent<Tilemap>();
-            tilemaps[2] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("Obsidian").GetComponent<Tilemap>();
-            tilemaps[3] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("GemsTilemap(Clone)").GetComponent<Tilemap>();
+            tilemaps[1] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("GemsTilemap(Clone)").GetComponent<Tilemap>();
         }
     }
     void OnCollisionStay2D(Collision2D collision)
@@ -97,42 +95,48 @@ public class Miner : MonoBehaviour
                     if (tilemaps[0].GetSprite(tilemaps[0].WorldToCell(hitPosition)) != null)
                     {
                         collisionSprite = tilemaps[0].GetSprite(tilemaps[0].WorldToCell(hitPosition)).name;
-                        tilemaps[0].SetTile(tilemaps[0].WorldToCell(hitPosition), null);
-                        TileDestroy(collisionSprite, tilemaps[0], hitPosition);
-                        continue;
-                    }
-                    if (canBreakRock)
-                    {
-                        if (tilemaps[1].GetSprite(tilemaps[1].WorldToCell(hitPosition)) != null)
+                        if (canBreakRock)
                         {
-                            collisionSprite = tilemaps[1].GetSprite(tilemaps[1].WorldToCell(hitPosition)).name;
-                            tilemaps[1].SetTile(tilemaps[1].WorldToCell(hitPosition), null);
-                            TileDestroy(collisionSprite, tilemaps[1], hitPosition);
-                            break;
-
-                        }
-                    }
-                    //TEST CODE
-                    else if (canDamageRock)
-                    {
-                        if (tilemaps[1].GetSprite(tilemaps[1].WorldToCell(hitPosition)) != null)
-                        {
-                            collisionSprite = tilemaps[1].GetSprite(tilemaps[1].WorldToCell(hitPosition)).name;
                             if (collisionSprite.Contains("Rock"))
                             {
-                                RockTileUpdate(collisionSprite, hitPosition);
-                                continue;
+                                collisionSprite = tilemaps[0].GetSprite(tilemaps[0].WorldToCell(hitPosition)).name;
+                                tilemaps[0].SetTile(tilemaps[0].WorldToCell(hitPosition), null);
+                                TileDestroy(collisionSprite, tilemaps[0], hitPosition);
+                                break;
                             }
                         }
-                    }
-                    if (canBreakObsidian)
-                    {
-                        if (tilemaps[2].GetSprite(tilemaps[1].WorldToCell(hitPosition)) != null)
+                        else if (canDamageRock)
                         {
-                            collisionSprite = tilemaps[2].GetSprite(tilemaps[2].WorldToCell(hitPosition)).name;
-                            tilemaps[2].SetTile(tilemaps[2].WorldToCell(hitPosition), null);
-                            TileDestroy(collisionSprite, tilemaps[2], hitPosition);
+                            
+                            if (collisionSprite.Contains("Rock"))
+                            {
+                                    RockTileUpdate(collisionSprite, hitPosition);
+                                    continue;
+                            }
+                        }
+
+                        if (canBreakWood)
+                        {
+                            if (collisionSprite.Contains("Wood"))
+                            {
+                                collisionSprite = tilemaps[0].GetSprite(tilemaps[0].WorldToCell(hitPosition)).name;
+                                tilemaps[0].SetTile(tilemaps[0].WorldToCell(hitPosition), null);
+                                TileDestroy(collisionSprite, tilemaps[0], hitPosition);
+                            }
+                        }
+
+                        if (collisionSprite.Contains("Dirt")){
+                            tilemaps[0].SetTile(tilemaps[0].WorldToCell(hitPosition), null);
+                            TileDestroy(collisionSprite, tilemaps[0], hitPosition);
                             continue;
+                        }
+                        if (canBreakObsidian)
+                        {
+                            if (collisionSprite.Contains("Obsidian")){
+                                tilemaps[0].SetTile(tilemaps[0].WorldToCell(hitPosition), null);
+                                TileDestroy(collisionSprite, tilemaps[0], hitPosition);
+                                continue;
+                            }
                         }
                     }
                 }
@@ -146,41 +150,41 @@ public class Miner : MonoBehaviour
     {
         if(collisionSprite.Contains("three"))
         {
-            tilemaps[1].SetTile(tilemaps[1].WorldToCell(hitPosition), null);
-            TileDestroy(collisionSprite, tilemaps[1], hitPosition);
+            tilemaps[0].SetTile(tilemaps[0].WorldToCell(hitPosition), null);
+            TileDestroy(collisionSprite, tilemaps[0], hitPosition);
         }
         else 
         {
-            if (collisionSprite.Contains("one")) tilemaps[1].SetTile(tilemaps[1].WorldToCell(hitPosition), rockTiles[2]);
-            else if (collisionSprite.Contains("two")) tilemaps[1].SetTile(tilemaps[1].WorldToCell(hitPosition), rockTiles[3]);
+            if (collisionSprite.Contains("one")) tilemaps[0].SetTile(tilemaps[0].WorldToCell(hitPosition), rockTiles[2]);
+            else if (collisionSprite.Contains("two")) tilemaps[0].SetTile(tilemaps[0].WorldToCell(hitPosition), rockTiles[3]);
             //etc
-            else tilemaps[1].SetTile(tilemaps[1].WorldToCell(hitPosition), rockTiles[1]);
+            else tilemaps[0].SetTile(tilemaps[0].WorldToCell(hitPosition), rockTiles[1]);
             if (Random.Range(0, 100) < 1) Instantiate(pebble, hitPosition, UnityEngine.Quaternion.identity);
-            Instantiate(littleRockParticles, new UnityEngine.Vector3(tilemaps[1].WorldToCell(hitPosition).x + 0.5f, tilemaps[1].WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
+            Instantiate(littleRockParticles, new UnityEngine.Vector3(tilemaps[0].WorldToCell(hitPosition).x + 0.5f, tilemaps[0].WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
             if (soundOn)
             {
-                am.Play("Rock", new UnityEngine.Vector3(tilemaps[1].WorldToCell(hitPosition).x + 0.5f, tilemaps[1].WorldToCell(hitPosition).y + 0.5f, 0), false);
+                am.Play("Rock", new UnityEngine.Vector3(tilemaps[0].WorldToCell(hitPosition).x + 0.5f, tilemaps[0].WorldToCell(hitPosition).y + 0.5f, 0), false);
             }
         }
     }
 
     private void GemDestroy(UnityEngine.Vector3 hitPosition)
     {
-        if (tilemaps[3].GetSprite(tilemaps[3].WorldToCell(hitPosition)) != null)
+        if (tilemaps[1].GetSprite(tilemaps[1].WorldToCell(hitPosition)) != null)
         {
-            string name = tilemaps[3].GetSprite(tilemaps[3].WorldToCell(hitPosition)).name;
-            tilemaps[3].SetTile(tilemaps[3].WorldToCell(hitPosition), null);
+            string name = tilemaps[1].GetSprite(tilemaps[1].WorldToCell(hitPosition)).name;
+            tilemaps[1].SetTile(tilemaps[1].WorldToCell(hitPosition), null);
             if (name.Contains("Diamond"))
             {
-                Instantiate(diamondParticles, new UnityEngine.Vector3(tilemaps[3].WorldToCell(hitPosition).x + 0.5f, tilemaps[3].WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
+                Instantiate(diamondParticles, new UnityEngine.Vector3(tilemaps[1].WorldToCell(hitPosition).x + 0.5f, tilemaps[1].WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
             }
             else if (name.Contains("Gold"))
             {
-                Instantiate(goldParticles, new UnityEngine.Vector3(tilemaps[3].WorldToCell(hitPosition).x + 0.5f, tilemaps[3].WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
+                Instantiate(goldParticles, new UnityEngine.Vector3(tilemaps[1].WorldToCell(hitPosition).x + 0.5f, tilemaps[1].WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
             }
             else if (name.Contains("Silver"))
             {
-                Instantiate(silverParticles, new UnityEngine.Vector3(tilemaps[3].WorldToCell(hitPosition).x + 0.5f, tilemaps[3].WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
+                Instantiate(silverParticles, new UnityEngine.Vector3(tilemaps[1].WorldToCell(hitPosition).x + 0.5f, tilemaps[1].WorldToCell(hitPosition).y + 0.5f, 0), UnityEngine.Quaternion.identity);
             }
         }
     }

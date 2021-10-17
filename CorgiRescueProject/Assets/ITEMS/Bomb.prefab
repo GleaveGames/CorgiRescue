@@ -128,6 +128,8 @@ MonoBehaviour:
   tilemaps: []
   canMine: 0
   canBreakRock: 1
+  canBreakWood: 1
+  canDamageRock: 0
   canBreakObsidian: 0
   soundOn: 1
   dirtParticles: {fileID: 6310010033770557549, guid: 94cb80fb58e44db408f7e8ada366d17f, type: 3}
@@ -136,9 +138,11 @@ MonoBehaviour:
   silverParticles: {fileID: 6310010033770557549, guid: a87f23ef6da5bff4eaea8d87ef31e9da, type: 3}
   snowParticles: {fileID: 6310010033770557549, guid: e57a64a1a716f8f41afd317494eed7bc, type: 3}
   rockParticles: {fileID: 6310010033770557549, guid: 26d1cb29dd6205947b8c2f8b58f63827, type: 3}
+  littleRockParticles: {fileID: 0}
   obsidianParticles: {fileID: 6310010033770557549, guid: 26d1cb29dd6205947b8c2f8b58f63827, type: 3}
   iceParticles: {fileID: 6310010033770557549, guid: 5a2aa885808012549917e1040dcc4765, type: 3}
   woodParticles: {fileID: 6310010033770557549, guid: 0937982c73c8fec4e8835cba807e442e, type: 3}
+  rockTiles: []
   am: {fileID: 0}
   pebble: {fileID: 5020420758543740405, guid: 0e3ff7031044bfb418f342415528e0bf, type: 3}
 --- !u!114 &4887783930180008139
@@ -157,9 +161,9 @@ MonoBehaviour:
   damage: 4
   canHurt: 0
   knockbackTime: 1
+  canHurtPlayer: 0
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
-  canHurtPlayer: 0
   spawnsObjOnCollision: 0
   collisionObject: {fileID: 0}
 --- !u!114 &496949969147489691
@@ -193,6 +197,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwPowerModifier: 1
+  attackRange: 5
+  thrower: {fileID: 0}
   AmIBomb: 1
   AmISword: 0
 --- !u!50 &7335320053887418911
@@ -371,7 +377,7 @@ MonoBehaviour:
   - {x: -0.28731337, y: 0.010089253, z: 0}
   m_ShapePathHash: 543634639
   m_Mesh: {fileID: 0}
-  m_InstanceId: 102740
+  m_InstanceId: 80026
 --- !u!114 &8841328252463168419
 MonoBehaviour:
   m_ObjectHideFlags: 0

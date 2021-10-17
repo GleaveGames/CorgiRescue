@@ -96,7 +96,7 @@ public class LevelGenerator : MonoBehaviour
     Coroutine coroutine;
     private int[] rocks = new int[1452];
     private int[] woods = new int[1452];
-    private int[] walls = new int[1452];
+    private int[] dirts = new int[1452];
     private int[] snows = new int[1452];
     private int[] obsidians = new int[1452];
     private int[] empties = new int[1452];
@@ -162,7 +162,7 @@ public class LevelGenerator : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         for (int z = 0; z < empties.Length; z++)
         {
-            if (walls[z] == 0 && rocks[z] == 0 && snows[z] == 0 && obsidians[z] == 0 && woods[z] == 0)
+            if (dirts[z] == 0 && rocks[z] == 0 && snows[z] == 0 && obsidians[z] == 0 && woods[z] == 0)
             {
                 empties[z] = 1;
                 emptiesSum++;
@@ -564,23 +564,16 @@ public class LevelGenerator : MonoBehaviour
         GetLivingThings();
     }
 
-
     private void SetGems()
     {
         Tilemap wall = nodes[0].transform.GetChild(0).Find("Walls").gameObject.GetComponent<Tilemap>();
-        Tilemap rock = nodes[0].transform.GetChild(0).Find("Rock").gameObject.GetComponent<Tilemap>();
-        Tilemap obsidian = nodes[0].transform.GetChild(0).Find("Obsidian").gameObject.GetComponent<Tilemap>();
         GameObject GemsTilemap = Instantiate(gemstilemap, nodes[0].transform.position, Quaternion.identity);
         GemsTilemap.transform.parent = nodes[0].transform.GetChild(0);
         Tilemap gems = GemsTilemap.GetComponent<Tilemap>();
         BoundsInt bounds = wall.cellBounds;
-        if (rock.cellBounds.size.x > bounds.size.x) bounds = rock.cellBounds;
-        if (obsidian.cellBounds.size.x > bounds.size.x) bounds = obsidian.cellBounds;
         if (gems.cellBounds.size.x > bounds.size.x) bounds = gems.cellBounds;
 
         TileBase[] wallTiles = wall.GetTilesBlock(bounds);
-        TileBase[] rockTiles = rock.GetTilesBlock(bounds);
-        TileBase[] obsidianTiles = obsidian.GetTilesBlock(bounds);
         TileBase[] gemTiles = gems.GetTilesBlock(bounds);
 
         //quickfixfornew 2 - 1 not working cus of there being no walls
@@ -593,48 +586,16 @@ public class LevelGenerator : MonoBehaviour
         {
             for (int y = 0; y < fakebounds.y; y++)
             {
-                TileBase rockTile = rockTiles[x + y * fakebounds.x];
-                TileBase wallTile = wallTiles[x + y * fakebounds.x];
-                TileBase obsidianTile = obsidianTiles[x + y * fakebounds.x];
+                //TileBase wallTile = wallTiles[x + y * fakebounds.x];
+                
                 if (CheckBool("gems", XYtoP(x, y)))
                 {
-                    if (wallTile != null)
+                    if ((dirts[XYtoP(x, y)] == 1 || rocks[XYtoP(x, y)] == 1))
                     {
                         if (Random.Range(0, DiamondChance) < 1) gems.SetTile(new Vector3Int(x - 1, y - 10, 0), Diamond);
                         else if (Random.Range(0, GoldChance) < 1) gems.SetTile(new Vector3Int(x - 1, y - 10, 0), Gold);
                         else if (Random.Range(0, SilverChance) < 1) gems.SetTile(new Vector3Int(x - 1, y - 10, 0), Silver);
                     }
-                    else if (rockTile != null)
-                    {
-                        if (rockTile.name.Contains("Rock"))
-                        {
-                            if (Random.Range(0, DiamondChance) < 1) gems.SetTile(new Vector3Int(x - 1, y - 10, 0), DiamondRock);
-                            else if (Random.Range(0, GoldChance) < 1) gems.SetTile(new Vector3Int(x - 1, y - 10, 0), GoldRock);
-                            else if (Random.Range(0, SilverChance) < 1) gems.SetTile(new Vector3Int(x - 1, y - 10, 0), SilverRock);
-                        }
-                    }
-
-                    /*
-                    if (wallTile != null)
-                    {
-                        if (wallTile.name.Contains("Dirt"))
-                        {
-                            if (Random.Range(0, DiamondChance) < 1) wall.SetTile(new Vector3Int(x - 1, y - 10, 0), Diamond);
-                            else if (Random.Range(0, GoldChance) < 1) wall.SetTile(new Vector3Int(x - 1, y - 10, 0), Gold);
-                            else if (Random.Range(0, SilverChance) < 1) wall.SetTile(new Vector3Int(x - 1, y - 10, 0), Silver);
-
-                        }
-                    }
-                    else if (rockTile != null)
-                    {
-                        if (rockTile.name.Contains("Rock"))
-                        {
-                            if (Random.Range(0, DiamondChance) < 1) rock.SetTile(new Vector3Int(x - 1, y - 10, 0), DiamondRock);
-                            else if (Random.Range(0, GoldChance) < 1) rock.SetTile(new Vector3Int(x - 1, y - 10, 0), GoldRock);
-                            else if (Random.Range(0, SilverChance) < 1) rock.SetTile(new Vector3Int(x - 1, y - 10, 0), SilverRock);
-                        }
-                    }
-                    */
                 }
             }
         }
@@ -687,52 +648,27 @@ public class LevelGenerator : MonoBehaviour
                                     TileBase tile = allTiles[x + y * bounds.size.x];
                                     if (tile != null)
                                     {
-                                        if (tile.name == "SnowRule")
+                                        if (tile.name.Contains("Snow"))
                                         {
                                             snows[i * 121 + x + y * bounds.size.x] = 1;
-                                            wall.SetTile(new Vector3Int(x - 1, y - 10, 0), null);
                                         }
                                         else if (tile.name.Contains("Dirt"))
                                         {
-                                            walls[i * 121 + x + y * bounds.size.x] = 1;
-                                            wall.SetTile(new Vector3Int(x - 1, y - 10, 0), null);
+                                            dirts[i * 121 + x + y * bounds.size.x] = 1;
                                         }
-                                    }
-                                }
-                            }
-                        }
-                        if (wall.gameObject.name == "Rock")
-                        {
-                            for (int x = 0; x < bounds.size.x; x++)
-                            {
-                                for (int y = 0; y < bounds.size.y; y++)
-                                {
-                                    TileBase tile = allTiles[x + y * bounds.size.x];
-                                    if (tile != null)
-                                    {
-                                        if (tile.name.Contains("Wood"))
+                                        else if (tile.name.Contains("Wood"))
                                         {
                                             woods[i * 121 + x + y * bounds.size.x] = 1;
                                         }
-                                        else
+                                        else if (tile.name.Contains("Rock"))
                                         {
                                             rocks[i * 121 + x + y * bounds.size.x] = 1;
                                         }
-                                        wall.SetTile(new Vector3Int(x - 1, y - 10, 0), null);
-                                    }
-                                }
-                            }
-                        }
-                        if (wall.gameObject.name == "Obsidian")
-                        {
-                            for (int x = 0; x < bounds.size.x; x++)
-                            {
-                                for (int y = 0; y < bounds.size.y; y++)
-                                {
-                                    TileBase tile = allTiles[x + y * bounds.size.x];
-                                    if (tile != null)
-                                    {
-                                        obsidians[i * 121 + x + y * bounds.size.x] = 1;
+                                        else if (tile.name.Contains("Obsidian"))
+                                        {
+                                            obsidians[i * 121 + x + y * bounds.size.x] = 1;
+                                        }
+                                        else Debug.Log("Tile  " + tile.name + "  not configured");
                                         wall.SetTile(new Vector3Int(x - 1, y - 10, 0), null);
                                     }
                                 }
@@ -757,7 +693,7 @@ public class LevelGenerator : MonoBehaviour
                         {
                             for (int y = 0; y < bounds.size.y; y++)
                             {
-                                if (walls[i * 121 + x + y * bounds.size.x] == 1)
+                                if (dirts[i * 121 + x + y * bounds.size.x] == 1)
                                 {
                                     wall.SetTile(new Vector3Int((x - 1) + (i % 3) * bounds.size.x, y - 10 + (i / 3) * bounds.size.y, 0), DirtRule);
                                 }
@@ -765,19 +701,7 @@ public class LevelGenerator : MonoBehaviour
                                 {
                                     wall.SetTile(new Vector3Int((x - 1) + (i % 3) * bounds.size.x, y - 10 + (i / 3) * bounds.size.y, 0), SnowRule);
                                 }
-                            }
-                        }
-                    }
-                }
-                if (wall.gameObject.name == "Rock")
-                {
-                    for (int i = 0; i < nodes.Length - 1; i++)
-                    {
-                        for (int x = 0; x < bounds.size.x; x++)
-                        {
-                            for (int y = 0; y < bounds.size.y; y++)
-                            {
-                                if (rocks[i * 121 + x + y * bounds.size.x] == 1)
+                                else if (rocks[i * 121 + x + y * bounds.size.x] == 1)
                                 {
                                     wall.SetTile(new Vector3Int((x - 1) + (i % 3) * bounds.size.x, y - 10 + (i / 3) * bounds.size.y, 0), RockRule);
                                 }
@@ -785,19 +709,7 @@ public class LevelGenerator : MonoBehaviour
                                 {
                                     wall.SetTile(new Vector3Int((x - 1) + (i % 3) * bounds.size.x, y - 10 + (i / 3) * bounds.size.y, 0), Wood);
                                 }
-                            }
-                        }
-                    }
-                }
-                if (wall.gameObject.name == "Obsidian")
-                {
-                    for (int i = 0; i < nodes.Length - 1; i++)
-                    {
-                        for (int x = 0; x < bounds.size.x; x++)
-                        {
-                            for (int y = 0; y < bounds.size.y; y++)
-                            {
-                                if (obsidians[i * 121 + x + y * bounds.size.x] == 1)
+                                else if (obsidians[i * 121 + x + y * bounds.size.x] == 1)
                                 {
                                     wall.SetTile(new Vector3Int((x - 1) + (i % 3) * bounds.size.x, y - 10 + (i / 3) * bounds.size.y, 0), ObsidianRule);
                                 }
@@ -849,7 +761,7 @@ public class LevelGenerator : MonoBehaviour
 
     private int XYtoP(int x, int y)
     {
-        int node = (x / 11) + (y / 11);
+        int node = (x / 11) + (y / 11)*3;
         int p = node * 121 + x % 11 + (y % 11) * 11;
         return p;
     }

@@ -4834,7 +4834,7 @@ GameObject:
   - component: {fileID: 4539671075733481296}
   - component: {fileID: 4092312129771230735}
   m_Layer: 14
-  m_Name: Creature
+  m_Name: Yeti
   m_TagString: Living
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4919,24 +4919,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1.5
-  stunned: 0
   stunnable: 0
-  attacking: 0
   pickupable: 0
+  knockbackable: 0
+  health: 1
+  mass: 0
+  linearDrag: 0
+  angularDrag: 0
+  stunned: 0
+  attacking: 0
   pickedUp: 0
   angered: 0
   canMove: 0
-  knockbackable: 0
   ani: {fileID: 0}
   currentState: 
   player: {fileID: 0}
-  health: 1
+  lg: {fileID: 0}
   blood: {fileID: 0}
   attackSoundPlayed: 0
   attackSoundAudio: {fileID: 0}
   tiles:
     serializedVersion: 2
     m_Bits: 8192
+  json: {fileID: 0}
   offset: -90
   stompSound: {fileID: 9119398201331372516}
   roarSound: {fileID: 3891735017219857102}
@@ -4963,9 +4968,9 @@ MonoBehaviour:
   damage: 900
   canHurt: 1
   knockbackTime: 1
+  canHurtPlayer: 1
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
-  canHurtPlayer: 1
   spawnsObjOnCollision: 0
   collisionObject: {fileID: 0}
 --- !u!114 &7471924862020509358
@@ -4983,6 +4988,8 @@ MonoBehaviour:
   tilemaps: []
   canMine: 1
   canBreakRock: 1
+  canBreakWood: 1
+  canDamageRock: 0
   canBreakObsidian: 1
   soundOn: 0
   dirtParticles: {fileID: 6310010033770557549, guid: 94cb80fb58e44db408f7e8ada366d17f, type: 3}
@@ -4991,9 +4998,11 @@ MonoBehaviour:
   silverParticles: {fileID: 6310010033770557549, guid: a87f23ef6da5bff4eaea8d87ef31e9da, type: 3}
   snowParticles: {fileID: 6310010033770557549, guid: e57a64a1a716f8f41afd317494eed7bc, type: 3}
   rockParticles: {fileID: 6310010033770557549, guid: 26d1cb29dd6205947b8c2f8b58f63827, type: 3}
+  littleRockParticles: {fileID: 0}
   obsidianParticles: {fileID: 6310010033770557549, guid: 26d1cb29dd6205947b8c2f8b58f63827, type: 3}
   iceParticles: {fileID: 288472715338334145, guid: 6bbdcc5d58ea4e349954de110e42584c, type: 3}
   woodParticles: {fileID: 6310010033770557549, guid: 0937982c73c8fec4e8835cba807e442e, type: 3}
+  rockTiles: []
   am: {fileID: 0}
   pebble: {fileID: 5020420758543740405, guid: 0e3ff7031044bfb418f342415528e0bf, type: 3}
 --- !u!50 &1754437765940581176
@@ -5257,7 +5266,7 @@ MonoBehaviour:
   - {x: -1.3910322, y: 0.13755941, z: 0}
   m_ShapePathHash: 2037327285
   m_Mesh: {fileID: 0}
-  m_InstanceId: 95416
+  m_InstanceId: 80586
 --- !u!114 &4539671075733481296
 MonoBehaviour:
   m_ObjectHideFlags: 0
