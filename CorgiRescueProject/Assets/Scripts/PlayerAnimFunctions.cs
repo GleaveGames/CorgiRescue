@@ -31,4 +31,10 @@ public class PlayerAnimFunctions : MonoBehaviour
     {
         transform.parent.GetComponent<playerMovement>().mining = false;
     }
+
+
+    public void TriggerCanMine()
+    {
+        transform.Find("pickaxe").GetComponent<PickAxe>().canMine = true;
+    }
 }

@@ -43,7 +43,7 @@ public class Miner : MonoBehaviour
     [SerializeField]
     private GameObject pebble;
 
-    private void Start()
+    protected virtual void Start()
     {
         am = FindObjectOfType<AudioManager>();
         tilemaps = new Tilemap[4];
@@ -74,7 +74,8 @@ public class Miner : MonoBehaviour
             tilemaps[1] = GameObject.FindGameObjectWithTag("Node1").transform.GetChild(0).transform.Find("GemsTilemap(Clone)").GetComponent<Tilemap>();
         }
     }
-    void OnCollisionStay2D(Collision2D collision)
+
+    protected virtual void OnCollisionStay2D(Collision2D collision)
     {
         if (canMine)
         {
@@ -146,7 +147,7 @@ public class Miner : MonoBehaviour
 
 
 
-    private void RockTileUpdate(string collisionSprite, UnityEngine.Vector3 hitPosition)
+    protected virtual void RockTileUpdate(string collisionSprite, UnityEngine.Vector3 hitPosition)
     {
         if(collisionSprite.Contains("three"))
         {

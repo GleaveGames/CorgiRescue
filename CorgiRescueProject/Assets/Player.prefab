@@ -605,11 +605,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4057509478575194392}
-  - component: {fileID: 2968911057675457189}
   - component: {fileID: 3219390707801440996}
   - component: {fileID: 9176957829586309235}
   - component: {fileID: 8519895755367155994}
   - component: {fileID: 5563196543852485373}
+  - component: {fileID: 1269292623186786190}
   m_Layer: 0
   m_Name: pickaxe
   m_TagString: Pick
@@ -631,41 +631,6 @@ Transform:
   m_Father: {fileID: 231744891735529615}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2968911057675457189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5935903918707426559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0f04bfb71a00a34f803b32b8736a58f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tilemaps: []
-  canMine: 1
-  canBreakRock: 0
-  canDamageRock: 1
-  canBreakObsidian: 0
-  soundOn: 1
-  dirtParticles: {fileID: 6310010033770557549, guid: 94cb80fb58e44db408f7e8ada366d17f, type: 3}
-  diamondParticles: {fileID: 6310010033770557549, guid: 56e87180be5b65f45ba952b450c49ecb, type: 3}
-  goldParticles: {fileID: 6310010033770557549, guid: 984ba32c59e702546a996a8ae36e818e, type: 3}
-  silverParticles: {fileID: 6310010033770557549, guid: a87f23ef6da5bff4eaea8d87ef31e9da, type: 3}
-  snowParticles: {fileID: 6310010033770557549, guid: e57a64a1a716f8f41afd317494eed7bc, type: 3}
-  rockParticles: {fileID: 6310010033770557549, guid: 26d1cb29dd6205947b8c2f8b58f63827, type: 3}
-  littleRockParticles: {fileID: 6310010033770557549, guid: 5efcf2778e764fd41b96f857d7225981, type: 3}
-  obsidianParticles: {fileID: 6310010033770557549, guid: 26d1cb29dd6205947b8c2f8b58f63827, type: 3}
-  iceParticles: {fileID: 6310010033770557549, guid: 5a2aa885808012549917e1040dcc4765, type: 3}
-  woodParticles: {fileID: 6310010033770557549, guid: 0937982c73c8fec4e8835cba807e442e, type: 3}
-  rockTiles:
-  - {fileID: 11400000, guid: 474d54790ca501b488cbf196c27d778b, type: 2}
-  - {fileID: 11400000, guid: 17e249926ea380d44bc313f4ccce78c3, type: 2}
-  - {fileID: 11400000, guid: 277d355c4241ab844a208749db370d82, type: 2}
-  - {fileID: 11400000, guid: 41fd13de902f43547adc556f4d0231b3, type: 2}
-  am: {fileID: 0}
-  pebble: {fileID: 5020420758543740405, guid: 0e3ff7031044bfb418f342415528e0bf, type: 3}
 --- !u!58 &3219390707801440996
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -679,9 +644,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.25}
+  m_Offset: {x: 0.008605838, y: 0.059384763}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.3248303
 --- !u!82 &9176957829586309235
 AudioSource:
   m_ObjectHideFlags: 0
@@ -692,9 +657,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f82b191a2fd44e644931f76f993d96cf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d4d628505116f8c499c4f5bd35dec480, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.645
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -813,6 +778,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   initialDamage: 0
+--- !u!114 &1269292623186786190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5935903918707426559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 077d2d245a054244cb5afeb5a250b3a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemaps: []
+  canMine: 1
+  canBreakRock: 0
+  canBreakWood: 0
+  canDamageRock: 1
+  canBreakObsidian: 0
+  soundOn: 1
+  dirtParticles: {fileID: 6310010033770557549, guid: 94cb80fb58e44db408f7e8ada366d17f, type: 3}
+  diamondParticles: {fileID: 6310010033770557549, guid: 56e87180be5b65f45ba952b450c49ecb, type: 3}
+  goldParticles: {fileID: 6310010033770557549, guid: 984ba32c59e702546a996a8ae36e818e, type: 3}
+  silverParticles: {fileID: 6310010033770557549, guid: a87f23ef6da5bff4eaea8d87ef31e9da, type: 3}
+  snowParticles: {fileID: 6310010033770557549, guid: e57a64a1a716f8f41afd317494eed7bc, type: 3}
+  rockParticles: {fileID: 6310010033770557549, guid: 26d1cb29dd6205947b8c2f8b58f63827, type: 3}
+  littleRockParticles: {fileID: 6310010033770557549, guid: 5efcf2778e764fd41b96f857d7225981, type: 3}
+  obsidianParticles: {fileID: 1528726219927949122, guid: 90f659a89dea8d74bb9fa64191585bbd, type: 3}
+  iceParticles: {fileID: 6310010033770557549, guid: 5a2aa885808012549917e1040dcc4765, type: 3}
+  woodParticles: {fileID: 549154283559806692, guid: 8b15e0ac5c5744d42971aef25e8ec9c8, type: 3}
+  rockTiles:
+  - {fileID: 11400000, guid: 80653559c2964064bac92ae4d9137ce1, type: 2}
+  - {fileID: 11400000, guid: 17e249926ea380d44bc313f4ccce78c3, type: 2}
+  - {fileID: 11400000, guid: 277d355c4241ab844a208749db370d82, type: 2}
+  - {fileID: 11400000, guid: 41fd13de902f43547adc556f4d0231b3, type: 2}
+  am: {fileID: 0}
+  pebble: {fileID: 5020420758543740405, guid: 0e3ff7031044bfb418f342415528e0bf, type: 3}
+  pm: {fileID: 3331172430760222198}
 --- !u!1 &6457790929956455839
 GameObject:
   m_ObjectHideFlags: 0

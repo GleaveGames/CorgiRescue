@@ -191,7 +191,7 @@ public class Mole : Living
             hit = Physics2D.RaycastAll(transform.position, transform.up, 0.3f);
             for (int j = 0; j < hit.Length; j++)
             {
-                if (hit[j].collider.gameObject.CompareTag("Rock") || hit[j].collider.gameObject.CompareTag("Obsidian"))
+                if (hit[j].collider.gameObject.CompareTag("Wall"))
                 {
                     dest = 2 * transform.position - dest;
                 }
@@ -206,7 +206,7 @@ public class Mole : Living
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.CompareTag("Rock") || collision.collider.CompareTag("Obsidian"))
+        if(collision.collider.CompareTag("Wall"))
         {
             if (!boss)
             {
