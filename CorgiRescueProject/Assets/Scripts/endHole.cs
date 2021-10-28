@@ -54,7 +54,7 @@ public class endHole : MonoBehaviour
         if (LoadTriggered)
         {
             black.GetComponent<Animator>().Play("BlackFadeIn");
-            player.GetComponent<CircleCollider2D>().enabled = false;
+            player.GetComponent<Collider2D>().enabled = false;
             // maybe make the player move towards the hole in exponential  decay
             player.transform.position = Vector2.MoveTowards(player.transform.position, transform.position, 1*Time.deltaTime);
             Vector3 scale = player.transform.localScale;

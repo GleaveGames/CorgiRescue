@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 2503999288548449287}
   - component: {fileID: 6395548067137857559}
   - component: {fileID: 1606944083723503383}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: WoodCrate
   m_TagString: PickupItems
   m_Icon: {fileID: 0}
@@ -202,7 +202,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea122672870bce4e8d8943b5ba83875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwPower: 40
+  throwPowerModifier: 1
+  attackRange: 5
+  thrower: {fileID: 0}
   AmIBomb: 0
   AmISword: 0
 --- !u!114 &2503999288548449287
@@ -248,8 +250,8 @@ MonoBehaviour:
   damage: 0
   canHurt: 1
   knockbackTime: 0.6
+  canHurtPlayer: 1
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
-  canHurtPlayer: 1
   spawnsObjOnCollision: 0
   collisionObject: {fileID: 0}

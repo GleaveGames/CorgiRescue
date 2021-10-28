@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 8655835994573536876}
   - component: {fileID: -2790693566720778327}
   - component: {fileID: -5848802632626249442}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: MetalCrate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,6 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throwPowerModifier: 1
   attackRange: 5
+  thrower: {fileID: 0}
   AmIBomb: 0
   AmISword: 0
 --- !u!114 &8655835994573536876

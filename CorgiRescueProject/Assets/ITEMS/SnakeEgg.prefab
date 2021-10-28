@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 5595252120915561543}
   - component: {fileID: 846693020597268169}
   - component: {fileID: -240121438833255680}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: SnakeEgg
   m_TagString: PickupItems
   m_Icon: {fileID: 0}
@@ -298,7 +298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4658814828361453957, guid: ebd8cbf3650466f4d9633c75087b979f, type: 3}
       propertyPath: m_Layer
-      value: 13
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5190038618824641912, guid: ebd8cbf3650466f4d9633c75087b979f, type: 3}
       propertyPath: m_RootOrder

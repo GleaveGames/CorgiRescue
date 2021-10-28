@@ -248,7 +248,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.255
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 0.4
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
@@ -284,11 +284,11 @@ GameObject:
   - component: {fileID: 3331172430760222197}
   - component: {fileID: 3331172430760222198}
   - component: {fileID: 3331172430760222192}
-  - component: {fileID: 3395587979383381893}
   - component: {fileID: 7711765784988805059}
   - component: {fileID: 6419587093600241304}
   - component: {fileID: 956637169494313860}
   - component: {fileID: 1001694172895325570}
+  - component: {fileID: 254740488484509500}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -367,22 +367,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &3395587979383381893
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3331172430760222196}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.007915609, y: 0.01929462}
-  serializedVersion: 2
-  m_Radius: 0.31868044
 --- !u!114 &7711765784988805059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,6 +508,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44b495a7323f9524a95c68d3e81d28b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &254740488484509500
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3331172430760222196}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 0.33388734}
+  m_EdgeRadius: 0
 --- !u!1 &3616411469640203786
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,7 +581,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.475
   m_Color: {r: 1, g: 0.5426012, b: 0.31372547, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 0.5
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
@@ -862,7 +872,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.1
+  m_Intensity: 0.05
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}

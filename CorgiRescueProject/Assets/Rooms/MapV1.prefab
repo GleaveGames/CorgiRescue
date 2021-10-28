@@ -2003,9 +2003,15 @@ MonoBehaviour:
   - go: {fileID: 7688553074688750316, guid: 41da8a0f01302984ca42f88139c09f4f, type: 3}
     spawnChance: 250
     itemEnabled: 1
+  - go: {fileID: 8545122552444305340, guid: cb306e2e4cbbac148b23f89465ed04ba, type: 3}
+    spawnChance: 20
+    itemEnabled: 1
   traps:
   - go: {fileID: 2933420508104443894, guid: 4e31bdb7a46f3c04da7acff1b354e813, type: 3}
     spawnChance: 100
+    trapEnabled: 1
+  - go: {fileID: 9163807118315481332, guid: 5fb8d1b5438f6ef48bd8f3f67c2f5931, type: 3}
+    spawnChance: 20
     trapEnabled: 1
   key: {fileID: 5020420758543740405, guid: 1a3e7a2912968a54c9643acf43dd5d4e, type: 3}
   finishedLoading: 0

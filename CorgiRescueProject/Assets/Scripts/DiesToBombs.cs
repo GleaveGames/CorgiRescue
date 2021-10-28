@@ -18,4 +18,16 @@ public class DiesToBombs : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == ("Bomb(Clone)"))
+        {
+            if (collision.gameObject.GetComponent<Bomb>().canBreakCreates)
+            {
+                Instantiate(particles, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
+        }
+    }
 }

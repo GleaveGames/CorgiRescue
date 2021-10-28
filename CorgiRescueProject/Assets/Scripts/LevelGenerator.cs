@@ -172,7 +172,7 @@ public class LevelGenerator : MonoBehaviour
         SetGems();
         player.GetComponent<playerMovement>().canMove = true;
         player.GetComponent<Rigidbody2D>().isKinematic = false;
-        player.GetComponent<CircleCollider2D>().enabled = true;
+        player.GetComponent<Collider2D>().enabled = true;
 
     }
 
