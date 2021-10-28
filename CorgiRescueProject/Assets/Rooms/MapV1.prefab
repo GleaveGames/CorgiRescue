@@ -1894,21 +1894,27 @@ MonoBehaviour:
   - name: LeftRight
     rooms:
     - {fileID: 8339892473555557416, guid: b98b676827df33742bb688ce4622011b, type: 3}
+    - {fileID: 8339892473555557416, guid: 66b3eaee4cfa5b342a6cc03ce969bd71, type: 3}
   - name: BackForward
     rooms:
     - {fileID: 4557792844795477336, guid: 49a3f4ef21ea56f48bb51402bd5e52f7, type: 3}
+    - {fileID: 4557792844795477336, guid: bf0db02bd76bbf74da503d830210e4ef, type: 3}
   - name: RightForward
     rooms:
     - {fileID: 3490229441403993311, guid: 2c8780fda55d7f844ad263b0e2e5ebd5, type: 3}
+    - {fileID: 3490229441403993311, guid: ea5e0af06f51ab042866582684e3e21b, type: 3}
   - name: LeftForward
     rooms:
     - {fileID: 866082977778704018, guid: 685e44ed434115b4f89ec88b4ea403a6, type: 3}
+    - {fileID: 866082977778704018, guid: 08ef809b70fdccf4a92c1e2ecbd5c76c, type: 3}
   - name: BackRight
     rooms:
     - {fileID: 6810154000492772116, guid: d65bc8f65cb374a4594a2bf770767325, type: 3}
+    - {fileID: 6810154000492772116, guid: a1c5ff572764e4944b1381f19a7e8965, type: 3}
   - name: BackLeft
     rooms:
     - {fileID: 8903524664933651153, guid: 6c46f7efc5ea7044f9a145c9aee6a965, type: 3}
+    - {fileID: 8903524664933651153, guid: be254de1d003b7447be2fc95e8bd86b9, type: 3}
   - name: Nonpath
     rooms:
     - {fileID: 4174694867535851666, guid: 2f91733a9dbb2474d83f5dc1eab6acad, type: 3}
