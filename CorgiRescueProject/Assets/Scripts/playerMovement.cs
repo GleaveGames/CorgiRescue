@@ -50,6 +50,7 @@ public class playerMovement : MonoBehaviour
     private float walkSpeed = 1.6f;
     [SerializeField]
     private GameObject Ducks;
+    Vector2 playerSize;
 
     private void Awake()
     {
@@ -58,7 +59,7 @@ public class playerMovement : MonoBehaviour
         pc.Game.Mine.started += _ => TriggerMine();
         pc.Game.Mine.canceled += _ => StopMine();
         pc.Game.Walk.started += _ => TriggerWalk();
-        pc.Game.Walk.canceled += _ => StopWalk();
+        pc.Game.Walk.canceled += _ => StartCoroutine(StopWalk());
         pc.Game.Cheat.performed += _ => Cheat();
         pc.Game.Debug.performed += _ => Debugg();
         am = FindObjectOfType<AudioManager>();
@@ -75,6 +76,7 @@ public class playerMovement : MonoBehaviour
         ChangeAnimationState("Idle");
         cpu = GetComponentInParent<CanPickUp>();
         runsp = ps.moveSpeed;
+        playerSize = GetComponent<BoxCollider2D>().size;
     }
 
     private void TriggerMine()
@@ -88,10 +90,25 @@ public class playerMovement : MonoBehaviour
     private void TriggerWalk()
     {
         walkPressed = true;
+        playerSize.y *= 0.3333333f ;
+        GetComponent<BoxCollider2D>().size = playerSize;
     }
-    private void StopWalk()
+    private IEnumerator StopWalk()
     {
+        playerSize.y *= 3f;
+        bool overlapping = true;
+        while (overlapping)
+        {
+            Collider2D[] results = Physics2D.OverlapBoxAll(transform.position, playerSize, transform.localRotation.z);
+            overlapping = false;
+            for (int i = 0; i < results.Length; i++)
+            {
+                if (results[i].gameObject.name == "Walls") overlapping = true;
+            }
+            yield return null;
+        }
         walkPressed = false;
+        GetComponent<BoxCollider2D>().size = playerSize;
     }
 
     void Update()
@@ -102,7 +119,7 @@ public class playerMovement : MonoBehaviour
             move = pc.Game.Move.ReadValue<Vector2>();
             aim = pc.Game.Aim.ReadValue<Vector2>();
 
-            if(aim != Vector2.zero) 
+            if(aim != Vector2.zero && !walkPressed) 
             {
                 Vector3 newRot = child.transform.eulerAngles;
 
@@ -134,7 +151,7 @@ public class playerMovement : MonoBehaviour
 
 
 
-            else if (move != Vector2.zero)
+            else if (move != Vector2.zero && !walkPressed)
             {
                 Vector3 newRot = child.transform.eulerAngles;
 

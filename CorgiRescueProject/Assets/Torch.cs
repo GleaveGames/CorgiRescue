@@ -7,6 +7,8 @@ public class Torch : MonoBehaviour
     int RotationDir;
     [SerializeField]
     LayerMask tiles;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +21,7 @@ public class Torch : MonoBehaviour
         RaycastHit2D wall = ClosestWall(transform.up);
         transform.position = wall.point;
         transform.up = -transform.up;
+        StartCoroutine(PickUpCheck());
     }
 
     private RaycastHit2D ClosestWall(Vector2 direction)
@@ -26,5 +29,14 @@ public class Torch : MonoBehaviour
         //working YOU MUST USE A DISTANCE FOR LAYERMASK TO WORK
         RaycastHit2D closestWall = Physics2D.Raycast(transform.position, direction, 9999, tiles);
         return closestWall;
+    }
+
+    private IEnumerator PickUpCheck()
+    {
+        while (transform.parent == null)
+        {
+            yield return null;
+        }
+        GetComponent<Animator>().Play("TorchPickUp");
     }
 }

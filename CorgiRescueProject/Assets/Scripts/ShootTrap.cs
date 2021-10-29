@@ -39,10 +39,11 @@ public class ShootTrap : MonoBehaviour
         if (!triggered)
         {
             RaycastHit2D hit = ClosestRaycast(transform.up);
-            if (hit.collider.CompareTag("Living") || hit.collider.CompareTag("Player")) 
+            if (hit.collider.CompareTag("PickupItems") || hit.collider.CompareTag("Player")) 
             {
                 triggered = true;
             }
+            else Debug.Log(hit.transform.gameObject.tag);
         }
 
         else

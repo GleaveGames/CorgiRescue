@@ -3829,7 +3829,7 @@ ParticleSystem:
       emitProbability: 1
   LightsModule:
     enabled: 1
-    ratio: 1
+    ratio: 0.4
     light: {fileID: 1036638380205952193, guid: 901c7d8159fd4dd478acd5e1cd3509e1, type: 3}
     randomDistribution: 0
     color: 1
@@ -5015,7 +5015,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.4
+  m_Mass: 2
   m_LinearDrag: 10
   m_AngularDrag: 10
   m_GravityScale: 0
@@ -5023,7 +5023,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 7
+  m_Constraints: 0
 --- !u!58 &8185299282121837376
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5037,9 +5037,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.027128771}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.12712876
 --- !u!114 &1035035893427833871
 MonoBehaviour:
   m_ObjectHideFlags: 0

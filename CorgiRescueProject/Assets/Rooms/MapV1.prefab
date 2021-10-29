@@ -1899,6 +1899,7 @@ MonoBehaviour:
     rooms:
     - {fileID: 4557792844795477336, guid: 49a3f4ef21ea56f48bb51402bd5e52f7, type: 3}
     - {fileID: 4557792844795477336, guid: bf0db02bd76bbf74da503d830210e4ef, type: 3}
+    - {fileID: 4557792844795477336, guid: a090ef84c73dee44498e436fe7d5f706, type: 3}
   - name: RightForward
     rooms:
     - {fileID: 3490229441403993311, guid: 2c8780fda55d7f844ad263b0e2e5ebd5, type: 3}
