@@ -2031,6 +2031,7 @@ MonoBehaviour:
   bigbackgrounds:
   - {fileID: 21300000, guid: d0fcf16b9b36b3e4596254762cc9e05e, type: 3}
   sortinglayer: -11
+  mat: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
 --- !u!1 &66988455185720419
 GameObject:
   m_ObjectHideFlags: 0

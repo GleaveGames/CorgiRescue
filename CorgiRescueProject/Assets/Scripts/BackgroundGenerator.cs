@@ -8,7 +8,8 @@ public class BackgroundGenerator : MonoBehaviour
     private Sprite[] bigbackgrounds;
     [SerializeField]
     private int sortinglayer = -20;
-
+    [SerializeField]
+    Material mat;
 
     private void Start()
     {
@@ -24,6 +25,7 @@ public class BackgroundGenerator : MonoBehaviour
                 newsprite.transform.position = new Vector2(startpos.x + i * 3, startpos.y + j * 3);
                 newsprite.AddComponent<SpriteRenderer>().sprite = bigbackgrounds[rand];
                 newsprite.GetComponent<SpriteRenderer>().sortingOrder = sortinglayer;
+                newsprite.GetComponent<SpriteRenderer>().material = mat;
                 newsprite.transform.parent = backdaddy.transform;
             }
         }
