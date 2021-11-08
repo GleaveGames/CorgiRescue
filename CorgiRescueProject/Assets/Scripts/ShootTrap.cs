@@ -31,6 +31,15 @@ public class ShootTrap : MonoBehaviour
         RaycastHit2D wall = ClosestWall(transform.up);
         transform.position = wall.point;
         transform.up = -transform.up;
+        Collider2D[] alloverlaps = Physics2D.OverlapCircleAll(transform.position, 0.5f);
+        foreach(Collider2D col in alloverlaps)
+        {
+            if (col.gameObject.CompareTag("Trap") || col.gameObject.CompareTag("PickupItems"))
+            {
+                Destroy(gameObject);
+                Debug.Log(this.gameObject.name + " was destroyed as it overlapped with " + col.name);
+            }
+        }
     }
 
 
@@ -43,7 +52,6 @@ public class ShootTrap : MonoBehaviour
             {
                 triggered = true;
             }
-            else Debug.Log(hit.transform.gameObject.tag);
         }
 
         else

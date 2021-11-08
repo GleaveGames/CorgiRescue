@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 2122736249297815479}
   m_Layer: 0
   m_Name: WoodArrowTrap
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,8 +108,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8192
   triggerDelay: 0
-  tripColor: {r: 0.2264151, g: 0.17738903, b: 0.011534336, a: 0.24705882}
-  tripWidth: 0.03
 --- !u!61 &1463248699544248039
 BoxCollider2D:
   m_ObjectHideFlags: 0
