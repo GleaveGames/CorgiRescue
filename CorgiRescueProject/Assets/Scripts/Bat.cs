@@ -79,11 +79,13 @@ public class Bat : Living
                                 {
                                     speedFlyingCounter = 0;
                                 }
-                                transform.position = Vector2.MoveTowards(transform.position, player.position, (speedFlying.Evaluate(speedFlyingCounter / 0.8f) + speed) * Time.deltaTime);
+                                rb.velocity = (player.position - transform.position).normalized * speed;
+                                //Vector2.MoveTowards(transform.position, player.position, (speedFlying.Evaluate(speedFlyingCounter / 0.8f) + speed));
                                 speedFlyingCounter += Time.deltaTime;
                             }
                             else
                             {
+                                rb.velocity = new Vector2(0,0);
                                 _currentState = batState.Idle;
                                 transform.up = -wall.normal;
                             }

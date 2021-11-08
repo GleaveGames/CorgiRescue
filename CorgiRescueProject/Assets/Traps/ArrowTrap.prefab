@@ -107,6 +107,8 @@ MonoBehaviour:
   tiles:
     serializedVersion: 2
     m_Bits: 8192
+  triggerDelay: 0.35
+  triggerSpeed: 2
 --- !u!61 &1463248699544248039
 BoxCollider2D:
   m_ObjectHideFlags: 0

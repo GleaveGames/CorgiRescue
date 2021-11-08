@@ -111,9 +111,9 @@ MonoBehaviour:
   damage: 1
   canHurt: 1
   knockbackTime: 0.6
+  canHurtPlayer: 1
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
-  canHurtPlayer: 1
   spawnsObjOnCollision: 0
   collisionObject: {fileID: 0}
 --- !u!114 &7471924862020509358
@@ -131,6 +131,8 @@ MonoBehaviour:
   tilemaps: []
   canMine: 1
   canBreakRock: 0
+  canBreakWood: 0
+  canDamageRock: 0
   canBreakObsidian: 0
   soundOn: 0
   dirtParticles: {fileID: 6310010033770557549, guid: 94cb80fb58e44db408f7e8ada366d17f, type: 3}
@@ -143,6 +145,7 @@ MonoBehaviour:
   obsidianParticles: {fileID: 6310010033770557549, guid: 26d1cb29dd6205947b8c2f8b58f63827, type: 3}
   iceParticles: {fileID: 288472715338334145, guid: 6bbdcc5d58ea4e349954de110e42584c, type: 3}
   woodParticles: {fileID: 6310010033770557549, guid: 0937982c73c8fec4e8835cba807e442e, type: 3}
+  rockTiles: []
   am: {fileID: 0}
   pebble: {fileID: 5020420758543740405, guid: 0e3ff7031044bfb418f342415528e0bf, type: 3}
 --- !u!58 &7471924862020509357
@@ -180,7 +183,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!95 &877099927748864602
 Animator:
@@ -229,6 +232,7 @@ MonoBehaviour:
   ani: {fileID: 0}
   currentState: 
   player: {fileID: 0}
+  lg: {fileID: 0}
   blood: {fileID: 6310010033770557549, guid: 7be9f23a949dabd4395ea7df6d1c745f, type: 3}
   attackSoundPlayed: 0
   attackSoundAudio: {fileID: 0}
@@ -425,6 +429,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwPowerModifier: 1
+  attackRange: 5
+  thrower: {fileID: 0}
 --- !u!114 &3385142414179241015
 MonoBehaviour:
   m_ObjectHideFlags: 0

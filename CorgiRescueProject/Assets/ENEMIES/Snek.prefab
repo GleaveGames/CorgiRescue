@@ -224,7 +224,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.3}
+  m_Size: {x: 0.6050249, y: 0.2}
   m_EdgeRadius: 0
 --- !u!114 &4839327798055295640
 MonoBehaviour:
@@ -409,7 +409,7 @@ MonoBehaviour:
   - {x: -0.23658863, y: 0.14025319, z: 0}
   m_ShapePathHash: 888740386
   m_Mesh: {fileID: 0}
-  m_InstanceId: 87596
+  m_InstanceId: 99282
 --- !u!114 &7865070789608767469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,5 +443,5 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4

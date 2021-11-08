@@ -20,6 +20,8 @@ public class ShootTrap : MonoBehaviour
     LayerMask tiles;
     [SerializeField]
     float triggerDelay = 0.35f;
+    [SerializeField]
+    float triggerSpeed = 4;
 
     void Start()
     {
@@ -43,17 +45,16 @@ public class ShootTrap : MonoBehaviour
     }
 
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (!triggered)
         {
             RaycastHit2D hit = ClosestRaycast(transform.up);
-            if (hit.collider.CompareTag("PickupItems") || hit.collider.CompareTag("Player")) 
+            if (hit.collider.TryGetComponent(out Rigidbody2D rig)) 
             {
-                triggered = true;
+                if (Mathf.Sqrt(rig.velocity.x * rig.velocity.x + rig.velocity.y * rig.velocity.y) > triggerSpeed) triggered = true;
             }
         }
-
         else
         {
             if (!fired)
@@ -70,6 +71,11 @@ public class ShootTrap : MonoBehaviour
         RaycastHit2D closestValidHit = new RaycastHit2D();
         foreach (RaycastHit2D hit in hits)
         {
+            if (hit.collider != null && hit.collider.name.Contains("Snek"))
+            {
+                Rigidbody2D rig = hit.collider.GetComponent<Rigidbody2D>();
+                Debug.Log("snek hit\n speed is = " + Mathf.Sqrt(rig.velocity.x * rig.velocity.x + rig.velocity.y * rig.velocity.y) + "\n it's distance is " + hit.distance); 
+            }
             if (hit.transform.gameObject != gameObject && (closestValidHit.collider == null || closestValidHit.distance > hit.distance))
             {
                 closestValidHit = hit;
@@ -95,4 +101,5 @@ public class ShootTrap : MonoBehaviour
         RaycastHit2D closestWall = Physics2D.Raycast(transform.position, direction, 9999, tiles);
         return closestWall;
     }
+    
 }

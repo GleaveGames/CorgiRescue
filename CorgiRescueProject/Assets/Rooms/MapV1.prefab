@@ -2010,7 +2010,7 @@ MonoBehaviour:
   traps:
   - go: {fileID: 2933420508104443894, guid: 4e31bdb7a46f3c04da7acff1b354e813, type: 3}
     spawnChance: 100
-    trapEnabled: 1
+    trapEnabled: 0
   - go: {fileID: 9163807118315481332, guid: 5fb8d1b5438f6ef48bd8f3f67c2f5931, type: 3}
     spawnChance: 20
     trapEnabled: 1

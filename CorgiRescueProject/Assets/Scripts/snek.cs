@@ -23,20 +23,28 @@ public class snek : Living
             yield return null;
         }
         transform.localScale = new Vector2(1, 1);
-        while (Vector2.Distance(hit.point, transform.position) > 0.2 && this.enabled)
+        rb.velocity = (hit.point - new Vector2(transform.position.x, transform.position.y)).normalized * speed;//* Time.deltaTime;
+        ChangeAnimationState("Snek");
+        StartCoroutine(AttackSound());
+        float initialDrag = rb.drag;
+        rb.drag = 0;
+        while (Mathf.Sqrt(rb.velocity.x * rb.velocity.x + rb.velocity.y * rb.velocity.y) > 0 && Vector2.Distance(hit.point, transform.position) > 0.4 && this.enabled)
         {
+            Debug.Log(Vector2.Distance(hit.point, transform.position));
+            /*
             if (!attackSoundPlayed)
             {
                 StartCoroutine(AttackSound());
                 attackSoundPlayed = true;
             }
-            transform.position = Vector2.MoveTowards(transform.position, hit.point, speed * Time.deltaTime);
-            ChangeAnimationState("Snek");
+                //Vector2.MoveTowards(transform.position, hit.point, speed * Time.deltaTime);
+            */
             yield return null;
         }
         transform.rotation = Quaternion.identity;
         ChangeAnimationState("snekIdle");
         attacking = false;
+        rb.drag = initialDrag;
     }
 
     // Update is called once per frame

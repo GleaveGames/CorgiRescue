@@ -245,9 +245,9 @@ MonoBehaviour:
   damage: 2
   canHurt: 1
   knockbackTime: 1
+  canHurtPlayer: 1
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
-  canHurtPlayer: 1
   spawnsObjOnCollision: 0
   collisionObject: {fileID: 0}
 --- !u!114 &5870998475583592556
@@ -277,6 +277,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwPowerModifier: 0.05
+  attackRange: 5
+  thrower: {fileID: 0}
   AmIBomb: 0
   AmISword: 0
 --- !u!50 &1177465007607926279
@@ -298,7 +300,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &1075177655163910899
 CircleCollider2D:
@@ -315,7 +317,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.018401146, y: 0.09949255}
   serializedVersion: 2
-  m_Radius: 0.08600092
+  m_Radius: 0.05
 --- !u!114 &3103768266205328026
 MonoBehaviour:
   m_ObjectHideFlags: 0

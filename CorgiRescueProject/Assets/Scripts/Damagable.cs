@@ -81,8 +81,8 @@ public class Damagable : MonoBehaviour
     {
         if ((Living && collision.gameObject.CompareTag("Living") && collision.gameObject.GetComponent<Living>().stunned) ||
             (Pick && collision.gameObject.CompareTag("Pick")) ||
-            (Bombs && collision.gameObject.name == "Bomb(Clone)") ||
-            (Traps && collision.gameObject.CompareTag("Trap")))
+            (Bombs && collision.gameObject.name == "Bomb(Clone)")) //||
+            //(Traps && collision.gameObject.CompareTag("Trap")))
         {
             DoDamage(collision.gameObject);
         }
@@ -143,6 +143,7 @@ public class Damagable : MonoBehaviour
         }
         else
         {
+            if (!collisionObj.TryGetComponent(out DamageThisDoes dam)) Debug.Log(collisionObj.name + " doesn't have a damage this does script");
             living.health -= collisionObj.GetComponent<DamageThisDoes>().damage;
             Instantiate(littleBlood, transform.position, Quaternion.identity);
             Anger(collisionObj);

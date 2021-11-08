@@ -46,8 +46,9 @@ MonoBehaviour:
   money: 0
   health: 5
   bombs: 5
+  throwPower: 30
   miningSpeed: 1
-  moveSpeed: 6
+  moveSpeed: 5
   holdItem: {fileID: 0}
   spikegloves: 0
   steeltoes: 0

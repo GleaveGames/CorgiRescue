@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throwPowerModifier: 1
   attackRange: 5
+  thrower: {fileID: 0}
   AmIBomb: 0
   AmISword: 0
 --- !u!212 &1435047480065279769
@@ -192,7 +193,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &3677100256628343161
 MonoBehaviour:

@@ -55,24 +55,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  stunned: 0
   stunnable: 1
-  attacking: 0
   pickupable: 1
+  knockbackable: 1
+  health: 3
+  mass: 0
+  linearDrag: 0
+  angularDrag: 0
+  stunned: 0
+  attacking: 0
   pickedUp: 0
   angered: 0
   canMove: 0
-  knockbackable: 1
   ani: {fileID: 0}
   currentState: 
   player: {fileID: 0}
-  health: 3
+  lg: {fileID: 0}
   blood: {fileID: 6310010033770557549, guid: 7be9f23a949dabd4395ea7df6d1c745f, type: 3}
   attackSoundPlayed: 0
   attackSoundAudio: {fileID: 2777830762697218060}
   tiles:
     serializedVersion: 2
     m_Bits: 8192
+  json: {fileID: 0}
   triggered: 0
   rotateTime: 1
   lookDist: 6
@@ -163,9 +168,9 @@ MonoBehaviour:
   damage: 2
   canHurt: 1
   knockbackTime: 1
+  canHurtPlayer: 1
   destroyOnCollision: 0
   collisionParticles: {fileID: 0}
-  canHurtPlayer: 1
   spawnsObjOnCollision: 0
   collisionObject: {fileID: 0}
 --- !u!114 &5686374190113552966
@@ -374,7 +379,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bec58b531f80fc4f991dcdf5d0b5ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwPower: 30
+  throwPowerModifier: 1
+  attackRange: 5
+  thrower: {fileID: 0}
 --- !u!50 &5160885419247695953
 Rigidbody2D:
   serializedVersion: 4
@@ -394,5 +401,5 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
