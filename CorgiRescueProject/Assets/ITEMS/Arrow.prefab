@@ -345,7 +345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityCutoff: 4
   lowVDrag: 6
-  highVDrag: 0.5
+  highVDrag: 1
 --- !u!114 &-6514227041368718050
 MonoBehaviour:
   m_ObjectHideFlags: 0

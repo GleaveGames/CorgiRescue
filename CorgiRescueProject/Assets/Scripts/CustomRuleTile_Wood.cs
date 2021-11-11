@@ -8,10 +8,10 @@ using System.Linq;
 public class CustomRuleTile_Wood: RuleTile<CustomRuleTile_Wood.Neighbor> {
 
     public bool customField;
-    public SibingGroup siblingGroup;
+    public SiblingGroup siblingGroup;
     public bool notCheckSelf = true;
 
-    public enum SibingGroup
+    public enum SiblingGroup
     {
         Wood,
         Rock,
@@ -34,12 +34,14 @@ public class CustomRuleTile_Wood: RuleTile<CustomRuleTile_Wood.Neighbor> {
         {
             case TilingRule.Neighbor.This:
                 {
-                    if (notCheckSelf && other is CustomRuleTile_Wood
-                        && (other as CustomRuleTile_Wood).notCheckSelf) return false;
-                    else
-                    return other is CustomRuleTile_Wood
-                        && (other as CustomRuleTile_Wood).siblingGroup == this.siblingGroup;
-                    
+                    if (this.siblingGroup == SiblingGroup.Wood)
+                    {
+                        if (notCheckSelf && other is CustomRuleTile_Wood
+                      && (other as CustomRuleTile_Wood).notCheckSelf) return false;
+                        else
+                            return other is CustomRuleTile_Wood;
+                    }
+                    else return other is CustomRuleTile_Wood && (other as CustomRuleTile_Wood).siblingGroup == this.siblingGroup;
                 }
             case TilingRule.Neighbor.NotThis:
                 {
