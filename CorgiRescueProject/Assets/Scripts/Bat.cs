@@ -47,6 +47,15 @@ public class Bat : Living
         
         RaycastHit2D wall = ClosestWall(transform.up);
         transform.position = wall.point;
+        Collider2D[] alloverlaps = Physics2D.OverlapCircleAll(transform.position, 0.5f);
+        foreach (Collider2D col in alloverlaps)
+        {
+            if (col.gameObject.CompareTag("Trap") || col.gameObject.CompareTag("PickupItems") || col.gameObject.CompareTag("Living"))
+            {
+                Destroy(gameObject);
+                Debug.Log(this.gameObject.name + " was destroyed as it overlapped with " + col.name);
+            }
+        }
     }
     
     protected override void Update()
