@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4333600114757235040}
   - component: {fileID: 3289285220959225856}
   - component: {fileID: 1463248699544248039}
-  - component: {fileID: 2030152275064930849}
   - component: {fileID: 1559875039873267114}
   - component: {fileID: 8961236246008120792}
   - component: {fileID: 2122736249297815479}
@@ -122,40 +121,19 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.010774314, y: -0.20014274}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.1}
+  m_Size: {x: 0.5094233, y: 0.61729205}
   m_EdgeRadius: 0
---- !u!50 &2030152275064930849
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9163807118315481332}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 3
-  m_LinearDrag: 30
-  m_AngularDrag: 30
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 3
 --- !u!114 &1559875039873267114
 MonoBehaviour:
   m_ObjectHideFlags: 0

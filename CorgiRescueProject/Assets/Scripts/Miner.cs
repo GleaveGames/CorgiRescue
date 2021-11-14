@@ -114,6 +114,12 @@ public class Miner : MonoBehaviour
                                     RockTileUpdate(collisionSprite, hitPosition);
                                     continue;
                             }
+                            else if (collisionSprite.Contains("Rotten"))
+                            {
+                                collisionSprite = tilemaps[0].GetSprite(tilemaps[0].WorldToCell(hitPosition)).name;
+                                tilemaps[0].SetTile(tilemaps[0].WorldToCell(hitPosition), null);
+                                TileDestroy(collisionSprite, tilemaps[0], hitPosition);
+                            }
                         }
 
                         if (canBreakWood)

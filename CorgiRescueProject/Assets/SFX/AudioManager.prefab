@@ -83,7 +83,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 8654a3fef0f638d43a17bbc765f1447c, type: 3}
     - {fileID: 8300000, guid: 25b1791df279a50468b8bd829b34e206, type: 3}
     - {fileID: 8300000, guid: 5eb25cf075a8e0c4cb5fd9ce94cb7b06, type: 3}
-    volume: 0.5
+    volume: 0.25
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -268,6 +268,14 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 45e7694846a342744b4778f8d743eaa3, type: 3}
     - {fileID: 8300000, guid: 9043cde3f2503b84ca4539ed91223585, type: 3}
     volume: 0.23
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Wood
+    clips:
+    - {fileID: 8300000, guid: 2f0f71b091e95ec4c84220099ceca383, type: 3}
+    - {fileID: 8300000, guid: 8084a7ebbca5c0442bd07f03e0eb1ce3, type: 3}
+    volume: 0.6
     pitch: 1
     loop: 0
     source: {fileID: 0}

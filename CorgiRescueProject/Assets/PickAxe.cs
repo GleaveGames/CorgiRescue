@@ -46,7 +46,7 @@ public class PickAxe : Miner
                     if (tilemaps[0].GetSprite(tilemaps[0].WorldToCell(hitPosition)) != null)
                     {
                         collisionSprite = tilemaps[0].GetSprite(tilemaps[0].WorldToCell(hitPosition)).name;
-                        if (collisionSprite.Contains("Wood"))
+                        if (collisionSprite.Contains("Wood") && !collisionSprite.Contains("Rotten"))
                         {
                             canMine = false;
                             pm.ChangeAnimationState("Ding");

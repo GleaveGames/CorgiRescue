@@ -816,7 +816,7 @@ MonoBehaviour:
   littleRockParticles: {fileID: 6310010033770557549, guid: 5efcf2778e764fd41b96f857d7225981, type: 3}
   obsidianParticles: {fileID: 1528726219927949122, guid: 90f659a89dea8d74bb9fa64191585bbd, type: 3}
   iceParticles: {fileID: 6310010033770557549, guid: 5a2aa885808012549917e1040dcc4765, type: 3}
-  woodParticles: {fileID: 549154283559806692, guid: 8b15e0ac5c5744d42971aef25e8ec9c8, type: 3}
+  woodParticles: {fileID: 6310010033770557549, guid: 0937982c73c8fec4e8835cba807e442e, type: 3}
   rockTiles:
   - {fileID: 11400000, guid: 80653559c2964064bac92ae4d9137ce1, type: 2}
   - {fileID: 11400000, guid: 17e249926ea380d44bc313f4ccce78c3, type: 2}
