@@ -55,7 +55,7 @@ public class CustomRuleTile_Wood: RuleTile<CustomRuleTile_Wood.Neighbor> {
 
     public override void RefreshTile(Vector3Int position, ITilemap tilemap)
     {
-        if(!Application.isPlaying)
+        if (!Application.isPlaying)
         {
             base.RefreshTile(position, tilemap);
         }
@@ -63,12 +63,6 @@ public class CustomRuleTile_Wood: RuleTile<CustomRuleTile_Wood.Neighbor> {
         {
             base.RefreshTile(position, tilemap);
         }
-        /*
-        else if(constantRefresh)
-        {
-            base.RefreshTile(position, tilemap);
-        }
-        */
         else
         {
             //nothing
