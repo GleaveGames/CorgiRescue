@@ -22,6 +22,7 @@ public class LevelGenerator : MonoBehaviour
      * 13  -  Shop
      * 14  -  Locked
      * 15  -  MoleBoss
+     * 16  -  TrapRooms
      */
 
     //   Filled Room    Instantiate(rooms[6].rooms[0], nodes[i].transform.position, Quaternion.identity);
@@ -178,6 +179,7 @@ public class LevelGenerator : MonoBehaviour
 
     private void SpawnNonPathRooms()
     {
+        //trap rooms are 16
         if (LV0)
         {
             for (int i = 0; i < nodes.Length; i++)
@@ -204,7 +206,7 @@ public class LevelGenerator : MonoBehaviour
                 empties.Remove(10);
                 empties.Remove(11);
             }
-            if (empties.Count > 1)
+            if (empties.Count > 2)
             {
                 //Shop
                 int nodeChoice = empties[Random.Range(0, empties.Count)];
@@ -216,8 +218,44 @@ public class LevelGenerator : MonoBehaviour
                 empties.Remove(nodeChoice2);
                 GameObject Locked = Instantiate(rooms[14].rooms[Random.Range(0, rooms[14].rooms.Length)], nodes[nodeChoice2].transform.position, Quaternion.identity);
                 Locked.transform.parent = nodes[nodeChoice2].transform;
+                // Trap
+                int nodeChoice3 = empties[Random.Range(0, empties.Count)];
+                empties.Remove(nodeChoice3);
+                GameObject trap = Instantiate(rooms[16].rooms[Random.Range(0, rooms[16].rooms.Length)], nodes[nodeChoice3].transform.position, Quaternion.identity);
+                trap.transform.parent = nodes[nodeChoice3].transform;
+                /*
+                if(nodeChoice3 % 3 == 0){
+                    //left 
+
+                }
+                else if((nodeChoice - 1) % 3 == 1)
+                {
+                    //mid 
+                
+                
+                }
+                else
+                {
+                    //right
+
+
+                }
+                */
             }
-            else if (empties.Count > 0)
+            else if (empties.Count > 1)
+            {
+                //Shop
+                int nodeChoice = empties[Random.Range(0, empties.Count)];
+                empties.Remove(nodeChoice);
+                GameObject Shop = Instantiate(rooms[13].rooms[Random.Range(0, rooms[13].rooms.Length)], nodes[nodeChoice].transform.position, Quaternion.identity);
+                Shop.transform.parent = nodes[nodeChoice].transform;
+                // Trap
+                int nodeChoice2 = empties[Random.Range(0, empties.Count)];
+                empties.Remove(nodeChoice2);
+                GameObject trap = Instantiate(rooms[16].rooms[Random.Range(0, rooms[16].rooms.Length)], nodes[nodeChoice2].transform.position, Quaternion.identity);
+                trap.transform.parent = nodes[nodeChoice2].transform;
+            }
+            else if(empties.Count > 0)
             {
                 //Shop
                 int nodeChoice = empties[Random.Range(0, empties.Count)];

@@ -1910,7 +1910,7 @@ MonoBehaviour:
     - {fileID: 866082977778704018, guid: 08ef809b70fdccf4a92c1e2ecbd5c76c, type: 3}
   - name: BackRight
     rooms:
-    - {fileID: 4174694867535851666, guid: 401f1a703776dcf4a833fdc0d0ac22e5, type: 3}
+    - {fileID: 6810154000492772116, guid: d65bc8f65cb374a4594a2bf770767325, type: 3}
     - {fileID: 6810154000492772116, guid: a1c5ff572764e4944b1381f19a7e8965, type: 3}
   - name: BackLeft
     rooms:
@@ -1919,9 +1919,7 @@ MonoBehaviour:
   - name: Nonpath
     rooms:
     - {fileID: 4174694867535851666, guid: 2f91733a9dbb2474d83f5dc1eab6acad, type: 3}
-    - {fileID: 4174694867535851666, guid: e0dec746f539a4c418fe830745f5503d, type: 3}
-    - {fileID: 4174694867535851666, guid: 80fc239645750c04a8106e890d6df1e7, type: 3}
-    - {fileID: 4174694867535851666, guid: f0572c215c8ba574e8843620809d08ef, type: 3}
+    - {fileID: 4174694867535851666, guid: 401f1a703776dcf4a833fdc0d0ac22e5, type: 3}
   - name: LeftEntry
     rooms:
     - {fileID: 5898384448683235796, guid: b00cafc25d30e7c4e9b21e3e424be485, type: 3}
@@ -1951,6 +1949,9 @@ MonoBehaviour:
   - name: MoleBoss
     rooms:
     - {fileID: 4174694867535851666, guid: 54a72ddca1613ac4dba028779b3e9c43, type: 3}
+  - name: TrapRooms
+    rooms:
+    - {fileID: 4174694867535851666, guid: 401f1a703776dcf4a833fdc0d0ac22e5, type: 3}
   nodes:
   - {fileID: 66988456269944630}
   - {fileID: 66988455496040561}
