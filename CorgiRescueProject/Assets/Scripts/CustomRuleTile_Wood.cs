@@ -10,6 +10,7 @@ public class CustomRuleTile_Wood: RuleTile<CustomRuleTile_Wood.Neighbor> {
     public bool customField;
     public SiblingGroup siblingGroup;
     public bool notCheckSelf = true;
+    public bool constantRefresh = false;
 
     public enum SiblingGroup
     {
@@ -62,9 +63,15 @@ public class CustomRuleTile_Wood: RuleTile<CustomRuleTile_Wood.Neighbor> {
         {
             base.RefreshTile(position, tilemap);
         }
+        /*
+        else if(constantRefresh)
+        {
+            base.RefreshTile(position, tilemap);
+        }
+        */
         else
         {
-            //base.RefreshTile(position, tilemap);
+            //nothing
         }
     }
 

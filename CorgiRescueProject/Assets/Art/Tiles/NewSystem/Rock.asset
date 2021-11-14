@@ -275,3 +275,4 @@ MonoBehaviour:
   customField: 0
   siblingGroup: 1
   notCheckSelf: 0
+  constantRefresh: 1

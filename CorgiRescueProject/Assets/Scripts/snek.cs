@@ -28,9 +28,8 @@ public class snek : Living
         StartCoroutine(AttackSound());
         float initialDrag = rb.drag;
         rb.drag = 0;
-        while (Mathf.Sqrt(rb.velocity.x * rb.velocity.x + rb.velocity.y * rb.velocity.y) > 0 && Vector2.Distance(hit.point, transform.position) > 0.4 && this.enabled)
+        while (Vector2.Distance(hit.point, transform.position) > 0.4 && this.enabled)
         {
-            Debug.Log(Vector2.Distance(hit.point, transform.position));
             /*
             if (!attackSoundPlayed)
             {
