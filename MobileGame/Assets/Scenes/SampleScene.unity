@@ -4903,6 +4903,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2084872739}
   - component: {fileID: 2084872740}
+  - component: {fileID: 2084872742}
+  - component: {fileID: 2084872741}
   m_Layer: 0
   m_Name: Shop
   m_TagString: Untagged
@@ -4910,15 +4912,15 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2084872739
-Transform:
+--- !u!224 &2084872739
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2084872738}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0784926, y: -3.4136448, z: -6.303314}
+  m_LocalPosition: {x: 0, y: 0, z: -6.303314}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 697528076}
@@ -4928,6 +4930,11 @@ Transform:
   m_Father: {fileID: 1823306627}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -1.0784926, y: -3.4136448}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2084872740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4943,5 +4950,25 @@ MonoBehaviour:
   ShopSlots: []
   Units:
   - {fileID: 757357724859235951, guid: ec863130211630341a06bb9cae786c16, type: 3}
-  - {fileID: 2297039251316750624, guid: c6452b196b0db614f93f7bf3428043ef, type: 3}
-  - {fileID: 538672580819213156, guid: 8b360454daee98f4d9deb34c432c2889, type: 3}
+--- !u!222 &2084872741
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084872738}
+  m_CullTransparentMesh: 0
+--- !u!114 &2084872742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084872738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82324281f41ee0145b0f82d240af067a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  attack: 0
