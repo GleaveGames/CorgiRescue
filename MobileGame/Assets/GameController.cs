@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour
     [SerializeField]
     LayerMask squares;
 
+    
+
     private void Update()
     {
         
@@ -38,4 +40,6 @@ public class GameController : MonoBehaviour
             }
         }
     }
+
+    
 }
