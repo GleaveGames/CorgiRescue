@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ShopSprite : MonoBehaviour
 {
-    float dist;
-    bool dragging = false;
-    Vector3 offset;
-    Transform toDrag;
     GameController gc;
+    public Vector3 origin;
+    [SerializeField]
+    LayerMask squares;
+    public bool beenPlaced;
 
     private void Start()
     {
@@ -22,15 +22,26 @@ public class ShopSprite : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            origin = transform.position;
             Collider2D targetObject = Physics2D.OverlapPoint(mousePosition);
-
-            if (targetObject != null) Debug.Log(targetObject.name);
-
             if (targetObject && targetObject == this.gameObject.GetComponent<Collider2D>())
             {
-                Debug.Log("picked up sprite");
                 gc.draggingObj = this.gameObject;
+                Collider2D square = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition), squares);
+                
+                //Already On Board
+                if(square != null)
+                {
+                    square.GetComponent<GameSquare>().occupied = false;
+                    square.GetComponent<GameSquare>().occupier = null;
+                }
             }
         }
+    }
+
+    public void Bought()
+    {
+        beenPlaced = true;
+        transform.parent = transform.root;
     }
 }
