@@ -16,8 +16,12 @@ public class Unit : MonoBehaviour
     Text expText;
     [SerializeField]
     ParticleSystem levelUpParticles;
-    
-
+    public bool attacking;
+    public bool playerUnit = true;
+    [SerializeField]
+    LayerMask playerTiles;
+    [SerializeField]
+    LayerMask enemyTiles;
 
 
     // Start is called before the first frame update
@@ -41,12 +45,34 @@ public class Unit : MonoBehaviour
             //level up
             LevelUp();
         }
-
     }
 
-    protected virtual void Attack()
+    public virtual IEnumerator Attack()
     {
+        attacking = true;
 
+        Instantiate(levelUpParticles, transform.position, Quaternion.identity);
+        //get nearest enemy 
+        if (playerUnit)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                for (int j = 1; j < 4; j++)
+                {
+                    Vector2 spawnPoint = new Vector2(i, j);
+                    Collider2D square = Physics2D.OverlapPoint(spawnPoint, enemysquares);
+                }
+            }
+        }
+        
+        
+
+
+
+
+
+        yield return new WaitForSeconds(1);
+        attacking = false;
     }
 
     protected virtual void LevelUp()

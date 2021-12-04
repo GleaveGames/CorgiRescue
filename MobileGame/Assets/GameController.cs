@@ -95,10 +95,15 @@ public class GameController : MonoBehaviour
             }
         }
 
-        //allunits = InsertionSort(allunits);
+        allunits = InsertionSort(allunits);
         foreach(GameObject u in allunits)
         {
-            Debug.Log(u.GetComponent<Unit>().attack);
+            //Debug.Log(u.GetComponent<Unit>().attack);
+            StartCoroutine(u.GetComponent<Unit>().Attack());
+            while (u.GetComponent<Unit>().attacking)
+            {
+                yield return null;
+            }
         }
     }
 
