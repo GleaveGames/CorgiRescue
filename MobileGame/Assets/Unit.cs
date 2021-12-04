@@ -13,7 +13,9 @@ public class Unit : MonoBehaviour
     Text healthText;
     Text attackText;
     Text levelText;
-
+    Text expText;
+    [SerializeField]
+    ParticleSystem levelUpParticles;
     
 
 
@@ -24,6 +26,7 @@ public class Unit : MonoBehaviour
         healthText = transform.GetChild(0).GetChild(0).GetComponent<Text>();
         attackText = transform.GetChild(0).GetChild(1).GetComponent<Text>();
         levelText = transform.GetChild(0).GetChild(2).GetComponent<Text>();
+        expText = transform.GetChild(0).GetChild(3).GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -32,9 +35,11 @@ public class Unit : MonoBehaviour
         healthText.text = health.ToString();
         attackText.text = attack.ToString();
         levelText.text = level.ToString();
-        if(level <= exp+1)
+        expText.text = exp.ToString() + "/" + level.ToString();
+        if(level < exp+1)
         {
             //level up
+            LevelUp();
         }
 
     }
@@ -48,6 +53,7 @@ public class Unit : MonoBehaviour
     {
         exp = 0;
         level++;
+        Instantiate(levelUpParticles, transform.position, Quaternion.identity);
     }
 
     public virtual void Combine()
