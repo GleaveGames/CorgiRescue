@@ -61,11 +61,17 @@ public class GameController : MonoBehaviour
 
         //get player Units
         GameObject[] units = new GameObject[transform.childCount - 3];
+        //make an array more units and enemy units
+        GameObject[] allunits = new GameObject[2*units.Length];
+
+
         for (int i = 3; i < transform.childCount; i++)
         {
             units[i-3] = transform.GetChild(i).gameObject;
+            allunits[i - 3] = units[i - 3];
         }
 
+        GameObject[] enemyunits = new GameObject[units.Length];
         //get enemy units
         for (int i = 0; i < units.Length; i++)
         {
@@ -82,14 +88,25 @@ public class GameController : MonoBehaviour
                     square.GetComponent<GameSquare>().occupier = newUnit;
                     placed = true;
                     newUnit.transform.parent = transform;
+                    enemyunits[i] = newUnit;
+                    allunits[units.Length + i] = newUnit;
                 }
                 yield return null;
             }
         }
+
+        //allunits = InsertionSort(allunits);
+        foreach(GameObject u in allunits)
+        {
+            Debug.Log(u.GetComponent<Unit>().attack);
+        }
     }
 
-    static GameObject[] InsertionSort(GameObject[] inputArray)
+
+
+    private GameObject[] InsertionSort(GameObject[] inputArray)
     {
+        if (inputArray.Length < 2) return inputArray;
         for (int i = 0; i < inputArray.Length - 1; i++)
         {
             for (int j = i + 1; j > 0; j--)
