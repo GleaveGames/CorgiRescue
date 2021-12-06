@@ -146,6 +146,50 @@ MonoBehaviour:
   level: 1
   exp: 0
   levelUpParticles: {fileID: 3471263856996367738, guid: 9dea54de950692a4fa18e618722f2887, type: 3}
+  attacking: 0
+  playerUnit: 1
+  playerTiles:
+    serializedVersion: 2
+    m_Bits: 256
+  enemyTiles:
+    serializedVersion: 2
+    m_Bits: 512
+  attackCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -2
+      outSlope: -2
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  attackTime: 2
+  healthPreBattle: 0
+  attackPreBattle: 0
 --- !u!1 &6007918507686706542
 GameObject:
   m_ObjectHideFlags: 0

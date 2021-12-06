@@ -9,7 +9,11 @@ public class GameController : MonoBehaviour
     LayerMask squares;
     [SerializeField]
     LayerMask enemysquares;
-    bool Battling = false;
+    public bool Battling = false;
+
+    public List<GameObject> playerUnits;
+    public List<GameObject> enemyUnits;
+    public List<GameObject> allUnits;
     
 
     private void Update()
@@ -60,20 +64,19 @@ public class GameController : MonoBehaviour
         Battling = true;
 
         //get player Units
-        GameObject[] units = new GameObject[transform.childCount - 3];
+        playerUnits = new List<GameObject>();
         //make an array more units and enemy units
-        GameObject[] allunits = new GameObject[2*units.Length];
-
+        allUnits = new List<GameObject>();
+        enemyUnits = new List<GameObject>();
 
         for (int i = 3; i < transform.childCount; i++)
         {
-            units[i-3] = transform.GetChild(i).gameObject;
-            allunits[i - 3] = units[i - 3];
+            playerUnits.Add(transform.GetChild(i).gameObject);
+            allUnits.Add(transform.GetChild(i).gameObject);
         }
 
-        GameObject[] enemyunits = new GameObject[units.Length];
         //get enemy units
-        for (int i = 0; i < units.Length; i++)
+        for (int i = 0; i < playerUnits.Count; i++)
         {
             bool placed = false;
             while(!placed)
@@ -83,36 +86,39 @@ public class GameController : MonoBehaviour
                 Vector2 spawnPoint = new Vector2(x, y);
                 Collider2D square = Physics2D.OverlapPoint(spawnPoint, enemysquares);
                 if (square != null && !square.GetComponent<GameSquare>().occupied) { 
-                    GameObject newUnit = Instantiate(units[i], spawnPoint, Quaternion.identity);
+                    GameObject newUnit = Instantiate(playerUnits[i], spawnPoint, Quaternion.identity);
+                    newUnit.GetComponent<Unit>().playerUnit = false;
                     square.GetComponent<GameSquare>().occupied = true;
                     square.GetComponent<GameSquare>().occupier = newUnit;
                     placed = true;
                     newUnit.transform.parent = transform;
-                    enemyunits[i] = newUnit;
-                    allunits[units.Length + i] = newUnit;
+                    enemyUnits.Add(newUnit);
+                    allUnits.Add(newUnit);
                 }
                 yield return null;
             }
         }
 
-        allunits = InsertionSort(allunits);
-        foreach(GameObject u in allunits)
+        allUnits = InsertionSort(allUnits);
+        foreach(GameObject u in allUnits)
         {
-            //Debug.Log(u.GetComponent<Unit>().attack);
-            StartCoroutine(u.GetComponent<Unit>().Attack());
-            while (u.GetComponent<Unit>().attacking)
+            if(u.GetComponent<Unit>().health > 0)
             {
-                yield return null;
+                StartCoroutine(u.GetComponent<Unit>().Attack());
+                while (u.GetComponent<Unit>().attacking)
+                {
+                    yield return null;
+                }
             }
         }
     }
 
 
 
-    private GameObject[] InsertionSort(GameObject[] inputArray)
+    private List<GameObject> InsertionSort(List<GameObject> inputArray)
     {
-        if (inputArray.Length < 2) return inputArray;
-        for (int i = 0; i < inputArray.Length - 1; i++)
+        if (inputArray.Count < 2) return inputArray;
+        for (int i = 0; i < inputArray.Count - 1; i++)
         {
             for (int j = i + 1; j > 0; j--)
             {
