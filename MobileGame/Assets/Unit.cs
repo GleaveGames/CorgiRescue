@@ -82,6 +82,9 @@ public class Unit : MonoBehaviour
                     health = healthPreBattle;
                     attack = attackPreBattle;
                     GetComponent<SpriteRenderer>().enabled = true;
+                    transform.GetChild(0).gameObject.SetActive(true);
+                    square.GetComponent<GameSquare>().occupied = true;
+                    square.GetComponent<GameSquare>().occupier = gameObject;
                 }
                 else
                 {
@@ -96,38 +99,46 @@ public class Unit : MonoBehaviour
         attacking = true;
 
         //get nearest enemy 
-        if (playerUnit)
+        
+        for (int j = 1; j < 4; j++)
         {
-            for (int j = 1; j < 4; j++)
+            for (int i = 0; i < 6; i++)
             {
-                for (int i = 0; i < 6; i++)
+                Collider2D square = null;
+                Vector2 spawnPoint = Vector2.zero;
+                if (playerUnit)
                 {
-                    Vector2 spawnPoint = new Vector2(i-2.5f, j);
-                    Collider2D square = Physics2D.OverlapPoint(spawnPoint, enemyTiles);
-                    if (square == null) {
-                        Debug.Log("Didn't hit a sqaure");
-                        Instantiate(levelUpParticles, spawnPoint, Quaternion.identity);
-                    }
-                    else if (square.GetComponent<GameSquare>().occupied)
-                    {
-                        //Enemy here and attack
+                    spawnPoint = new Vector2(i - 2.5f, j);
+                    square = Physics2D.OverlapPoint(spawnPoint, enemyTiles);
+                }
+                else
+                {
+                    spawnPoint = new Vector2(i - 2.5f, j-3);
+                    square = Physics2D.OverlapPoint(spawnPoint, playerTiles);
+                }
+                if (square == null) {
+                    Debug.Log("Didn't hit a sqaure");
+                    Instantiate(levelUpParticles, spawnPoint, Quaternion.identity);
+                }
+                else if (square.GetComponent<GameSquare>().occupied)
+                {
+                    //Enemy here and attack
 
-                        float timer = 0;
-                        Vector2 initPos = transform.position;
-                        while(timer < attackTime)
-                        {
-                            transform.position = Vector2.Lerp(initPos, spawnPoint, attackCurve.Evaluate(timer / attackTime));
-                            timer += Time.deltaTime;
-                            yield return null;
-                        }
+                    float timer = 0;
+                    Vector2 initPos = transform.position;
+                    while(timer < attackTime)
+                    {
+                        transform.position = Vector2.Lerp(initPos, spawnPoint, attackCurve.Evaluate(timer / attackTime));
+                        timer += Time.deltaTime;
+                        yield return null;
+                    }
 
                         
-                        transform.position = initPos;
+                    transform.position = initPos;
 
-                        square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().health -= attack;
+                    square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().health -= attack;
 
-                        goto end;
-                    }
+                    goto end;
                 }
             }
         }

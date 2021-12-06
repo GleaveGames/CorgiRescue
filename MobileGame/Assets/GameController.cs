@@ -87,6 +87,12 @@ public class GameController : MonoBehaviour
                 Collider2D square = Physics2D.OverlapPoint(spawnPoint, enemysquares);
                 if (square != null && !square.GetComponent<GameSquare>().occupied) { 
                     GameObject newUnit = Instantiate(playerUnits[i], spawnPoint, Quaternion.identity);
+
+                    //Randomify enemy attack and defense;
+                    newUnit.GetComponent<Unit>().attack += Random.Range(0, 5);
+                    newUnit.GetComponent<Unit>().health += Random.Range(0, 10);
+
+
                     newUnit.GetComponent<Unit>().playerUnit = false;
                     square.GetComponent<GameSquare>().occupied = true;
                     square.GetComponent<GameSquare>().occupier = newUnit;
@@ -99,17 +105,46 @@ public class GameController : MonoBehaviour
             }
         }
 
-        allUnits = InsertionSort(allUnits);
-        foreach(GameObject u in allUnits)
+        foreach(GameObject u in playerUnits)
         {
-            if(u.GetComponent<Unit>().health > 0)
+            u.GetComponent<Unit>().healthPreBattle = u.GetComponent<Unit>().health;
+            u.GetComponent<Unit>().attackPreBattle = u.GetComponent<Unit>().attack;
+        }
+
+        allUnits = InsertionSort(allUnits);
+
+
+        while (Battling)
+        {
+            foreach (GameObject u in allUnits)
             {
-                StartCoroutine(u.GetComponent<Unit>().Attack());
-                while (u.GetComponent<Unit>().attacking)
+                if (u.GetComponent<Unit>().health > 0)
                 {
-                    yield return null;
+                    StartCoroutine(u.GetComponent<Unit>().Attack());
+                    while (u.GetComponent<Unit>().attacking)
+                    {
+                        yield return null;
+                    }
                 }
             }
+            if (enemyUnits.Count == 0)
+            {
+                Battling = false;
+                Debug.Log("you win");
+            }
+            else if (playerUnits.Count == 0) { 
+                Battling = false;
+                Debug.Log("You LOSE");
+            }
+            yield return null;
+        }
+
+        foreach(GameObject u in enemyUnits)
+        {
+            Collider2D square = Physics2D.OverlapPoint(u.transform.position, enemysquares);
+            square.GetComponent<GameSquare>().occupied = false;
+            square.GetComponent<GameSquare>().occupier = null;
+            Destroy(u);
         }
     }
 
