@@ -34,7 +34,6 @@ public class GameController : MonoBehaviour
                     square.GetComponent<GameSquare>().occupier = draggingObj;
 
                     if (!draggingObj.GetComponent<ShopSprite>().beenPlaced) draggingObj.GetComponent<ShopSprite>().Bought();
-                    StartCoroutine(draggingObj.GetComponent<Unit>().OnBuy());
                     draggingObj = null;
                 }
                 else
@@ -42,9 +41,11 @@ public class GameController : MonoBehaviour
                     //combine
                     if (square!= null && draggingObj.name == square.GetComponent<GameSquare>().occupier.name)
                     {
-                        Destroy(draggingObj);
                         square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().Combine();
-                        StartCoroutine(square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().OnBuy());
+                        if (!draggingObj.GetComponent<ShopSprite>().beenPlaced) square.GetComponent<GameSquare>().occupier.GetComponent<ShopSprite>().Bought();
+
+                        Destroy(draggingObj);
+
                     }
                     else
                     {

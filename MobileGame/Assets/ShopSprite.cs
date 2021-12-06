@@ -43,5 +43,6 @@ public class ShopSprite : MonoBehaviour
     {
         beenPlaced = true;
         transform.parent = transform.root;
+        StartCoroutine(GetComponent<Unit>().OnBuy());
     }
 }

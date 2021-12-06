@@ -68,8 +68,8 @@ public class Unit : MonoBehaviour
         healthText.text = health.ToString();
         attackText.text = attack.ToString();
         levelText.text = level.ToString();
-        expText.text = exp.ToString() + "/" + level.ToString();
-        if(level < exp+1)
+        expText.text = exp.ToString() + "/" + (level+2).ToString();
+        if(level <= exp-2)
         {
             //level up
             LevelUp();
@@ -218,7 +218,7 @@ public class Unit : MonoBehaviour
 
     protected virtual void LevelUp()
     {
-        exp = 0;
+        exp = 1;
         level++;
         Instantiate(levelUpParticles, transform.position, Quaternion.identity);
     }
