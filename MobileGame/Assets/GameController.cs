@@ -34,6 +34,7 @@ public class GameController : MonoBehaviour
                     square.GetComponent<GameSquare>().occupier = draggingObj;
 
                     if (!draggingObj.GetComponent<ShopSprite>().beenPlaced) draggingObj.GetComponent<ShopSprite>().Bought();
+                    StartCoroutine(draggingObj.GetComponent<Unit>().OnBuy());
                     draggingObj = null;
                 }
                 else
@@ -43,6 +44,7 @@ public class GameController : MonoBehaviour
                     {
                         Destroy(draggingObj);
                         square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().Combine();
+                        StartCoroutine(square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().OnBuy());
                     }
                     else
                     {
@@ -63,16 +65,15 @@ public class GameController : MonoBehaviour
     {
         Battling = true;
 
-        //get player Units
-        playerUnits = new List<GameObject>();
-        //make an array more units and enemy units
-        allUnits = new List<GameObject>();
-        enemyUnits = new List<GameObject>();
+        GetPlayerUnits();
 
-        for (int i = 3; i < transform.childCount; i++)
+        foreach(GameObject u in playerUnits)
         {
-            playerUnits.Add(transform.GetChild(i).gameObject);
-            allUnits.Add(transform.GetChild(i).gameObject);
+            StartCoroutine(u.GetComponent<Unit>().OnEndTurn());
+            while (u.GetComponent<Unit>().actioning)
+            {
+                yield return null;
+            }
         }
 
         //get enemy units
@@ -112,6 +113,15 @@ public class GameController : MonoBehaviour
         }
 
         allUnits = InsertionSort(allUnits);
+
+        foreach(GameObject u in allUnits)
+        {
+            StartCoroutine(u.GetComponent<Unit>().OnStartOfBattle());
+            while (u.GetComponent<Unit>().actioning)
+            {
+                yield return null;
+            }
+        }
 
 
         while (Battling)
@@ -168,4 +178,18 @@ public class GameController : MonoBehaviour
         return inputArray;
     }
 
+    public void GetPlayerUnits()
+    {
+        //get player Units
+        playerUnits = new List<GameObject>();
+        //make an array more units and enemy units
+        allUnits = new List<GameObject>();
+        enemyUnits = new List<GameObject>();
+
+        for (int i = 3; i < transform.childCount; i++)
+        {
+            playerUnits.Add(transform.GetChild(i).gameObject);
+            allUnits.Add(transform.GetChild(i).gameObject);
+        }
+    }
 }

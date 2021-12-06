@@ -16,7 +16,11 @@ public class Unit : MonoBehaviour
     Text expText;
     [SerializeField]
     ParticleSystem levelUpParticles;
+    [HideInInspector]
     public bool attacking;
+    [HideInInspector]
+    public bool actioning;
+    [HideInInspector]
     public bool playerUnit = true;
     [SerializeField]
     LayerMask playerTiles;
@@ -26,10 +30,27 @@ public class Unit : MonoBehaviour
     AnimationCurve attackCurve;
     [SerializeField]
     float attackTime;
-    GameController gc;
-
+    protected GameController gc;
+    [HideInInspector]
     public int healthPreBattle;
+    [HideInInspector]
     public int attackPreBattle;
+
+
+
+    [Header("Buff")]
+    [SerializeField]
+    protected AnimationCurve buffY;
+    [SerializeField]
+    protected AnimationCurve buffX;
+    [SerializeField]
+    protected GameObject Buff;
+    [SerializeField]
+    protected int attackBuff;
+    [SerializeField]
+    protected int healthBuff;
+    [SerializeField]
+    protected float buffTime = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -94,6 +115,35 @@ public class Unit : MonoBehaviour
         }
     }
 
+    public virtual IEnumerator OnStartOfBattle()
+    {
+        actioning = false;
+        yield return null;
+    }
+    
+    public virtual IEnumerator OnDie()
+    {
+        actioning = false;
+        yield return null;
+    } 
+    
+    public virtual IEnumerator OnBuy()
+    {
+        actioning = false;
+        yield return null;
+    }
+    public virtual IEnumerator OnHurt()
+    {
+        actioning = false;
+        yield return null;
+    }
+
+    public virtual IEnumerator OnEndTurn()
+    {
+        actioning = false;
+        yield return null;
+    }
+
     public virtual IEnumerator Attack()
     {
         attacking = true;
@@ -136,8 +186,26 @@ public class Unit : MonoBehaviour
                         
                     transform.position = initPos;
 
-                    square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().health -= attack;
 
+                    // Code for Damaging a unit
+                    Unit enemyUnit = square.GetComponent<GameSquare>().occupier.GetComponent<Unit>();
+                    enemyUnit.health -= attack;
+                    if(enemyUnit.health > 0)
+                    {
+                        StartCoroutine(enemyUnit.OnHurt());
+                        while (enemyUnit.actioning)
+                        {
+                            yield return null;
+                        }
+                    }
+                    else
+                    {
+                        StartCoroutine(enemyUnit.OnDie());
+                        while (enemyUnit.actioning)
+                        {
+                            yield return null;
+                        }
+                    }
                     goto end;
                 }
             }
@@ -146,7 +214,6 @@ public class Unit : MonoBehaviour
         end:
             yield return new WaitForSeconds(1);
             attacking = false;
-
     }
 
     protected virtual void LevelUp()
@@ -163,5 +230,28 @@ public class Unit : MonoBehaviour
         exp++;
     }
 
+    public List<GameObject> GetAllies()
+    {
+        List<GameObject> allies = new List<GameObject>(); 
+
+        if (playerUnit)
+        {
+            for (int i = 3; i < gc.transform.childCount; i++)
+            {
+                Unit unit = gc.transform.GetChild(i).GetComponent<Unit>();
+                if (unit.playerUnit && unit.health > 0) allies.Add(gc.transform.GetChild(i).gameObject);
+            }
+        }
+        else
+        {
+            for (int i = 3; i < gc.transform.childCount; i++)
+            {
+                Unit unit = gc.transform.GetChild(i).GetComponent<Unit>();
+                if (!unit.playerUnit && unit.health>0) allies.Add(gc.transform.GetChild(i).gameObject);
+            }
+        }
+
+        return allies;
+    }
 
 }
