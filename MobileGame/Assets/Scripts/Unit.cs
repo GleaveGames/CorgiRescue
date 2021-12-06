@@ -55,8 +55,8 @@ public class Unit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        healthText = transform.GetChild(0).GetChild(0).GetComponent<Text>();
-        attackText = transform.GetChild(0).GetChild(1).GetComponent<Text>();
+        healthText = transform.GetChild(0).GetChild(1).GetComponent<Text>();
+        attackText = transform.GetChild(0).GetChild(0).GetComponent<Text>();
         levelText = transform.GetChild(0).GetChild(2).GetComponent<Text>();
         expText = transform.GetChild(0).GetChild(3).GetComponent<Text>();
         gc = FindObjectOfType<GameController>();
@@ -120,6 +120,11 @@ public class Unit : MonoBehaviour
         actioning = false;
         yield return null;
     }
+    public virtual IEnumerator OnStartOfTurn()
+    {
+        actioning = false;
+        yield return null;
+    }
     
     public virtual IEnumerator OnDie()
     {
@@ -143,7 +148,11 @@ public class Unit : MonoBehaviour
         actioning = false;
         yield return null;
     }
-
+    public virtual IEnumerator OnSell()
+    {
+        actioning = false;
+        yield return null;
+    }
     public virtual IEnumerator Attack()
     {
         attacking = true;

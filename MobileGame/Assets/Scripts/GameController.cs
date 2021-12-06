@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -16,7 +17,15 @@ public class GameController : MonoBehaviour
     public List<GameObject> allUnits;
     public int lives = 6;
     GameObject livesParent;
-
+    public int unitNumber;
+    [SerializeField]
+    Text unitText;
+    [SerializeField]
+    Text goldText;
+    [SerializeField]
+    public int Gold;
+    [SerializeField]
+    AnimationCurve goldJuiceX;
 
     private void Start()
     {
@@ -43,25 +52,77 @@ public class GameController : MonoBehaviour
             if (Input.GetMouseButtonUp(0))
             {
                 Collider2D square = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition), squares);
-                if (square != null && !square.GetComponent<GameSquare>().occupied)
+                //check if been bought yet
+                if(draggingObj.GetComponent<ShopSprite>().beenPlaced)
                 {
-                    draggingObj.transform.position = square.transform.position;
-                    square.GetComponent<GameSquare>().occupied = true;
-                    square.GetComponent<GameSquare>().occupier = draggingObj;
-
-                    if (!draggingObj.GetComponent<ShopSprite>().beenPlaced) draggingObj.GetComponent<ShopSprite>().Bought();
-                    draggingObj = null;
+                    if (square != null && square.name == "Sell")
+                    {
+                        Gold += draggingObj.GetComponent<Unit>().level;
+                        StartCoroutine(draggingObj.GetComponent<Unit>().OnSell());
+                        Destroy(draggingObj);
+                    }
+                    else if (square != null && square.name != "Freeze" && !square.GetComponent<GameSquare>().occupied && unitNumber < 6)
+                    {
+                        //  MOVE THE SQUARE 
+                        draggingObj.transform.position = square.transform.position;
+                        square.GetComponent<GameSquare>().occupied = true;
+                        square.GetComponent<GameSquare>().occupier = draggingObj;
+                        draggingObj = null;
+                    }
+                    else if (square != null && square.GetComponent<GameSquare>().occupier != null && draggingObj.name == square.GetComponent<GameSquare>().occupier.name)
+                    {
+                        //COMBINE 
+                        square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().Combine();
+                        Destroy(draggingObj);
+                    }
+                    else
+                    {
+                        draggingObj.transform.position = draggingObj.GetComponent<ShopSprite>().origin;
+                        Collider2D oldsquare = Physics2D.OverlapPoint(draggingObj.GetComponent<ShopSprite>().origin, squares);
+                        oldsquare.GetComponent<GameSquare>().occupied = true;
+                        oldsquare.GetComponent<GameSquare>().occupier = draggingObj;
+                        draggingObj = null;
+                    }
                 }
                 else
                 {
-                    //combine
-                    if (square!= null && draggingObj.name == square.GetComponent<GameSquare>().occupier.name)
+                    if (square != null && !draggingObj.GetComponent<ShopSprite>().beenPlaced && square.name == "Freeze" && !square.GetComponent<GameSquare>().occupied)
                     {
-                        square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().Combine();
-                        if (!draggingObj.GetComponent<ShopSprite>().beenPlaced) square.GetComponent<GameSquare>().occupier.GetComponent<ShopSprite>().Bought();
-
+                        square.GetComponent<GameSquare>().occupied = true;
+                        square.GetComponent<GameSquare>().occupier = draggingObj;
+                        draggingObj.transform.parent = square.transform;
+                        draggingObj.transform.position = square.transform.position;
+                        draggingObj = null;
+                    }
+                    else if (Gold < 3)
+                    {
+                        StartCoroutine(GoldJuice());
+                        draggingObj.transform.position = draggingObj.GetComponent<ShopSprite>().origin;
+                        draggingObj = null;
+                    }
+                    else if (square != null && square.name == "Sell")
+                    {
+                        Gold += draggingObj.GetComponent<Unit>().level;
+                        StartCoroutine(draggingObj.GetComponent<Unit>().OnSell());
                         Destroy(draggingObj);
-
+                    }
+                    else if (square != null && !square.GetComponent<GameSquare>().occupied && unitNumber < 6)
+                    {
+                        //Buy onto new Square
+                        draggingObj.transform.position = square.transform.position;
+                        square.GetComponent<GameSquare>().occupied = true;
+                        square.GetComponent<GameSquare>().occupier = draggingObj;
+                        draggingObj.GetComponent<ShopSprite>().Bought();
+                        draggingObj = null;
+                        Gold -= 3;
+                    }
+                    else if (square != null && square.GetComponent<GameSquare>().occupier != null && draggingObj.name == square.GetComponent<GameSquare>().occupier.name)
+                    {
+                        //combine 
+                        square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().Combine();
+                        square.GetComponent<GameSquare>().occupier.GetComponent<ShopSprite>().Bought();
+                        Destroy(draggingObj);
+                        Gold -= 3;
                     }
                     else
                     {
@@ -71,6 +132,22 @@ public class GameController : MonoBehaviour
                 }
             }
         }
+        unitNumber = transform.childCount - 3;
+        unitText.text = unitNumber.ToString() + " / 6";
+        goldText.text = Gold.ToString();
+    }
+
+    public IEnumerator GoldJuice()
+    {
+        float timer = 0;
+        Vector2 goldInit = goldText.transform.position;
+        while(timer < 0.6)
+        {
+            goldText.transform.position = new Vector2(goldInit.x + 20*goldJuiceX.Evaluate(timer), goldInit.y);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        goldText.transform.position = goldInit;
     }
 
     public void BattleTrigger()
@@ -107,9 +184,8 @@ public class GameController : MonoBehaviour
                     GameObject newUnit = Instantiate(playerUnits[i], spawnPoint, Quaternion.identity);
 
                     //Randomify enemy attack and defense;
-                    newUnit.GetComponent<Unit>().attack += Random.Range(0, 5);
-                    newUnit.GetComponent<Unit>().health += Random.Range(0, 10);
-
+                    newUnit.GetComponent<Unit>().attack += Random.Range(-1, 1);
+                    newUnit.GetComponent<Unit>().health += Random.Range(-1, 1);
 
                     newUnit.GetComponent<Unit>().playerUnit = false;
                     square.GetComponent<GameSquare>().occupied = true;
@@ -168,12 +244,22 @@ public class GameController : MonoBehaviour
             yield return null;
         }
 
+
         foreach(GameObject u in enemyUnits)
         {
             Collider2D square = Physics2D.OverlapPoint(u.transform.position, enemysquares);
             square.GetComponent<GameSquare>().occupied = false;
             square.GetComponent<GameSquare>().occupier = null;
             Destroy(u);
+        }
+
+        Gold = 11;
+        FindObjectOfType<Shop>().ReRoll();
+
+        GetPlayerUnits();
+        foreach(GameObject u in playerUnits)
+        {
+            StartCoroutine(u.GetComponent<Unit>().OnStartOfTurn());
         }
     }
 
@@ -188,6 +274,7 @@ public class GameController : MonoBehaviour
             {
                 if (inputArray[j - 1].GetComponent<Unit>().attack > inputArray[j].GetComponent<Unit>().attack)
                 {
+                    Debug.Log("shuffled");
                     GameObject temp = inputArray[j - 1];
                     inputArray[j - 1] = inputArray[j];
                     inputArray[j] = temp;
