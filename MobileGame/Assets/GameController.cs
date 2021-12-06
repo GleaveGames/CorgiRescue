@@ -14,7 +14,23 @@ public class GameController : MonoBehaviour
     public List<GameObject> playerUnits;
     public List<GameObject> enemyUnits;
     public List<GameObject> allUnits;
-    
+    public int lives = 6;
+    GameObject livesParent;
+
+
+    private void Start()
+    {
+        livesParent = GameObject.Find("Lives");
+        ResetLives();
+    }
+
+    private void ResetLives()
+    {
+        for (int i = livesParent.transform.childCount - 1; i >= 0; i--)
+        {
+            if (lives <= i) livesParent.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
 
     private void Update()
     {
@@ -145,6 +161,8 @@ public class GameController : MonoBehaviour
             }
             else if (playerUnits.Count == 0) { 
                 Battling = false;
+                lives -= 1;
+                ResetLives();
                 Debug.Log("You LOSE");
             }
             yield return null;
