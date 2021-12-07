@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopSprite : MonoBehaviour
 {
@@ -9,10 +10,22 @@ public class ShopSprite : MonoBehaviour
     [SerializeField]
     LayerMask squares;
     public bool beenPlaced;
+    GameObject unitTextParent;
+    [SerializeField]
+    string UnitText1;
+    [SerializeField]
+    string UnitText2;
+    [SerializeField]
+    string UnitText3;
 
     private void Start()
     {
         gc = FindObjectOfType<GameController>();
+        if (!beenPlaced && transform.parent.name.Contains("ShopItem"))
+        {
+            unitTextParent = transform.GetChild(0).GetChild(4).gameObject;
+            unitTextParent.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -44,5 +57,35 @@ public class ShopSprite : MonoBehaviour
         beenPlaced = true;
         transform.parent = transform.root;
         StartCoroutine(GetComponent<Unit>().OnBuy());
+        unitTextParent.SetActive(false);
+    }
+
+    public void OnMouseEnter()
+    {
+        if(!beenPlaced && transform.parent.name.Contains("ShopItem"))
+        {
+            StartCoroutine(MouseOverCheck());
+        }
+        else
+        {
+            unitTextParent.SetActive(false);
+        }
+    }
+    public void OnMouseExit()
+    {
+        if(!beenPlaced && transform.parent.name.Contains("ShopItem"))
+        {
+            unitTextParent.SetActive(false);
+        }
+        StopAllCoroutines();
+    }
+
+    private IEnumerator MouseOverCheck()
+    {
+        yield return new WaitForSeconds(0.6f);
+        if (GetComponent<Unit>().level == 1) unitTextParent.transform.GetChild(0).GetComponent<Text>().text = UnitText1;
+        if (GetComponent<Unit>().level == 2) unitTextParent.transform.GetChild(0).GetComponent<Text>().text = UnitText2;
+        if (GetComponent<Unit>().level == 3) unitTextParent.transform.GetChild(0).GetComponent<Text>().text = UnitText3;
+        unitTextParent.SetActive(true);
     }
 }
