@@ -23,9 +23,9 @@ public class Unit : MonoBehaviour
     [HideInInspector]
     public bool playerUnit = true;
     [SerializeField]
-    LayerMask playerTiles;
+    protected LayerMask playerTiles;
     [SerializeField]
-    LayerMask enemyTiles;
+    protected LayerMask enemyTiles;
     [SerializeField]
     AnimationCurve attackCurve;
     [SerializeField]
@@ -52,6 +52,7 @@ public class Unit : MonoBehaviour
     [SerializeField]
     protected float buffTime = 1;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,8 +69,12 @@ public class Unit : MonoBehaviour
         healthText.text = health.ToString();
         attackText.text = attack.ToString();
         levelText.text = level.ToString();
-        expText.text = exp.ToString() + "/" + (level+2).ToString();
-        if(level <= exp-2)
+        if(level == 3)
+        {
+            expText.enabled = false;
+        }
+        else expText.text = exp.ToString() + "/" + (level + 2).ToString();
+        if (level <= exp-2)
         {
             //level up
             LevelUp();

@@ -69,7 +69,7 @@ public class GameController : MonoBehaviour
                         square.GetComponent<GameSquare>().occupier = draggingObj;
                         draggingObj = null;
                     }
-                    else if (square != null && square.GetComponent<GameSquare>().occupier != null && draggingObj.name == square.GetComponent<GameSquare>().occupier.name)
+                    else if (square != null && square.GetComponent<GameSquare>().occupier != null && draggingObj.name == square.GetComponent<GameSquare>().occupier.name && square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().level != 3)
                     {
                         //COMBINE 
                         square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().Combine();
@@ -116,7 +116,7 @@ public class GameController : MonoBehaviour
                         draggingObj = null;
                         Gold -= 3;
                     }
-                    else if (square != null && square.GetComponent<GameSquare>().occupier != null && draggingObj.name == square.GetComponent<GameSquare>().occupier.name)
+                    else if (square != null && square.GetComponent<GameSquare>().occupier != null && draggingObj.name == square.GetComponent<GameSquare>().occupier.name && square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().level != 3)
                     {
                         //combine 
                         square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().Combine();

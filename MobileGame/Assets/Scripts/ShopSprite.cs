@@ -62,6 +62,7 @@ public class ShopSprite : MonoBehaviour
 
     public void OnMouseEnter()
     {
+        /*
         if(!beenPlaced && transform.parent.name.Contains("ShopItem"))
         {
             StartCoroutine(MouseOverCheck());
@@ -70,19 +71,28 @@ public class ShopSprite : MonoBehaviour
         {
             unitTextParent.SetActive(false);
         }
+        */
+        StartCoroutine(MouseOverCheck());
     }
     public void OnMouseExit()
     {
+        /*
         if(!beenPlaced && transform.parent.name.Contains("ShopItem"))
         {
             unitTextParent.SetActive(false);
         }
+        */
+        unitTextParent.SetActive(false);
         StopAllCoroutines();
     }
 
     private IEnumerator MouseOverCheck()
     {
-        yield return new WaitForSeconds(0.6f);
+        if (beenPlaced)
+        {
+            yield return new WaitForSeconds(1.2f);
+        }
+        else yield return new WaitForSeconds(0.6f);
         if (GetComponent<Unit>().level == 1) unitTextParent.transform.GetChild(0).GetComponent<Text>().text = UnitText1;
         if (GetComponent<Unit>().level == 2) unitTextParent.transform.GetChild(0).GetComponent<Text>().text = UnitText2;
         if (GetComponent<Unit>().level == 3) unitTextParent.transform.GetChild(0).GetComponent<Text>().text = UnitText3;
