@@ -147,7 +147,7 @@ MonoBehaviour:
   health: 1
   attack: 1
   level: 1
-  exp: 0
+  exp: 1
   levelUpParticles: {fileID: 3471263856996367738, guid: 9dea54de950692a4fa18e618722f2887, type: 3}
   attacking: 0
   actioning: 0

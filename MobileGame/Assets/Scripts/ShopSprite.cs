@@ -6,9 +6,11 @@ using UnityEngine.UI;
 public class ShopSprite : MonoBehaviour
 {
     GameController gc;
+    [HideInInspector]
     public Vector3 origin;
     [SerializeField]
     LayerMask squares;
+    [HideInInspector]
     public bool beenPlaced;
     GameObject unitTextParent;
     [SerializeField]
