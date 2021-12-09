@@ -8,20 +8,18 @@ public class Peasant : Unit
     {
         actioning = true;
         int peasants = 0;
-        if (playerUnit)
+       
+        for (int x = -1; x <= 1; x++)
         {
-            for (int x = -1; x <= 1; x++)
+            for (int y = -1; y <= 1; y++)
             {
-                for (int y = -1; y <= 1; y++)
+                if (x == 0 && y == 0)
                 {
-                    if (x == 0 && y == 1)
-                    {
-                        continue;
-                    }
-                    else if(CheckForPeasant(x,y))
-                    {
-                        peasants++;
-                    }
+                    continue;
+                }
+                else if(CheckForPeasant(x,y))
+                {
+                    peasants++;
                 }
             }
         }
@@ -37,7 +35,7 @@ public class Peasant : Unit
                 yield return null;
             }
             Destroy(newBuff);
-            attack += attackBuff * level;
+            attack += attackBuff * peasants * level;
         }
         yield return StartCoroutine(base.OnStartOfBattle());
     }

@@ -27,7 +27,9 @@ public class Unit : MonoBehaviour
     [SerializeField]
     protected LayerMask enemyTiles;
     [SerializeField]
-    AnimationCurve attackCurve;
+    AnimationCurve attackCurve;   
+    [SerializeField]
+    AnimationCurve dieCurve;
     [SerializeField]
     float attackTime;
     protected GameController gc;
@@ -52,6 +54,8 @@ public class Unit : MonoBehaviour
     [SerializeField]
     protected float buffTime = 1;
 
+    [HideInInspector]
+    public Vector2 initPos;
 
     // Start is called before the first frame update
     void Start()
@@ -92,11 +96,11 @@ public class Unit : MonoBehaviour
             Collider2D square = null;
             if (playerUnit)
             {
-                square = Physics2D.OverlapPoint(transform.position, playerTiles);
+                square = Physics2D.OverlapPoint(initPos, playerTiles);
             }
             else
             {
-                square = Physics2D.OverlapPoint(transform.position, enemyTiles);
+                square = Physics2D.OverlapPoint(initPos, enemyTiles);
             }
             square.GetComponent<GameSquare>().occupied = false;
             square.GetComponent<GameSquare>().occupier = null;
@@ -105,8 +109,6 @@ public class Unit : MonoBehaviour
             {
                 if (playerUnit)
                 {
-                    health = healthPreBattle;
-                    attack = attackPreBattle;
                     GetComponent<SpriteRenderer>().enabled = true;
                     transform.GetChild(0).gameObject.SetActive(true);
                     square.GetComponent<GameSquare>().occupied = true;
@@ -177,7 +179,7 @@ public class Unit : MonoBehaviour
                 }
                 else
                 {
-                    spawnPoint = new Vector2(i - 2.5f, j-3);
+                    spawnPoint = new Vector2(i - 2.5f, 1-j);
                     square = Physics2D.OverlapPoint(spawnPoint, playerTiles);
                 }
                 if (square == null) {
@@ -189,20 +191,23 @@ public class Unit : MonoBehaviour
                     //Enemy here and attack
 
                     float timer = 0;
-                    Vector2 initPos = transform.position;
-                    while(timer < attackTime)
+                    initPos = transform.position;
+                    Unit enemyUnit = square.GetComponent<GameSquare>().occupier.GetComponent<Unit>();
+
+                    while (timer < attackTime)
                     {
-                        transform.position = Vector2.Lerp(initPos, spawnPoint, attackCurve.Evaluate(timer / attackTime));
+                        //Ping Off
+                        if (timer > attackTime/2 && enemyUnit.attack >= health)
+                            transform.position = Vector2.Lerp((initPos-spawnPoint)*5, spawnPoint, dieCurve.Evaluate(timer / attackTime));
+                        else transform.position = Vector2.Lerp(initPos, spawnPoint, attackCurve.Evaluate(timer / attackTime));
+
                         timer += Time.deltaTime;
                         yield return null;
                     }
 
-                        
-                    transform.position = initPos;
 
 
                     // Code for Damaging a unit
-                    Unit enemyUnit = square.GetComponent<GameSquare>().occupier.GetComponent<Unit>();
                     enemyUnit.health -= attack;
                     if(enemyUnit.health > 0)
                     {

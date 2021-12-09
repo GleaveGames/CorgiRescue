@@ -74,7 +74,11 @@ public class ShopSprite : MonoBehaviour
             unitTextParent.SetActive(false);
         }
         */
-        StartCoroutine(MouseOverCheck());
+
+        if (!gc.Battling)
+        {
+            StartCoroutine(MouseOverCheck());
+        }
     }
     public void OnMouseExit()
     {
@@ -84,8 +88,11 @@ public class ShopSprite : MonoBehaviour
             unitTextParent.SetActive(false);
         }
         */
-        unitTextParent.SetActive(false);
-        StopAllCoroutines();
+        if (!gc.Battling)
+        {
+            unitTextParent.SetActive(false);
+            StopAllCoroutines();
+        }
     }
 
     private IEnumerator MouseOverCheck()

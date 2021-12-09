@@ -184,9 +184,6 @@ public class GameController : MonoBehaviour
                     GameObject newUnit = Instantiate(playerUnits[i], spawnPoint, Quaternion.identity);
 
                     //Randomify enemy attack and defense;
-                    newUnit.GetComponent<Unit>().attack += Random.Range(-1, 1);
-                    newUnit.GetComponent<Unit>().health += Random.Range(-1, 1);
-
                     newUnit.GetComponent<Unit>().playerUnit = false;
                     square.GetComponent<GameSquare>().occupied = true;
                     square.GetComponent<GameSquare>().occupier = newUnit;
@@ -219,15 +216,16 @@ public class GameController : MonoBehaviour
 
         while (Battling)
         {
-            foreach (GameObject u in allUnits)
+            //get frontmost player unit
+            Unit frontMostPlayerUnit = GetFrontmostPlayerUnit();
+            Unit frontMostEnemyUnit = GetFrontmostEnemyUnit();
+            if (frontMostPlayerUnit != null)
             {
-                if (u.GetComponent<Unit>().health > 0)
+                StartCoroutine(frontMostPlayerUnit.Attack());
+                StartCoroutine(frontMostEnemyUnit.Attack());
+                while (frontMostPlayerUnit.attacking || frontMostEnemyUnit.attacking)
                 {
-                    StartCoroutine(u.GetComponent<Unit>().Attack());
-                    while (u.GetComponent<Unit>().attacking)
-                    {
-                        yield return null;
-                    }
+                    yield return null;
                 }
             }
             if (enemyUnits.Count == 0)
@@ -259,11 +257,54 @@ public class GameController : MonoBehaviour
         GetPlayerUnits();
         foreach(GameObject u in playerUnits)
         {
+            u.GetComponent<Unit>().attack = u.GetComponent<Unit>().attackPreBattle;
+            u.GetComponent<Unit>().health = u.GetComponent<Unit>().healthPreBattle;
+            u.transform.position = u.GetComponent<Unit>().initPos;
+        }
+        foreach (GameObject u in playerUnits)
+        {
             StartCoroutine(u.GetComponent<Unit>().OnStartOfTurn());
         }
     }
 
-
+    private Unit GetFrontmostPlayerUnit()
+    {
+        Unit playerUnit = null;
+        for (int j = 1; j < 4; j++)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                Collider2D square = null;
+                Vector2 spawnPoint = Vector2.zero;
+                spawnPoint = new Vector2(i - 2.5f, 1 - j);
+                square = Physics2D.OverlapPoint(spawnPoint, squares);
+                if (square.GetComponent<GameSquare>().occupied)
+                {
+                    return square.GetComponent<GameSquare>().occupier.GetComponent<Unit>();
+                }
+            }
+        }
+        return playerUnit;
+    }
+    private Unit GetFrontmostEnemyUnit()
+    {
+        Unit playerUnit = null;
+        for (int j = 0; j > -3; j--)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                Collider2D square = null;
+                Vector2 spawnPoint = Vector2.zero;
+                spawnPoint = new Vector2(i - 2.5f, 1 - j);
+                square = Physics2D.OverlapPoint(spawnPoint, enemysquares);
+                if (square.GetComponent<GameSquare>().occupied)
+                {
+                    return square.GetComponent<GameSquare>().occupier.GetComponent<Unit>();
+                }
+            }
+        }
+        return playerUnit;
+    }
 
     private List<GameObject> InsertionSort(List<GameObject> inputArray)
     {
