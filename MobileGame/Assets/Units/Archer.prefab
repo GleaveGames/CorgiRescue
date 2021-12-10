@@ -149,6 +149,7 @@ MonoBehaviour:
   level: 1
   exp: 1
   levelUpParticles: {fileID: 3471263856996367738, guid: 9dea54de950692a4fa18e618722f2887, type: 3}
+  deathParticles: {fileID: 3471263856996367738, guid: f490c3493c323824a9da43b810943afb, type: 3}
   attacking: 0
   actioning: 0
   playerUnit: 1
@@ -315,6 +316,7 @@ MonoBehaviour:
   attackBuff: 3
   healthBuff: 0
   buffTime: 1
+  initPos: {x: 0, y: 0}
   Info: Gains +3/+6/+9 damage if it is at the back of the board
 --- !u!1 &2561277145774537816
 GameObject:

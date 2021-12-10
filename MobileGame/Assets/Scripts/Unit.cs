@@ -16,6 +16,8 @@ public class Unit : MonoBehaviour
     Text expText;
     [SerializeField]
     ParticleSystem levelUpParticles;
+    [SerializeField]
+    ParticleSystem deathParticles;
     [HideInInspector]
     public bool attacking;
     [HideInInspector]
@@ -53,6 +55,7 @@ public class Unit : MonoBehaviour
     protected int healthBuff;
     [SerializeField]
     protected float buffTime = 1;
+    bool dead;
 
     [HideInInspector]
     public Vector2 initPos;
@@ -85,41 +88,48 @@ public class Unit : MonoBehaviour
         }
         if(health <= 0)
         {
-            //Unit Dead
-            health = 0;
-            if (playerUnit) gc.playerUnits.Remove(gameObject);
-            else gc.enemyUnits.Remove(gameObject);
-            //CANNOT REMOVE FROM ALLUNITS BECAUSE WE ARE ITERATING THROUGH IT
-            //gc.allUnits.Remove(gameObject);
-            GetComponent<SpriteRenderer>().enabled = false;
-            transform.GetChild(0).gameObject.SetActive(false);
-            Collider2D square = null;
-            if (playerUnit)
-            {
-                square = Physics2D.OverlapPoint(initPos, playerTiles);
-            }
-            else
-            {
-                square = Physics2D.OverlapPoint(initPos, enemyTiles);
-            }
-            square.GetComponent<GameSquare>().occupied = false;
-            square.GetComponent<GameSquare>().occupier = null;
-
-            if (!gc.Battling)
-            {
-                if (playerUnit)
-                {
-                    GetComponent<SpriteRenderer>().enabled = true;
-                    transform.GetChild(0).gameObject.SetActive(true);
-                    square.GetComponent<GameSquare>().occupied = true;
-                    square.GetComponent<GameSquare>().occupier = gameObject;
-                }
-                else
-                {
-                    Destroy(gameObject);
-                }
-            }
+            if (!dead) StartCoroutine(Die());
+            
+            
         }
+    }
+
+    IEnumerator Die()
+    {
+        dead = true;
+        //Unit Dead
+        health = 0;
+        if (playerUnit) gc.playerUnits.Remove(gameObject);
+        else gc.enemyUnits.Remove(gameObject);
+        //CANNOT REMOVE FROM ALLUNITS BECAUSE WE ARE ITERATING THROUGH IT
+        //gc.allUnits.Remove(gameObject);
+        GetComponent<SpriteRenderer>().enabled = false;
+        transform.GetChild(0).gameObject.SetActive(false);
+        Collider2D square = null;
+        if (playerUnit)
+        {
+            square = Physics2D.OverlapPoint(initPos, playerTiles);
+        }
+        else
+        {
+            square = Physics2D.OverlapPoint(initPos, enemyTiles);
+        }
+        square.GetComponent<GameSquare>().occupied = false;
+        square.GetComponent<GameSquare>().occupier = null;
+        Instantiate(deathParticles, square.transform.position, Quaternion.identity);
+        while (gc.Battling) yield return null;
+        if (playerUnit)
+        {
+            GetComponent<SpriteRenderer>().enabled = true;
+            transform.GetChild(0).gameObject.SetActive(true);
+            square.GetComponent<GameSquare>().occupied = true;
+            square.GetComponent<GameSquare>().occupier = gameObject;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        dead = false;
     }
 
     public virtual IEnumerator OnStartOfBattle()
@@ -197,14 +207,16 @@ public class Unit : MonoBehaviour
                     while (timer < attackTime)
                     {
                         //Ping Off
+                        /*
                         if (timer > attackTime/2 && enemyUnit.attack >= health)
                             transform.position = Vector2.Lerp((initPos-spawnPoint)*5, spawnPoint, dieCurve.Evaluate(timer / attackTime));
-                        else transform.position = Vector2.Lerp(initPos, spawnPoint, attackCurve.Evaluate(timer / attackTime));
-
+                        else 
+                            transform.position = Vector2.Lerp(initPos, spawnPoint, attackCurve.Evaluate(timer / attackTime));
+                        */
+                        transform.position = Vector2.Lerp(initPos, spawnPoint, attackCurve.Evaluate(timer / attackTime));
                         timer += Time.deltaTime;
                         yield return null;
                     }
-
 
 
                     // Code for Damaging a unit

@@ -244,6 +244,7 @@ MonoBehaviour:
   level: 1
   exp: 1
   levelUpParticles: {fileID: 3471263856996367738, guid: 9dea54de950692a4fa18e618722f2887, type: 3}
+  deathParticles: {fileID: 3471263856996367738, guid: f490c3493c323824a9da43b810943afb, type: 3}
   attacking: 0
   actioning: 0
   playerUnit: 1
