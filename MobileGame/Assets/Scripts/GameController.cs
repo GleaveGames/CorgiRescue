@@ -315,7 +315,6 @@ public class GameController : MonoBehaviour
             {
                 if (inputArray[j - 1].GetComponent<Unit>().attack > inputArray[j].GetComponent<Unit>().attack)
                 {
-                    Debug.Log("shuffled");
                     GameObject temp = inputArray[j - 1];
                     inputArray[j - 1] = inputArray[j];
                     inputArray[j] = temp;
