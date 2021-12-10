@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
 public class GameController : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class GameController : MonoBehaviour
     public int Gold;
     [SerializeField]
     AnimationCurve goldJuiceX;
+
+    public TextAsset database;
 
     private void Start()
     {
@@ -150,6 +153,25 @@ public class GameController : MonoBehaviour
         goldText.transform.position = goldInit;
     }
 
+    private string ReadDataBase()
+    {
+        string enemyFormation = "";
+        string databasetext = database.text;
+        for (int i = 0; i < databasetext.Length-1; i++)
+        {
+            if(databasetext[i] == '[')
+            {
+                for(int j = i+1; j < i+19; j++)
+                {
+                    enemyFormation += databasetext[j];
+                }
+
+                break;
+            }
+        }
+        return enemyFormation;
+    }
+
     public void BattleTrigger()
     {
         StartCoroutine(Battle());
@@ -170,6 +192,13 @@ public class GameController : MonoBehaviour
             }
         }
 
+        string enemyFormation = ReadDataBase();
+        Debug.Log(enemyFormation);
+        //Reading DataBase Text
+
+
+        /*
+
         //get enemy units
         for (int i = 0; i < playerUnits.Count; i++)
         {
@@ -180,7 +209,8 @@ public class GameController : MonoBehaviour
                 int y = Random.Range(1, 4);
                 Vector2 spawnPoint = new Vector2(x, y);
                 Collider2D square = Physics2D.OverlapPoint(spawnPoint, enemysquares);
-                if (square != null && !square.GetComponent<GameSquare>().occupied) { 
+                if (square != null && !square.GetComponent<GameSquare>().occupied) {
+
                     GameObject newUnit = Instantiate(playerUnits[i], spawnPoint, Quaternion.identity);
 
                     //Randomify enemy attack and defense;
@@ -195,6 +225,7 @@ public class GameController : MonoBehaviour
                 yield return null;
             }
         }
+        */
 
         foreach(GameObject u in playerUnits)
         {
@@ -338,4 +369,5 @@ public class GameController : MonoBehaviour
             allUnits.Add(transform.GetChild(i).gameObject);
         }
     }
+
 }
