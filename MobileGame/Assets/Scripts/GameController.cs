@@ -194,6 +194,35 @@ public class GameController : MonoBehaviour
 
         string enemyFormation = ReadDataBase();
         Debug.Log(enemyFormation);
+        int i = 0;
+        string allCharacters = null;
+        foreach(GameObject u in transform.GetChild(1).GetComponent<Shop>().Units)
+        {
+            allCharacters += u.GetComponent<Unit>().symbol;
+        }
+        for (int y = 3; y > 0; y--)
+        {
+            for (int x = 0; x < 6; x++)
+            {
+                for(int z = 0; z < allCharacters.Length; z++)
+                {
+                    if (enemyFormation[i] == allCharacters[z])
+                    {
+                        GameObject newUnit = Instantiate(transform.GetChild(1).GetComponent<Shop>().Units[z], new Vector2(x-2.5f,y), Quaternion.identity);
+
+                        newUnit.GetComponent<Unit>().playerUnit = false;
+                        transform.GetChild(0).GetChild(i).GetComponent<GameSquare>().occupied = true;
+                        transform.GetChild(0).GetChild(i).GetComponent<GameSquare>().occupier = newUnit;
+                        newUnit.transform.parent = transform;
+                        enemyUnits.Add(newUnit);
+                        allUnits.Add(newUnit);
+                    }
+                }
+                i++;
+            }
+        }
+
+
         //Reading DataBase Text
 
 

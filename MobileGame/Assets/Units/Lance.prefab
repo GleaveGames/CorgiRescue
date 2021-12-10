@@ -143,3 +143,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81097341d9c07fd4ba29764ce0dd2af4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  symbol: 108
+  health: 0
+  attack: 0
+  level: 0
+  exp: 0
+  levelUpParticles: {fileID: 0}
+  deathParticles: {fileID: 0}
+  attacking: 0
+  actioning: 0
+  playerUnit: 1
+  playerTiles:
+    serializedVersion: 2
+    m_Bits: 0
+  enemyTiles:
+    serializedVersion: 2
+    m_Bits: 0
+  attackCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  dieCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  attackTime: 0
+  healthPreBattle: 0
+  attackPreBattle: 0
+  buffY:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  buffX:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  Buff: {fileID: 0}
+  attackBuff: 0
+  healthBuff: 0
+  buffTime: 1
+  initPos: {x: 0, y: 0}

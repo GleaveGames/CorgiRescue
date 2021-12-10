@@ -23,11 +23,8 @@ public class ShopSprite : MonoBehaviour
     private void Start()
     {
         gc = FindObjectOfType<GameController>();
-        if (!beenPlaced && transform.parent.name.Contains("ShopItem"))
-        {
-            unitTextParent = transform.GetChild(0).GetChild(4).gameObject;
-            unitTextParent.SetActive(false);
-        }
+        unitTextParent = transform.GetChild(0).GetChild(4).gameObject;
+        unitTextParent.SetActive(false);
     }
 
     // Update is called once per frame

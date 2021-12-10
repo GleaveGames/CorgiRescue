@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07e0c8b2c9a987247bef916f3b6c9e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  symbol: 97
   health: 2
   attack: 1
   level: 1

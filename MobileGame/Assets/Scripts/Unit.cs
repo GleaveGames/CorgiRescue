@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
+    public char symbol;
+
     public int health;
     public int attack;
     public int level;
