@@ -17,6 +17,8 @@ public class GameController : MonoBehaviour
     public List<GameObject> enemyUnits;
     public List<GameObject> allUnits;
     public int lives = 6;
+    public int wins = 6;
+    public int round = 0;
     GameObject livesParent;
     public int unitNumber;
     [SerializeField]
@@ -26,6 +28,10 @@ public class GameController : MonoBehaviour
     [SerializeField]
     public int Gold;
     [SerializeField]
+    Text Round;
+    [SerializeField]
+    Text Wins;
+    [SerializeField]
     AnimationCurve goldJuiceX;
 
     public TextAsset database;
@@ -33,15 +39,17 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         livesParent = GameObject.Find("Lives");
-        ResetLives();
+        ResetStats();
     }
 
-    private void ResetLives()
+    private void ResetStats()
     {
         for (int i = livesParent.transform.childCount - 1; i >= 0; i--)
         {
             if (lives <= i) livesParent.transform.GetChild(i).gameObject.SetActive(false);
         }
+        Round.text = (round+1).ToString();
+        Wins.text = wins.ToString();
     }
 
     private void Update()
@@ -153,25 +161,6 @@ public class GameController : MonoBehaviour
         goldText.transform.position = goldInit;
     }
 
-    private string ReadDataBase()
-    {
-        string enemyFormation = "";
-        string databasetext = database.text;
-        for (int i = 0; i < databasetext.Length-1; i++)
-        {
-            if(databasetext[i] == '[')
-            {
-                for(int j = i+1; j < i+19; j++)
-                {
-                    enemyFormation += databasetext[j];
-                }
-
-                break;
-            }
-        }
-        return enemyFormation;
-    }
-
     public void BattleTrigger()
     {
         StartCoroutine(Battle());
@@ -192,9 +181,27 @@ public class GameController : MonoBehaviour
             }
         }
 
-        string enemyFormation = ReadDataBase();
-        Debug.Log(enemyFormation);
+
+        foreach (GameObject u in playerUnits)
+        {
+            u.GetComponent<Unit>().healthPreBattle = u.GetComponent<Unit>().health;
+            u.GetComponent<Unit>().attackPreBattle = u.GetComponent<Unit>().attack;
+        }
+
+
+        //Get Enemy Info
+
+        string databasetext = database.text;
+        string[] rounds = databasetext.Split('-');
+        string[] lines = rounds[round].Split('\n');
+        int choice = Random.Range(1, lines.Length-2);
+        string[] sections = lines[choice].Split('[');
+
+
+        //Spawn Enemies
+
         int i = 0;
+        int characterSelect = 0;
         string allCharacters = null;
         foreach(GameObject u in transform.GetChild(1).GetComponent<Shop>().Units)
         {
@@ -206,16 +213,21 @@ public class GameController : MonoBehaviour
             {
                 for(int z = 0; z < allCharacters.Length; z++)
                 {
-                    if (enemyFormation[i] == allCharacters[z])
+                    if (sections[1][i] == allCharacters[z])
                     {
+                        characterSelect++;
                         GameObject newUnit = Instantiate(transform.GetChild(1).GetComponent<Shop>().Units[z], new Vector2(x-2.5f,y), Quaternion.identity);
-
                         newUnit.GetComponent<Unit>().playerUnit = false;
                         transform.GetChild(0).GetChild(i).GetComponent<GameSquare>().occupied = true;
                         transform.GetChild(0).GetChild(i).GetComponent<GameSquare>().occupier = newUnit;
                         newUnit.transform.parent = transform;
                         enemyUnits.Add(newUnit);
                         allUnits.Add(newUnit);
+                        //set Stats
+                        string[] enemyStats = sections[characterSelect+1].Split(',');
+                        newUnit.GetComponent<Unit>().level = int.Parse(enemyStats[0]);
+                        newUnit.GetComponent<Unit>().attack = int.Parse(enemyStats[1]);
+                        newUnit.GetComponent<Unit>().health = int.Parse(enemyStats[2].Substring(0, enemyStats[2].Length - 1));
                     }
                 }
                 i++;
@@ -223,48 +235,11 @@ public class GameController : MonoBehaviour
         }
 
 
-        //Reading DataBase Text
-
-
-        /*
-
-        //get enemy units
-        for (int i = 0; i < playerUnits.Count; i++)
-        {
-            bool placed = false;
-            while(!placed)
-            {
-                float x = Random.Range(0, 6) - 2.5f;
-                int y = Random.Range(1, 4);
-                Vector2 spawnPoint = new Vector2(x, y);
-                Collider2D square = Physics2D.OverlapPoint(spawnPoint, enemysquares);
-                if (square != null && !square.GetComponent<GameSquare>().occupied) {
-
-                    GameObject newUnit = Instantiate(playerUnits[i], spawnPoint, Quaternion.identity);
-
-                    //Randomify enemy attack and defense;
-                    newUnit.GetComponent<Unit>().playerUnit = false;
-                    square.GetComponent<GameSquare>().occupied = true;
-                    square.GetComponent<GameSquare>().occupier = newUnit;
-                    placed = true;
-                    newUnit.transform.parent = transform;
-                    enemyUnits.Add(newUnit);
-                    allUnits.Add(newUnit);
-                }
-                yield return null;
-            }
-        }
-        */
-
-        foreach(GameObject u in playerUnits)
-        {
-            u.GetComponent<Unit>().healthPreBattle = u.GetComponent<Unit>().health;
-            u.GetComponent<Unit>().attackPreBattle = u.GetComponent<Unit>().attack;
-        }
-
+        
         allUnits = InsertionSort(allUnits);
+        
 
-        foreach(GameObject u in allUnits)
+        foreach (GameObject u in allUnits)
         {
             StartCoroutine(u.GetComponent<Unit>().OnStartOfBattle());
             while (u.GetComponent<Unit>().actioning)
@@ -272,7 +247,6 @@ public class GameController : MonoBehaviour
                 yield return null;
             }
         }
-
 
         while (Battling)
         {
@@ -292,39 +266,46 @@ public class GameController : MonoBehaviour
             {
                 Battling = false;
                 Debug.Log("you win");
+                wins++;
             }
             else if (playerUnits.Count == 0) { 
                 Battling = false;
                 lives -= 1;
-                ResetLives();
                 Debug.Log("You LOSE");
             }
             yield return null;
         }
 
+        yield return new WaitForEndOfFrame();
 
-        foreach(GameObject u in enemyUnits)
+
+        foreach (GameObject u in enemyUnits)
         {
             Collider2D square = Physics2D.OverlapPoint(u.transform.position, enemysquares);
             square.GetComponent<GameSquare>().occupied = false;
             square.GetComponent<GameSquare>().occupier = null;
             Destroy(u);
         }
-
+        round++;
+        ResetStats();
         Gold = 11;
         FindObjectOfType<Shop>().ReRoll();
 
         GetPlayerUnits();
-        foreach(GameObject u in playerUnits)
+        Debug.Log(playerUnits.Count);
+        foreach (GameObject u in playerUnits)
         {
-            u.GetComponent<Unit>().attack = u.GetComponent<Unit>().attackPreBattle;
             u.GetComponent<Unit>().health = u.GetComponent<Unit>().healthPreBattle;
-            u.transform.position = u.GetComponent<Unit>().initPos;
+            u.GetComponent<Unit>().attack = u.GetComponent<Unit>().attackPreBattle;
+            u.GetComponent<Unit>().dead = false;
         }
+
         foreach (GameObject u in playerUnits)
         {
             StartCoroutine(u.GetComponent<Unit>().OnStartOfTurn());
+            while (u.GetComponent<Unit>().actioning) yield return null;
         }
+        
     }
 
     private Unit GetFrontmostPlayerUnit()
@@ -394,7 +375,9 @@ public class GameController : MonoBehaviour
 
         for (int i = 3; i < transform.childCount; i++)
         {
-            playerUnits.Add(transform.GetChild(i).gameObject);
+
+            if (transform.GetChild(i).GetComponent<Unit>().playerUnit) playerUnits.Add(transform.GetChild(i).gameObject);
+            else enemyUnits.Add(transform.GetChild(i).gameObject);
             allUnits.Add(transform.GetChild(i).gameObject);
         }
     }

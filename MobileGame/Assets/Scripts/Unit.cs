@@ -37,9 +37,7 @@ public class Unit : MonoBehaviour
     [SerializeField]
     float attackTime;
     protected GameController gc;
-    [HideInInspector]
     public int healthPreBattle;
-    [HideInInspector]
     public int attackPreBattle;
 
 
@@ -57,7 +55,8 @@ public class Unit : MonoBehaviour
     protected int healthBuff;
     [SerializeField]
     protected float buffTime = 1;
-    bool dead;
+    [HideInInspector]
+    public bool dead;
 
     [HideInInspector]
     public Vector2 initPos;
@@ -91,8 +90,6 @@ public class Unit : MonoBehaviour
         if(health <= 0)
         {
             if (!dead) StartCoroutine(Die());
-            
-            
         }
     }
 
@@ -126,12 +123,12 @@ public class Unit : MonoBehaviour
             transform.GetChild(0).gameObject.SetActive(true);
             square.GetComponent<GameSquare>().occupied = true;
             square.GetComponent<GameSquare>().occupier = gameObject;
+            transform.position = initPos;
         }
         else
         {
             Destroy(gameObject);
         }
-        dead = false;
     }
 
     public virtual IEnumerator OnStartOfBattle()
