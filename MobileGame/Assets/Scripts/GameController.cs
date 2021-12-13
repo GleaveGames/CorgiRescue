@@ -72,7 +72,7 @@ public class GameController : MonoBehaviour
                         StartCoroutine(draggingObj.GetComponent<Unit>().OnSell());
                         Destroy(draggingObj);
                     }
-                    else if (square != null && square.name != "Freeze" && !square.GetComponent<GameSquare>().occupied && unitNumber < 6)
+                    else if (square != null && square.name != "Freeze" && !square.GetComponent<GameSquare>().occupied)
                     {
                         //  MOVE THE SQUARE 
                         draggingObj.transform.position = square.transform.position;
@@ -255,6 +255,12 @@ public class GameController : MonoBehaviour
             Unit frontMostEnemyUnit = GetFrontmostEnemyUnit();
             if (frontMostPlayerUnit != null)
             {
+                StartCoroutine(frontMostPlayerUnit.OnAttack());
+                StartCoroutine(frontMostEnemyUnit.OnAttack());
+                while (frontMostPlayerUnit.actioning || frontMostEnemyUnit.actioning)
+                {
+                    yield return null;
+                }
                 StartCoroutine(frontMostPlayerUnit.Attack());
                 StartCoroutine(frontMostEnemyUnit.Attack());
                 while (frontMostPlayerUnit.attacking || frontMostEnemyUnit.attacking)

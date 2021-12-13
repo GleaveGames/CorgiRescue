@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lance : Unit
+public class Swordsman : Unit
 {
-    public override IEnumerator OnAttack()
+    public override IEnumerator OnLevelUp()
     {
         actioning = true;
-
+        
         float buffTimer = 0;
         GameObject newBuff = Instantiate(Buff, transform.position, Quaternion.identity);
         while (buffTimer <= buffTime)
@@ -21,9 +21,6 @@ public class Lance : Unit
         Destroy(newBuff);
         attack += attackBuff * level;
         health += healthBuff * level;
-
-        actioning = false;
-
-        yield return StartCoroutine(base.OnAttack());
+        yield return StartCoroutine(base.OnLevelUp());
     }
 }

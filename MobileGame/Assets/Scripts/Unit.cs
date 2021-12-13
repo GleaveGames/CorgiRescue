@@ -136,6 +136,11 @@ public class Unit : MonoBehaviour
         actioning = false;
         yield return null;
     }
+    public virtual IEnumerator OnAttack()
+    {
+        actioning = false;
+        yield return null;
+    }
     public virtual IEnumerator OnStartOfTurn()
     {
         actioning = false;
@@ -158,7 +163,11 @@ public class Unit : MonoBehaviour
         actioning = false;
         yield return null;
     }
-
+    public virtual IEnumerator OnLevelUp()
+    {
+        actioning = false;
+        yield return null;
+    }
     public virtual IEnumerator OnEndTurn()
     {
         actioning = false;
@@ -251,6 +260,7 @@ public class Unit : MonoBehaviour
         exp = 1;
         level++;
         Instantiate(levelUpParticles, transform.position, Quaternion.identity);
+        StartCoroutine(OnLevelUp());
     }
 
     public virtual void Combine()

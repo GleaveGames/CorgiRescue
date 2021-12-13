@@ -411,7 +411,8 @@ MonoBehaviour:
   Buff: {fileID: 8529046716491591870, guid: 2caa04b24a4bb014d922d3d655a1bb72, type: 3}
   attackBuff: 1
   healthBuff: 0
-  buffTime: 0.7
+  buffTime: 0.6
+  dead: 0
   initPos: {x: 0, y: 0}
 --- !u!1 &1243537009658385596
 GameObject:
