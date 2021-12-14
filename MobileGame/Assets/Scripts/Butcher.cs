@@ -32,7 +32,7 @@ public class Butcher : Unit
         GameSquare square = null;
         if (playerUnit)
         {
-            Collider2D squareCol = Physics2D.OverlapPoint(transform.position + new Vector3(x, y), playerTiles);
+            Collider2D squareCol = Physics2D.OverlapPoint(transform.position + new Vector3(x * 1.25f, y * 1.25f), playerTiles);
             if (squareCol != null)
             {
                 square = squareCol.GetComponent<GameSquare>();
@@ -40,7 +40,7 @@ public class Butcher : Unit
         }
         else
         {
-            Collider2D squareCol = Physics2D.OverlapPoint(transform.position + new Vector3(x, y), enemyTiles);
+            Collider2D squareCol = Physics2D.OverlapPoint(transform.position + new Vector3(x * 1.25f, y * 1.25f), enemyTiles);
             if (squareCol != null)
             {
                 square = squareCol.GetComponent<GameSquare>();

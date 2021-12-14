@@ -23,7 +23,7 @@ public class ShopSprite : MonoBehaviour
     private void Start()
     {
         gc = FindObjectOfType<GameController>();
-        unitTextParent = transform.GetChild(0).GetChild(4).gameObject;
+        unitTextParent = transform.GetChild(0).GetChild(5).gameObject;
         unitTextParent.SetActive(false);
     }
 

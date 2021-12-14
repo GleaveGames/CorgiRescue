@@ -352,13 +352,12 @@ public class GameController : MonoBehaviour
     private Unit GetFrontmostEnemyUnit()
     {
         Unit playerUnit = null;
-        for (int j = 0; j > -3; j--)
+        for (int y = 1; y < 4; y++)
         {
-            for (int i = 0; i < 6; i++)
+            for (int x = 0; x < 6; x++)
             {
                 Collider2D square = null;
-                Vector2 spawnPoint = Vector2.zero;
-                spawnPoint = new Vector2(i - 2.5f, 1 - j);
+                Vector2 spawnPoint = new Vector2(1.25f * x - 2.5f, y * 1.25f);
                 square = Physics2D.OverlapPoint(spawnPoint, enemysquares);
                 if (square.GetComponent<GameSquare>().occupied)
                 {

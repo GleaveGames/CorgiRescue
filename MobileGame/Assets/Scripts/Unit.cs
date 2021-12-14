@@ -66,10 +66,10 @@ public class Unit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        healthText = transform.GetChild(0).GetChild(1).GetComponent<Text>();
-        attackText = transform.GetChild(0).GetChild(0).GetComponent<Text>();
-        levelText = transform.GetChild(0).GetChild(2).GetComponent<Text>();
-        expText = transform.GetChild(0).GetChild(3).GetComponent<Text>();
+        healthText = transform.GetChild(0).GetChild(2).GetComponent<Text>();
+        attackText = transform.GetChild(0).GetChild(1).GetComponent<Text>();
+        levelText = transform.GetChild(0).GetChild(3).GetComponent<Text>();
+        expText = transform.GetChild(0).GetChild(4).GetComponent<Text>();
         gc = FindObjectOfType<GameController>();
         if (!playerUnit)
         {
@@ -193,20 +193,20 @@ public class Unit : MonoBehaviour
 
         //get nearest enemy 
         
-        for (int j = 1; j < 4; j++)
+        for (int y = 1; y < 4; y++)
         {
-            for (int i = 0; i < 6; i++)
+            for (int x = 0; x < 6; x++)
             {
                 Collider2D square = null;
                 Vector2 spawnPoint = Vector2.zero;
                 if (playerUnit)
                 {
-                    spawnPoint = new Vector2(i - 2.5f, j);
+                    spawnPoint = new Vector2(x*1.25f - 2.5f, y*1.25f);
                     square = Physics2D.OverlapPoint(spawnPoint, enemyTiles);
                 }
                 else
                 {
-                    spawnPoint = new Vector2(i - 2.5f, 1-j);
+                    spawnPoint = new Vector2(x*1.25f - 2.5f, 1.25f-y*1.25f);
                     square = Physics2D.OverlapPoint(spawnPoint, playerTiles);
                 }
                 if (square == null) {
