@@ -33,7 +33,7 @@ public class Archer : Unit
 
 
         actioning = true;
-        if((playerUnit && transform.position.y == -2) || (!playerUnit && transform.position.y == 3)){
+        if((playerUnit && transform.position.y == -2.5) || (!playerUnit && transform.position.y == 3.75)){
             StartCoroutine(Jiggle());
             float buffTimer = 0;
             GameObject newBuff = Instantiate(Buff, transform.position, Quaternion.identity);
