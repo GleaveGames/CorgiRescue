@@ -9,12 +9,11 @@ public class Wizard : Unit
         actioning = true;
         List<GameObject> allies = GetAllies();
         allies.Remove(gameObject);
-        if(allies.Count == 0) yield return StartCoroutine(base.OnBuy());
-        else
+        float buffTimer = 0;
+        if (allies.Count > 0)
         {
             StartCoroutine(Jiggle());
             int randomUnitIndex = Random.Range(0, allies.Count - 1);
-            float buffTimer = 0;
             GameObject newBuff = Instantiate(Buff, transform.position, Quaternion.identity);
             while (buffTimer <= buffTime)
             {
@@ -29,7 +28,6 @@ public class Wizard : Unit
             allies[randomUnitIndex].GetComponent<Unit>().health += healthBuff * level;
             StartCoroutine(allies[randomUnitIndex].GetComponent<Unit>().Jiggle());
         }
-        actioning = false;
         yield return StartCoroutine(base.OnBuy());
     }
 }

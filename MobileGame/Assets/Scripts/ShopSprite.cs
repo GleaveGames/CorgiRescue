@@ -90,7 +90,7 @@ public class ShopSprite : MonoBehaviour
         if (!gc.Battling)
         {
             unitTextParent.SetActive(false);
-            StopAllCoroutines();
+            if(!GetComponent<Unit>().actioning) StopAllCoroutines();
         }
     }
 

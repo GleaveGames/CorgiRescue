@@ -87,6 +87,7 @@ public class GameController : MonoBehaviour
                         square.GetComponent<GameSquare>().occupied = true;
                         square.GetComponent<GameSquare>().occupier = draggingObj;
                         draggingObj.transform.GetChild(0).gameObject.SetActive(true);
+                        StartCoroutine(draggingObj.GetComponent<Unit>().Jiggle());
                         draggingObj = null;
                     }
                     else if (square != null && square.GetComponent<GameSquare>().occupier != null && draggingObj.name == square.GetComponent<GameSquare>().occupier.name && square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().level != 3)
@@ -333,9 +334,13 @@ public class GameController : MonoBehaviour
         FindObjectOfType<Shop>().ReRoll();
 
         GetPlayerUnits();
-        Debug.Log(playerUnits.Count);
         foreach (GameObject u in playerUnits)
         {
+            if (!u.GetComponent<Unit>().dead)
+            {
+                Instantiate(u.GetComponent<Unit>().cloudParticles, u.transform.position, Quaternion.identity);
+                yield return new WaitForSeconds(0.1f);
+            }
             u.GetComponent<Unit>().health = u.GetComponent<Unit>().healthPreBattle;
             u.GetComponent<Unit>().attack = u.GetComponent<Unit>().attackPreBattle;
             u.GetComponent<Unit>().dead = false;

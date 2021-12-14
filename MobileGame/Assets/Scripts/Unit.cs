@@ -21,7 +21,7 @@ public class Unit : MonoBehaviour
     [SerializeField]
     ParticleSystem deathParticles;    
     [SerializeField]
-    ParticleSystem cloudParticles;
+    public ParticleSystem cloudParticles;
     [HideInInspector]
     public bool attacking;
     [HideInInspector]
@@ -128,6 +128,8 @@ public class Unit : MonoBehaviour
         {
             yield return new WaitForSeconds(Random.Range(0, 0.5f));
             Instantiate(cloudParticles, initPos, Quaternion.identity);
+            attack = attackPreBattle;
+            health = healthPreBattle;
             yield return new WaitForSeconds(0.1f);
             GetComponent<SpriteRenderer>().enabled = true;
             transform.GetChild(0).gameObject.SetActive(true);

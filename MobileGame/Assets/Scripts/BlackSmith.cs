@@ -39,7 +39,7 @@ public class BlackSmith : Unit
 
             Destroy(newBuff);
             square.occupier.GetComponent<Unit>().attack += attackBuff * level;
-            square.occupier.GetComponent<Unit>().Jiggle();
+            StartCoroutine(square.occupier.GetComponent<Unit>().Jiggle());
         }
         yield return StartCoroutine(base.OnEndTurn());
     }
