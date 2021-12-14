@@ -19,7 +19,9 @@ public class Unit : MonoBehaviour
     [SerializeField]
     ParticleSystem levelUpParticles;
     [SerializeField]
-    ParticleSystem deathParticles;
+    ParticleSystem deathParticles;    
+    [SerializeField]
+    ParticleSystem cloudParticles;
     [HideInInspector]
     public bool attacking;
     [HideInInspector]
@@ -69,6 +71,10 @@ public class Unit : MonoBehaviour
         levelText = transform.GetChild(0).GetChild(2).GetComponent<Text>();
         expText = transform.GetChild(0).GetChild(3).GetComponent<Text>();
         gc = FindObjectOfType<GameController>();
+        if (!playerUnit)
+        {
+            Instantiate(cloudParticles, transform.position, Quaternion.identity);
+        }
     }
 
     // Update is called once per frame
@@ -119,6 +125,9 @@ public class Unit : MonoBehaviour
         while (gc.Battling) yield return null;
         if (playerUnit)
         {
+            yield return new WaitForSeconds(Random.Range(0, 0.5f));
+            Instantiate(cloudParticles, initPos, Quaternion.identity);
+            yield return new WaitForSeconds(0.1f);
             GetComponent<SpriteRenderer>().enabled = true;
             transform.GetChild(0).gameObject.SetActive(true);
             square.GetComponent<GameSquare>().occupied = true;

@@ -19,8 +19,9 @@ public class GameController : MonoBehaviour
     public int lives = 6;
     public int wins = 6;
     public int round = 0;
-    GameObject livesParent;
     public int unitNumber;
+    [SerializeField]
+    Text livesText;
     [SerializeField]
     Text unitText;
     [SerializeField]
@@ -33,21 +34,20 @@ public class GameController : MonoBehaviour
     Text Wins;
     [SerializeField]
     AnimationCurve goldJuiceX;
+    [SerializeField]
+    Transform Clouds;
 
     public TextAsset database;
-
+    Transform CameraTrans;
     private void Start()
     {
-        livesParent = GameObject.Find("Lives");
         ResetStats();
+        CameraTrans = FindObjectOfType<Camera>().transform;
     }
 
     private void ResetStats()
     {
-        for (int i = livesParent.transform.childCount - 1; i >= 0; i--)
-        {
-            if (lives <= i) livesParent.transform.GetChild(i).gameObject.SetActive(false);
-        }
+        livesText.text = lives.ToString();
         Round.text = (round+1).ToString();
         Wins.text = wins.ToString();
     }
@@ -154,7 +154,7 @@ public class GameController : MonoBehaviour
         Vector2 goldInit = goldText.transform.position;
         while(timer < 0.6)
         {
-            goldText.transform.position = new Vector2(goldInit.x + 20*goldJuiceX.Evaluate(timer), goldInit.y);
+            goldText.transform.position = new Vector2(goldInit.x + goldJuiceX.Evaluate(timer), goldInit.y);
             timer += Time.deltaTime;
             yield return null;
         }
@@ -216,7 +216,7 @@ public class GameController : MonoBehaviour
                     if (sections[1][i] == allCharacters[z])
                     {
                         characterSelect++;
-                        GameObject newUnit = Instantiate(transform.GetChild(1).GetComponent<Shop>().Units[z], new Vector2(x-2.5f,y), Quaternion.identity);
+                        GameObject newUnit = Instantiate(transform.GetChild(1).GetComponent<Shop>().Units[z], new Vector2(1.25f*x-2.5f,y*1.25f), Quaternion.identity);
                         newUnit.GetComponent<Unit>().playerUnit = false;
                         transform.GetChild(0).GetChild(i).GetComponent<GameSquare>().occupied = true;
                         transform.GetChild(0).GetChild(i).GetComponent<GameSquare>().occupier = newUnit;
@@ -234,6 +234,14 @@ public class GameController : MonoBehaviour
             }
         }
 
+        float timer = 0;
+        while(timer < 2)
+        {
+            Clouds.transform.position = new Vector3(Clouds.transform.position.x, Mathf.Lerp(4, 12, timer / 2), 0);
+            CameraTrans.position = new Vector3(CameraTrans.position.x, Mathf.Lerp(-2.5f, 0.5f, timer / 2), -10);
+            timer += Time.deltaTime;
+            yield return null;
+        }
 
         
         allUnits = InsertionSort(allUnits);
@@ -284,6 +292,14 @@ public class GameController : MonoBehaviour
 
         yield return new WaitForEndOfFrame();
 
+        timer = 0;
+        while (timer < 2)
+        {
+            Clouds.transform.position = new Vector3(Clouds.transform.position.x, Mathf.Lerp(12, 4, timer / 2), 0);
+            CameraTrans.position = new Vector3(CameraTrans.position.x, Mathf.Lerp(0.5f, -2.5f, timer / 2), -10);
+            timer += Time.deltaTime;
+            yield return null;
+        }
 
         foreach (GameObject u in enemyUnits)
         {
@@ -317,13 +333,13 @@ public class GameController : MonoBehaviour
     private Unit GetFrontmostPlayerUnit()
     {
         Unit playerUnit = null;
-        for (int j = 1; j < 4; j++)
+        for (int y = 1; y < 4; y++)
         {
-            for (int i = 0; i < 6; i++)
+            for (int x = 0; x < 6; x++)
             {
                 Collider2D square = null;
                 Vector2 spawnPoint = Vector2.zero;
-                spawnPoint = new Vector2(i - 2.5f, 1 - j);
+                spawnPoint = new Vector2(1.25f*x - 2.5f, 1.25f-1.25f*y);
                 square = Physics2D.OverlapPoint(spawnPoint, squares);
                 if (square.GetComponent<GameSquare>().occupied)
                 {

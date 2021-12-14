@@ -6,9 +6,7 @@ public class Butcher : Unit
 {
     public override IEnumerator OnDie()
     {
-    
         actioning = true;
-        int peasants = 0;
         List<GameObject> buffs = new List<GameObject>();
 
         for (int x = -1; x <= 1; x++)
