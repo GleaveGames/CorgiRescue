@@ -34,6 +34,7 @@ public class Archer : Unit
 
         actioning = true;
         if((playerUnit && transform.position.y == -2) || (!playerUnit && transform.position.y == 3)){
+            StartCoroutine(Jiggle());
             float buffTimer = 0;
             GameObject newBuff = Instantiate(Buff, transform.position, Quaternion.identity);
             while (buffTimer <= buffTime)
@@ -47,6 +48,7 @@ public class Archer : Unit
             Destroy(newBuff);
             attack += attackBuff * level;
             health += healthBuff * level;
+            StartCoroutine(Jiggle());
         }
         yield return StartCoroutine(base.OnStartOfBattle());
     }

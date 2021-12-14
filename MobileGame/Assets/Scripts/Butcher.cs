@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Butcher : Unit
 {
+    bool jiggled = false;
     public override IEnumerator OnDie()
     {
         actioning = true;
         List<GameObject> buffs = new List<GameObject>();
-
         for (int x = -1; x <= 1; x++)
         {
             for (int y = -1; y <= 1; y++)
@@ -23,7 +23,9 @@ public class Butcher : Unit
                 }
             }
         }
+
         yield return new WaitForSeconds(buffTime);
+        jiggled = false;
         yield return StartCoroutine(base.OnStartOfBattle());
     }
 
@@ -49,6 +51,8 @@ public class Butcher : Unit
         //Give Buff
         if (square != null && square.occupied) 
         {
+            if(!jiggled) StartCoroutine(Jiggle());
+            jiggled = true;
             float buffTimer = 0;
             GameObject newBuff = Instantiate(Buff, transform.position, Quaternion.identity);
             while (buffTimer <= buffTime)
@@ -60,6 +64,7 @@ public class Butcher : Unit
             }
             Destroy(newBuff);
             square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().health += healthBuff*level;
+            StartCoroutine(square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().Jiggle());
         }
         else
         {

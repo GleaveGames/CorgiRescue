@@ -40,7 +40,8 @@ public class ShopSprite : MonoBehaviour
             {
                 gc.draggingObj = this.gameObject;
                 Collider2D square = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition), squares);
-                
+                transform.GetChild(0).gameObject.SetActive(false);
+
                 //Already On Board
                 if(square != null)
                 {
@@ -57,6 +58,7 @@ public class ShopSprite : MonoBehaviour
         transform.parent = transform.root;
         StartCoroutine(GetComponent<Unit>().OnBuy());
         unitTextParent.SetActive(false);
+        StartCoroutine(GetComponent<Unit>().Jiggle());
     }
 
     public void OnMouseEnter()

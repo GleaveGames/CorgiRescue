@@ -50,6 +50,7 @@ public class King : Unit
                 attack += attackBuff * peasants;
                 health += healthBuff * peasants;
                 FindObjectOfType<GameController>().Gold += peasants;
+                StartCoroutine(Jiggle());
             }
         }
         yield return StartCoroutine(base.OnStartOfTurn());

@@ -25,6 +25,7 @@ public class Peasant : Unit
         }
         if (peasants>0)
         {
+            StartCoroutine(Jiggle());
             float buffTimer = 0;
             GameObject newBuff = Instantiate(Buff, transform.position, Quaternion.identity);
             while (buffTimer <= buffTime)
@@ -36,6 +37,7 @@ public class Peasant : Unit
             }
             Destroy(newBuff);
             attack += attackBuff * peasants * level;
+            StartCoroutine(Jiggle());
         }
         yield return StartCoroutine(base.OnStartOfBattle());
     }

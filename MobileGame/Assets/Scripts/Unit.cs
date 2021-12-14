@@ -41,8 +41,9 @@ public class Unit : MonoBehaviour
     protected GameController gc;
     public int healthPreBattle;
     public int attackPreBattle;
-
-
+    float jiggleTime;
+    AnimationCurve jiggleX;
+    AnimationCurve jiggleY;
 
     [Header("Buff")]
     [SerializeField]
@@ -71,10 +72,10 @@ public class Unit : MonoBehaviour
         levelText = transform.GetChild(0).GetChild(3).GetComponent<Text>();
         expText = transform.GetChild(0).GetChild(4).GetComponent<Text>();
         gc = FindObjectOfType<GameController>();
-        if (!playerUnit)
-        {
-            Instantiate(cloudParticles, transform.position, Quaternion.identity);
-        }
+        Instantiate(cloudParticles, transform.position, Quaternion.identity);
+        jiggleX = gc.JiggleX;
+        jiggleY = gc.JiggleY;
+        jiggleTime = gc.jiggleTime;
     }
 
     // Update is called once per frame
@@ -270,6 +271,7 @@ public class Unit : MonoBehaviour
         level++;
         Instantiate(levelUpParticles, transform.position, Quaternion.identity);
         StartCoroutine(OnLevelUp());
+        StartCoroutine(Jiggle());
     }
 
     public virtual void Combine()
@@ -277,6 +279,7 @@ public class Unit : MonoBehaviour
         health++;
         attack++;
         exp++;
+        StartCoroutine(Jiggle());
     }
 
     public List<GameObject> GetAllies()
@@ -301,6 +304,18 @@ public class Unit : MonoBehaviour
         }
 
         return allies;
+    }
+
+    public IEnumerator Jiggle()
+    {
+        float timer = 0;
+        while(timer <= jiggleTime)
+        {
+            transform.localScale = new Vector3(jiggleX.Evaluate(timer / jiggleTime), jiggleY.Evaluate(timer / jiggleTime),0);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        transform.localScale = new Vector3(1, 1, 1);
     }
 
 }

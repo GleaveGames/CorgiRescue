@@ -37,6 +37,14 @@ public class GameController : MonoBehaviour
     [SerializeField]
     Transform Clouds;
 
+
+    [Header("Curves and Things")]
+    [SerializeField]
+    public AnimationCurve JiggleX;
+    [SerializeField]
+    public AnimationCurve JiggleY;
+    public float jiggleTime;
+
     public TextAsset database;
     Transform CameraTrans;
     private void Start()
@@ -78,6 +86,7 @@ public class GameController : MonoBehaviour
                         draggingObj.transform.position = square.transform.position;
                         square.GetComponent<GameSquare>().occupied = true;
                         square.GetComponent<GameSquare>().occupier = draggingObj;
+                        draggingObj.transform.GetChild(0).gameObject.SetActive(true);
                         draggingObj = null;
                     }
                     else if (square != null && square.GetComponent<GameSquare>().occupier != null && draggingObj.name == square.GetComponent<GameSquare>().occupier.name && square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().level != 3)
@@ -92,6 +101,8 @@ public class GameController : MonoBehaviour
                         Collider2D oldsquare = Physics2D.OverlapPoint(draggingObj.GetComponent<ShopSprite>().origin, squares);
                         oldsquare.GetComponent<GameSquare>().occupied = true;
                         oldsquare.GetComponent<GameSquare>().occupier = draggingObj;
+                        draggingObj.transform.GetChild(0).gameObject.SetActive(true);
+                        StartCoroutine(draggingObj.GetComponent<Unit>().Jiggle());
                         draggingObj = null;
                     }
                 }
@@ -103,12 +114,16 @@ public class GameController : MonoBehaviour
                         square.GetComponent<GameSquare>().occupier = draggingObj;
                         draggingObj.transform.parent = square.transform;
                         draggingObj.transform.position = square.transform.position;
+                        draggingObj.transform.GetChild(0).gameObject.SetActive(true);
+                        StartCoroutine(draggingObj.GetComponent<Unit>().Jiggle());
                         draggingObj = null;
                     }
                     else if (Gold < 3)
                     {
                         StartCoroutine(GoldJuice());
                         draggingObj.transform.position = draggingObj.GetComponent<ShopSprite>().origin;
+                        draggingObj.transform.GetChild(0).gameObject.SetActive(true);
+                        StartCoroutine(draggingObj.GetComponent<Unit>().Jiggle());
                         draggingObj = null;
                     }
                     else if (square != null && square.name == "Sell")
@@ -124,6 +139,8 @@ public class GameController : MonoBehaviour
                         square.GetComponent<GameSquare>().occupied = true;
                         square.GetComponent<GameSquare>().occupier = draggingObj;
                         draggingObj.GetComponent<ShopSprite>().Bought();
+                        draggingObj.transform.GetChild(0).gameObject.SetActive(true);
+                        StartCoroutine(draggingObj.GetComponent<Unit>().Jiggle());
                         draggingObj = null;
                         Gold -= 3;
                     }
@@ -138,6 +155,8 @@ public class GameController : MonoBehaviour
                     else
                     {
                         draggingObj.transform.position = draggingObj.GetComponent<ShopSprite>().origin;
+                        draggingObj.transform.GetChild(0).gameObject.SetActive(true);
+                        StartCoroutine(draggingObj.GetComponent<Unit>().Jiggle());
                         draggingObj = null;
                     }
                 }

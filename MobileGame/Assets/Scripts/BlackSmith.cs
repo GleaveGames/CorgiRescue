@@ -28,6 +28,7 @@ public class BlackSmith : Unit
         {
             float buffTimer = 0;
             GameObject newBuff = Instantiate(Buff, transform.position, Quaternion.identity);
+            StartCoroutine(Jiggle());
             while (buffTimer <= buffTime)
             {
                 newBuff.transform.position = new Vector2(Mathf.Lerp(transform.position.x, square.transform.position.x, buffX.Evaluate(buffTimer / buffTime)),
@@ -38,6 +39,7 @@ public class BlackSmith : Unit
 
             Destroy(newBuff);
             square.occupier.GetComponent<Unit>().attack += attackBuff * level;
+            square.occupier.GetComponent<Unit>().Jiggle();
         }
         yield return StartCoroutine(base.OnEndTurn());
     }

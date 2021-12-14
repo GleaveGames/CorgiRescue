@@ -21,7 +21,7 @@ public class Lance : Unit
         Destroy(newBuff);
         attack += attackBuff * level;
         health += healthBuff * level;
-
+        StartCoroutine(Jiggle());
         actioning = false;
 
         yield return StartCoroutine(base.OnAttack());
