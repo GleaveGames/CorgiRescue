@@ -25,6 +25,7 @@ public class ShopSprite : MonoBehaviour
         gc = FindObjectOfType<GameController>();
         unitTextParent = transform.GetChild(0).GetChild(5).gameObject;
         unitTextParent.SetActive(false);
+
     }
 
     // Update is called once per frame

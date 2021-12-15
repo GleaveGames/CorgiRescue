@@ -32,10 +32,7 @@ public class Unit : MonoBehaviour
     protected LayerMask playerTiles;
     [SerializeField]
     protected LayerMask enemyTiles;
-    [SerializeField]
     AnimationCurve attackCurve;   
-    [SerializeField]
-    AnimationCurve dieCurve;
     [SerializeField]
     float attackTime;
     protected GameController gc;
@@ -48,17 +45,13 @@ public class Unit : MonoBehaviour
     Color colorInvisible;
 
     [Header("Buff")]
-    [SerializeField]
     protected AnimationCurve buffY;
-    [SerializeField]
     protected AnimationCurve buffX;
-    [SerializeField]
     protected GameObject Buff;
     [SerializeField]
     protected int attackBuff;
     [SerializeField]
     protected int healthBuff;
-    [SerializeField]
     protected float buffTime = 1;
     [HideInInspector]
     public bool dead;
@@ -81,6 +74,10 @@ public class Unit : MonoBehaviour
         collisionParticle = gc.collisionParticle;
         colorInvisible = gc.colorInvisible;
         attackCurve = gc.attackCurve;
+        buffTime = gc.buffTime;
+        Buff = gc.Buff;
+        buffX = gc.buffX;
+        buffY = gc.buffY;
     }
 
     // Update is called once per frame

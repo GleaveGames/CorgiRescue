@@ -47,6 +47,10 @@ public class GameController : MonoBehaviour
     public GameObject collisionParticle;
     public Color colorInvisible;
     public AnimationCurve attackCurve;
+    public float buffTime = 0.6f;
+    public AnimationCurve buffX;
+    public AnimationCurve buffY;
+    public GameObject Buff;
 
     public TextAsset database;
     Transform CameraTrans;
@@ -83,7 +87,7 @@ public class GameController : MonoBehaviour
                         StartCoroutine(draggingObj.GetComponent<Unit>().OnSell());
                         Destroy(draggingObj);
                     }
-                    else if (square != null && square.name != "Freeze" && !square.GetComponent<GameSquare>().occupied)
+                    else if (square != null && !square.GetComponent<GameSquare>().occupied)
                     {
                         //  MOVE THE SQUARE 
                         draggingObj.transform.position = square.transform.position;
@@ -112,17 +116,7 @@ public class GameController : MonoBehaviour
                 }
                 else
                 {
-                    if (square != null && !draggingObj.GetComponent<ShopSprite>().beenPlaced && square.name == "Freeze" && !square.GetComponent<GameSquare>().occupied)
-                    {
-                        square.GetComponent<GameSquare>().occupied = true;
-                        square.GetComponent<GameSquare>().occupier = draggingObj;
-                        draggingObj.transform.parent = square.transform;
-                        draggingObj.transform.position = square.transform.position;
-                        draggingObj.transform.GetChild(0).gameObject.SetActive(true);
-                        StartCoroutine(draggingObj.GetComponent<Unit>().Jiggle());
-                        draggingObj = null;
-                    }
-                    else if (Gold < 3)
+                    if (Gold < 3)
                     {
                         StartCoroutine(GoldJuice());
                         draggingObj.transform.position = draggingObj.GetComponent<ShopSprite>().origin;
