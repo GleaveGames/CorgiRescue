@@ -44,7 +44,8 @@ public class Unit : MonoBehaviour
     float jiggleTime;
     AnimationCurve jiggleX;
     AnimationCurve jiggleY;
-    ParticleSystem collisionParticles;
+    GameObject collisionParticle;
+    Color colorInvisible;
 
     [Header("Buff")]
     [SerializeField]
@@ -77,7 +78,9 @@ public class Unit : MonoBehaviour
         jiggleX = gc.JiggleX;
         jiggleY = gc.JiggleY;
         jiggleTime = gc.jiggleTime;
-        collisionParticles = gc.collisionParticles;
+        collisionParticle = gc.collisionParticle;
+        colorInvisible = gc.colorInvisible;
+        attackCurve = gc.attackCurve;
     }
 
     // Update is called once per frame
@@ -226,6 +229,9 @@ public class Unit : MonoBehaviour
                     initPos = transform.position;
                     Unit enemyUnit = square.GetComponent<GameSquare>().occupier.GetComponent<Unit>();
                     bool particlesGoneOff = false;
+                    GameObject particle = null;
+                    Vector2 particleSpawnPos = new Vector2(0,0);
+                    Vector3 initParticleScale = new Vector3(0.2f,0.2f,1);
                     while (timer < attackTime)
                     {
 
@@ -233,10 +239,19 @@ public class Unit : MonoBehaviour
                         
                         if (timer > attackTime/2 && !particlesGoneOff)
                         {
-                            Instantiate(collisionParticles, transform.position, Quaternion.identity);
                             particlesGoneOff = true;
+                            particle = Instantiate(collisionParticle, transform.position, Quaternion.identity);
+                            particleSpawnPos = (transform.position + enemyUnit.transform.position)/2;
+                            particle.transform.up = Vector2.Perpendicular(spawnPoint - initPos);
+                            StartCoroutine(CollisionJiggle());
                         }
-                      
+                        else if(timer > attackTime / 2)
+                        {
+                            particle.transform.position = Vector2.Lerp(particleSpawnPos, particleSpawnPos + Vector2.Perpendicular(spawnPoint - initPos)/5, (timer-attackTime/2)/(attackTime/2));
+                            particle.GetComponent<SpriteRenderer>().color = Color.Lerp(Color.white, colorInvisible, (timer - attackTime / 2) / (attackTime / 2));
+                            particle.transform.localScale = Vector3.Lerp(initParticleScale, new Vector3(1,1,1), (timer - attackTime / 2) / (attackTime / 2));
+                        }
+
                             /*
                         if (timer > attackTime/2 && enemyUnit.attack >= health)
                             transform.position = Vector2.Lerp((initPos-spawnPoint)*5, spawnPoint, dieCurve.Evaluate(timer / attackTime));
@@ -247,7 +262,7 @@ public class Unit : MonoBehaviour
                         timer += Time.deltaTime;
                         yield return null;
                     }
-
+                    Destroy(particle);
 
                     // Code for Damaging a unit
                     enemyUnit.health -= attack;
@@ -324,6 +339,17 @@ public class Unit : MonoBehaviour
         while(timer <= jiggleTime)
         {
             transform.localScale = new Vector3(jiggleX.Evaluate(timer / jiggleTime), jiggleY.Evaluate(timer / jiggleTime),0);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        transform.localScale = new Vector3(1, 1, 1);
+    }
+    public IEnumerator CollisionJiggle()
+    {
+        float timer = 0;
+        while(timer <= jiggleTime/2)
+        {
+            transform.localScale = new Vector3(jiggleX.Evaluate(2*timer / jiggleTime), jiggleY.Evaluate(2*timer / jiggleTime),0);
             timer += Time.deltaTime;
             yield return null;
         }
