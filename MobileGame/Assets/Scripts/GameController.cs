@@ -44,6 +44,7 @@ public class GameController : MonoBehaviour
     [SerializeField]
     public AnimationCurve JiggleY;
     public float jiggleTime;
+    public ParticleSystem collisionParticles;
 
     public TextAsset database;
     Transform CameraTrans;

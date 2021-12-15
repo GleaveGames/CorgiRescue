@@ -44,6 +44,7 @@ public class Unit : MonoBehaviour
     float jiggleTime;
     AnimationCurve jiggleX;
     AnimationCurve jiggleY;
+    ParticleSystem collisionParticles;
 
     [Header("Buff")]
     [SerializeField]
@@ -76,6 +77,7 @@ public class Unit : MonoBehaviour
         jiggleX = gc.JiggleX;
         jiggleY = gc.JiggleY;
         jiggleTime = gc.jiggleTime;
+        collisionParticles = gc.collisionParticles;
     }
 
     // Update is called once per frame
@@ -223,11 +225,19 @@ public class Unit : MonoBehaviour
                     float timer = 0;
                     initPos = transform.position;
                     Unit enemyUnit = square.GetComponent<GameSquare>().occupier.GetComponent<Unit>();
-
+                    bool particlesGoneOff = false;
                     while (timer < attackTime)
                     {
+
                         //Ping Off
-                        /*
+                        
+                        if (timer > attackTime/2 && !particlesGoneOff)
+                        {
+                            Instantiate(collisionParticles, transform.position, Quaternion.identity);
+                            particlesGoneOff = true;
+                        }
+                      
+                            /*
                         if (timer > attackTime/2 && enemyUnit.attack >= health)
                             transform.position = Vector2.Lerp((initPos-spawnPoint)*5, spawnPoint, dieCurve.Evaluate(timer / attackTime));
                         else 

@@ -6923,6 +6923,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   jiggleTime: 0.7
+  collisionParticles: {fileID: 3471263856996367738, guid: 476ee54f0ecbbad4886325585417410b, type: 3}
   database: {fileID: 4900000, guid: fff0573d8f3d3ff4986191f297630adf, type: 3}
 --- !u!4 &1823306627
 Transform:
