@@ -19,13 +19,14 @@ public class ShopSprite : MonoBehaviour
     string UnitText2;
     [SerializeField]
     string UnitText3;
+    List<Coroutine> mouseoverchecks;
 
     private void Start()
     {
         gc = FindObjectOfType<GameController>();
         unitTextParent = transform.GetChild(0).GetChild(5).gameObject;
         unitTextParent.SetActive(false);
-
+        mouseoverchecks = new List<Coroutine>();
     }
 
     // Update is called once per frame
@@ -77,7 +78,8 @@ public class ShopSprite : MonoBehaviour
 
         if (!gc.Battling)
         {
-            StartCoroutine(MouseOverCheck());
+            Coroutine i = StartCoroutine(MouseOverCheck());
+            mouseoverchecks.Add(i);
         }
     }
     public void OnMouseExit()
@@ -91,7 +93,8 @@ public class ShopSprite : MonoBehaviour
         if (!gc.Battling)
         {
             unitTextParent.SetActive(false);
-            if(!GetComponent<Unit>().actioning) StopAllCoroutines();
+            StopAllMouseOvers();
+            //if(!GetComponent<Unit>().actioning) StopAllCoroutines();
         }
     }
 
@@ -106,5 +109,14 @@ public class ShopSprite : MonoBehaviour
         if (GetComponent<Unit>().level == 2) unitTextParent.transform.GetChild(0).GetComponent<Text>().text = UnitText2;
         if (GetComponent<Unit>().level == 3) unitTextParent.transform.GetChild(0).GetComponent<Text>().text = UnitText3;
         unitTextParent.SetActive(true);
+    }
+
+    private void StopAllMouseOvers()
+    {
+        for (int i = mouseoverchecks.Count - 1; i >= 0; i--)
+        {
+            StopCoroutine(mouseoverchecks[i]);
+            mouseoverchecks.RemoveAt(i);
+        }
     }
 }
