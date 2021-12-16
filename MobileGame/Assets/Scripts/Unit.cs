@@ -16,12 +16,9 @@ public class Unit : MonoBehaviour
     Text attackText;
     Text levelText;
     Text expText;
-    [SerializeField]
     ParticleSystem levelUpParticles;
-    [SerializeField]
     ParticleSystem deathParticles;    
-    [SerializeField]
-    public ParticleSystem cloudParticles;
+    ParticleSystem cloudParticles;
     [HideInInspector]
     public bool attacking;
     [HideInInspector]
@@ -33,7 +30,6 @@ public class Unit : MonoBehaviour
     [SerializeField]
     protected LayerMask enemyTiles;
     AnimationCurve attackCurve;   
-    [SerializeField]
     float attackTime;
     protected GameController gc;
     public int healthPreBattle;
@@ -67,7 +63,6 @@ public class Unit : MonoBehaviour
         levelText = transform.GetChild(0).GetChild(3).GetComponent<Text>();
         expText = transform.GetChild(0).GetChild(4).GetComponent<Text>();
         gc = FindObjectOfType<GameController>();
-        Instantiate(cloudParticles, transform.position, Quaternion.identity);
         jiggleX = gc.JiggleX;
         jiggleY = gc.JiggleY;
         jiggleTime = gc.jiggleTime;
@@ -78,6 +73,11 @@ public class Unit : MonoBehaviour
         Buff = gc.Buff;
         buffX = gc.buffX;
         buffY = gc.buffY;
+        levelUpParticles = gc.levelUpParticles;
+        deathParticles = gc.deathParticles;
+        cloudParticles = gc.cloudParticles;
+        Instantiate(cloudParticles, transform.position, Quaternion.identity);
+        attackTime = gc.attackTime;
     }
 
     // Update is called once per frame

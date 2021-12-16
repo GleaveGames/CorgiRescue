@@ -26,6 +26,9 @@ public class ShopSprite : MonoBehaviour
         gc = FindObjectOfType<GameController>();
         unitTextParent = transform.GetChild(0).GetChild(5).gameObject;
         unitTextParent.SetActive(false);
+        string[] UnitName = gameObject.name.Split('(');
+        string name = UnitName[0];
+        unitTextParent.transform.GetChild(1).GetComponent<Text>().text = name;
         mouseoverchecks = new List<Coroutine>();
     }
 

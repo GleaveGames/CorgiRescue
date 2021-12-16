@@ -8080,6 +8080,10 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   Buff: {fileID: 8529046716491591870, guid: 2caa04b24a4bb014d922d3d655a1bb72, type: 3}
+  levelUpParticles: {fileID: 3471263856996367738, guid: 9dea54de950692a4fa18e618722f2887, type: 3}
+  deathParticles: {fileID: 3471263856996367738, guid: cbf5bd175325b0e4eb92d26fe6d75849, type: 3}
+  cloudParticles: {fileID: 3471263856996367738, guid: cbf5bd175325b0e4eb92d26fe6d75849, type: 3}
+  attackTime: 0.6
   database: {fileID: 4900000, guid: fff0573d8f3d3ff4986191f297630adf, type: 3}
 --- !u!4 &1823306627
 Transform:

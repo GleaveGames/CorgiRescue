@@ -51,6 +51,10 @@ public class GameController : MonoBehaviour
     public AnimationCurve buffX;
     public AnimationCurve buffY;
     public GameObject Buff;
+    public ParticleSystem levelUpParticles;
+    public ParticleSystem deathParticles;
+    public ParticleSystem cloudParticles;
+    public float attackTime;
 
     public TextAsset database;
     Transform CameraTrans;
@@ -335,7 +339,7 @@ public class GameController : MonoBehaviour
         {
             if (!u.GetComponent<Unit>().dead)
             {
-                Instantiate(u.GetComponent<Unit>().cloudParticles, u.transform.position, Quaternion.identity);
+                Instantiate(cloudParticles, u.transform.position, Quaternion.identity);
                 yield return new WaitForSeconds(0.1f);
             }
             u.GetComponent<Unit>().health = u.GetComponent<Unit>().healthPreBattle;
