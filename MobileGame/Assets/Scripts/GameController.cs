@@ -6,6 +6,8 @@ using System.IO;
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField]
+    bool LOCALTESTING;
     public string databasetext;
 
     public GameObject draggingObj;
@@ -66,6 +68,14 @@ public class GameController : MonoBehaviour
     {
         ResetStats();
         CameraTrans = FindObjectOfType<Camera>().transform;
+        if (LOCALTESTING)
+        {
+            databasetext = database.text;
+        }
+        else 
+        {
+            GetComponent<DataBase>().GetDataBase();
+        }
     }
 
     private void ResetStats()
@@ -217,7 +227,6 @@ public class GameController : MonoBehaviour
 
         //Get Enemy Info
 
-        //databasetext = database.text;
         string[] rounds = databasetext.Split('-');
         string[] lines = rounds[round].Split('\n');
         int choice = Random.Range(1, lines.Length-2);

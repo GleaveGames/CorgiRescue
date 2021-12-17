@@ -7766,6 +7766,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e46a2c264b040c489fd4af5c317b877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LOCALTESTING: 0
+  databasetext: 
   draggingObj: {fileID: 0}
   squares:
     serializedVersion: 2
@@ -8086,7 +8088,7 @@ MonoBehaviour:
   deathParticles: {fileID: 3471263856996367738, guid: f490c3493c323824a9da43b810943afb, type: 3}
   cloudParticles: {fileID: 3471263856996367738, guid: cbf5bd175325b0e4eb92d26fe6d75849, type: 3}
   attackTime: 1
-  database: {fileID: 4900000, guid: fff0573d8f3d3ff4986191f297630adf, type: 3}
+  database: {fileID: 4900000, guid: 8f888f147b0dedf4aa71eaa11646d69d, type: 3}
 --- !u!4 &1823306627
 Transform:
   m_ObjectHideFlags: 0
