@@ -19,7 +19,6 @@ public class DataBase : MonoBehaviour
         WWW w = new WWW(url);
         yield return w;
         Debug.Log(w.text);
-        Debug.Log(w.text.Length);
 
         GetComponent<GameController>().databasetext = w.text;
     }
