@@ -7746,6 +7746,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1823306627}
   - component: {fileID: 1823306626}
+  - component: {fileID: 1823306628}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -7780,6 +7781,7 @@ MonoBehaviour:
   wins: 0
   round: 0
   unitNumber: 0
+  BattleButton: {fileID: 1858036737}
   livesText: {fileID: 1876003031}
   unitText: {fileID: 1218016401}
   goldText: {fileID: 2045813759}
@@ -8081,9 +8083,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   Buff: {fileID: 8529046716491591870, guid: 2caa04b24a4bb014d922d3d655a1bb72, type: 3}
   levelUpParticles: {fileID: 3471263856996367738, guid: 9dea54de950692a4fa18e618722f2887, type: 3}
-  deathParticles: {fileID: 3471263856996367738, guid: cbf5bd175325b0e4eb92d26fe6d75849, type: 3}
+  deathParticles: {fileID: 3471263856996367738, guid: f490c3493c323824a9da43b810943afb, type: 3}
   cloudParticles: {fileID: 3471263856996367738, guid: cbf5bd175325b0e4eb92d26fe6d75849, type: 3}
-  attackTime: 0.6
+  attackTime: 1
   database: {fileID: 4900000, guid: fff0573d8f3d3ff4986191f297630adf, type: 3}
 --- !u!4 &1823306627
 Transform:
@@ -8102,6 +8104,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1823306628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823306625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ec7aa3a1506de408e5636dc5e42960, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1858036735
 GameObject:
   m_ObjectHideFlags: 0

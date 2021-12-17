@@ -6,6 +6,8 @@ using System.IO;
 
 public class GameController : MonoBehaviour
 {
+    public string databasetext;
+
     public GameObject draggingObj;
     [SerializeField]
     LayerMask squares;
@@ -20,6 +22,8 @@ public class GameController : MonoBehaviour
     public int wins = 6;
     public int round = 0;
     public int unitNumber;
+    [SerializeField]
+    Button BattleButton;
     [SerializeField]
     Text livesText;
     [SerializeField]
@@ -185,6 +189,7 @@ public class GameController : MonoBehaviour
     public void BattleTrigger()
     {
         StartCoroutine(Battle());
+        BattleButton.interactable = false;
     }
 
     public IEnumerator Battle()
@@ -212,7 +217,7 @@ public class GameController : MonoBehaviour
 
         //Get Enemy Info
 
-        string databasetext = database.text;
+        //databasetext = database.text;
         string[] rounds = databasetext.Split('-');
         string[] lines = rounds[round].Split('\n');
         int choice = Random.Range(1, lines.Length-2);
@@ -352,7 +357,7 @@ public class GameController : MonoBehaviour
             StartCoroutine(u.GetComponent<Unit>().OnStartOfTurn());
             while (u.GetComponent<Unit>().actioning) yield return null;
         }
-        
+        BattleButton.interactable = true;
     }
 
     private Unit GetFrontmostPlayerUnit()
