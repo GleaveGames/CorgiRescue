@@ -103,9 +103,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'WarCry: Gain +1 Attack'
-  UnitText2: 'WarCry: Gain +2 Attack'
-  UnitText3: 'WarCry: Gain +3 Attack'
+  UnitText1: 'WarCry: Gain +3 Attack if on the back row'
+  UnitText2: 'WarCry: Gain +6 Attack if on the back row'
+  UnitText3: 'WarCry: Gain +9 Attack if on the back row'
 --- !u!61 &757357724859235949
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -149,9 +149,6 @@ MonoBehaviour:
   attack: 1
   level: 1
   exp: 1
-  levelUpParticles: {fileID: 3471263856996367738, guid: 9dea54de950692a4fa18e618722f2887, type: 3}
-  deathParticles: {fileID: 3471263856996367738, guid: f490c3493c323824a9da43b810943afb, type: 3}
-  cloudParticles: {fileID: 3471263856996367738, guid: cbf5bd175325b0e4eb92d26fe6d75849, type: 3}
   attacking: 0
   actioning: 0
   playerUnit: 1
@@ -161,7 +158,6 @@ MonoBehaviour:
   enemyTiles:
     serializedVersion: 2
     m_Bits: 512
-  attackTime: 1
   healthPreBattle: 0
   attackPreBattle: 0
   attackBuff: 3
