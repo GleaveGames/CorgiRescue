@@ -7,15 +7,17 @@ using UnityEngine.UI;
 public class Unit : MonoBehaviour
 {
     public char symbol;
-
+    public int quality;
     public int health;
     public int attack;
     public int level;
     public int exp;
     Text healthText;
     Text attackText;
-    Text levelText;
-    Text expText;
+    public Text levelText;
+    public Text expText;
+    Sprite[] qualitySprites;
+    public GameObject spriteQuality;
     ParticleSystem levelUpParticles;
     ParticleSystem deathParticles;    
     ParticleSystem cloudParticles;
@@ -58,11 +60,14 @@ public class Unit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gc = FindObjectOfType<GameController>();
+        qualitySprites = gc.qualitySprites;
         healthText = transform.GetChild(0).GetChild(2).GetComponent<Text>();
         attackText = transform.GetChild(0).GetChild(1).GetComponent<Text>();
         levelText = transform.GetChild(0).GetChild(3).GetComponent<Text>();
         expText = transform.GetChild(0).GetChild(4).GetComponent<Text>();
-        gc = FindObjectOfType<GameController>();
+        spriteQuality = transform.GetChild(0).GetChild(6).gameObject;
+        spriteQuality.GetComponent<Image>().sprite = qualitySprites[quality - 1];
         jiggleX = gc.JiggleX;
         jiggleY = gc.JiggleY;
         jiggleTime = gc.jiggleTime;

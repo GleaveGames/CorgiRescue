@@ -145,13 +145,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   symbol: 119
+  quality: 4
   health: 1
   attack: 3
   level: 1
   exp: 1
-  levelUpParticles: {fileID: 3471263856996367738, guid: 9dea54de950692a4fa18e618722f2887, type: 3}
-  deathParticles: {fileID: 3471263856996367738, guid: f490c3493c323824a9da43b810943afb, type: 3}
-  cloudParticles: {fileID: 3471263856996367738, guid: cbf5bd175325b0e4eb92d26fe6d75849, type: 3}
+  levelText: {fileID: 0}
+  expText: {fileID: 0}
+  qualitySprites: []
   attacking: 0
   actioning: 0
   playerUnit: 1
@@ -161,163 +162,10 @@ MonoBehaviour:
   enemyTiles:
     serializedVersion: 2
     m_Bits: 512
-  attackCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0.63672733
-      outSlope: 0.63672733
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.39263275
-      value: 0.25
-      inSlope: 0.63672733
-      outSlope: 1.3970741
-      tangentMode: 69
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.5
-      value: 0.4
-      inSlope: 1.3970741
-      outSlope: 0
-      tangentMode: 69
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.55892676
-      value: 0.4
-      inSlope: 0
-      outSlope: -0.9068789
-      tangentMode: 69
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: -0.9068789
-      outSlope: -0.9068789
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  dieCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0.63672733
-      outSlope: 0.63672733
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.39263275
-      value: 0.25
-      inSlope: 0.63672733
-      outSlope: 1.3970741
-      tangentMode: 69
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.5
-      value: 0.4
-      inSlope: 1.3970741
-      outSlope: -20.8
-      tangentMode: 69
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: -10
-      inSlope: -20.8
-      outSlope: -20.8
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  attackTime: 1
   healthPreBattle: 0
   attackPreBattle: 0
-  buffY:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 3.8073337
-      outSlope: 3.8073337
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.05172414
-    - serializedVersion: 3
-      time: 0.5
-      value: 1
-      inSlope: 0.031290755
-      outSlope: 0.031290755
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.276379
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  buffX:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  Buff: {fileID: 8529046716491591870, guid: 2caa04b24a4bb014d922d3d655a1bb72, type: 3}
   attackBuff: 1
   healthBuff: 1
-  buffTime: 0.6
   dead: 0
   initPos: {x: 0, y: 0}
 --- !u!1001 &8377742542592659522

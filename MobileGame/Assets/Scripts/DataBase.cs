@@ -1,51 +1,39 @@
-﻿
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.Networking;
+using UnityEngine.UI;
  
 public class DataBase : MonoBehaviour
 {
-    //string url = "https://raw.githubusercontent.com/GleaveGames/CorgiRescue/main/MobileGame/Assets/testdatabase.txt";
-    string url = "https://localhost:44369/DataBase";
-    string geturl = "https://feudalwars.000webhostapp.com/phpTest.php";
-
-
-    public void GetDataBase()
-    {
-        StartCoroutine(GetText());
-    } 
+    string geturl = "https://feudalwars.000webhostapp.com/upload.php";
+    public bool loading;
+    public Text loadingText;
     
-    /*public void PostDataBase(int round, string formation)
-    {
-        StartCoroutine(PostText());
-    }
-    */
 
-
-    IEnumerator GetText()
+    public IEnumerator FindOpponent(string round, string formation)
     {
-        UnityWebRequest w = UnityWebRequest.Get(geturl);
-        yield return w.SendWebRequest();
-        if (w.isNetworkError || w.isHttpError) Debug.Log("errer " + w.error);
+        loading = true;
+        List<IMultipartFormSection> wwwForm = new List<IMultipartFormSection>();
+        wwwForm.Add(new MultipartFormDataSection("playerRound", round));
+        wwwForm.Add(new MultipartFormDataSection("playerFormation", formation));
+
+        UnityWebRequest www = UnityWebRequest.Post(geturl, wwwForm);
+        loadingText.text = "loading...";
+        yield return www.SendWebRequest();
+
+        if (www.isNetworkError || www.isHttpError)
+        {
+            loadingText.text = "Loading Failed, error: " + www.error;
+            Debug.Log("errer " + www.error);
+        }
         else
         {
-            Debug.Log(w.downloadHandler.text.Length);
-            GetComponent<GameController>().databasetext = w.downloadHandler.text;
+            Debug.Log(www.downloadHandler.text);
+            GetComponent<GameController>().enemyFormation = www.downloadHandler.text;
+            loadingText.text = "";
         }
-    }
-
-
-    IEnumerator FindOpponent(string formation)
-    {
-        UnityWebRequest w = UnityWebRequest.Get(geturl);
-        yield return w.SendWebRequest();
-        if (w.isNetworkError || w.isHttpError) Debug.Log("errer " + w.error);
-        else
-        {
-            Debug.Log(w.downloadHandler.text.Length);
-            GetComponent<GameController>().databasetext = w.downloadHandler.text;
-        }
+        loading = false;
     }
 
     

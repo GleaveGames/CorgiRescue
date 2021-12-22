@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour
     AnimationCurve goldJuiceX;
     [SerializeField]
     Transform Clouds;
-
+    public string enemyFormation;
 
     [Header("Curves and Things")]
     [SerializeField]
@@ -61,8 +61,10 @@ public class GameController : MonoBehaviour
     public ParticleSystem deathParticles;
     public ParticleSystem cloudParticles;
     public float attackTime;
-
+    public Sprite[] qualitySprites;
     public TextAsset database;
+
+
     Transform CameraTrans;
     private void Start()
     {
@@ -74,7 +76,7 @@ public class GameController : MonoBehaviour
         }
         else 
         {
-            GetComponent<DataBase>().GetDataBase();
+            //GetComponent<DataBase>().GetDataBase();
         }
     }
 
@@ -156,6 +158,9 @@ public class GameController : MonoBehaviour
                         square.GetComponent<GameSquare>().occupier = draggingObj;
                         draggingObj.GetComponent<ShopSprite>().Bought();
                         draggingObj.transform.GetChild(0).gameObject.SetActive(true);
+                        draggingObj.transform.GetChild(0).GetChild(3).gameObject.SetActive(true);
+                        draggingObj.transform.GetChild(0).GetChild(4).gameObject.SetActive(true);
+                        draggingObj.GetComponent<Unit>().spriteQuality.SetActive(false);
                         StartCoroutine(draggingObj.GetComponent<Unit>().Jiggle());
                         draggingObj = null;
                         Gold -= 3;
@@ -225,17 +230,57 @@ public class GameController : MonoBehaviour
         }
 
 
-        //Get Enemy Info
 
-        string[] rounds = databasetext.Split('-');
-        string[] lines = rounds[round].Split('\n');
-        int choice = Random.Range(1, lines.Length-2);
-        string[] sections = lines[choice].Split('[');
+        string formation = "[";
+        List<Unit> unitsInOrder = new List<Unit>();
+
+
+        int i = 0;
+        for (int y = -2; y < 1; y++)
+        {
+            for (int x = 0; x < 6; x++)
+            {
+                Collider2D square = Physics2D.OverlapPoint(new Vector2(1.25f * x - 2.5f, y * 1.25f), squares);
+                if (square != null && square.GetComponent<GameSquare>().occupied)
+                {
+                    Unit thisUnit = square.GetComponent<GameSquare>().occupier.GetComponent<Unit>();
+                    formation += thisUnit.symbol;
+                    unitsInOrder.Add(thisUnit);
+                    //set Stats
+                }
+                else formation += '.';
+                i++;
+            }
+        }
+        formation += ']';
+        foreach(Unit u in unitsInOrder)
+        {
+            formation += '[';
+            formation += u.level;
+            formation += ',';
+            formation += u.attack;
+            formation += ',';
+            formation += u.health;
+            formation += ']';
+        }
+        formation += '[';
+
+        Debug.Log(formation);
+
+        StartCoroutine(GetComponent<DataBase>().FindOpponent(round.ToString(), formation));
+
+        while (GetComponent<DataBase>().loading)
+        {
+            yield return null;
+        }
+
+
+        string[] sections = enemyFormation.Split('[');
 
 
         //Spawn Enemies
 
-        int i = 0;
+        i = 0;
         int characterSelect = 0;
         string allCharacters = null;
         foreach(GameObject u in transform.GetChild(1).GetComponent<Shop>().Units)

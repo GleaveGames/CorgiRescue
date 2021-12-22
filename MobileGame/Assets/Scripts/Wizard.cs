@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Wizard : Unit
 {
-    public override IEnumerator OnBuy()
+    public override IEnumerator OnHurt()
     {
         actioning = true;
         List<GameObject> allies = GetAllies();
@@ -28,6 +28,6 @@ public class Wizard : Unit
             allies[randomUnitIndex].GetComponent<Unit>().health += healthBuff * level;
             StartCoroutine(allies[randomUnitIndex].GetComponent<Unit>().Jiggle());
         }
-        yield return StartCoroutine(base.OnBuy());
+        yield return StartCoroutine(base.OnHurt());
     }
 }
