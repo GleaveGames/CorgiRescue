@@ -103,9 +103,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'WarCry: Gain +3 Attack if on the back row'
-  UnitText2: 'WarCry: Gain +6 Attack if on the back row'
-  UnitText3: 'WarCry: Gain +9 Attack if on the back row'
+  UnitText1: 'DeathRattle: Deal 1 damage to a random enemy'
+  UnitText2: 'DeathRattle: Deal 2 damage to a random enemy'
+  UnitText3: 'DeathRattle: Deal 3 damage to a random enemy'
 --- !u!61 &757357724859235949
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -144,6 +144,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 715483b3b94bbc4488a8e02d7c64f290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  symbol: 122
+  quality: 1
+  health: 2
+  attack: 2
+  level: 1
+  exp: 1
+  levelText: {fileID: 0}
+  expText: {fileID: 0}
+  spriteQuality: {fileID: 0}
+  attacking: 0
+  actioning: 0
+  playerUnit: 1
+  playerTiles:
+    serializedVersion: 2
+    m_Bits: 256
+  enemyTiles:
+    serializedVersion: 2
+    m_Bits: 512
+  healthPreBattle: 0
+  attackPreBattle: 0
+  attackBuff: 0
+  healthBuff: -1
+  dead: 0
+  initPos: {x: 0, y: 0}
 --- !u!1001 &7010121811541750209
 PrefabInstance:
   m_ObjectHideFlags: 0

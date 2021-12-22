@@ -57,6 +57,7 @@ public class GameController : MonoBehaviour
     public AnimationCurve buffX;
     public AnimationCurve buffY;
     public GameObject Buff;
+    public GameObject RangedAttack;
     public ParticleSystem levelUpParticles;
     public ParticleSystem deathParticles;
     public ParticleSystem cloudParticles;
@@ -267,7 +268,11 @@ public class GameController : MonoBehaviour
 
         Debug.Log(formation);
 
-        StartCoroutine(GetComponent<DataBase>().FindOpponent(round.ToString(), formation));
+        if (!LOCALTESTING) StartCoroutine(GetComponent<DataBase>().FindOpponent(round.ToString(), formation));
+        else
+        {
+            enemyFormation = "[............p.p.p.][1,1,1][1,1,1][1,1,1][";
+        }
 
         while (GetComponent<DataBase>().loading)
         {

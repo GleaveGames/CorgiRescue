@@ -14,9 +14,12 @@ public class Unit : MonoBehaviour
     public int exp;
     Text healthText;
     Text attackText;
+    [HideInInspector]
     public Text levelText;
+    [HideInInspector]
     public Text expText;
     Sprite[] qualitySprites;
+    [HideInInspector]
     public GameObject spriteQuality;
     ParticleSystem levelUpParticles;
     ParticleSystem deathParticles;    
@@ -46,6 +49,7 @@ public class Unit : MonoBehaviour
     protected AnimationCurve buffY;
     protected AnimationCurve buffX;
     protected GameObject Buff;
+    protected GameObject RangedAttack;
     [SerializeField]
     protected int attackBuff;
     [SerializeField]
@@ -76,6 +80,7 @@ public class Unit : MonoBehaviour
         attackCurve = gc.attackCurve;
         buffTime = gc.buffTime;
         Buff = gc.Buff;
+        RangedAttack = gc.RangedAttack;
         buffX = gc.buffX;
         buffY = gc.buffY;
         levelUpParticles = gc.levelUpParticles;
@@ -83,6 +88,7 @@ public class Unit : MonoBehaviour
         cloudParticles = gc.cloudParticles;
         Instantiate(cloudParticles, transform.position, Quaternion.identity);
         attackTime = gc.attackTime;
+        initPos = transform.position;
     }
 
     // Update is called once per frame
@@ -333,6 +339,30 @@ public class Unit : MonoBehaviour
         }
 
         return allies;
+    }
+
+    public List<GameObject> GetEnemies()
+    {
+        List<GameObject> enemies = new List<GameObject>();
+
+        if (!playerUnit)
+        {
+            for (int i = 3; i < gc.transform.childCount; i++)
+            {
+                Unit unit = gc.transform.GetChild(i).GetComponent<Unit>();
+                if (unit.playerUnit && unit.health > 0) enemies.Add(gc.transform.GetChild(i).gameObject);
+            }
+        }
+        else
+        {
+            for (int i = 3; i < gc.transform.childCount; i++)
+            {
+                Unit unit = gc.transform.GetChild(i).GetComponent<Unit>();
+                if (!unit.playerUnit && unit.health > 0) enemies.Add(gc.transform.GetChild(i).gameObject);
+            }
+        }
+
+        return enemies;
     }
 
     public IEnumerator Jiggle()

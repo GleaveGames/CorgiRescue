@@ -7846,7 +7846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e46a2c264b040c489fd4af5c317b877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LOCALTESTING: 0
+  LOCALTESTING: 1
   databasetext: 
   draggingObj: {fileID: 0}
   squares:
@@ -8165,6 +8165,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   Buff: {fileID: 8529046716491591870, guid: 2caa04b24a4bb014d922d3d655a1bb72, type: 3}
+  RangedAttack: {fileID: 8529046716491591870, guid: 2c339467802562a4b839f212408bed98, type: 3}
   levelUpParticles: {fileID: 3471263856996367738, guid: 9dea54de950692a4fa18e618722f2887, type: 3}
   deathParticles: {fileID: 3471263856996367738, guid: f490c3493c323824a9da43b810943afb, type: 3}
   cloudParticles: {fileID: 3471263856996367738, guid: cbf5bd175325b0e4eb92d26fe6d75849, type: 3}
@@ -8804,6 +8805,7 @@ MonoBehaviour:
   - {fileID: 757357724859235951, guid: 09623e49cd7773c4bba7f40c35e9be8a, type: 3}
   - {fileID: 2297039251316750624, guid: c6452b196b0db614f93f7bf3428043ef, type: 3}
   - {fileID: 538672580819213156, guid: 8b360454daee98f4d9deb34c432c2889, type: 3}
+  - {fileID: 757357724859235951, guid: e971b8b9cbb7b5e4c8ebc5ba3201ff87, type: 3}
 --- !u!222 &2084872741
 CanvasRenderer:
   m_ObjectHideFlags: 0
