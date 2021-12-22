@@ -22,7 +22,8 @@ public class Unit : MonoBehaviour
     [HideInInspector]
     public GameObject spriteQuality;
     ParticleSystem levelUpParticles;
-    ParticleSystem deathParticles;    
+    [HideInInspector]
+    protected ParticleSystem deathParticles;    
     ParticleSystem cloudParticles;
     [HideInInspector]
     public bool attacking;
@@ -37,7 +38,9 @@ public class Unit : MonoBehaviour
     AnimationCurve attackCurve;   
     float attackTime;
     protected GameController gc;
+    [HideInInspector]
     public int healthPreBattle;
+    [HideInInspector]
     public int attackPreBattle;
     float jiggleTime;
     AnimationCurve jiggleX;
@@ -92,7 +95,7 @@ public class Unit : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         healthText.text = health.ToString();
         attackText.text = attack.ToString();
