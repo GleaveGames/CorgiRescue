@@ -271,7 +271,7 @@ public class GameController : MonoBehaviour
         if (!LOCALTESTING) StartCoroutine(GetComponent<DataBase>().FindOpponent(round.ToString(), formation));
         else
         {
-            enemyFormation = "[............p.p.p.][1,1,1][1,1,1][1,1,1][";
+            enemyFormation = "[............p.p.p.][1,10,10][1,10,10][1,10,10][";
         }
 
         while (GetComponent<DataBase>().loading)
@@ -306,6 +306,7 @@ public class GameController : MonoBehaviour
                         transform.GetChild(0).GetChild(i).GetComponent<GameSquare>().occupied = true;
                         transform.GetChild(0).GetChild(i).GetComponent<GameSquare>().occupier = newUnit;
                         newUnit.transform.parent = transform;
+                        newUnit.transform.GetChild(0).GetChild(6).gameObject.SetActive(false);
                         enemyUnits.Add(newUnit);
                         allUnits.Add(newUnit);
                         //set Stats
