@@ -279,9 +279,8 @@ public class GameController : MonoBehaviour
             yield return null;
         }
 
-
+        if(enemyFormation == null || enemyFormation == "") enemyFormation = enemyFormation = "[............p.p.p.][1,100,100][1,100,100][1,100,100][";
         string[] sections = enemyFormation.Split('[');
-
 
         //Spawn Enemies
 

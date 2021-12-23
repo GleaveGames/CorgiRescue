@@ -59,7 +59,7 @@ public class Priest : Unit
         }
         else
         {
-            squareCol = Physics2D.OverlapPoint(transform.position + new Vector3(0, 1.25f), enemyTiles);
+            squareCol = Physics2D.OverlapPoint(transform.position + new Vector3(0, -1.25f), enemyTiles);
             clone = Instantiate(unitAhead, unitAhead.transform.position, Quaternion.identity);
         }
         yield return new WaitForSeconds(0.5f);

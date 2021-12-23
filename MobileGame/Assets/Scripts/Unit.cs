@@ -65,7 +65,7 @@ public class Unit : MonoBehaviour
     public Vector2 initPos;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         gc = FindObjectOfType<GameController>();
         qualitySprites = gc.qualitySprites;

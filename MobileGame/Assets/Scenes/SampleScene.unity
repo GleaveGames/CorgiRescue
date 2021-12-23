@@ -7846,7 +7846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e46a2c264b040c489fd4af5c317b877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LOCALTESTING: 1
+  LOCALTESTING: 0
   databasetext: 
   draggingObj: {fileID: 0}
   squares:
@@ -8810,6 +8810,7 @@ MonoBehaviour:
   - {fileID: 757357724859235951, guid: 9e11e8ab1f20813459de2f0db74bd6c6, type: 3}
   - {fileID: 757357724859235951, guid: 2d01f2cca8448dc48a507f017acd0e44, type: 3}
   - {fileID: 538672580819213156, guid: 86d25a469b6454540958f8e7fb2b789a, type: 3}
+  - {fileID: 757357724859235951, guid: 77bf5dc500cb8764daa8935e89737885, type: 3}
 --- !u!222 &2084872741
 CanvasRenderer:
   m_ObjectHideFlags: 0
