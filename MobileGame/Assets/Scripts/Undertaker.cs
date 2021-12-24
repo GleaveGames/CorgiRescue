@@ -33,7 +33,7 @@ public class Undertaker : Unit
             {
                 if (x == 0 && y == 0) continue;
                 Collider2D squareCol = Physics2D.OverlapPoint(transform.position + new Vector3(x * 1.25f, y * 1.25f), playerTiles);
-                if (squareCol == null) Physics2D.OverlapPoint(transform.position + new Vector3(x * 1.25f, y * 1.25f), enemyTiles);
+                if (squareCol == null) squareCol = Physics2D.OverlapPoint(transform.position + new Vector3(x * 1.25f, y * 1.25f), enemyTiles);
                 GameSquare square = null;
                 if (squareCol != null)
                 {
