@@ -8,7 +8,7 @@ public class Priest : Unit
     GameObject unitAhead;
     public override void Update()
     {
-        if(unitAhead == null)
+        if (!dead)
         {
             GameSquare square = null;
 
@@ -36,15 +36,16 @@ public class Priest : Unit
                     unitAhead = square.occupier;
                 }
             }
-        }
-        else if(!triggered)
-        {
-            if(unitAhead.GetComponent<Unit>().health <= 0)
+            if (unitAhead != null && !triggered)
             {
-                StartCoroutine(ReSpawn());
-                triggered = true;
+                if (unitAhead.GetComponent<Unit>().health <= 0)
+                {
+                    StartCoroutine(ReSpawn());
+                    triggered = true;
+                }
             }
         }
+            
         base.Update();
     }
 

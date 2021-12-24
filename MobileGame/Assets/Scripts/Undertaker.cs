@@ -15,33 +15,38 @@ public class Undertaker : Unit
 
     public override void Update()
     {
-        for(int i = adjacents.Count-1; i >= 0; i--)
+        if (!dead)
         {
-            if(adjacents[i].health <= 0)
+
+
+            for (int i = adjacents.Count - 1; i >= 0; i--)
             {
-                //buff
-                StartCoroutine(buff());
-            }
-        }
-
-        adjacents = new List<Unit>();
-
-
-        for (int y = -1; y <= 1; y++)
-        {
-            for (int x = -1; x <= 1; x++)
-            {
-                if (x == 0 && y == 0) continue;
-                Collider2D squareCol = Physics2D.OverlapPoint(transform.position + new Vector3(x * 1.25f, y * 1.25f), playerTiles);
-                if (squareCol == null) squareCol = Physics2D.OverlapPoint(transform.position + new Vector3(x * 1.25f, y * 1.25f), enemyTiles);
-                GameSquare square = null;
-                if (squareCol != null)
+                if (adjacents[i].health <= 0)
                 {
-                    square = squareCol.GetComponent<GameSquare>();
+                    //buff
+                    StartCoroutine(buff());
                 }
-                if (square != null && square.occupied && square.occupier.GetComponent<Unit>().health > 0)
+            }
+
+            adjacents = new List<Unit>();
+
+
+            for (int y = -1; y <= 1; y++)
+            {
+                for (int x = -1; x <= 1; x++)
                 {
-                    adjacents.Add(square.occupier.GetComponent<Unit>());
+                    if (x == 0 && y == 0) continue;
+                    Collider2D squareCol = Physics2D.OverlapPoint(transform.position + new Vector3(x * 1.25f, y * 1.25f), playerTiles);
+                    if (squareCol == null) squareCol = Physics2D.OverlapPoint(transform.position + new Vector3(x * 1.25f, y * 1.25f), enemyTiles);
+                    GameSquare square = null;
+                    if (squareCol != null)
+                    {
+                        square = squareCol.GetComponent<GameSquare>();
+                    }
+                    if (square != null && square.occupied && square.occupier.GetComponent<Unit>().health > 0)
+                    {
+                        adjacents.Add(square.occupier.GetComponent<Unit>());
+                    }
                 }
             }
         }
