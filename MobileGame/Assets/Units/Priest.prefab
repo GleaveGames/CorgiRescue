@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   symbol: 120
-  quality: 5
+  quality: 3
   health: 2
   attack: 1
   level: 1

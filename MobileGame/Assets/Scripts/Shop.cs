@@ -8,9 +8,46 @@ public class Shop : MonoBehaviour
     public List<ShopSpot> ShopSlots;
     public List<GameObject> Units;
     GameController gc;
+    [SerializeField]
+    Transform BuildingParent;
+    [SerializeField]
+    AnimationCurve buildingY;
+    [SerializeField]
+    AnimationCurve buildingScaleX;
+    [SerializeField]
+    AnimationCurve buildingScaleY;
+    [SerializeField]
+    float buildingSpawnTime = 1.4f;
+    [SerializeField]
+    GameObject newunittext;
+
+    List<GameObject> unitPool;
+    List<GameObject> FarmUnits;
+    List<GameObject> BarracksUnits;
+    List<GameObject> ChurchUnits;
+    List<GameObject> WorkshopUnits;
+    List<GameObject> CastleUnits;
 
     private void Start()
     {
+        unitPool = new List<GameObject>();
+        FarmUnits = new List<GameObject>();
+        BarracksUnits = new List<GameObject>();
+        ChurchUnits = new List<GameObject>();
+        WorkshopUnits = new List<GameObject>();
+        CastleUnits = new List<GameObject>();
+
+        foreach(GameObject u in Units)
+        {
+            int type = u.GetComponent<Unit>().quality;
+            if (type == 1) FarmUnits.Add(u);
+            else if (type == 2) BarracksUnits.Add(u);
+            else if (type == 3) ChurchUnits.Add(u);
+            else if (type == 4) WorkshopUnits.Add(u);
+            else if (type == 5) CastleUnits.Add(u);
+        }
+        StartCoroutine(UnlockBuilding(0));
+
         ShopSlots = new List<ShopSpot>();
         gc = FindObjectOfType<GameController>();
         for (int i = 0; i < transform.childCount; i++) {
@@ -21,8 +58,8 @@ public class Shop : MonoBehaviour
             newSpot.sr = newSpot.go.transform.GetChild(1).GetComponent<SpriteRenderer>();
             newSpot.number = i;
         }
-        ReRoll();
         gc.Gold++;
+        ReRoll();
     }
 
     private void Update()
@@ -45,7 +82,7 @@ public class Shop : MonoBehaviour
                 {
                     Destroy(ShopSlots[i].go.transform.GetChild(2).gameObject);
                 }
-                GameObject unit = Instantiate(Units[Random.Range(0, Units.Count)], ShopSlots[i].go.transform.position, Quaternion.identity);
+                GameObject unit = Instantiate(unitPool[Random.Range(0, unitPool.Count)], ShopSlots[i].go.transform.position, Quaternion.identity);
                 unit.transform.parent = ShopSlots[i].go.transform;
             }
             gc.Gold--;
@@ -68,6 +105,34 @@ public class Shop : MonoBehaviour
             sp.frozen = false;
         }
     }
+    public IEnumerator UnlockBuilding(int buildingNumber)
+    {
+        GameObject building = BuildingParent.GetChild(buildingNumber).gameObject;
+        if (buildingNumber == 0) foreach (GameObject u in FarmUnits) unitPool.Add(u);
+        else if (buildingNumber == 1) foreach (GameObject u in BarracksUnits) unitPool.Add(u);
+        else if(buildingNumber == 2) foreach (GameObject u in ChurchUnits) unitPool.Add(u);
+        else if(buildingNumber == 3) foreach (GameObject u in WorkshopUnits) unitPool.Add(u);
+        else if(buildingNumber == 4) foreach (GameObject u in CastleUnits) unitPool.Add(u);
+
+        building.GetComponent<SpriteRenderer>().enabled = true;
+        float timer = 0;
+        Vector2 endpos = building.transform.position;
+        bool trig = false;
+        while (timer <= buildingSpawnTime)
+        {
+            if(!trig && timer > buildingSpawnTime / 2)
+            {
+                trig = true;
+                Instantiate(newunittext, building.transform.position, Quaternion.identity);
+            }
+            building.transform.position = new Vector2(endpos.x, endpos.y + buildingY.Evaluate(timer/buildingSpawnTime));
+            building.transform.localScale = new Vector2(buildingScaleX.Evaluate(timer/buildingSpawnTime), buildingScaleY.Evaluate(timer/buildingSpawnTime));
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+    }
+
 }
 
 public class ShopSpot

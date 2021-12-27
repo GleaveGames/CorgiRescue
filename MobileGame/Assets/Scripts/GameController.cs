@@ -416,6 +416,13 @@ public class GameController : MonoBehaviour
             StartCoroutine(u.GetComponent<Unit>().OnStartOfTurn());
             while (u.GetComponent<Unit>().actioning) yield return null;
         }
+
+        if (round == 2) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(1));  
+        else if (round == 4) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(2));  
+        else if (round == 6) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(3));  
+        else if (round == 8) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(4));  
+
+
         BattleButton.interactable = true;
     }
 
