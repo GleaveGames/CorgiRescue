@@ -346,7 +346,7 @@ public class GameController : MonoBehaviour
             //get frontmost player unit
             Unit frontMostPlayerUnit = GetFrontmostPlayerUnit();
             Unit frontMostEnemyUnit = GetFrontmostEnemyUnit();
-            if (frontMostPlayerUnit != null)
+            if (frontMostPlayerUnit != null && frontMostEnemyUnit != null)
             {
                 StartCoroutine(frontMostPlayerUnit.OnAttack());
                 StartCoroutine(frontMostEnemyUnit.OnAttack());
@@ -354,8 +354,11 @@ public class GameController : MonoBehaviour
                 {
                     yield return null;
                 }
-                StartCoroutine(frontMostPlayerUnit.Attack());
-                StartCoroutine(frontMostEnemyUnit.Attack());
+                if (frontMostEnemyUnit.health > 0 && frontMostPlayerUnit.health > 0)
+                {
+                    StartCoroutine(frontMostPlayerUnit.Attack());
+                    StartCoroutine(frontMostEnemyUnit.Attack());
+                }
                 while (frontMostPlayerUnit.attacking || frontMostEnemyUnit.attacking)
                 {
                     yield return null;
@@ -396,7 +399,6 @@ public class GameController : MonoBehaviour
         round++;
         ResetStats();
         Gold = 11;
-        FindObjectOfType<Shop>().ReRoll();
 
         GetPlayerUnits();
         foreach (GameObject u in playerUnits)
@@ -420,8 +422,9 @@ public class GameController : MonoBehaviour
         if (round == 2) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(1));  
         else if (round == 4) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(2));  
         else if (round == 6) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(3));  
-        else if (round == 8) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(4));  
+        else if (round == 8) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(4));
 
+        FindObjectOfType<Shop>().ReRoll();
 
         BattleButton.interactable = true;
     }

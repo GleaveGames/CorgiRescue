@@ -25,7 +25,7 @@ public class Blob : Unit
             Destroy(newBuff);
             enemies[randomUnitIndex].GetComponent<Unit>().attack += attackBuff * level;
             enemies[randomUnitIndex].GetComponent<Unit>().health += healthBuff * level;
-            StartCoroutine(enemies[randomUnitIndex].GetComponent<Unit>().Jiggle());
+            StartCoroutine(enemies[randomUnitIndex].GetComponent<Unit>().CollisionJiggle());
         }
 
         yield return StartCoroutine(base.OnDie());

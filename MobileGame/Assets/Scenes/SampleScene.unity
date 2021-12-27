@@ -3024,7 +3024,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 40
   m_TargetDisplay: 0
 --- !u!1 &305035559
 GameObject:
@@ -4929,7 +4929,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 40
   m_TargetDisplay: 0
 --- !u!1 &788360294
 GameObject:
@@ -5876,7 +5876,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 40
   m_TargetDisplay: 0
 --- !u!1 &1096494289
 GameObject:
@@ -9187,7 +9187,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 40
   m_TargetDisplay: 0
 --- !u!1 &2084872738
 GameObject:
@@ -9257,6 +9257,8 @@ MonoBehaviour:
   - {fileID: 757357724859235951, guid: 2d01f2cca8448dc48a507f017acd0e44, type: 3}
   - {fileID: 538672580819213156, guid: 86d25a469b6454540958f8e7fb2b789a, type: 3}
   - {fileID: 757357724859235951, guid: 77bf5dc500cb8764daa8935e89737885, type: 3}
+  - {fileID: 757357724859235951, guid: df386f9e595b7b04e8f83c2551b9e84c, type: 3}
+  - {fileID: 757357724859235951, guid: 196e9e8985dec6044804a694c0d40d72, type: 3}
   BuildingParent: {fileID: 2065910110}
   buildingY:
     serializedVersion: 2
