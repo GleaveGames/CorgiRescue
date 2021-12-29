@@ -46,6 +46,7 @@ public class Fisherman : Unit
                     Destroy(newBuff);
                     allies[randomUnitIndex].GetComponent<Unit>().attack += attackBuff * level;
                     allies[randomUnitIndex].GetComponent<Unit>().health += healthBuff * level;
+                    StartCoroutine(allies[randomUnitIndex].GetComponent<Unit>().BuffJuice(1));
                     StartCoroutine(allies[randomUnitIndex].GetComponent<Unit>().Jiggle());
                     allies.Remove(allies[randomUnitIndex]);
                 }

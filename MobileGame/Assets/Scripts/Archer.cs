@@ -49,6 +49,7 @@ public class Archer : Unit
             attack += attackBuff * level;
             health += healthBuff * level;
             StartCoroutine(Jiggle());
+            StartCoroutine(BuffJuice(2));
         }
         yield return StartCoroutine(base.OnStartOfBattle());
     }

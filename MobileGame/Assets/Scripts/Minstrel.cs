@@ -66,8 +66,9 @@ public class Minstrel : Unit
                 yield return null;
             }
             Destroy(newBuff);
-            square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().attack += attackBuff * level;
-            StartCoroutine(square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().Jiggle());
+            square.occupier.GetComponent<Unit>().attack += attackBuff * level;
+            StartCoroutine(square.occupier.GetComponent<Unit>().Jiggle());
+            StartCoroutine(square.occupier.GetComponent<Unit>().BuffJuice(2));
         }
         else
         {

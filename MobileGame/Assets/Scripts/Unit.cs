@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class Unit : MonoBehaviour
@@ -12,8 +13,8 @@ public class Unit : MonoBehaviour
     public int attack;
     public int level;
     public int exp;
-    Text healthText;
-    Text attackText;
+    TextMeshProUGUI healthText;
+    TextMeshProUGUI attackText;
     [HideInInspector]
     public Text levelText;
     [HideInInspector]
@@ -47,6 +48,7 @@ public class Unit : MonoBehaviour
     AnimationCurve jiggleY;
     GameObject collisionParticle;
     Color colorInvisible;
+    AnimationCurve buffJuice;
 
     [Header("Buff")]
     protected AnimationCurve buffY;
@@ -69,11 +71,11 @@ public class Unit : MonoBehaviour
     {
         gc = FindObjectOfType<GameController>();
         qualitySprites = gc.qualitySprites;
-        healthText = transform.GetChild(0).GetChild(2).GetComponent<Text>();
-        attackText = transform.GetChild(0).GetChild(1).GetComponent<Text>();
-        levelText = transform.GetChild(0).GetChild(3).GetComponent<Text>();
-        expText = transform.GetChild(0).GetChild(4).GetComponent<Text>();
-        spriteQuality = transform.GetChild(0).GetChild(6).gameObject;
+        healthText = transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
+        attackText = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+        levelText = transform.GetChild(0).GetChild(2).GetComponent<Text>();
+        expText = transform.GetChild(0).GetChild(3).GetComponent<Text>();
+        spriteQuality = transform.GetChild(0).GetChild(5).gameObject;
         spriteQuality.GetComponent<Image>().sprite = qualitySprites[quality - 1];
         jiggleX = gc.JiggleX;
         jiggleY = gc.JiggleY;
@@ -92,6 +94,7 @@ public class Unit : MonoBehaviour
         Instantiate(cloudParticles, transform.position, Quaternion.identity);
         attackTime = gc.attackTime;
         initPos = transform.position;
+        buffJuice = gc.buffJuice;
     }
 
     // Update is called once per frame
@@ -392,4 +395,23 @@ public class Unit : MonoBehaviour
         transform.localScale = new Vector3(1, 1, 1);
     }
 
+    public IEnumerator BuffJuice(int buff) 
+    {
+        float timer = 0;
+        float juiceTime = 0.5f;
+        while (timer < juiceTime)
+        {
+            float newScale = buffJuice.Evaluate(timer / juiceTime);
+            if(buff == 1) healthText.transform.parent.localScale = new Vector2(newScale, newScale);
+            else if(buff == 2) attackText.transform.parent.localScale = new Vector2(newScale, newScale);
+            else
+            {
+                healthText.transform.parent.localScale = new Vector2(newScale, newScale);
+                attackText.transform.parent.localScale = new Vector2(newScale, newScale);
+            }
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        healthText.transform.parent.localScale = new Vector2(0.5f, 0.5f);
+    }
 }

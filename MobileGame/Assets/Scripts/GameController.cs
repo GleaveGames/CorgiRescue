@@ -64,6 +64,7 @@ public class GameController : MonoBehaviour
     public float attackTime;
     public Sprite[] qualitySprites;
     public TextAsset database;
+    public AnimationCurve buffJuice;
 
 
     Transform CameraTrans;
@@ -305,7 +306,7 @@ public class GameController : MonoBehaviour
                         transform.GetChild(0).GetChild(i).GetComponent<GameSquare>().occupied = true;
                         transform.GetChild(0).GetChild(i).GetComponent<GameSquare>().occupier = newUnit;
                         newUnit.transform.parent = transform;
-                        newUnit.transform.GetChild(0).GetChild(6).gameObject.SetActive(false);
+                        newUnit.transform.GetChild(0).GetChild(5).gameObject.SetActive(false);
                         enemyUnits.Add(newUnit);
                         allUnits.Add(newUnit);
                         //set Stats

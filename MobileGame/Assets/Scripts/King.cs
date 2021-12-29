@@ -49,6 +49,9 @@ public class King : Unit
                 Destroy(newBuff);
                 attack += attackBuff * peasants;
                 health += healthBuff * peasants;
+                if (healthBuff > 0 && attackBuff > 0) StartCoroutine(BuffJuice(3));
+                else if (healthBuff > 0) StartCoroutine(BuffJuice(1));
+                else if (attackBuff > 0) StartCoroutine(BuffJuice(2));
                 FindObjectOfType<GameController>().Gold += peasants;
                 StartCoroutine(Jiggle());
             }

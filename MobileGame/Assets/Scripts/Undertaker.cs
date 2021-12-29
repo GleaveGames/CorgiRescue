@@ -72,6 +72,7 @@ public class Undertaker : Unit
         Destroy(newBuff);
         attack += attackBuff * level;
         health += healthBuff * level;
+        StartCoroutine(BuffJuice(3));
         StartCoroutine(Jiggle());
         actioning = false;
     }

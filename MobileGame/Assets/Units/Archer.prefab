@@ -176,9 +176,49 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 757357724859235948}
     m_Modifications:
+    - target: {fileID: 100769227161461753, guid: b4101005315136046a3527e48caa4c0f, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100769227161461753, guid: b4101005315136046a3527e48caa4c0f, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100769227161461753, guid: b4101005315136046a3527e48caa4c0f, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837905384202935351, guid: b4101005315136046a3527e48caa4c0f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 53
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680365778733895516, guid: b4101005315136046a3527e48caa4c0f, type: 3}
+      propertyPath: m_text
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680365778733895516, guid: b4101005315136046a3527e48caa4c0f, type: 3}
+      propertyPath: m_fontSize
+      value: 51.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680365778733895516, guid: b4101005315136046a3527e48caa4c0f, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4565190641329966298, guid: b4101005315136046a3527e48caa4c0f, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6306010984019799720, guid: b4101005315136046a3527e48caa4c0f, type: 3}
+      propertyPath: m_text
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6306010984019799720, guid: b4101005315136046a3527e48caa4c0f, type: 3}
+      propertyPath: m_fontSize
+      value: 52.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6306010984019799720, guid: b4101005315136046a3527e48caa4c0f, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8317786970848638297, guid: b4101005315136046a3527e48caa4c0f, type: 3}
       propertyPath: m_Pivot.x
@@ -264,7 +304,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8497493339292589114, guid: b4101005315136046a3527e48caa4c0f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6187736509760191806, guid: b4101005315136046a3527e48caa4c0f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b4101005315136046a3527e48caa4c0f, type: 3}
 --- !u!224 &1307807007350703256 stripped
 RectTransform:

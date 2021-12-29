@@ -21,6 +21,7 @@ public class Swordsman : Unit
         Destroy(newBuff);
         attack += attackBuff * level;
         health += healthBuff * level;
+        StartCoroutine(BuffJuice(3));
         yield return StartCoroutine(base.OnLevelUp());
     }
 }
