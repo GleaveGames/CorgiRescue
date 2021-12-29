@@ -168,7 +168,6 @@ MonoBehaviour:
   healthBuff: 0
   dead: 0
   initPos: {x: 0, y: 0}
-  Info: Gains +3/+6/+9 damage if it is at the back of the board
 --- !u!1001 &7010121811541750209
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -214,7 +213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6306010984019799720, guid: b4101005315136046a3527e48caa4c0f, type: 3}
       propertyPath: m_fontSize
-      value: 52.25
+      value: 69.75
       objectReference: {fileID: 0}
     - target: {fileID: 6306010984019799720, guid: b4101005315136046a3527e48caa4c0f, type: 3}
       propertyPath: m_fontStyle
