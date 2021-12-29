@@ -8588,6 +8588,39 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5f7379a8e8080434e93c98714c1d74c3, type: 3}
   - {fileID: 21300000, guid: 6c975096396639d47829d5097ce31dc4, type: 3}
   database: {fileID: 4900000, guid: 8f888f147b0dedf4aa71eaa11646d69d, type: 3}
+  buffJuice:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 1.5559655
+      outSlope: 1.5559655
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.09265239
+    - serializedVersion: 3
+      time: 0.6083329
+      value: 0.933404
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &1823306627
 Transform:
   m_ObjectHideFlags: 0
@@ -9259,6 +9292,7 @@ MonoBehaviour:
   - {fileID: 757357724859235951, guid: 77bf5dc500cb8764daa8935e89737885, type: 3}
   - {fileID: 757357724859235951, guid: df386f9e595b7b04e8f83c2551b9e84c, type: 3}
   - {fileID: 757357724859235951, guid: 196e9e8985dec6044804a694c0d40d72, type: 3}
+  - {fileID: 757357724859235951, guid: f1c47a9e87abef74daaa9268afd7c6fd, type: 3}
   BuildingParent: {fileID: 2065910110}
   buildingY:
     serializedVersion: 2

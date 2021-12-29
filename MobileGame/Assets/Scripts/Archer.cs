@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class Archer : Unit
 {
-    [SerializeField]
-    [TextArea]
-    string Info = "WARCRY: Gains +3 damage if it is at the back of the board";
-
-
     public override IEnumerator OnStartOfBattle()
     {
         /*

@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 757357724859235947}
   - component: {fileID: 757357724859235946}
   - component: {fileID: 757357724859235949}
-  - component: {fileID: 7473725922223336824}
+  - component: {fileID: 4960057863792263049}
   m_Layer: 0
-  m_Name: Princess
+  m_Name: Crossbow
   m_TagString: ShopItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 0c2802df791fe424885235a4aa1455d4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b6e1ef07abbabf842aae35944f9544e8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,9 +103,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'WarCry: If next to a stableboy, reduce all enemies health by 10%'
-  UnitText2: 'WarCry: If next to a stableboy, reduce all enemies health by 30%'
-  UnitText3: 'WarCry: If next to a stableboy, reduce all enemies health by 50%'
+  UnitText1: 'WarCry: If on the back row, deal 2 Damage to a random enemy'
+  UnitText2: 'WarCry: If on the back row, deal 4 Damage to a random enemy'
+  UnitText3: 'WarCry: If on the back row, deal 6 Damage to a random enemy'
 --- !u!61 &757357724859235949
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -132,7 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7473725922223336824
+--- !u!114 &4960057863792263049
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,13 +141,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 757357724859235951}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee923720d37931c45bd77c52aad7b5b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 967f966b363e47a43b6e5ed5e0287c87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  symbol: 103
-  quality: 5
-  health: 3
-  attack: 3
+  symbol: 99
+  quality: 1
+  health: 1
+  attack: 2
   level: 1
   exp: 1
   levelText: {fileID: 0}
@@ -165,10 +165,9 @@ MonoBehaviour:
   healthPreBattle: 0
   attackPreBattle: 0
   attackBuff: 0
-  healthBuff: 0
+  healthBuff: -2
   dead: 0
   initPos: {x: 0, y: 0}
-  heart: {fileID: 8529046716491591870, guid: 82a71292ac3decf4bb51d0d73c250402, type: 3}
 --- !u!1001 &7010121811541750209
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -176,9 +175,49 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 757357724859235948}
     m_Modifications:
+    - target: {fileID: 100769227161461753, guid: b4101005315136046a3527e48caa4c0f, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100769227161461753, guid: b4101005315136046a3527e48caa4c0f, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100769227161461753, guid: b4101005315136046a3527e48caa4c0f, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837905384202935351, guid: b4101005315136046a3527e48caa4c0f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 53
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680365778733895516, guid: b4101005315136046a3527e48caa4c0f, type: 3}
+      propertyPath: m_text
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680365778733895516, guid: b4101005315136046a3527e48caa4c0f, type: 3}
+      propertyPath: m_fontSize
+      value: 51.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680365778733895516, guid: b4101005315136046a3527e48caa4c0f, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4565190641329966298, guid: b4101005315136046a3527e48caa4c0f, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6306010984019799720, guid: b4101005315136046a3527e48caa4c0f, type: 3}
+      propertyPath: m_text
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6306010984019799720, guid: b4101005315136046a3527e48caa4c0f, type: 3}
+      propertyPath: m_fontSize
+      value: 69.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6306010984019799720, guid: b4101005315136046a3527e48caa4c0f, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8317786970848638297, guid: b4101005315136046a3527e48caa4c0f, type: 3}
       propertyPath: m_Pivot.x
@@ -264,7 +303,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8497493339292589114, guid: b4101005315136046a3527e48caa4c0f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6187736509760191806, guid: b4101005315136046a3527e48caa4c0f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b4101005315136046a3527e48caa4c0f, type: 3}
 --- !u!224 &1307807007350703256 stripped
 RectTransform:

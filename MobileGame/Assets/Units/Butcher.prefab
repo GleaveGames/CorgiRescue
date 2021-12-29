@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72f4ada9ce12b9c4e85010e3b41e8174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  symbol: 99
+  symbol: 116
   quality: 1
   health: 2
   attack: 2
