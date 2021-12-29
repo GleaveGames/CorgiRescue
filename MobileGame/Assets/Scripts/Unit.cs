@@ -140,6 +140,7 @@ public class Unit : MonoBehaviour
         square.GetComponent<GameSquare>().occupier = null;
         Instantiate(deathParticles, square.transform.position, Quaternion.identity);
         while (gc.Battling) yield return null;
+        actioning = false;
         if (playerUnit)
         {
             yield return new WaitForSeconds(Random.Range(0, 0.5f));
