@@ -15,11 +15,9 @@ public class Unit : MonoBehaviour
     public int exp;
     TextMeshProUGUI healthText;
     TextMeshProUGUI attackText;
-    [HideInInspector]
-    public Text levelText;
-    [HideInInspector]
-    public Text expText;
     Sprite[] qualitySprites;
+    Sprite[] levelSprites;
+    Image levelSprite;
     [HideInInspector]
     public GameObject spriteQuality;
     ParticleSystem levelUpParticles;
@@ -73,15 +71,14 @@ public class Unit : MonoBehaviour
         qualitySprites = gc.qualitySprites;
         healthText = transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
         attackText = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
-        levelText = transform.GetChild(0).GetChild(2).GetComponent<Text>();
-        expText = transform.GetChild(0).GetChild(3).GetComponent<Text>();
-        spriteQuality = transform.GetChild(0).GetChild(5).gameObject;
+        levelSprite = transform.GetChild(0).GetChild(2).GetComponent<Image>();
+        spriteQuality = transform.GetChild(0).GetChild(4).gameObject;
         spriteQuality.GetComponent<Image>().sprite = qualitySprites[quality - 1];
+        levelSprites = gc.levelSprites;
         jiggleX = gc.JiggleX;
         jiggleY = gc.JiggleY;
         jiggleTime = gc.jiggleTime;
         collisionParticle = gc.collisionParticle;
-        colorInvisible = gc.colorInvisible;
         attackCurve = gc.attackCurve;
         buffTime = gc.buffTime;
         Buff = gc.Buff;
@@ -102,12 +99,7 @@ public class Unit : MonoBehaviour
     {
         healthText.text = health.ToString();
         attackText.text = attack.ToString();
-        levelText.text = level.ToString();
-        if(level == 3)
-        {
-            expText.enabled = false;
-        }
-        else expText.text = exp.ToString() + "/" + (level + 2).ToString();
+        levelSprite.sprite = levelSprites[level*level + exp - level-1];
         if (level <= exp-2)
         {
             //level up
@@ -202,6 +194,7 @@ public class Unit : MonoBehaviour
     }
     public virtual IEnumerator OnEndTurn()
     {
+        initPos = transform.position;
         actioning = false;
         yield return null;
     }

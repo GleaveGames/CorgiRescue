@@ -73,7 +73,7 @@ public class Priest : Unit
         clone.GetComponent<Unit>().dead = false;
         clone.GetComponent<SpriteRenderer>().enabled = true;
         clone.transform.GetChild(0).gameObject.SetActive(true);
-        clone.transform.GetChild(0).GetChild(6).gameObject.SetActive(false);
+        clone.transform.GetChild(0).GetChild(4).gameObject.SetActive(false);
         clone.transform.parent = gc.transform;
         if (!playerUnit) gc.enemyUnits.Add(clone);
         else gc.playerUnits.Add(clone);

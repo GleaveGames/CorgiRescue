@@ -43,6 +43,10 @@ public class GameController : MonoBehaviour
     [SerializeField]
     Transform Clouds;
     public string enemyFormation;
+    [SerializeField]
+    Sprite[] resultSprites;
+    [SerializeField]
+    GameObject resultObj;
 
     [Header("Curves and Things")]
     [SerializeField]
@@ -51,7 +55,6 @@ public class GameController : MonoBehaviour
     public AnimationCurve JiggleY;
     public float jiggleTime;
     public GameObject collisionParticle;
-    public Color colorInvisible;
     public AnimationCurve attackCurve;
     public float buffTime = 0.6f;
     public AnimationCurve buffX;
@@ -63,8 +66,11 @@ public class GameController : MonoBehaviour
     public ParticleSystem cloudParticles;
     public float attackTime;
     public Sprite[] qualitySprites;
+    public Sprite[] levelSprites;
     public TextAsset database;
     public AnimationCurve buffJuice;
+    [SerializeField]
+    AnimationCurve resultJuice;
 
 
     Transform CameraTrans;
@@ -160,8 +166,8 @@ public class GameController : MonoBehaviour
                         square.GetComponent<GameSquare>().occupier = draggingObj;
                         draggingObj.GetComponent<ShopSprite>().Bought();
                         draggingObj.transform.GetChild(0).gameObject.SetActive(true);
+                        draggingObj.transform.GetChild(0).GetChild(2).gameObject.SetActive(true);
                         draggingObj.transform.GetChild(0).GetChild(3).gameObject.SetActive(true);
-                        draggingObj.transform.GetChild(0).GetChild(4).gameObject.SetActive(true);
                         draggingObj.GetComponent<Unit>().spriteQuality.SetActive(false);
                         StartCoroutine(draggingObj.GetComponent<Unit>().Jiggle());
                         draggingObj = null;
@@ -306,7 +312,7 @@ public class GameController : MonoBehaviour
                         transform.GetChild(0).GetChild(i).GetComponent<GameSquare>().occupied = true;
                         transform.GetChild(0).GetChild(i).GetComponent<GameSquare>().occupier = newUnit;
                         newUnit.transform.parent = transform;
-                        newUnit.transform.GetChild(0).GetChild(5).gameObject.SetActive(false);
+                        newUnit.transform.GetChild(0).GetChild(4).gameObject.SetActive(false);
                         enemyUnits.Add(newUnit);
                         allUnits.Add(newUnit);
                         //set Stats
@@ -321,6 +327,8 @@ public class GameController : MonoBehaviour
         }
 
         float timer = 0;
+        Color invis = Color.white;
+        invis.a = 0;
         while(timer < 2)
         {
             Clouds.transform.position = new Vector3(Clouds.transform.position.x, Mathf.Lerp(4, 12, timer / 2), 0);
@@ -365,16 +373,23 @@ public class GameController : MonoBehaviour
                     yield return null;
                 }
             }
-            if (enemyUnits.Count == 0)
+            if (enemyUnits.Count == 0 && playerUnits.Count > 0)
             {
                 Battling = false;
                 Debug.Log("you win");
                 wins++;
+                resultObj.GetComponent<Image>().sprite = resultSprites[0];
             }
             else if (playerUnits.Count == 0) { 
                 Battling = false;
                 lives -= 1;
                 Debug.Log("You LOSE");
+                resultObj.GetComponent<Image>().sprite = resultSprites[1];
+            }
+            else if (playerUnits.Count == 0 && enemyUnits.Count == 00)
+            {
+                resultObj.GetComponent<Image>().sprite = resultSprites[2];
+                Battling = false;
             }
             yield return null;
         }
@@ -386,6 +401,7 @@ public class GameController : MonoBehaviour
         {
             Clouds.transform.position = new Vector3(Clouds.transform.position.x, Mathf.Lerp(12, 4, timer / 2), 0);
             CameraTrans.position = new Vector3(CameraTrans.position.x, Mathf.Lerp(0.5f, -2.5f, timer / 2), -10);
+            resultObj.GetComponent<Image>().color = Color.Lerp(invis, Color.white, resultJuice.Evaluate(timer / 2));
             timer += Time.deltaTime;
             yield return null;
         }
