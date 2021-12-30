@@ -41,6 +41,10 @@ public class Unit : MonoBehaviour
     public int healthPreBattle;
     [HideInInspector]
     public int attackPreBattle;
+    [HideInInspector]
+    public int levelPreBattle;
+    [HideInInspector]
+    public int expPreBattle;
     float jiggleTime;
     AnimationCurve jiggleX;
     AnimationCurve jiggleY;
@@ -143,6 +147,8 @@ public class Unit : MonoBehaviour
             Instantiate(cloudParticles, initPos, Quaternion.identity);
             attack = attackPreBattle;
             health = healthPreBattle;
+            level = levelPreBattle;
+            exp = expPreBattle;
             yield return new WaitForSeconds(0.1f);
             GetComponent<SpriteRenderer>().enabled = true;
             transform.GetChild(0).gameObject.SetActive(true);

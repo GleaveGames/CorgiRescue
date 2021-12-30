@@ -239,6 +239,8 @@ public class GameController : MonoBehaviour
         {
             u.GetComponent<Unit>().healthPreBattle = u.GetComponent<Unit>().health;
             u.GetComponent<Unit>().attackPreBattle = u.GetComponent<Unit>().attack;
+            u.GetComponent<Unit>().levelPreBattle = u.GetComponent<Unit>().level;
+            u.GetComponent<Unit>().expPreBattle = u.GetComponent<Unit>().exp;
         }
 
 
