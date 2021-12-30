@@ -113,6 +113,7 @@ public class Shop : MonoBehaviour
         else if(buildingNumber == 2) foreach (GameObject u in ChurchUnits) unitPool.Add(u);
         else if(buildingNumber == 3) foreach (GameObject u in WorkshopUnits) unitPool.Add(u);
         else if(buildingNumber == 4) foreach (GameObject u in CastleUnits) unitPool.Add(u);
+        yield return new WaitForSeconds(1.4f);
 
         building.GetComponent<SpriteRenderer>().enabled = true;
         float timer = 0;

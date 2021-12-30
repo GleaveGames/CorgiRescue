@@ -170,6 +170,7 @@ public class GameController : MonoBehaviour
                         draggingObj.transform.GetChild(0).GetChild(2).gameObject.SetActive(true);
                         draggingObj.transform.GetChild(0).GetChild(3).gameObject.SetActive(true);
                         draggingObj.GetComponent<Unit>().spriteQuality.SetActive(false);
+                        draggingObj.transform.GetChild(0).GetChild(3).position = new Vector2(draggingObj.transform.position.x, draggingObj.transform.position.y - 1.5f);
                         StartCoroutine(draggingObj.GetComponent<Unit>().Jiggle());
                         draggingObj = null;
                         Gold -= 3;
@@ -193,7 +194,7 @@ public class GameController : MonoBehaviour
             }
         }
         unitNumber = transform.childCount - 3;
-        unitText.text = unitNumber.ToString() + " / 6";
+        unitText.text = unitNumber.ToString() + "/6";
         goldText.text = Gold.ToString();
     }
 
@@ -330,9 +331,10 @@ public class GameController : MonoBehaviour
         float timer = 0;
         Color invis = Color.white;
         invis.a = 0;
+
         while(timer < 2)
         {
-            CameraTrans.position = new Vector3(CameraTrans.position.x, Mathf.Lerp(-2.5f, 0.5f, timer / 2), -10);
+            CameraTrans.position = new Vector3(CameraTrans.position.x, Mathf.Lerp(-3.87f, 0.5f, timer / 2), -10);
             timer += Time.deltaTime;
             yield return null;
         }
@@ -373,7 +375,15 @@ public class GameController : MonoBehaviour
                     yield return null;
                 }
             }
-            if (enemyUnits.Count == 0 && playerUnits.Count > 0)
+            //check if any unit is doing an action
+            while (IsAUnitActioning()) yield return null;
+
+            if (playerUnits.Count == 0 && enemyUnits.Count == 00)
+            {
+                resultObj.GetComponent<Image>().sprite = resultSprites[2];
+                Battling = false;
+            }
+            else if (enemyUnits.Count == 0 && playerUnits.Count > 0)
             {
                 Battling = false;
                 Debug.Log("you win");
@@ -388,11 +398,7 @@ public class GameController : MonoBehaviour
                 resultObj.GetComponent<Image>().sprite = resultSprites[1];
                 if (lives <= 0) resultObj.GetComponent<Image>().sprite = resultSprites[3];
             }
-            else if (playerUnits.Count == 0 && enemyUnits.Count == 00)
-            {
-                resultObj.GetComponent<Image>().sprite = resultSprites[2];
-                Battling = false;
-            }
+            
             yield return null;
         }
 
@@ -402,11 +408,12 @@ public class GameController : MonoBehaviour
         timer = 0;
         while (timer < endBattleTime)
         {
-            CameraTrans.position = new Vector3(CameraTrans.position.x, Mathf.Lerp(0.5f, -2.5f, timer / 2), -10);
+            CameraTrans.position = new Vector3(CameraTrans.position.x, Mathf.Lerp(0.5f, -3.87f, timer / 2), -10);
             resultObj.GetComponent<Image>().color = Color.Lerp(invis, Color.white, resultJuice.Evaluate(timer / 2));
             timer += Time.deltaTime;
             yield return null;
         }
+        CameraTrans.position = new Vector3(CameraTrans.position.x, -3.87f,-10);
 
         if (wins == 10 || lives <= 0) SceneManager.LoadScene(1);
 
@@ -526,4 +533,14 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public bool IsAUnitActioning()
+    {
+        bool result = false;
+        for (int i = 3; i < transform.childCount; i++)
+        {
+            Unit unit = transform.GetChild(i).GetComponent<Unit>();
+            if (unit.actioning) result = true;
+        }
+        return result;
+    }
 }
