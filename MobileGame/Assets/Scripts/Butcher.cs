@@ -26,7 +26,7 @@ public class Butcher : Unit
 
         yield return new WaitForSeconds(buffTime);
         jiggled = false;
-        yield return StartCoroutine(base.OnStartOfBattle());
+        yield return StartCoroutine(base.OnDie());
     }
 
     private IEnumerator CheckForUnitAndBuff(int x, int y)

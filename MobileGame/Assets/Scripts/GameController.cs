@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -40,11 +41,11 @@ public class GameController : MonoBehaviour
     Text Wins;
     [SerializeField]
     AnimationCurve goldJuiceX;
-    [SerializeField]
-    Transform Clouds;
     public string enemyFormation;
     [SerializeField]
     Sprite[] resultSprites;
+    [SerializeField]
+    float endBattleTime = 2;
     [SerializeField]
     GameObject resultObj;
 
@@ -331,7 +332,6 @@ public class GameController : MonoBehaviour
         invis.a = 0;
         while(timer < 2)
         {
-            Clouds.transform.position = new Vector3(Clouds.transform.position.x, Mathf.Lerp(4, 12, timer / 2), 0);
             CameraTrans.position = new Vector3(CameraTrans.position.x, Mathf.Lerp(-2.5f, 0.5f, timer / 2), -10);
             timer += Time.deltaTime;
             yield return null;
@@ -379,12 +379,14 @@ public class GameController : MonoBehaviour
                 Debug.Log("you win");
                 wins++;
                 resultObj.GetComponent<Image>().sprite = resultSprites[0];
+                if (wins == 10) resultObj.GetComponent<Image>().sprite = resultSprites[5];
             }
             else if (playerUnits.Count == 0) { 
                 Battling = false;
                 lives -= 1;
                 Debug.Log("You LOSE");
                 resultObj.GetComponent<Image>().sprite = resultSprites[1];
+                if (lives <= 0) resultObj.GetComponent<Image>().sprite = resultSprites[3];
             }
             else if (playerUnits.Count == 0 && enemyUnits.Count == 00)
             {
@@ -395,16 +397,18 @@ public class GameController : MonoBehaviour
         }
 
         yield return new WaitForEndOfFrame();
-
+        StartCoroutine(FindObjectOfType<UIClouds>().Enter());
+        yield return new WaitForSeconds(1.5f);
         timer = 0;
-        while (timer < 2)
+        while (timer < endBattleTime)
         {
-            Clouds.transform.position = new Vector3(Clouds.transform.position.x, Mathf.Lerp(12, 4, timer / 2), 0);
             CameraTrans.position = new Vector3(CameraTrans.position.x, Mathf.Lerp(0.5f, -2.5f, timer / 2), -10);
             resultObj.GetComponent<Image>().color = Color.Lerp(invis, Color.white, resultJuice.Evaluate(timer / 2));
             timer += Time.deltaTime;
             yield return null;
         }
+
+        if (wins == 10 || lives <= 0) SceneManager.LoadScene(1);
 
         foreach (GameObject u in enemyUnits)
         {
@@ -413,6 +417,8 @@ public class GameController : MonoBehaviour
             square.GetComponent<GameSquare>().occupier = null;
             Destroy(u);
         }
+
+        StartCoroutine(FindObjectOfType<UIClouds>().Leave());
         round++;
         ResetStats();
         Gold = 11;
@@ -436,6 +442,7 @@ public class GameController : MonoBehaviour
             while (u.GetComponent<Unit>().actioning) yield return null;
         }
 
+        yield return new WaitForSeconds(1.5f);
         if (round == 2) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(1));  
         else if (round == 4) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(2));  
         else if (round == 6) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(3));  

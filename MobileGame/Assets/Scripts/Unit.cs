@@ -107,15 +107,22 @@ public class Unit : MonoBehaviour
         }
         if(health <= 0)
         {
+            health = 0;
             if (!dead) StartCoroutine(Die());
         }
     }
 
     IEnumerator Die()
     {
+        while (actioning)
+        {
+            if (health > 0) yield break;
+            yield return null;
+        }
+        if (health > 0) yield break;
+        if (dead) yield break; 
         dead = true;
         //Unit Dead
-        health = 0;
         if (playerUnit) gc.playerUnits.Remove(gameObject);
         else gc.enemyUnits.Remove(gameObject);
         //CANNOT REMOVE FROM ALLUNITS BECAUSE WE ARE ITERATING THROUGH IT
@@ -123,14 +130,8 @@ public class Unit : MonoBehaviour
         GetComponent<SpriteRenderer>().enabled = false;
         transform.GetChild(0).gameObject.SetActive(false);
         Collider2D square = null;
-        if (playerUnit)
-        {
-            square = Physics2D.OverlapPoint(initPos, playerTiles);
-        }
-        else
-        {
-            square = Physics2D.OverlapPoint(initPos, enemyTiles);
-        }
+        if (playerUnit) square = Physics2D.OverlapPoint(initPos, playerTiles);
+        else square = Physics2D.OverlapPoint(initPos, enemyTiles);
         square.GetComponent<GameSquare>().occupied = false;
         square.GetComponent<GameSquare>().occupier = null;
         Instantiate(deathParticles, square.transform.position, Quaternion.identity);
@@ -148,6 +149,7 @@ public class Unit : MonoBehaviour
             square.GetComponent<GameSquare>().occupied = true;
             square.GetComponent<GameSquare>().occupier = gameObject;
             transform.position = initPos;
+            GetComponent<SpriteRenderer>().color = Color.white;
         }
         else
         {
@@ -167,12 +169,45 @@ public class Unit : MonoBehaviour
     }
     public virtual IEnumerator OnStartOfTurn()
     {
+        GetComponent<SpriteRenderer>().color = Color.white;
         actioning = false;
         yield return null;
     }
     
     public virtual IEnumerator OnDie()
     {
+        actioning = true;
+        bool respawn = false;
+        //PRIEST STUFF
+    
+        GameSquare square = null;
+
+        if (playerUnit)
+        {
+            Collider2D squareCol = Physics2D.OverlapPoint(transform.position + new Vector3(0, -1.25f), playerTiles);
+            if (squareCol != null) square = squareCol.GetComponent<GameSquare>();
+        }
+        else
+        {
+            Collider2D squareCol = Physics2D.OverlapPoint(transform.position + new Vector3(0, 1.25f), enemyTiles);
+            if (squareCol != null) square = squareCol.GetComponent<GameSquare>();
+        }
+        if (square != null && square.occupied && square.occupier.name.Contains("Priest") && !square.occupier.GetComponent<Priest>().triggered && square.occupier.GetComponent<Priest>().health > 0) respawn = true;
+        if (respawn)
+        {
+            Instantiate(deathParticles, transform.position, Quaternion.identity);
+            Instantiate(cloudParticles, transform.position, Quaternion.identity);
+            dead = false;
+            square.occupier.GetComponent<Priest>().triggered = true;
+            health = 1;
+            attack = 1;
+            level = square.occupier.GetComponent<Priest>().level;
+            exp = 1;
+            GetComponent<SpriteRenderer>().color = Color.green;
+            StartCoroutine(OnStartOfBattle());
+            while (actioning) yield return null;
+        }
+
         actioning = false;
         yield return null;
     } 
