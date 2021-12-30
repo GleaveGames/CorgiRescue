@@ -146,12 +146,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   symbol: 113
   quality: 5
-  health: 3
-  attack: 2
+  health: 5
+  attack: 5
   level: 1
   exp: 1
-  levelText: {fileID: 0}
-  expText: {fileID: 0}
   spriteQuality: {fileID: 0}
   attacking: 0
   actioning: 0

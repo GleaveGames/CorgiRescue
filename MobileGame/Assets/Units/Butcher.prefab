@@ -146,8 +146,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   symbol: 111
   quality: 1
-  health: 2
-  attack: 2
+  health: 1
+  attack: 1
   level: 1
   exp: 1
   spriteQuality: {fileID: 0}

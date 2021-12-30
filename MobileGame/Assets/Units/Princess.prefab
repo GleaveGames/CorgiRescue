@@ -147,11 +147,9 @@ MonoBehaviour:
   symbol: 103
   quality: 5
   health: 3
-  attack: 3
+  attack: 5
   level: 1
   exp: 1
-  levelText: {fileID: 0}
-  expText: {fileID: 0}
   spriteQuality: {fileID: 0}
   attacking: 0
   actioning: 0

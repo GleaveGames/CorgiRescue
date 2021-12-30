@@ -103,9 +103,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'On Buy: Give a random Unit +1 Attack and Health'
-  UnitText2: 'On Buy: Give a random Unit +2 Attack and Health'
-  UnitText3: 'On Buy: Give a random Unit +3 Attack and Health'
+  UnitText1: 'On Buy: Give a random Unit +2 Attack and Health'
+  UnitText2: 'On Buy: Give a random Unit +4 Attack and Health'
+  UnitText3: 'On Buy: Give a random Unit +6 Attack and Health'
 --- !u!61 &538672580819213160
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -146,13 +146,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   symbol: 119
   quality: 4
-  health: 1
+  health: 3
   attack: 3
   level: 1
   exp: 1
-  levelText: {fileID: 0}
-  expText: {fileID: 0}
-  qualitySprites: []
+  spriteQuality: {fileID: 0}
   attacking: 0
   actioning: 0
   playerUnit: 1
@@ -164,8 +162,8 @@ MonoBehaviour:
     m_Bits: 512
   healthPreBattle: 0
   attackPreBattle: 0
-  attackBuff: 1
-  healthBuff: 1
+  attackBuff: 2
+  healthBuff: 2
   dead: 0
   initPos: {x: 0, y: 0}
 --- !u!1001 &8377742542592659522

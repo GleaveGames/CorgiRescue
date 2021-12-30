@@ -344,12 +344,17 @@ public class Unit : MonoBehaviour
         StartCoroutine(Jiggle());
     }
 
-    public virtual void Combine()
+    public virtual IEnumerator Combine(int lxp = 0)
     {
-        health++;
-        attack++;
-        exp++;
-        StartCoroutine(Jiggle());
+        Debug.Log(lxp);
+        for (int i = 0; i < lxp + 1; i++)
+        {
+            health++;
+            attack++;
+            exp++;
+            StartCoroutine(Jiggle());
+            yield return new WaitForSeconds(0.4f);
+        }
     }
 
     public List<GameObject> GetAllies()

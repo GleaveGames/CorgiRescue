@@ -129,7 +129,8 @@ public class GameController : MonoBehaviour
                     else if (square != null && square.GetComponent<GameSquare>().occupier != null && draggingObj.name == square.GetComponent<GameSquare>().occupier.name && square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().level != 3)
                     {
                         //COMBINE 
-                        square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().Combine();
+                        GameObject oc = square.GetComponent<GameSquare>().occupier;
+                        StartCoroutine(oc.GetComponent<Unit>().Combine(draggingObj.GetComponent<Unit>().level * draggingObj.GetComponent<Unit>().level + draggingObj.GetComponent<Unit>().exp - draggingObj.GetComponent<Unit>().level - 1));
                         Destroy(draggingObj);
                     }
                     else
@@ -178,8 +179,9 @@ public class GameController : MonoBehaviour
                     else if (square != null && square.GetComponent<GameSquare>().occupier != null && draggingObj.name == square.GetComponent<GameSquare>().occupier.name && square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().level != 3)
                     {
                         //combine 
-                        square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().Combine();
-                        square.GetComponent<GameSquare>().occupier.GetComponent<ShopSprite>().Bought();
+                        GameObject oc = square.GetComponent<GameSquare>().occupier;
+                        StartCoroutine(oc.GetComponent<Unit>().Combine());
+                        oc.GetComponent<ShopSprite>().Bought();
                         Destroy(draggingObj);
                         Gold -= 3;
                     }

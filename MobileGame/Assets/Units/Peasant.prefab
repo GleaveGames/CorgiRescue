@@ -147,12 +147,10 @@ MonoBehaviour:
   symbol: 112
   quality: 1
   health: 1
-  attack: 1
+  attack: 2
   level: 1
   exp: 1
-  levelText: {fileID: 0}
-  expText: {fileID: 0}
-  qualitySprites: []
+  spriteQuality: {fileID: 0}
   attacking: 0
   actioning: 0
   playerUnit: 1
