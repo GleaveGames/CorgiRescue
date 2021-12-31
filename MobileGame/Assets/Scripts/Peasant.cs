@@ -6,6 +6,7 @@ public class Peasant : Unit
 {
     public override IEnumerator OnStartOfBattle()
     {
+        if (temperary) yield return new WaitForSeconds(0.3f);
         actioning = true;
         int peasants = 0;
        

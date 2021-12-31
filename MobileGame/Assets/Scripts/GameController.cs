@@ -72,6 +72,8 @@ public class GameController : MonoBehaviour
     public AnimationCurve buffJuice;
     [SerializeField]
     AnimationCurve resultJuice;
+    [SerializeField]
+    List<Button> freezeButtons;
 
 
     Transform CameraTrans;
@@ -234,6 +236,10 @@ public class GameController : MonoBehaviour
             }
         }
 
+        foreach(Button b in freezeButtons)
+        {
+            b.interactable = false;
+        }
 
         foreach (GameObject u in playerUnits)
         {
@@ -457,21 +463,23 @@ public class GameController : MonoBehaviour
             u.GetComponent<Unit>().dead = false;
         }
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(2.3f);
         foreach (GameObject u in playerUnits)
         {
             StartCoroutine(u.GetComponent<Unit>().OnStartOfTurn());
             while (u.GetComponent<Unit>().actioning) yield return null;
         }
 
-        yield return new WaitForSeconds(1.5f);
         if (round == 2) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(1));  
         else if (round == 4) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(2));  
         else if (round == 6) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(3));  
         else if (round == 8) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(4));
 
         FindObjectOfType<Shop>().ReRoll();
-
+        foreach (Button b in freezeButtons)
+        {
+            b.interactable = true;
+        }
         BattleButton.interactable = true;
     }
 
