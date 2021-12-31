@@ -7,6 +7,8 @@ using TMPro;
 
 public class Unit : MonoBehaviour
 {
+    [HideInInspector]
+    public bool temperary = false;
     public char symbol;
     public int quality;
     public int health;
@@ -141,7 +143,7 @@ public class Unit : MonoBehaviour
         Instantiate(deathParticles, square.transform.position, Quaternion.identity);
         while (gc.Battling) yield return null;
         actioning = false;
-        if (playerUnit)
+        if (playerUnit && !temperary)
         {
             yield return new WaitForSeconds(Random.Range(0, 0.5f));
             Instantiate(cloudParticles, initPos, Quaternion.identity);

@@ -356,6 +356,16 @@ public class GameController : MonoBehaviour
             }
         }
 
+        yield return new WaitForSeconds(1);
+
+        foreach (GameObject u in allUnits)
+        {
+            while (u.GetComponent<Unit>().actioning)
+            {
+                yield return null;
+            }
+        }
+
         while (Battling)
         {
             //get frontmost player unit
@@ -381,6 +391,8 @@ public class GameController : MonoBehaviour
             }
             //check if any unit is doing an action
             while (IsAUnitActioning()) yield return null;
+
+            GetPlayerUnits();
 
             if (playerUnits.Count == 0 && enemyUnits.Count == 00)
             {
@@ -529,7 +541,7 @@ public class GameController : MonoBehaviour
 
         for (int i = 3; i < transform.childCount; i++)
         {
-
+            if (transform.GetChild(i).GetComponent<Unit>().health <= 0) continue;
             if (transform.GetChild(i).GetComponent<Unit>().playerUnit) playerUnits.Add(transform.GetChild(i).gameObject);
             else enemyUnits.Add(transform.GetChild(i).gameObject);
             allUnits.Add(transform.GetChild(i).gameObject);
