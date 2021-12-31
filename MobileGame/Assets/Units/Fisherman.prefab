@@ -168,7 +168,7 @@ MonoBehaviour:
   healthBuff: 1
   dead: 0
   initPos: {x: 0, y: 0}
-  fish: {fileID: 21300000, guid: c3c2fbe0957f935429383f13fd812d94, type: 3}
+  fish: {fileID: 21300000, guid: c752fb7ddb8f7a045b6a1939782b71fc, type: 3}
 --- !u!1001 &7010121811541750209
 PrefabInstance:
   m_ObjectHideFlags: 0

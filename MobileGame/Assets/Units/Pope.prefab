@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 757357724859235947}
   - component: {fileID: 757357724859235946}
   - component: {fileID: 757357724859235949}
-  - component: {fileID: 4316177435574355702}
+  - component: {fileID: 8841771301179584963}
   m_Layer: 0
   m_Name: Pope
   m_TagString: ShopItem
@@ -103,9 +103,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: Resurrects unit ahead as a lv1 1,1
-  UnitText2: Resurrects unit ahead as a lv2 1,1
-  UnitText3: Resurrects unit ahead as a lv3 1,1
+  UnitText1: 'OnBuy: Give adjacent units +1 health'
+  UnitText2: 'OnBuy: Give adjacent units +2 health'
+  UnitText3: 'OnBuy: Give adjacent units +3 health'
 --- !u!61 &757357724859235949
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -123,7 +123,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -132,7 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4316177435574355702
+--- !u!114 &8841771301179584963
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,13 +141,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 757357724859235951}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ac9690b4152ceb47abe828ad4017bcb, type: 3}
+  m_Script: {fileID: 11500000, guid: 0cc1d36417e27d749b5650ecedd44856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  symbol: 120
+  symbol: 111
   quality: 3
-  health: 1
-  attack: 1
+  health: 2
+  attack: 4
   level: 1
   exp: 1
   spriteQuality: {fileID: 0}
@@ -165,10 +165,10 @@ MonoBehaviour:
   levelPreBattle: 0
   expPreBattle: 0
   attackBuff: 0
-  healthBuff: 0
+  healthBuff: 1
   dead: 0
   initPos: {x: 0, y: 0}
-  triggered: 0
+  blessing: {fileID: 21300000, guid: 90def36678df3134994718f386551367, type: 3}
 --- !u!1001 &7010121811541750209
 PrefabInstance:
   m_ObjectHideFlags: 0
