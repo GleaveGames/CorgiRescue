@@ -7,6 +7,7 @@ public class Blob : Unit
     public override IEnumerator OnDie()
     {
         actioning = true;
+        yield return new WaitForSeconds(0.2f);
         List<GameObject> enemies = GetEnemies();
         float buffTimer = 0;
         if (enemies.Count > 0)

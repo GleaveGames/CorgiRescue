@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 757357724859235947}
   - component: {fileID: 757357724859235946}
   - component: {fileID: 757357724859235949}
-  - component: {fileID: 8841771301179584963}
+  - component: {fileID: 6690620913104409850}
   m_Layer: 0
-  m_Name: Pope
+  m_Name: Bishop
   m_TagString: ShopItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 79f4a5026046dcc47a8041b0fd37bb55, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 76d234490bd71eb42aafcf72e7ba5dd0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,9 +103,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'OnBuy: Give adjacent units +1 health'
-  UnitText2: 'OnBuy: Give adjacent units +2 health'
-  UnitText3: 'OnBuy: Give adjacent units +3 health'
+  UnitText1: 'At Start of Turn: Gain +2 health and attack if in front of a church
+    member'
+  UnitText2: 'At Start of Turn: Gain +4 health and attack if in front of a church
+    member'
+  UnitText3: 'At Start of Turn: Gain +6 health and attack if in front of a church
+    member'
 --- !u!61 &757357724859235949
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -132,7 +135,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8841771301179584963
+--- !u!114 &6690620913104409850
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,12 +144,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 757357724859235951}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cc1d36417e27d749b5650ecedd44856, type: 3}
+  m_Script: {fileID: 11500000, guid: fb0e4f5a732029e44bf8254ad2ca2406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  symbol: 110
+  symbol: 105
   quality: 3
-  health: 2
+  health: 4
   attack: 4
   level: 1
   exp: 1
@@ -164,8 +167,8 @@ MonoBehaviour:
   attackPreBattle: 0
   levelPreBattle: 0
   expPreBattle: 0
-  attackBuff: 0
-  healthBuff: 1
+  attackBuff: 2
+  healthBuff: 2
   dead: 0
   initPos: {x: 0, y: 0}
   blessing: {fileID: 21300000, guid: 90def36678df3134994718f386551367, type: 3}

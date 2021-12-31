@@ -445,6 +445,7 @@ public class GameController : MonoBehaviour
             u.GetComponent<Unit>().dead = false;
         }
 
+        yield return new WaitForSeconds(2);
         foreach (GameObject u in playerUnits)
         {
             StartCoroutine(u.GetComponent<Unit>().OnStartOfTurn());
