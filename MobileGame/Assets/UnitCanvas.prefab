@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3882872738584033535}
   - component: {fileID: 4196229478322629504}
   - component: {fileID: 8886357481969991193}
-  m_Layer: 10
+  m_Layer: 2
   m_Name: HealthDad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 8358194711678370213}
   - component: {fileID: 5183355744758701237}
   - component: {fileID: 6306010984019799720}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 2837905384202935351}
   - component: {fileID: 7301578380524863252}
   - component: {fileID: 3680365778733895516}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 3430360945305428759}
   - component: {fileID: 8979319930024108129}
   - component: {fileID: 1655310946636956762}
-  m_Layer: 10
+  m_Layer: 2
   m_Name: UnitQuality
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 2685979968118943246}
   - component: {fileID: 8271161882450978778}
   - component: {fileID: 5390380862489466524}
-  m_Layer: 10
+  m_Layer: 2
   m_Name: AttackDad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,7 +507,7 @@ GameObject:
   - component: {fileID: 6944709251382816428}
   - component: {fileID: 5450440219754183072}
   - component: {fileID: 6187736509760191806}
-  m_Layer: 10
+  m_Layer: 2
   m_Name: UnitText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -602,7 +602,7 @@ GameObject:
   - component: {fileID: 7337102404670265098}
   - component: {fileID: 6337181753964619029}
   - component: {fileID: 8453927398024727999}
-  m_Layer: 10
+  m_Layer: 2
   m_Name: UnitCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -704,7 +704,7 @@ GameObject:
   - component: {fileID: 3417909727669115998}
   - component: {fileID: 4061141203750003978}
   - component: {fileID: 1725928067842842775}
-  m_Layer: 10
+  m_Layer: 2
   m_Name: Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -779,7 +779,7 @@ GameObject:
   - component: {fileID: 6803847308082837020}
   - component: {fileID: 7416603205072384601}
   - component: {fileID: 5221579867415621309}
-  m_Layer: 10
+  m_Layer: 2
   m_Name: UnitName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -873,7 +873,7 @@ GameObject:
   - component: {fileID: 6271652315355764060}
   - component: {fileID: 1796982204011250345}
   - component: {fileID: 3299752142507180103}
-  m_Layer: 10
+  m_Layer: 2
   m_Name: Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
