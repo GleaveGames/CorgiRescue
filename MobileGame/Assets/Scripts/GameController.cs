@@ -390,15 +390,13 @@ public class GameController : MonoBehaviour
             else if (enemyUnits.Count == 0 && playerUnits.Count > 0)
             {
                 Battling = false;
-                Debug.Log("you win");
                 wins++;
                 resultObj.GetComponent<Image>().sprite = resultSprites[0];
-                if (wins == 10) resultObj.GetComponent<Image>().sprite = resultSprites[5];
+                if (wins == 10) resultObj.GetComponent<Image>().sprite = resultSprites[4];
             }
             else if (playerUnits.Count == 0) { 
                 Battling = false;
                 lives -= 1;
-                Debug.Log("You LOSE");
                 resultObj.GetComponent<Image>().sprite = resultSprites[1];
                 if (lives <= 0) resultObj.GetComponent<Image>().sprite = resultSprites[3];
             }

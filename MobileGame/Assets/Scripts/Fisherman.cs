@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Fisherman : Unit
 {
+    [SerializeField]
+    Sprite fish;
     public override IEnumerator OnEndTurn()
     {
         actioning = true;
@@ -28,7 +30,7 @@ public class Fisherman : Unit
         {
             List<GameObject> allies = GetAllies();
             allies.Remove(gameObject);
-            for(int i = 0; i < 2; i++)
+            for(int i = 0; i < level; i++)
             {
                 float buffTimer = 0;
                 if (allies.Count > 0)
@@ -36,6 +38,7 @@ public class Fisherman : Unit
                     StartCoroutine(Jiggle());
                     int randomUnitIndex = Random.Range(0, allies.Count - 1);
                     GameObject newBuff = Instantiate(Buff, transform.position, Quaternion.identity);
+                    newBuff.GetComponent<SpriteRenderer>().sprite = fish;
                     while (buffTimer <= buffTime)
                     {
                         newBuff.transform.position = new Vector2(Mathf.Lerp(transform.position.x, allies[randomUnitIndex].transform.position.x, buffX.Evaluate(buffTimer / buffTime)),
@@ -44,8 +47,8 @@ public class Fisherman : Unit
                         yield return null;
                     }
                     Destroy(newBuff);
-                    allies[randomUnitIndex].GetComponent<Unit>().attack += attackBuff * level;
-                    allies[randomUnitIndex].GetComponent<Unit>().health += healthBuff * level;
+                    allies[randomUnitIndex].GetComponent<Unit>().attack += attackBuff;
+                    allies[randomUnitIndex].GetComponent<Unit>().health += healthBuff;
                     StartCoroutine(allies[randomUnitIndex].GetComponent<Unit>().BuffJuice(1));
                     StartCoroutine(allies[randomUnitIndex].GetComponent<Unit>().Jiggle());
                     allies.Remove(allies[randomUnitIndex]);

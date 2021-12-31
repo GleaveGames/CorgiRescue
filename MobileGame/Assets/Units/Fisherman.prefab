@@ -103,9 +103,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'On End of Turn: If no adjacent units, give 2 random allies +1 health'
-  UnitText2: 'On End of Turn: If no adjacent units, give 2 random allies +2 health'
-  UnitText3: 'On End of Turn: If no adjacent units, give 2 random allies +3 health'
+  UnitText1: 'On End of Turn: If no adjacent units, give a random ally +1 health'
+  UnitText2: 'On End of Turn: If no adjacent units, give 2 random allies +1 health'
+  UnitText3: 'On End of Turn: If no adjacent units, give 3 random allies +1 health'
 --- !u!61 &757357724859235949
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -162,10 +162,13 @@ MonoBehaviour:
     m_Bits: 512
   healthPreBattle: 0
   attackPreBattle: 0
+  levelPreBattle: 0
+  expPreBattle: 0
   attackBuff: 0
   healthBuff: 1
   dead: 0
   initPos: {x: 0, y: 0}
+  fish: {fileID: 21300000, guid: c3c2fbe0957f935429383f13fd812d94, type: 3}
 --- !u!1001 &7010121811541750209
 PrefabInstance:
   m_ObjectHideFlags: 0

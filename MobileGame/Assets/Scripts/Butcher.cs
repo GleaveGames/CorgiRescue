@@ -5,6 +5,9 @@ using UnityEngine;
 public class Butcher : Unit
 {
     bool jiggled = false;
+    [SerializeField]
+    Sprite meat;
+
     public override IEnumerator OnDie()
     {
         actioning = true;
@@ -55,6 +58,7 @@ public class Butcher : Unit
             jiggled = true;
             float buffTimer = 0;
             GameObject newBuff = Instantiate(Buff, transform.position, Quaternion.identity);
+            newBuff.GetComponent<SpriteRenderer>().sprite = meat;
             while (buffTimer <= buffTime)
             {
                 newBuff.transform.position = new Vector2(Mathf.Lerp(transform.position.x, square.transform.position.x, buffX.Evaluate(buffTimer / buffTime)),
