@@ -49,7 +49,9 @@ public class Fisherman : Unit
                     Destroy(newBuff);
                     allies[randomUnitIndex].GetComponent<Unit>().attack += attackBuff;
                     allies[randomUnitIndex].GetComponent<Unit>().health += healthBuff;
-                    StartCoroutine(allies[randomUnitIndex].GetComponent<Unit>().BuffJuice(1));
+                    if (healthBuff > 0 && attackBuff > 0) StartCoroutine(allies[randomUnitIndex].GetComponent<Unit>().BuffJuice(3));
+                    else if (healthBuff > 0) StartCoroutine(allies[randomUnitIndex].GetComponent<Unit>().BuffJuice(1));
+                    else if (attackBuff > 0) StartCoroutine(allies[randomUnitIndex].GetComponent<Unit>().BuffJuice(2)); 
                     StartCoroutine(allies[randomUnitIndex].GetComponent<Unit>().Jiggle());
                     allies.Remove(allies[randomUnitIndex]);
                 }

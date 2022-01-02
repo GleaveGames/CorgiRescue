@@ -138,8 +138,12 @@ public class Unit : MonoBehaviour
         Collider2D square = null;
         if (playerUnit) square = Physics2D.OverlapPoint(initPos, playerTiles);
         else square = Physics2D.OverlapPoint(initPos, enemyTiles);
-        square.GetComponent<GameSquare>().occupied = false;
-        square.GetComponent<GameSquare>().occupier = null;
+        //new for prisoner next if
+        if (square.GetComponent<GameSquare>().occupier = gameObject)
+        {
+            square.GetComponent<GameSquare>().occupied = false;
+            square.GetComponent<GameSquare>().occupier = null;
+        }
         Instantiate(deathParticles, square.transform.position, Quaternion.identity);
         while (gc.Battling) yield return null;
         actioning = false;

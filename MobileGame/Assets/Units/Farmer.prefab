@@ -145,10 +145,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   temperary: 0
-  symbol: 102
+  symbol: 70
   quality: 1
   health: 1
-  attack: 1
+  attack: 2
   level: 1
   exp: 1
   spriteQuality: {fileID: 0}

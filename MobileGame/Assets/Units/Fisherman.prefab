@@ -144,10 +144,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04c3cae0f9c9d5e45874b121ddb12ce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  temperary: 0
   symbol: 102
   quality: 1
   health: 1
-  attack: 1
+  attack: 2
   level: 1
   exp: 1
   spriteQuality: {fileID: 0}

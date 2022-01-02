@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &757357724859235951
+--- !u!1 &538672580819213156
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 757357724859235948}
-  - component: {fileID: 757357724859235947}
-  - component: {fileID: 757357724859235946}
-  - component: {fileID: 757357724859235949}
-  - component: {fileID: 5940605233151521848}
+  - component: {fileID: 538672580819213157}
+  - component: {fileID: 538672580819213158}
+  - component: {fileID: 538672580819213159}
+  - component: {fileID: 538672580819213160}
+  - component: {fileID: 1152934073678797454}
   m_Layer: 0
-  m_Name: Stableboy
+  m_Name: Plagued
   m_TagString: ShopItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &757357724859235948
+--- !u!4 &538672580819213157
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 757357724859235951}
+  m_GameObject: {fileID: 538672580819213156}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1307807007350703256}
+  - {fileID: 517086414595679515}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &757357724859235947
+--- !u!212 &538672580819213158
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 757357724859235951}
+  m_GameObject: {fileID: 538672580819213156}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 8c6d0eac641d4e64ab56cf163d28d5a4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5652b997395151341920cc920bd6d054, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -86,13 +86,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &757357724859235946
+--- !u!114 &538672580819213159
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 757357724859235951}
+  m_GameObject: {fileID: 538672580819213156}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0080e3b69e591b540b0ba55e3fdc40df, type: 3}
@@ -103,16 +103,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'On Attack: If next to a princess, deal 3 damage to all enemies'
-  UnitText2: 'On Attack: If next to a princess, deal 6 damage to all enemies'
-  UnitText3: 'On Attack: If next to a princess, deal 9 damage to all enemies'
---- !u!61 &757357724859235949
+  UnitText1: 'On Sell: Give a random Unit +1 Attack and Health'
+  UnitText2: 'On Sell: Give a random Unit +2 Attack and Health'
+  UnitText3: 'On Sell: Give a random Unit +3 Attack and Health'
+--- !u!61 &538672580819213160
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 757357724859235951}
+  m_GameObject: {fileID: 538672580819213156}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -132,22 +132,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5940605233151521848
+--- !u!114 &1152934073678797454
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 757357724859235951}
+  m_GameObject: {fileID: 538672580819213156}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 654fb5dada61d2b41871804726e82ddd, type: 3}
+  m_Script: {fileID: 11500000, guid: c9fc9d40851721e448485fb4e2e45487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   temperary: 0
-  symbol: 116
+  symbol: 50
   quality: 1
-  health: 3
+  health: 2
   attack: 2
   level: 1
   exp: 1
@@ -165,17 +165,16 @@ MonoBehaviour:
   attackPreBattle: 0
   levelPreBattle: 0
   expPreBattle: 0
-  attackBuff: 0
-  healthBuff: -3
+  attackBuff: 1
+  healthBuff: 1
   dead: 0
   initPos: {x: 0, y: 0}
-  heart: {fileID: 8529046716491591870, guid: 82a71292ac3decf4bb51d0d73c250402, type: 3}
---- !u!1001 &7010121811541750209
+--- !u!1001 &8377742542592659522
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 757357724859235948}
+    m_TransformParent: {fileID: 538672580819213157}
     m_Modifications:
     - target: {fileID: 4565190641329966298, guid: b4101005315136046a3527e48caa4c0f, type: 3}
       propertyPath: m_Name
@@ -267,8 +266,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4101005315136046a3527e48caa4c0f, type: 3}
---- !u!224 &1307807007350703256 stripped
+--- !u!224 &517086414595679515 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8317786970848638297, guid: b4101005315136046a3527e48caa4c0f, type: 3}
-  m_PrefabInstance: {fileID: 7010121811541750209}
+  m_PrefabInstance: {fileID: 8377742542592659522}
   m_PrefabAsset: {fileID: 0}

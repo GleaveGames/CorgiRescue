@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 757357724859235947}
   - component: {fileID: 757357724859235946}
   - component: {fileID: 757357724859235949}
-  - component: {fileID: 5940605233151521848}
+  - component: {fileID: 2777364915083652171}
   m_Layer: 0
-  m_Name: Stableboy
+  m_Name: Prisoner
   m_TagString: ShopItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1307807007350703256}
+  - {fileID: 1303209330725629080}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 8c6d0eac641d4e64ab56cf163d28d5a4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cf75fe083f623164cb4fb1a3b2ac25cf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,9 +103,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'On Attack: If next to a princess, deal 3 damage to all enemies'
-  UnitText2: 'On Attack: If next to a princess, deal 6 damage to all enemies'
-  UnitText3: 'On Attack: If next to a princess, deal 9 damage to all enemies'
+  UnitText1: 'On Die: If no other units on row, spawn a level 1 peasant '
+  UnitText2: 'On Die: If no other units on row, spawn a level 2 peasant '
+  UnitText3: 'On Die: If no other units on row, spawn a level 3 peasant '
 --- !u!61 &757357724859235949
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -132,7 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5940605233151521848
+--- !u!114 &2777364915083652171
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,14 +141,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 757357724859235951}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 654fb5dada61d2b41871804726e82ddd, type: 3}
+  m_Script: {fileID: 11500000, guid: 488e2771bc792f3479b21c31491fc14a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   temperary: 0
-  symbol: 116
+  symbol: 51
   quality: 1
-  health: 3
-  attack: 2
+  health: 2
+  attack: 1
   level: 1
   exp: 1
   spriteQuality: {fileID: 0}
@@ -166,11 +166,11 @@ MonoBehaviour:
   levelPreBattle: 0
   expPreBattle: 0
   attackBuff: 0
-  healthBuff: -3
+  healthBuff: 0
   dead: 0
   initPos: {x: 0, y: 0}
-  heart: {fileID: 8529046716491591870, guid: 82a71292ac3decf4bb51d0d73c250402, type: 3}
---- !u!1001 &7010121811541750209
+  spawnedPeasant: {fileID: 757357724859235951, guid: cb10d016d8dfba8439f2ab10568460b1, type: 3}
+--- !u!1001 &7024307916755573185
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -267,8 +267,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4101005315136046a3527e48caa4c0f, type: 3}
---- !u!224 &1307807007350703256 stripped
+--- !u!224 &1303209330725629080 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8317786970848638297, guid: b4101005315136046a3527e48caa4c0f, type: 3}
-  m_PrefabInstance: {fileID: 7010121811541750209}
+  m_PrefabInstance: {fileID: 7024307916755573185}
   m_PrefabAsset: {fileID: 0}
