@@ -574,7 +574,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'WarCry: If on the back row, gain +3 Attack'
+  m_Text: 
 --- !u!114 &6187736509760191806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -846,7 +846,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Archer
+  m_Text: 
 --- !u!114 &5221579867415621309
 MonoBehaviour:
   m_ObjectHideFlags: 0
