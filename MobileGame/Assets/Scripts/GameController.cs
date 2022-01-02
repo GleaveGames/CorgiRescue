@@ -122,7 +122,7 @@ public class GameController : MonoBehaviour
                     else if (square != null && !square.GetComponent<GameSquare>().occupied)
                     {
                         //  MOVE THE SQUARE 
-                        draggingObj.transform.position = square.transform.position;
+                        draggingObj.transform.position = new Vector3(square.transform.position.x, square.transform.position.y, 0);
                         square.GetComponent<GameSquare>().occupied = true;
                         square.GetComponent<GameSquare>().occupier = draggingObj;
                         draggingObj.transform.GetChild(0).gameObject.SetActive(true);
@@ -167,7 +167,7 @@ public class GameController : MonoBehaviour
                     else if (square != null && !square.GetComponent<GameSquare>().occupied && unitNumber < 6)
                     {
                         //Buy onto new Square
-                        draggingObj.transform.position = square.transform.position;
+                        draggingObj.transform.position = new Vector3(square.transform.position.x, square.transform.position.y, 0);
                         square.GetComponent<GameSquare>().occupied = true;
                         square.GetComponent<GameSquare>().occupier = draggingObj;
                         draggingObj.GetComponent<ShopSprite>().Bought();
