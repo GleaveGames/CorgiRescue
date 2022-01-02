@@ -48,6 +48,8 @@ public class Shop : MonoBehaviour
         }
         StartCoroutine(UnlockBuilding(0));
 
+        //SHop spot GO is for the Shop spot not the occupier so need to redo code!
+
         ShopSlots = new List<ShopSpot>();
         gc = FindObjectOfType<GameController>();
         for (int i = 0; i < transform.childCount; i++) {
@@ -84,6 +86,7 @@ public class Shop : MonoBehaviour
                 }
                 GameObject unit = Instantiate(unitPool[Random.Range(0, unitPool.Count)], ShopSlots[i].go.transform.position, Quaternion.identity);
                 unit.transform.parent = ShopSlots[i].go.transform;
+                ShopSlots[i].unit = unit;
             }
             gc.Gold--;
         }
@@ -96,7 +99,7 @@ public class Shop : MonoBehaviour
     public void ToggleFreeze(int spot)
     {
         ShopSpot sp = ShopSlots[spot];
-        if(sp.go != null)
+        if(sp.go != null && sp.unit != null)
         {
             sp.frozen = !sp.frozen;
         }
@@ -142,4 +145,5 @@ public class ShopSpot
     public bool frozen;
     public SpriteRenderer sr;
     public int number;
+    public GameObject unit;
 }

@@ -74,9 +74,10 @@ public class GameController : MonoBehaviour
     AnimationCurve resultJuice;
     [SerializeField]
     List<Button> freezeButtons;
-
-
     Transform CameraTrans;
+    [HideInInspector]
+    public bool loadFailed = false;
+
     private void Start()
     {
         ResetStats();
@@ -158,6 +159,7 @@ public class GameController : MonoBehaviour
                     }
                     else if (square != null && square.name == "Sell")
                     {
+                        Gold -= 3;
                         Gold += draggingObj.GetComponent<Unit>().level;
                         StartCoroutine(draggingObj.GetComponent<Unit>().OnSell());
                         Destroy(draggingObj);
@@ -284,9 +286,6 @@ public class GameController : MonoBehaviour
             formation += ']';
         }
         formation += '[';
-
-        Debug.Log(formation);
-
         if (!LOCALTESTING) StartCoroutine(GetComponent<DataBase>().FindOpponent(round.ToString(), formation));
         else
         {
@@ -298,7 +297,19 @@ public class GameController : MonoBehaviour
             yield return null;
         }
 
-        if(enemyFormation == null || enemyFormation == "") enemyFormation = enemyFormation = "[............p.p.p.][1,100,100][1,100,100][1,100,100][";
+        if (loadFailed)
+        {
+            foreach (Button b in freezeButtons)
+            {
+                b.interactable = true;
+            }
+            BattleButton.interactable = true;
+            loadFailed = false;
+            yield break;
+        }
+
+
+        //if(enemyFormation == null || enemyFormation == "") enemyFormation = enemyFormation = "[............p.p.p.][1,100,100][1,100,100][1,100,100][";
         string[] sections = enemyFormation.Split('[');
 
         //Spawn Enemies
@@ -435,7 +446,13 @@ public class GameController : MonoBehaviour
         }
         CameraTrans.position = new Vector3(CameraTrans.position.x, -3.87f,-10);
 
-        if (wins == 10 || lives <= 0) SceneManager.LoadScene(1);
+        if (wins == 10 || lives <= 0) {
+            PlayerPrefs.SetString("formation", formation);
+            PlayerPrefs.SetInt("wins", wins);
+            PlayerPrefs.SetInt("round", round);
+            PlayerPrefs.SetInt("lives", lives);
+            SceneManager.LoadScene(1);
+        }
 
         foreach (GameObject u in enemyUnits)
         {

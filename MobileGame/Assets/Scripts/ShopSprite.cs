@@ -20,16 +20,26 @@ public class ShopSprite : MonoBehaviour
     [SerializeField]
     string UnitText3;
     List<Coroutine> mouseoverchecks;
+    int shopSpot = -100;
+    Shop shop;
 
     private void Start()
     {
         gc = FindObjectOfType<GameController>();
+        shop = FindObjectOfType<Shop>();
         unitTextParent = transform.GetChild(0).GetChild(3).gameObject;
         unitTextParent.SetActive(false);
         string[] UnitName = gameObject.name.Split('(');
         string name = UnitName[0];
         unitTextParent.transform.GetChild(1).GetComponent<Text>().text = name;
         mouseoverchecks = new List<Coroutine>();
+        if (transform.parent.name.Contains("ShopItem"))
+        {
+            if (transform.parent.name.Contains("1")) shopSpot = 1;
+            else if (transform.parent.name.Contains("2")) shopSpot = 2;
+            else if (transform.parent.name.Contains("3")) shopSpot = 3;
+            else shopSpot = 0;
+        }
     }
 
     // Update is called once per frame
@@ -64,21 +74,12 @@ public class ShopSprite : MonoBehaviour
         StartCoroutine(GetComponent<Unit>().OnBuy());
         unitTextParent.SetActive(false);
         StartCoroutine(GetComponent<Unit>().Jiggle());
+        if (shopSpot >= 0 && shop.ShopSlots[shopSpot].frozen) shop.ToggleFreeze(shopSpot);
+        if(shopSpot>=0) shop.ShopSlots[shopSpot].unit = null;
     }
 
     public void OnMouseEnter()
     {
-        /*
-        if(!beenPlaced && transform.parent.name.Contains("ShopItem"))
-        {
-            StartCoroutine(MouseOverCheck());
-        }
-        else
-        {
-            unitTextParent.SetActive(false);
-        }
-        */
-
         if (!gc.Battling)
         {
             Coroutine i = StartCoroutine(MouseOverCheck());
@@ -87,17 +88,10 @@ public class ShopSprite : MonoBehaviour
     }
     public void OnMouseExit()
     {
-        /*
-        if(!beenPlaced && transform.parent.name.Contains("ShopItem"))
-        {
-            unitTextParent.SetActive(false);
-        }
-        */
         if (!gc.Battling)
         {
             unitTextParent.SetActive(false);
             StopAllMouseOvers();
-            //if(!GetComponent<Unit>().actioning) StopAllCoroutines();
         }
     }
 

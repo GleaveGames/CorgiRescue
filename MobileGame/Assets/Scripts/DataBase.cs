@@ -9,7 +9,12 @@ public class DataBase : MonoBehaviour
     string geturl = "https://feudalwars.000webhostapp.com/upload.php";
     public bool loading;
     public Text loadingText;
-    
+    GameController gc;
+
+    private void Start()
+    {
+        gc = FindObjectOfType<GameController>();
+    }
 
     public IEnumerator FindOpponent(string round, string formation)
     {
@@ -25,6 +30,7 @@ public class DataBase : MonoBehaviour
         if (www.isNetworkError || www.isHttpError)
         {
             loadingText.text = "Loading Failed, error: " + www.error;
+            gc.loadFailed = true;
             Debug.Log("errer " + www.error);
         }
         else
