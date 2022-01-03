@@ -8,22 +8,10 @@ public class BlackSmith : Unit
     {
         actioning = true;
         GameSquare square = null;
-        if (playerUnit)
-        {
-            Collider2D squareCol = Physics2D.OverlapPoint(transform.position + new Vector3(0, 1), playerTiles);
-            if (squareCol != null)
-            {
-                square = squareCol.GetComponent<GameSquare>();
-            }
-        }
-        else
-        {
-            Collider2D squareCol = Physics2D.OverlapPoint(transform.position + new Vector3(0, -1), enemyTiles);
-            if (squareCol != null)
-            {
-                square = squareCol.GetComponent<GameSquare>();
-            }
-        }
+        Collider2D squareCol = null;
+        if (playerUnit) squareCol = Physics2D.OverlapPoint(transform.position + new Vector3(0, 1), playerTiles);
+        else squareCol = Physics2D.OverlapPoint(transform.position + new Vector3(0, -1), enemyTiles);
+        if (squareCol != null) square = squareCol.GetComponent<GameSquare>();
         if (square != null && square.occupied)
         {
             float buffTimer = 0;

@@ -103,8 +103,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'On Level Up: Gain +1 Attack and Health'
-  UnitText2: 'On Level Up: Gain +2 Attack and Health'
+  UnitText1: 'On Level Up: Gain +1/+1'
+  UnitText2: 'On Level Up: Gain +2/+2'
   UnitText3: Max Level
 --- !u!61 &2297039251316750630
 BoxCollider2D:
@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2f673bde0ef4547bb3d187cbcd398d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  temperary: 0
   symbol: 115
   quality: 2
   health: 3
@@ -162,6 +163,8 @@ MonoBehaviour:
     m_Bits: 512
   healthPreBattle: 0
   attackPreBattle: 0
+  levelPreBattle: 0
+  expPreBattle: 0
   attackBuff: 1
   healthBuff: 1
   dead: 0

@@ -103,9 +103,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'On Sell: Give a random Unit +1 Attack and Health'
-  UnitText2: 'On Sell: Give a random Unit +2 Attack and Health'
-  UnitText3: 'On Sell: Give a random Unit +3 Attack and Health'
+  UnitText1: 'On Sell: Give a random Unit +1/+1'
+  UnitText2: 'On Sell: Give a random Unit +2/+2'
+  UnitText3: 'On Sell: Give a random Unit +3/+3'
 --- !u!61 &538672580819213160
 BoxCollider2D:
   m_ObjectHideFlags: 0

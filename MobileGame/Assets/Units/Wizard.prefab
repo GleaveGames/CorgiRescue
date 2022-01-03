@@ -103,9 +103,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'On Buy: Give a random Unit +2 Attack and Health'
-  UnitText2: 'On Buy: Give a random Unit +4 Attack and Health'
-  UnitText3: 'On Buy: Give a random Unit +6 Attack and Health'
+  UnitText1: 'On Buy: Give a random Unit +2/+2'
+  UnitText2: 'On Buy: Give a random Unit +4/+4'
+  UnitText3: 'On Buy: Give a random Unit +6/+6'
 --- !u!61 &538672580819213160
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e455597d1525799418648159b5c0c3d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  temperary: 0
   symbol: 119
   quality: 4
   health: 3
@@ -162,6 +163,8 @@ MonoBehaviour:
     m_Bits: 512
   healthPreBattle: 0
   attackPreBattle: 0
+  levelPreBattle: 0
+  expPreBattle: 0
   attackBuff: 2
   healthBuff: 2
   dead: 0
