@@ -103,9 +103,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'At Start of Turn: Gain +2/+2 if in front of a church member'
-  UnitText2: 'At Start of Turn: Gain +4/+4 if in front of a church member'
-  UnitText3: 'At Start of Turn: Gain +6/+6 if in front of a church member'
+  UnitText1: 'At Start of Turn: Gain +1/+1 if in front of a church member'
+  UnitText2: 'At Start of Turn: Gain +2/+2 if in front of a church member'
+  UnitText3: 'At Start of Turn: Gain +3/+3 if in front of a church member'
 --- !u!61 &757357724859235949
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -147,8 +147,8 @@ MonoBehaviour:
   temperary: 0
   symbol: 105
   quality: 3
-  health: 4
-  attack: 4
+  health: 2
+  attack: 2
   level: 1
   exp: 1
   spriteQuality: {fileID: 0}
@@ -165,8 +165,8 @@ MonoBehaviour:
   attackPreBattle: 0
   levelPreBattle: 0
   expPreBattle: 0
-  attackBuff: 2
-  healthBuff: 2
+  attackBuff: 1
+  healthBuff: 1
   dead: 0
   initPos: {x: 0, y: 0}
   blessing: {fileID: 21300000, guid: 90def36678df3134994718f386551367, type: 3}

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 757357724859235947}
   - component: {fileID: 757357724859235946}
   - component: {fileID: 757357724859235949}
-  - component: {fileID: 1831408127136966548}
   - component: {fileID: 4730395767338695423}
   m_Layer: 0
   m_Name: Paladin
@@ -133,43 +132,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1831408127136966548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 757357724859235951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc09ef9bb68dcf745a639b4885cf1fa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  temperary: 0
-  symbol: 71
-  quality: 2
-  health: 5
-  attack: 3
-  level: 1
-  exp: 1
-  spriteQuality: {fileID: 0}
-  attacking: 0
-  actioning: 0
-  playerUnit: 1
-  playerTiles:
-    serializedVersion: 2
-    m_Bits: 256
-  enemyTiles:
-    serializedVersion: 2
-    m_Bits: 512
-  healthPreBattle: 0
-  attackPreBattle: 0
-  levelPreBattle: 0
-  expPreBattle: 0
-  attackBuff: 0
-  healthBuff: 2
-  dead: 0
-  initPos: {x: 0, y: 0}
 --- !u!114 &4730395767338695423
 MonoBehaviour:
   m_ObjectHideFlags: 0
