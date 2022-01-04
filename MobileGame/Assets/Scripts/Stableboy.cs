@@ -31,7 +31,7 @@ public class Stableboy : Unit
             List<GameObject> enemies = GetEnemies();
             foreach (GameObject u in enemies)
             {
-                StartCoroutine(Buff(u));
+                StartCoroutine(GiveBuff(u));
             }
             float timer = 0;
             while (timer < buffTime)
@@ -44,7 +44,7 @@ public class Stableboy : Unit
     }
 
 
-    private IEnumerator Buff(GameObject u)
+    private IEnumerator GiveBuff(GameObject u)
     {
         GameObject newBuff = Instantiate(heart, transform.position, Quaternion.identity);
         float buffTimer = 0;

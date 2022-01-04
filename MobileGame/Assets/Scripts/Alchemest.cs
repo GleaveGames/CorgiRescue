@@ -11,6 +11,7 @@ public class Alchemest : Unit
 
     public override IEnumerator OnStartOfBattle()
     {
+        actioning = true;
         List<GameObject> allies = GetAllies();
         List<GameObject> enemies = GetEnemies();
         allies.Remove(gameObject);

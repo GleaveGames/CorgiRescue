@@ -14680,6 +14680,9 @@ MonoBehaviour:
   - {fileID: 2297039251316750624, guid: c6452b196b0db614f93f7bf3428043ef, type: 3}
   - {fileID: 757357724859235951, guid: 77bf5dc500cb8764daa8935e89737885, type: 3}
   - {fileID: 538672580819213156, guid: 8b360454daee98f4d9deb34c432c2889, type: 3}
+  - {fileID: 538672580819213156, guid: 7f05e3528d862d74798579a5da221aaf, type: 3}
+  - {fileID: 538672580819213156, guid: 095868f96d169d341b58f78bf530781a, type: 3}
+  - {fileID: 538672580819213156, guid: e6e79ddb9378f6b4bba0ead3e66d0862, type: 3}
   BuildingParent: {fileID: 2065910110}
   buildingY:
     serializedVersion: 2

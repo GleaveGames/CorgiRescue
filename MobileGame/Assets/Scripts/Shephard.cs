@@ -6,6 +6,7 @@ public class Shephard : Unit
 {
     public IEnumerator ShephardBuff(GameObject buffedUnit)
     {
+        actioning = true;
         float buffTimer = 0;
         StartCoroutine(Jiggle());
         GameObject newBuff = Instantiate(Buff, transform.position, Quaternion.identity);
@@ -22,6 +23,7 @@ public class Shephard : Unit
         buffedUnit.GetComponent<Unit>().health += healthBuff * level;
         StartCoroutine(buffedUnit.GetComponent<Unit>().Jiggle());
         StartCoroutine(buffedUnit.GetComponent<Unit>().BuffJuice(3));
+        actioning = false;
         yield return null;
     }
 

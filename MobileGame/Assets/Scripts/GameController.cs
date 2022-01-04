@@ -229,7 +229,7 @@ public class GameController : MonoBehaviour
 
         GetPlayerUnits();
 
-        foreach(GameObject u in playerUnits)
+        foreach(GameObject u in allUnits)
         {
             StartCoroutine(u.GetComponent<Unit>().OnEndTurn());
             while (u.GetComponent<Unit>().actioning)
@@ -245,11 +245,14 @@ public class GameController : MonoBehaviour
 
         foreach (GameObject u in playerUnits)
         {
+            if (u.name.Contains("Apprentice")) continue;
             u.GetComponent<Unit>().healthPreBattle = u.GetComponent<Unit>().health;
             u.GetComponent<Unit>().attackPreBattle = u.GetComponent<Unit>().attack;
             u.GetComponent<Unit>().levelPreBattle = u.GetComponent<Unit>().level;
             u.GetComponent<Unit>().expPreBattle = u.GetComponent<Unit>().exp;
         }
+
+        GetPlayerUnits();
 
 
 

@@ -27,7 +27,7 @@ public class Unit : MonoBehaviour
     protected ParticleSystem deathParticles;
     [HideInInspector]
     protected ParticleSystem coinParticles;    
-    ParticleSystem cloudParticles;
+    protected ParticleSystem cloudParticles;
     [HideInInspector]
     public bool attacking;
     [HideInInspector]
@@ -144,7 +144,7 @@ public class Unit : MonoBehaviour
         if (playerUnit) square = Physics2D.OverlapPoint(initPos, playerTiles);
         else square = Physics2D.OverlapPoint(initPos, enemyTiles);
         //new for prisoner next if
-        if (square.GetComponent<GameSquare>().occupier = gameObject)
+        if (square.GetComponent<GameSquare>().occupier == gameObject)
         {
             square.GetComponent<GameSquare>().occupied = false;
             square.GetComponent<GameSquare>().occupier = null;

@@ -8,20 +8,21 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 538672580819213157}
+  - component: {fileID: 5110117227989537074}
   - component: {fileID: 538672580819213158}
   - component: {fileID: 538672580819213159}
   - component: {fileID: 538672580819213160}
-  - component: {fileID: 4653308992283429344}
+  - component: {fileID: 3208089097209137014}
+  - component: {fileID: 1133496674382573761}
   m_Layer: 0
-  m_Name: Alchemest
+  m_Name: Mage
   m_TagString: ShopItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &538672580819213157
-Transform:
+--- !u!224 &5110117227989537074
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -35,6 +36,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &538672580819213158
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -75,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 3c2f1a4e0d50349459a0802ff4604f4c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 20b68eb031416294eb563e03a4a9b501, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,9 +109,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'WarCry: Give lowest health ally +5/+5'
-  UnitText2: 'WarCry: Give lowest health ally +5/+5 and highest health enemy -5/-5'
-  UnitText3: 'WarCry: Give lowest health ally +10/+10 and highest health enemy -10/-10'
+  UnitText1: 'On Buy: Give a random Unit +2/+2'
+  UnitText2: 'On Buy: Give a random Unit +4/+4'
+  UnitText3: 'On Buy: Give a random Unit +6/+6'
 --- !u!61 &538672580819213160
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -132,7 +138,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4653308992283429344
+--- !u!222 &3208089097209137014
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538672580819213156}
+  m_CullTransparentMesh: 0
+--- !u!114 &1133496674382573761
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,14 +155,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 538672580819213156}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9ab9c7c8ea0e514bb34311b18abc7e7, type: 3}
+  m_Script: {fileID: 11500000, guid: 748122db6568b164cbdc722694524d10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   temperary: 0
-  symbol: 65
+  symbol: 121
   quality: 4
-  health: 3
-  attack: 2
+  health: 4
+  attack: 5
   level: 1
   exp: 1
   spriteQuality: {fileID: 0}
@@ -165,18 +179,17 @@ MonoBehaviour:
   attackPreBattle: 0
   levelPreBattle: 0
   expPreBattle: 0
-  attackBuff: 5
-  healthBuff: 5
+  attackBuff: 0
+  healthBuff: -4
   dead: 0
   initPos: {x: 0, y: 0}
-  potion: {fileID: 21300000, guid: 34ff31aff2a8cb44a937b5e43ce58b40, type: 3}
-  badPotion: {fileID: 21300000, guid: dd0bd2aa7936d52499eeef6b3ede8618, type: 3}
+  fireball: {fileID: 21300000, guid: 472a9e33c0eb8c7409dda093e11f663d, type: 3}
 --- !u!1001 &8377742542592659522
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 538672580819213157}
+    m_TransformParent: {fileID: 5110117227989537074}
     m_Modifications:
     - target: {fileID: 4565190641329966298, guid: b4101005315136046a3527e48caa4c0f, type: 3}
       propertyPath: m_Name

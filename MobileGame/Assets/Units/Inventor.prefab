@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 538672580819213158}
   - component: {fileID: 538672580819213159}
   - component: {fileID: 538672580819213160}
-  - component: {fileID: 4653308992283429344}
+  - component: {fileID: 269625476995228767}
   m_Layer: 0
-  m_Name: Alchemest
+  m_Name: Inventor
   m_TagString: ShopItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 3c2f1a4e0d50349459a0802ff4604f4c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f9ebcb355386b9744adb2f6eaf487340, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,9 +103,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'WarCry: Give lowest health ally +5/+5'
-  UnitText2: 'WarCry: Give lowest health ally +5/+5 and highest health enemy -5/-5'
-  UnitText3: 'WarCry: Give lowest health ally +10/+10 and highest health enemy -10/-10'
+  UnitText1: 'On Start of Turn: Give farm and barracks unity +1/+1'
+  UnitText2: 'On Start of Turn: Give farm and barracks unity +2/+2'
+  UnitText3: 'On Start of Turn: Give farm and barracks unity +3/+3'
 --- !u!61 &538672580819213160
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -132,7 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4653308992283429344
+--- !u!114 &269625476995228767
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,13 +141,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 538672580819213156}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9ab9c7c8ea0e514bb34311b18abc7e7, type: 3}
+  m_Script: {fileID: 11500000, guid: bbe45c1490c74904ba370b97edc915b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   temperary: 0
-  symbol: 65
+  symbol: 73
   quality: 4
-  health: 3
+  health: 2
   attack: 2
   level: 1
   exp: 1
@@ -165,12 +165,10 @@ MonoBehaviour:
   attackPreBattle: 0
   levelPreBattle: 0
   expPreBattle: 0
-  attackBuff: 5
-  healthBuff: 5
+  attackBuff: 1
+  healthBuff: 1
   dead: 0
   initPos: {x: 0, y: 0}
-  potion: {fileID: 21300000, guid: 34ff31aff2a8cb44a937b5e43ce58b40, type: 3}
-  badPotion: {fileID: 21300000, guid: dd0bd2aa7936d52499eeef6b3ede8618, type: 3}
 --- !u!1001 &8377742542592659522
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 538672580819213158}
   - component: {fileID: 538672580819213159}
   - component: {fileID: 538672580819213160}
-  - component: {fileID: 4653308992283429344}
+  - component: {fileID: 5059443877001967178}
   m_Layer: 0
-  m_Name: Alchemest
+  m_Name: Engineer
   m_TagString: ShopItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 3c2f1a4e0d50349459a0802ff4604f4c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1e832b0da38642c48892790b871d1684, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,9 +103,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'WarCry: Give lowest health ally +5/+5'
-  UnitText2: 'WarCry: Give lowest health ally +5/+5 and highest health enemy -5/-5'
-  UnitText3: 'WarCry: Give lowest health ally +10/+10 and highest health enemy -10/-10'
+  UnitText1: 'Death Rattle: Deal 5 damage to enemy back row'
+  UnitText2: 'Death Rattle: Deal 10 damage to enemy back row'
+  UnitText3: 'Death Rattle: Deal 15 damage to enemy back row'
 --- !u!61 &538672580819213160
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -132,7 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4653308992283429344
+--- !u!114 &5059443877001967178
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,14 +141,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 538672580819213156}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9ab9c7c8ea0e514bb34311b18abc7e7, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f1d92a027157fa4c8b691b9531156d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   temperary: 0
-  symbol: 65
+  symbol: 53
   quality: 4
   health: 3
-  attack: 2
+  attack: 5
   level: 1
   exp: 1
   spriteQuality: {fileID: 0}
@@ -165,12 +165,11 @@ MonoBehaviour:
   attackPreBattle: 0
   levelPreBattle: 0
   expPreBattle: 0
-  attackBuff: 5
-  healthBuff: 5
+  attackBuff: 0
+  healthBuff: -5
   dead: 0
   initPos: {x: 0, y: 0}
-  potion: {fileID: 21300000, guid: 34ff31aff2a8cb44a937b5e43ce58b40, type: 3}
-  badPotion: {fileID: 21300000, guid: dd0bd2aa7936d52499eeef6b3ede8618, type: 3}
+  bomb: {fileID: 21300000, guid: 5528b423a20983844955b623ee7664de, type: 3}
 --- !u!1001 &8377742542592659522
 PrefabInstance:
   m_ObjectHideFlags: 0
