@@ -103,9 +103,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'On Attack: If next to a princess, deal 3 damage to all enemies'
-  UnitText2: 'On Attack: If next to a princess, deal 6 damage to all enemies'
-  UnitText3: 'On Attack: If next to a princess, deal 9 damage to all enemies'
+  UnitText1: 'Deathrattle: If next to a princess, deal 3 damage to all enemies'
+  UnitText2: 'Deathrattle: If next to a princess, deal 6 damage to all enemies'
+  UnitText3: 'Deathrattle: If next to a princess, deal 9 damage to all enemies'
 --- !u!61 &757357724859235949
 BoxCollider2D:
   m_ObjectHideFlags: 0

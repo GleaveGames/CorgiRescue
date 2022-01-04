@@ -103,9 +103,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'End of Turn: Give other barracks units +1/+1'
-  UnitText2: 'End of Turn: Give other barracks units +2/+2'
-  UnitText3: 'End of Turn: Give other barracks units +3/+3'
+  UnitText1: 'End of Turn: If on front row, give other barracks units +1/+1'
+  UnitText2: 'End of Turn: If on front row, give other barracks units +2/+2'
+  UnitText3: 'End of Turn: If on front row, give other barracks units +3/+3'
 --- !u!61 &538672580819213160
 BoxCollider2D:
   m_ObjectHideFlags: 0

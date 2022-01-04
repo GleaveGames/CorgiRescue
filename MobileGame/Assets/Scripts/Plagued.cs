@@ -10,6 +10,7 @@ public class Plagued : Unit
         List<GameObject> allies = GetAllies();
         allies.Remove(gameObject);
         float buffTimer = 0;
+        GetComponent<SpriteRenderer>().enabled = false;
         if (allies.Count > 0)
         {
             int randomUnitIndex = Random.Range(0, allies.Count - 1);
@@ -21,12 +22,11 @@ public class Plagued : Unit
                 buffTimer += Time.deltaTime;
                 yield return null;
             }
-
+            StartCoroutine(allies[randomUnitIndex].GetComponent<Unit>().BuffJuice(3));
+            StartCoroutine(allies[randomUnitIndex].GetComponent<Unit>().Jiggle());
             Destroy(newBuff);
             allies[randomUnitIndex].GetComponent<Unit>().attack += attackBuff * level;
             allies[randomUnitIndex].GetComponent<Unit>().health += healthBuff * level;
-            StartCoroutine(allies[randomUnitIndex].GetComponent<Unit>().BuffJuice(3));
-            StartCoroutine(allies[randomUnitIndex].GetComponent<Unit>().Jiggle());
         }
 
         yield return StartCoroutine(base.OnSell());

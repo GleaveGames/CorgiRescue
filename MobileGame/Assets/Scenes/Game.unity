@@ -13395,6 +13395,7 @@ MonoBehaviour:
   levelUpParticles: {fileID: 3471263856996367738, guid: 9dea54de950692a4fa18e618722f2887, type: 3}
   deathParticles: {fileID: 3471263856996367738, guid: f490c3493c323824a9da43b810943afb, type: 3}
   cloudParticles: {fileID: 3471263856996367738, guid: cbf5bd175325b0e4eb92d26fe6d75849, type: 3}
+  coinParticles: {fileID: 3471263856996367738, guid: 535a3dfa1e1da2843a2703c984d169e3, type: 3}
   attackTime: 1
   qualitySprites:
   - {fileID: 21300000, guid: a1d08803e49b5be4292642a8d7e63a69, type: 3}

@@ -27,7 +27,7 @@ public class Butcher : Unit
             }
         }
 
-        yield return new WaitForSeconds(buffTime);
+        if(jiggled) yield return new WaitForSeconds(buffTime);
         jiggled = false;
         yield return StartCoroutine(base.OnDie());
     }

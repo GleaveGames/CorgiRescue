@@ -28,9 +28,9 @@ public class Executioner : Unit
             Destroy(newBuff);
             health += level/2 * square.occupier.GetComponent<Unit>().health;
             attack += level/2 * square.occupier.GetComponent<Unit>().attack;
+            StartCoroutine(square.occupier.GetComponent<Unit>().OnDie());
             square.occupier.GetComponent<Unit>().health = 0;
             square.occupier.GetComponent<Unit>().attack = 0;
-
             StartCoroutine(BuffJuice(3));
             StartCoroutine(Jiggle());
         }

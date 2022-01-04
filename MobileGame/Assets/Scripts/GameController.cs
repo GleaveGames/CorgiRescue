@@ -65,6 +65,7 @@ public class GameController : MonoBehaviour
     public ParticleSystem levelUpParticles;
     public ParticleSystem deathParticles;
     public ParticleSystem cloudParticles;
+    public ParticleSystem coinParticles;
     public float attackTime;
     public Sprite[] qualitySprites;
     public Sprite[] levelSprites;
@@ -117,7 +118,6 @@ public class GameController : MonoBehaviour
                     {
                         Gold += draggingObj.GetComponent<Unit>().level;
                         StartCoroutine(draggingObj.GetComponent<Unit>().OnSell());
-                        Destroy(draggingObj);
                     }
                     else if (square != null && !square.GetComponent<GameSquare>().occupied)
                     {
@@ -162,7 +162,6 @@ public class GameController : MonoBehaviour
                         Gold -= 3;
                         Gold += draggingObj.GetComponent<Unit>().level;
                         StartCoroutine(draggingObj.GetComponent<Unit>().OnSell());
-                        Destroy(draggingObj);
                     }
                     else if (square != null && !square.GetComponent<GameSquare>().occupied && unitNumber < 6)
                     {
@@ -367,10 +366,7 @@ public class GameController : MonoBehaviour
         foreach (GameObject u in allUnits)
         {
             StartCoroutine(u.GetComponent<Unit>().OnStartOfBattle());
-            while (u.GetComponent<Unit>().actioning)
-            {
-                yield return null;
-            }
+            if (u.GetComponent<Unit>().actioning) yield return new WaitForSeconds(buffTime);
         }
 
         yield return new WaitForSeconds(1);
@@ -484,7 +480,7 @@ public class GameController : MonoBehaviour
         foreach (GameObject u in playerUnits)
         {
             StartCoroutine(u.GetComponent<Unit>().OnStartOfTurn());
-            while (u.GetComponent<Unit>().actioning) yield return null;
+            if (u.GetComponent<Unit>().actioning) yield return new WaitForSeconds(buffTime);
         }
 
         if (round == 2) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(1));  

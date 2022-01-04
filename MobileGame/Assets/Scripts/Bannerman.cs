@@ -5,19 +5,20 @@ using UnityEngine;
 public class Bannerman : Unit
 {
     bool didBuff = false;
-    public override IEnumerator OnEndTurn()
+    public override IEnumerator OnStartOfTurn()
     {
         actioning = true;
-        if(transform.position.y == 0)
+        Collider2D col = Physics2D.OverlapPoint(transform.position, playerTiles);
+        if(col.transform.position.y == 0)
         {
             List<GameObject> allies = GetAllies();
             allies.Remove(gameObject);
-            float buffTimer = 0;
             for (int i =0;i<allies.Count;i++)
             {
-                GameObject newBuff = Instantiate(Buff, transform.position, Quaternion.identity);
                 if (allies[i].GetComponent<Unit>().quality != 2) continue;
+                GameObject newBuff = Instantiate(Buff, transform.position, Quaternion.identity);
                 StartCoroutine(Jiggle());
+                float buffTimer = 0;
 
                 while (buffTimer <= buffTime)
                 {
@@ -35,7 +36,8 @@ public class Bannerman : Unit
             }
             
         }
+        if (didBuff) StartCoroutine(Jiggle());
         didBuff = false;
-        yield return StartCoroutine(base.OnEndTurn());
+        yield return StartCoroutine(base.OnStartOfTurn());
     }
 }

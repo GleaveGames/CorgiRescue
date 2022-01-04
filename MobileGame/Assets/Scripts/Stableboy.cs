@@ -7,7 +7,7 @@ public class Stableboy : Unit
     bool princess;
     [SerializeField]
     GameObject heart;
-    public override IEnumerator OnAttack()
+    public override IEnumerator OnDie()
     {
         princess = false;
         actioning = true;
@@ -40,7 +40,7 @@ public class Stableboy : Unit
                 yield return null;
             }
         }
-        yield return StartCoroutine(base.OnAttack());
+        yield return StartCoroutine(base.OnDie());
     }
 
 
@@ -56,6 +56,8 @@ public class Stableboy : Unit
             yield return null;
         }
         u.GetComponent<Unit>().health += healthBuff * level;
+        if (u.GetComponent<Unit>().health <= 0) StartCoroutine(u.GetComponent<Unit>().OnDie());
+        else StartCoroutine(u.GetComponent<Unit>().OnHurt());
         Destroy(newBuff);
         u.GetComponent<Unit>().CollisionJiggle();
     }

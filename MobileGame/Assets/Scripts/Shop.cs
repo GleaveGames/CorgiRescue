@@ -99,6 +99,10 @@ public class Shop : MonoBehaviour
     public void ToggleFreeze(int spot)
     {
         ShopSpot sp = ShopSlots[spot];
+        if(sp.unit == null)
+        {
+            if (sp.go.transform.childCount > 2) sp.unit = sp.go.transform.GetChild(2).gameObject;
+        }
         if(sp.go != null && sp.unit != null)
         {
             sp.frozen = !sp.frozen;

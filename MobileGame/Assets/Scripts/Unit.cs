@@ -24,7 +24,9 @@ public class Unit : MonoBehaviour
     public GameObject spriteQuality;
     ParticleSystem levelUpParticles;
     [HideInInspector]
-    protected ParticleSystem deathParticles;    
+    protected ParticleSystem deathParticles;
+    [HideInInspector]
+    protected ParticleSystem coinParticles;    
     ParticleSystem cloudParticles;
     [HideInInspector]
     public bool attacking;
@@ -94,6 +96,7 @@ public class Unit : MonoBehaviour
         levelUpParticles = gc.levelUpParticles;
         deathParticles = gc.deathParticles;
         cloudParticles = gc.cloudParticles;
+        coinParticles = gc.coinParticles;
         Instantiate(cloudParticles, transform.position, Quaternion.identity);
         attackTime = gc.attackTime;
         initPos = transform.position;
@@ -248,6 +251,8 @@ public class Unit : MonoBehaviour
     public virtual IEnumerator OnSell()
     {
         actioning = false;
+        Instantiate(coinParticles, transform.position, Quaternion.identity);
+        Destroy(gameObject);
         yield return null;
     }
     public virtual IEnumerator Attack()
