@@ -13057,7 +13057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e46a2c264b040c489fd4af5c317b877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LOCALTESTING: 0
+  LOCALTESTING: 1
   databasetext: 
   draggingObj: {fileID: 0}
   squares:
@@ -13484,7 +13484,7 @@ MonoBehaviour:
   - {fileID: 1455835293}
   - {fileID: 711119216}
   loadFailed: 0
-  zombieColor: {r: 0.31764707, g: 0.5803922, b: 0.31764707, a: 1}
+  zombieColor: {r: 0.6117647, g: 0.8000001, b: 0.2784314, a: 1}
 --- !u!4 &1823306627
 Transform:
   m_ObjectHideFlags: 0
@@ -14677,6 +14677,7 @@ MonoBehaviour:
   - {fileID: 757357724859235951, guid: 77bf5dc500cb8764daa8935e89737885, type: 3}
   - {fileID: 538672580819213156, guid: 8b360454daee98f4d9deb34c432c2889, type: 3}
   - {fileID: 538672580819213156, guid: df9861c8f1f259a4c8a8cd8731e7a7c5, type: 3}
+  - {fileID: 538672580819213156, guid: 1fa50e021941fa04f94f1ac3d37eed11, type: 3}
   BuildingParent: {fileID: 2065910110}
   buildingY:
     serializedVersion: 2
