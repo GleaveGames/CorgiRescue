@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 757357724859235946}
   - component: {fileID: 757357724859235949}
   - component: {fileID: 1831408127136966548}
+  - component: {fileID: 4730395767338695423}
   m_Layer: 0
-  m_Name: Guard
+  m_Name: Paladin
   m_TagString: ShopItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 18f7f61780b7c8545aa3a8ce11c2fc58, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 29f884022b9117846a9b2a85a7ac5758, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,9 +104,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'On Hurt: Give adjacent units behind +2 health'
-  UnitText2: 'On Hurt: Give adjacent units behind +4 health'
-  UnitText3: 'On Hurt: Give adjacent units behind +6 health'
+  UnitText1: 'Death Rattle: Give all church units +1/+2'
+  UnitText2: 'Death Rattle: Give all church units +2/+4'
+  UnitText3: 'Death Rattle: Give all church units +3/+6'
 --- !u!61 &757357724859235949
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -147,8 +148,8 @@ MonoBehaviour:
   temperary: 0
   symbol: 71
   quality: 2
-  health: 4
-  attack: 1
+  health: 5
+  attack: 3
   level: 1
   exp: 1
   spriteQuality: {fileID: 0}
@@ -166,6 +167,43 @@ MonoBehaviour:
   levelPreBattle: 0
   expPreBattle: 0
   attackBuff: 0
+  healthBuff: 2
+  dead: 0
+  initPos: {x: 0, y: 0}
+--- !u!114 &4730395767338695423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757357724859235951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a41e6486a3b7e4e49b61e6cb01ce9587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  temperary: 0
+  symbol: 52
+  quality: 3
+  health: 4
+  attack: 4
+  level: 1
+  exp: 1
+  spriteQuality: {fileID: 0}
+  attacking: 0
+  actioning: 0
+  playerUnit: 1
+  playerTiles:
+    serializedVersion: 2
+    m_Bits: 256
+  enemyTiles:
+    serializedVersion: 2
+    m_Bits: 512
+  healthPreBattle: 0
+  attackPreBattle: 0
+  levelPreBattle: 0
+  expPreBattle: 0
+  attackBuff: 1
   healthBuff: 2
   dead: 0
   initPos: {x: 0, y: 0}
