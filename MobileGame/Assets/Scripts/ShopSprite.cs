@@ -90,6 +90,7 @@ public class ShopSprite : MonoBehaviour
     {
         if (!gc.Battling)
         {
+            transform.GetChild(0).GetComponent<Canvas>().sortingOrder = 11;
             unitTextParent.SetActive(false);
             StopAllMouseOvers();
         }
@@ -105,6 +106,7 @@ public class ShopSprite : MonoBehaviour
         if (GetComponent<Unit>().level == 1) unitTextParent.transform.GetChild(0).GetComponent<Text>().text = UnitText1;
         if (GetComponent<Unit>().level == 2) unitTextParent.transform.GetChild(0).GetComponent<Text>().text = UnitText2;
         if (GetComponent<Unit>().level == 3) unitTextParent.transform.GetChild(0).GetComponent<Text>().text = UnitText3;
+        transform.GetChild(0).GetComponent<Canvas>().sortingOrder = 12;
         unitTextParent.SetActive(true);
     }
 

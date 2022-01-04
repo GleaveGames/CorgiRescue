@@ -56,7 +56,6 @@ public class Prisoner : Unit
             {
                 while (pes1.GetComponent<Unit>().actioning) yield return null;
             }
-                
         }
         
     }

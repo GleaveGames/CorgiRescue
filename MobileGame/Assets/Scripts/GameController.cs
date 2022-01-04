@@ -78,6 +78,7 @@ public class GameController : MonoBehaviour
     Transform CameraTrans;
     [HideInInspector]
     public bool loadFailed = false;
+    public Color zombieColor;
 
     private void Start()
     {

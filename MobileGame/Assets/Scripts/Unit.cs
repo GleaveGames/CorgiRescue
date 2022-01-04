@@ -55,6 +55,7 @@ public class Unit : MonoBehaviour
     GameObject collisionParticle;
     Color colorInvisible;
     AnimationCurve buffJuice;
+    Color zombieColor;
 
     [Header("Buff")]
     protected AnimationCurve buffY;
@@ -101,6 +102,7 @@ public class Unit : MonoBehaviour
         attackTime = gc.attackTime;
         initPos = transform.position;
         buffJuice = gc.buffJuice;
+        zombieColor = gc.zombieColor;
     }
 
     // Update is called once per frame
@@ -174,6 +176,29 @@ public class Unit : MonoBehaviour
 
     public virtual IEnumerator OnStartOfBattle()
     {
+        if (temperary || GetComponent<SpriteRenderer>().color == zombieColor)
+        {
+            actioning = true;
+            //check for shephard
+            for(int x = -1; x <= 1; x++)
+            {
+                for (int y = -1; y <= 1; y++)
+                {
+                    if (y == 0 && x == 0) continue;
+                    if(CheckForUnit(x, y, "Shephard"))
+                    {
+                        Vector2 pos = transform.position + new Vector3(x * 1.25f, y * 1.25f,0);
+                        Collider2D col = null;
+                        if (playerUnit) col = Physics2D.OverlapPoint(pos, playerTiles);
+                        else col = Physics2D.OverlapPoint(pos, enemyTiles);
+                        GameSquare square = col.GetComponent<GameSquare>();
+                        GameObject shep = square.occupier;
+                        StartCoroutine(shep.GetComponent<Shephard>().ShephardBuff(gameObject));
+                        yield return new WaitForSeconds(0.2f);
+                    }
+                }
+            }
+        }
         actioning = false;
         yield return null;
     }
@@ -218,7 +243,7 @@ public class Unit : MonoBehaviour
             attack = 1;
             level = square.occupier.GetComponent<Priest>().level;
             exp = 1;
-            GetComponent<SpriteRenderer>().color = Color.green;
+            GetComponent<SpriteRenderer>().color = zombieColor;
             StartCoroutine(OnStartOfBattle());
             while (actioning) yield return null;
         }
@@ -463,5 +488,29 @@ public class Unit : MonoBehaviour
             yield return null;
         }
         healthText.transform.parent.localScale = new Vector2(0.5f, 0.5f);
+    }
+
+    protected bool CheckForUnit(int x, int y, string name, Transform t = null)
+    {
+        if (t == null) t = transform;
+        GameSquare square = null;
+        if (playerUnit)
+        {
+            Collider2D squareCol = Physics2D.OverlapPoint(t.position + new Vector3(x * 1.25f, y * 1.25f), playerTiles);
+            if (squareCol != null)
+            {
+                square = squareCol.GetComponent<GameSquare>();
+            }
+        }
+        else
+        {
+            Collider2D squareCol = Physics2D.OverlapPoint(t.position + new Vector3(x * 1.25f, y * 1.25f), enemyTiles);
+            if (squareCol != null)
+            {
+                square = squareCol.GetComponent<GameSquare>();
+            }
+        }
+        if (square != null && square.occupied && square.occupier.name.Contains(name)) return true;
+        else return false;
     }
 }
