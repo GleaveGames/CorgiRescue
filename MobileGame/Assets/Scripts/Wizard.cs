@@ -9,9 +9,9 @@ public class Wizard : Unit
         actioning = true;
         List<GameObject> allies = GetAllies();
         allies.Remove(gameObject);
-        float buffTimer = 0;
         if (allies.Count > 0)
         {
+            float buffTimer = 0;
             StartCoroutine(Jiggle());
             int randomUnitIndex = Random.Range(0, allies.Count - 1);
             GameObject newBuff = Instantiate(Buff, transform.position, Quaternion.identity);
