@@ -28,9 +28,7 @@ public class Unit : MonoBehaviour
     [HideInInspector]
     protected ParticleSystem coinParticles;    
     protected ParticleSystem cloudParticles;
-    [HideInInspector]
     public bool attacking;
-    [HideInInspector]
     public bool actioning;
     [HideInInspector]
     public bool playerUnit = true;

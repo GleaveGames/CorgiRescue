@@ -59,6 +59,7 @@ public class Alchemest : Unit
             StartCoroutine(enemies[enemies.Count - 1].GetComponent<Unit>().Jiggle());
             if (enemies[enemies.Count - 1].GetComponent<Unit>().health <= 0) StartCoroutine(enemies[enemies.Count - 1].GetComponent<Unit>().OnDie());
         }
+        actioning = false;
 
         yield return StartCoroutine(base.OnStartOfBattle());
     }

@@ -32,6 +32,7 @@ public class Stableboy : Unit
             foreach (GameObject u in enemies)
             {
                 StartCoroutine(GiveBuff(u));
+                yield return new WaitForSeconds(0.2f);
             }
             float timer = 0;
             while (timer < buffTime)
@@ -40,6 +41,7 @@ public class Stableboy : Unit
                 yield return null;
             }
         }
+        actioning = false;
         yield return StartCoroutine(base.OnDie());
     }
 

@@ -103,9 +103,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'Deathrattle: If next to a princess, deal 3 damage to all enemies'
-  UnitText2: 'Deathrattle: If next to a princess, deal 6 damage to all enemies'
-  UnitText3: 'Deathrattle: If next to a princess, deal 9 damage to all enemies'
+  UnitText1: 'Deathrattle: If next to a princess, deal 2 damage to all enemies'
+  UnitText2: 'Deathrattle: If next to a princess, deal 4 damage to all enemies'
+  UnitText3: 'Deathrattle: If next to a princess, deal 6 damage to all enemies'
 --- !u!61 &757357724859235949
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -165,8 +165,12 @@ MonoBehaviour:
   attackPreBattle: 0
   levelPreBattle: 0
   expPreBattle: 0
+  healthPreEndTurn: 0
+  attackPreEndTurn: 0
+  levelPreEndTurn: 0
+  expPreEndTurn: 0
   attackBuff: 0
-  healthBuff: -3
+  healthBuff: -2
   dead: 0
   initPos: {x: 0, y: 0}
   heart: {fileID: 8529046716491591870, guid: 82a71292ac3decf4bb51d0d73c250402, type: 3}

@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee923720d37931c45bd77c52aad7b5b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  temperary: 0
   symbol: 103
   quality: 5
   health: 3
@@ -162,6 +163,12 @@ MonoBehaviour:
     m_Bits: 512
   healthPreBattle: 0
   attackPreBattle: 0
+  levelPreBattle: 0
+  expPreBattle: 0
+  healthPreEndTurn: 0
+  attackPreEndTurn: 0
+  levelPreEndTurn: 0
+  expPreEndTurn: 0
   attackBuff: 0
   healthBuff: 0
   dead: 0

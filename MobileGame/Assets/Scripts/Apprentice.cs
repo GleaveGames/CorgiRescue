@@ -13,7 +13,8 @@ public class Apprentice : Unit
         GameSquare square = col.GetComponent<GameSquare>();
         attackPreBattle = attack;
         healthPreBattle = health;
-
+        levelPreBattle = level;
+        expPreBattle = exp;
 
         if (square.occupier != null)
         {

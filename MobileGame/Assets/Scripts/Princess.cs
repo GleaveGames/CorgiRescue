@@ -34,6 +34,7 @@ public class Princess : Unit
             foreach(GameObject u in enemies)
             {
                 StartCoroutine(Buff(u));
+                yield return new WaitForSeconds(0.2f);
             }
             float timer = 0;
             while (timer < buffTime)

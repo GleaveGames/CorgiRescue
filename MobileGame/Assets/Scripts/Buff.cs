@@ -13,7 +13,7 @@ public class Buff : MonoBehaviour
 
     private IEnumerator KillSelf()
     {
-        yield return new WaitForSeconds(3*buffTime+0.1f);
+        yield return new WaitForSeconds(5*buffTime+0.1f);
         Destroy(gameObject);
     }
 }

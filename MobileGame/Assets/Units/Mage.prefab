@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 538672580819213158}
   - component: {fileID: 538672580819213159}
   - component: {fileID: 538672580819213160}
-  - component: {fileID: 3208089097209137014}
   - component: {fileID: 1133496674382573761}
   m_Layer: 0
   m_Name: Mage
@@ -138,14 +137,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!222 &3208089097209137014
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 538672580819213156}
-  m_CullTransparentMesh: 0
 --- !u!114 &1133496674382573761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +170,10 @@ MonoBehaviour:
   attackPreBattle: 0
   levelPreBattle: 0
   expPreBattle: 0
+  healthPreEndTurn: 0
+  attackPreEndTurn: 0
+  levelPreEndTurn: 0
+  expPreEndTurn: 0
   attackBuff: 0
   healthBuff: -4
   dead: 0

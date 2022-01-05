@@ -26,7 +26,7 @@ public class Advisor : Unit
                 }
             }
         }
-
+        actioning = false;
         yield return StartCoroutine(base.OnEndTurn());
     }
     private IEnumerator CheckForUnitAndBuff(int x, int y)
