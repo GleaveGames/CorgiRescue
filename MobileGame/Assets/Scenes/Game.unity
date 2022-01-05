@@ -6523,7 +6523,7 @@ Camera:
   m_TargetEye: 0
   m_HDR: 1
   m_AllowMSAA: 0
-  m_AllowDynamicResolution: 0
+  m_AllowDynamicResolution: 1
   m_ForceIntoRT: 0
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
@@ -14837,6 +14837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Units:
+  - {fileID: 757357724859235951, guid: e5d3a6f883d971d4eaf86277f674f104, type: 3}
   - {fileID: 538672580819213156, guid: 7f05e3528d862d74798579a5da221aaf, type: 3}
   - {fileID: 538672580819213156, guid: e6e79ddb9378f6b4bba0ead3e66d0862, type: 3}
   - {fileID: 757357724859235951, guid: ec863130211630341a06bb9cae786c16, type: 3}
@@ -14845,6 +14846,7 @@ MonoBehaviour:
   - {fileID: 538672580819213156, guid: 2494b11ecba081a4fa59603dc952b3fe, type: 3}
   - {fileID: 757357724859235951, guid: e971b8b9cbb7b5e4c8ebc5ba3201ff87, type: 3}
   - {fileID: 757357724859235951, guid: 09623e49cd7773c4bba7f40c35e9be8a, type: 3}
+  - {fileID: 757357724859235951, guid: c6a8e18e77d368f4b908e0b83b536dd6, type: 3}
   - {fileID: 757357724859235951, guid: f1c47a9e87abef74daaa9268afd7c6fd, type: 3}
   - {fileID: 757357724859235951, guid: eba8eb1e1220ddc44bfc76db5f5357f5, type: 3}
   - {fileID: 538672580819213156, guid: dad47c490b2ac8540b81efc34eafdb15, type: 3}
@@ -14853,11 +14855,13 @@ MonoBehaviour:
   - {fileID: 757357724859235951, guid: da3dbace4ee27194086a60cf4811900e, type: 3}
   - {fileID: 757357724859235951, guid: 40c299abb7e420f4e8bfb34879be3199, type: 3}
   - {fileID: 538672580819213156, guid: 095868f96d169d341b58f78bf530781a, type: 3}
+  - {fileID: 757357724859235951, guid: 83c908e628f32e04981090f1203e85a7, type: 3}
   - {fileID: 757357724859235951, guid: 53d11f2e92148064c90013f16cb08b66, type: 3}
   - {fileID: 538672580819213156, guid: ce99be3685ef29d4f9d815ee6519f012, type: 3}
   - {fileID: 538672580819213156, guid: 425fc31dde396b045aa6f78f170512a4, type: 3}
   - {fileID: 538672580819213156, guid: 86d25a469b6454540958f8e7fb2b789a, type: 3}
   - {fileID: 538672580819213156, guid: 1fa50e021941fa04f94f1ac3d37eed11, type: 3}
+  - {fileID: 757357724859235951, guid: 5090b9cc17336a64997fe7f6273e10ba, type: 3}
   - {fileID: 538672580819213156, guid: 9f7ec91f06b7d9a49a87f92023fd23ba, type: 3}
   - {fileID: 757357724859235951, guid: c9eeb4ffd7027d143b90e668cd3dba61, type: 3}
   - {fileID: 757357724859235951, guid: cb10d016d8dfba8439f2ab10568460b1, type: 3}
@@ -14867,15 +14871,13 @@ MonoBehaviour:
   - {fileID: 757357724859235951, guid: df386f9e595b7b04e8f83c2551b9e84c, type: 3}
   - {fileID: 757357724859235951, guid: c24d1e3351a264b41b4b7ed37879f5f9, type: 3}
   - {fileID: 757357724859235951, guid: 2d01f2cca8448dc48a507f017acd0e44, type: 3}
+  - {fileID: 538672580819213156, guid: 2ce9ea17bc419e044be56249b215ec61, type: 3}
   - {fileID: 538672580819213156, guid: df9861c8f1f259a4c8a8cd8731e7a7c5, type: 3}
   - {fileID: 538672580819213156, guid: 1612fe8dc67685542a251ed7c3facf1b, type: 3}
   - {fileID: 757357724859235951, guid: 196e9e8985dec6044804a694c0d40d72, type: 3}
   - {fileID: 2297039251316750624, guid: c6452b196b0db614f93f7bf3428043ef, type: 3}
   - {fileID: 757357724859235951, guid: 77bf5dc500cb8764daa8935e89737885, type: 3}
   - {fileID: 538672580819213156, guid: 8b360454daee98f4d9deb34c432c2889, type: 3}
-  - {fileID: 757357724859235951, guid: e5d3a6f883d971d4eaf86277f674f104, type: 3}
-  - {fileID: 757357724859235951, guid: c6a8e18e77d368f4b908e0b83b536dd6, type: 3}
-  - {fileID: 757357724859235951, guid: 83c908e628f32e04981090f1203e85a7, type: 3}
   BuildingParent: {fileID: 2065910110}
   buildingY:
     serializedVersion: 2
@@ -15056,7 +15058,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8c79744a3a9994747b118d510b5e5ded, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -15267,7 +15269,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 2
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
