@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 757357724859235947}
   - component: {fileID: 757357724859235946}
   - component: {fileID: 757357724859235949}
-  - component: {fileID: 1052427991378284537}
+  - component: {fileID: 8862412356675214819}
   m_Layer: 0
-  m_Name: Champion
+  m_Name: Jester
   m_TagString: ShopItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 7614e23daf5e13b43b02009b809066e6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7cef31448b8bec74bb2a5288950cc841, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,9 +103,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: Also damages unit to left and right. Does not upgrade.
-  UnitText2: Also damages unit to left and right. Does not upgrade.
-  UnitText3: Also damages unit to left and right. Does not upgrade.
+  UnitText1: 'Warcry: Deal 8 damage to a random enemy; bounces once.'
+  UnitText2: 'Warcry: Deal 8 damage to a random enemy; bounces twice.'
+  UnitText3: 'Warcry: Deal 8 damage to a random enemy; bounces three times.'
 --- !u!61 &757357724859235949
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -132,7 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1052427991378284537
+--- !u!114 &8862412356675214819
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,14 +141,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 757357724859235951}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 637fc61ad05a36247ac89172ffb2a4b5, type: 3}
+  m_Script: {fileID: 11500000, guid: f22e6bada840c3246bd11c05e5252102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   temperary: 0
-  symbol: 56
+  symbol: 106
   quality: 5
-  health: 10
-  attack: 10
+  health: 3
+  attack: 4
   level: 1
   exp: 1
   spriteQuality: {fileID: 0}
@@ -170,9 +170,10 @@ MonoBehaviour:
   levelPreEndTurn: 0
   expPreEndTurn: 0
   attackBuff: 0
-  healthBuff: 0
+  healthBuff: -8
   dead: 0
   initPos: {x: 0, y: 0}
+  ball: {fileID: 21300000, guid: aa5f977e26659dc44b3c554efe0760b2, type: 3}
 --- !u!1001 &7010121811541750209
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -180,49 +181,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 757357724859235948}
     m_Modifications:
-    - target: {fileID: 100769227161461753, guid: b4101005315136046a3527e48caa4c0f, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100769227161461753, guid: b4101005315136046a3527e48caa4c0f, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100769227161461753, guid: b4101005315136046a3527e48caa4c0f, type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2837905384202935351, guid: b4101005315136046a3527e48caa4c0f, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 53
-      objectReference: {fileID: 0}
-    - target: {fileID: 3680365778733895516, guid: b4101005315136046a3527e48caa4c0f, type: 3}
-      propertyPath: m_text
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3680365778733895516, guid: b4101005315136046a3527e48caa4c0f, type: 3}
-      propertyPath: m_fontSize
-      value: 51.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3680365778733895516, guid: b4101005315136046a3527e48caa4c0f, type: 3}
-      propertyPath: m_fontStyle
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4565190641329966298, guid: b4101005315136046a3527e48caa4c0f, type: 3}
       propertyPath: m_Name
       value: Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 6306010984019799720, guid: b4101005315136046a3527e48caa4c0f, type: 3}
-      propertyPath: m_text
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6306010984019799720, guid: b4101005315136046a3527e48caa4c0f, type: 3}
-      propertyPath: m_fontSize
-      value: 69.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 6306010984019799720, guid: b4101005315136046a3527e48caa4c0f, type: 3}
-      propertyPath: m_fontStyle
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8317786970848638297, guid: b4101005315136046a3527e48caa4c0f, type: 3}
       propertyPath: m_Pivot.x
@@ -308,12 +269,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8497493339292589114, guid: b4101005315136046a3527e48caa4c0f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6187736509760191806, guid: b4101005315136046a3527e48caa4c0f, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4101005315136046a3527e48caa4c0f, type: 3}
 --- !u!224 &1307807007350703256 stripped
 RectTransform:

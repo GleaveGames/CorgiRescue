@@ -14874,6 +14874,8 @@ MonoBehaviour:
   - {fileID: 757357724859235951, guid: 77bf5dc500cb8764daa8935e89737885, type: 3}
   - {fileID: 538672580819213156, guid: 8b360454daee98f4d9deb34c432c2889, type: 3}
   - {fileID: 757357724859235951, guid: e5d3a6f883d971d4eaf86277f674f104, type: 3}
+  - {fileID: 757357724859235951, guid: c6a8e18e77d368f4b908e0b83b536dd6, type: 3}
+  - {fileID: 757357724859235951, guid: 83c908e628f32e04981090f1203e85a7, type: 3}
   BuildingParent: {fileID: 2065910110}
   buildingY:
     serializedVersion: 2
