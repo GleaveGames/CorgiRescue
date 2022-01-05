@@ -229,7 +229,16 @@ public class GameController : MonoBehaviour
 
         GetPlayerUnits();
 
-        foreach(GameObject u in allUnits)
+        foreach (GameObject u in playerUnits)
+        {
+            u.GetComponent<Unit>().healthPreEndTurn = u.GetComponent<Unit>().health;
+            u.GetComponent<Unit>().attackPreEndTurn = u.GetComponent<Unit>().attack;
+            u.GetComponent<Unit>().levelPreEndTurn = u.GetComponent<Unit>().level;
+            u.GetComponent<Unit>().expPreEndTurn = u.GetComponent<Unit>().exp;
+        }
+
+
+        foreach (GameObject u in allUnits)
         {
             StartCoroutine(u.GetComponent<Unit>().OnEndTurn());
             while (u.GetComponent<Unit>().actioning)
@@ -242,6 +251,8 @@ public class GameController : MonoBehaviour
         {
             b.interactable = false;
         }
+
+        yield return new WaitForSeconds(1);
 
         foreach (GameObject u in playerUnits)
         {
@@ -308,6 +319,13 @@ public class GameController : MonoBehaviour
             }
             BattleButton.interactable = true;
             loadFailed = false;
+            foreach (GameObject u in playerUnits)
+            {
+                u.GetComponent<Unit>().health = u.GetComponent<Unit>().healthPreEndTurn;
+                u.GetComponent<Unit>().attack = u.GetComponent<Unit>().attackPreEndTurn;
+                u.GetComponent<Unit>().level = u.GetComponent<Unit>().levelPreEndTurn;
+                u.GetComponent<Unit>().exp = u.GetComponent<Unit>().expPreEndTurn;
+            }
             yield break;
         }
 

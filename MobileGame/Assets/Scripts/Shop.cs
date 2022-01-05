@@ -28,6 +28,13 @@ public class Shop : MonoBehaviour
     List<GameObject> WorkshopUnits;
     List<GameObject> CastleUnits;
 
+    float musicVolumeInit;
+    bool musicOn = true;
+    [SerializeField]
+    Sprite[] musicButtonSprites;
+    [SerializeField]
+    Image musicBut;
+
     private void Start()
     {
         unitPool = new List<GameObject>();
@@ -36,6 +43,7 @@ public class Shop : MonoBehaviour
         ChurchUnits = new List<GameObject>();
         WorkshopUnits = new List<GameObject>();
         CastleUnits = new List<GameObject>();
+        musicVolumeInit = GetComponent<AudioSource>().volume;
 
         foreach(GameObject u in Units)
         {
@@ -68,6 +76,7 @@ public class Shop : MonoBehaviour
     {
         foreach(ShopSpot thisSpot in ShopSlots)
         {
+            if (thisSpot.go.transform.childCount <= 2) thisSpot.frozen = false;
             if (thisSpot.frozen) thisSpot.sr.enabled = true;
             else thisSpot.sr.enabled = false;
         }
@@ -139,6 +148,23 @@ public class Shop : MonoBehaviour
             yield return null;
         }
 
+    }
+
+
+    public void ToggleMusic()
+    {
+        if(musicOn)
+        {
+            GetComponent<AudioSource>().volume = 0;
+            musicOn = false;
+            musicBut.sprite = musicButtonSprites[1];   
+        }
+        else
+        {
+            GetComponent<AudioSource>().volume = musicVolumeInit;
+            musicOn = true;
+            musicBut.sprite = musicButtonSprites[0];
+        }
     }
 
 }

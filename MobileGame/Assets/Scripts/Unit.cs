@@ -38,8 +38,8 @@ public class Unit : MonoBehaviour
     protected LayerMask playerTiles;
     [SerializeField]
     protected LayerMask enemyTiles;
-    AnimationCurve attackCurve;   
-    float attackTime;
+    protected AnimationCurve attackCurve;   
+    protected float attackTime;
     protected GameController gc;
     [HideInInspector]
     public int healthPreBattle;
@@ -49,11 +49,19 @@ public class Unit : MonoBehaviour
     public int levelPreBattle;
     [HideInInspector]
     public int expPreBattle;
+    [HideInInspector]
+    public int healthPreEndTurn;
+    [HideInInspector]
+    public int attackPreEndTurn;
+    [HideInInspector]
+    public int levelPreEndTurn;
+    [HideInInspector]
+    public int expPreEndTurn;
     float jiggleTime;
     AnimationCurve jiggleX;
     AnimationCurve jiggleY;
-    GameObject collisionParticle;
-    Color colorInvisible;
+    protected GameObject collisionParticle;
+    protected Color colorInvisible;
     AnimationCurve buffJuice;
     Color zombieColor;
 
