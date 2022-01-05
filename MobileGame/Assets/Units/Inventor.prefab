@@ -103,9 +103,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'On Start of Turn: Give farm and barracks unity +1/+1'
-  UnitText2: 'On Start of Turn: Give farm and barracks unity +2/+2'
-  UnitText3: 'On Start of Turn: Give farm and barracks unity +3/+3'
+  UnitText1: 'On Start of Turn: Give unit to the right +2/+2'
+  UnitText2: 'On Start of Turn: Give unit to the right +4/+4'
+  UnitText3: 'On Start of Turn: Give unit to the right +6/+6'
 --- !u!61 &538672580819213160
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -165,8 +165,12 @@ MonoBehaviour:
   attackPreBattle: 0
   levelPreBattle: 0
   expPreBattle: 0
-  attackBuff: 1
-  healthBuff: 1
+  healthPreEndTurn: 0
+  attackPreEndTurn: 0
+  levelPreEndTurn: 0
+  expPreEndTurn: 0
+  attackBuff: 2
+  healthBuff: 2
   dead: 0
   initPos: {x: 0, y: 0}
 --- !u!1001 &8377742542592659522

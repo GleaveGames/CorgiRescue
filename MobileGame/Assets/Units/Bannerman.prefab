@@ -165,6 +165,10 @@ MonoBehaviour:
   attackPreBattle: 0
   levelPreBattle: 0
   expPreBattle: 0
+  healthPreEndTurn: 0
+  attackPreEndTurn: 0
+  levelPreEndTurn: 0
+  expPreEndTurn: 0
   attackBuff: 1
   healthBuff: 1
   dead: 0
