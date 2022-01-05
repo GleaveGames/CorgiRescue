@@ -15,7 +15,8 @@ public class Engineer : Unit
         LayerMask layer = playerTiles;
         if (playerUnit) 
         {
-            y = 3.75f; layer = enemyTiles;
+            y = 3.75f;
+            layer = enemyTiles;
         }
         else {
             y = -2.5f;
@@ -24,7 +25,11 @@ public class Engineer : Unit
         for(int x = 0; x < 6; x++)
         {
             Collider2D col = Physics2D.OverlapPoint(new Vector2(1.25f * x - 2.5f, y), layer);
-            victims.Add(col.GetComponent<GameSquare>().occupier);
+            GameSquare square = col.GetComponent<GameSquare>();
+            if (square.occupied)
+            {
+                victims.Add(col.GetComponent<GameSquare>().occupier);
+            }
         }
 
         foreach(GameObject go in victims)
@@ -35,6 +40,7 @@ public class Engineer : Unit
             newBuff.GetComponent<SpriteRenderer>().sprite = bomb;
             while (buffTimer <= buffTime)
             {
+                if (go == null) yield break;
                 newBuff.transform.position = new Vector2(Mathf.Lerp(transform.position.x, go.transform.position.x, buffX.Evaluate(buffTimer / buffTime)),
                     Mathf.Lerp(transform.position.y, go.transform.position.y, buffTimer / buffTime) + 2 * buffY.Evaluate(buffTimer / buffTime));
                 buffTimer += Time.deltaTime;
@@ -48,7 +54,7 @@ public class Engineer : Unit
             StartCoroutine(go.GetComponent<Unit>().CollisionJiggle());
             StartCoroutine(go.GetComponent<Unit>().BuffJuice(1));
         }
-
+        Debug.Log("bombed");
         yield return StartCoroutine(base.OnDie());
     }
 }

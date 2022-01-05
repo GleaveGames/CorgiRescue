@@ -45,7 +45,7 @@ public class GameController : MonoBehaviour
     [SerializeField]
     Sprite[] resultSprites;
     [SerializeField]
-    float endBattleTime = 2;
+    float endBattleTime = 5;
     [SerializeField]
     GameObject resultObj;
 

@@ -8,6 +8,8 @@ public class Mage : Unit
     Sprite fireball;
     public override IEnumerator OnAttack()
     {
+        actioning = true;
+          
         //throw a fireball at a random enemy
         List<GameObject> enemies = GetEnemies();
         
