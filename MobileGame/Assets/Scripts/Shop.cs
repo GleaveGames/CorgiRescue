@@ -95,7 +95,6 @@ public class Shop : MonoBehaviour
                 }
                 GameObject unit = Instantiate(unitPool[Random.Range(0, unitPool.Count)], ShopSlots[i].go.transform.position, Quaternion.identity);
                 unit.transform.parent = ShopSlots[i].go.transform;
-                ShopSlots[i].unit = unit;
             }
             gc.Gold--;
         }
@@ -108,11 +107,7 @@ public class Shop : MonoBehaviour
     public void ToggleFreeze(int spot)
     {
         ShopSpot sp = ShopSlots[spot];
-        if(sp.unit == null)
-        {
-            if (sp.go.transform.childCount > 2) sp.unit = sp.go.transform.GetChild(2).gameObject;
-        }
-        if(sp.go != null && sp.unit != null)
+        if(sp.go.transform.childCount > 2)
         {
             sp.frozen = !sp.frozen;
         }
@@ -175,5 +170,4 @@ public class ShopSpot
     public bool frozen;
     public SpriteRenderer sr;
     public int number;
-    public GameObject unit;
 }

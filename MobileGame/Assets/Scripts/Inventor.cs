@@ -7,7 +7,7 @@ public class Inventor : Unit
     public override IEnumerator OnStartOfTurn()
     {
         actioning = true;
-        Collider2D col = Physics2D.OverlapPoint(transform.position + new Vector3(1.25f, 0, 0));
+        Collider2D col = Physics2D.OverlapPoint(transform.position + new Vector3(1.25f, 0, 0),playerTiles);
         GameSquare square = null;
         if (col != null) square = col.GetComponent<GameSquare>();
         if (square != null && square.occupied && square.occupied)
