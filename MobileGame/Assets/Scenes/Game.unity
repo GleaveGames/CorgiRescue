@@ -13344,7 +13344,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 65d990ca437c00c428d3238b0f54b15d, type: 3}
   - {fileID: 21300000, guid: af43e22e18a628e4fb50ad1e85e5525d, type: 3}
   - {fileID: 21300000, guid: f756f538889282e409c0d57b059a3129, type: 3}
-  endBattleTime: 2
+  endBattleTime: 4
   resultObj: {fileID: 1779814880}
   JiggleX:
     serializedVersion: 2
@@ -13648,10 +13648,19 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.09265239
     - serializedVersion: 3
-      time: 0.31371316
+      time: 0.13936624
       value: 0.99708676
       inSlope: 0
       outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.7867079
+      value: 0.86642075
+      inSlope: -0.60730135
+      outSlope: -0.60730135
       tangentMode: 136
       weightedMode: 0
       inWeight: 0.33333334
@@ -15268,10 +15277,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 0.7
-  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ReferenceResolution: {x: 1200, y: 675}
   m_ScreenMatchMode: 2
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
