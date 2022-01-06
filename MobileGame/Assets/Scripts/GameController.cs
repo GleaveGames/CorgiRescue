@@ -447,9 +447,12 @@ public class GameController : MonoBehaviour
                 resultObj.GetComponent<Image>().sprite = resultSprites[1];
                 if (lives <= 0) resultObj.GetComponent<Image>().sprite = resultSprites[3];
             }
-            
+
             yield return null;
         }
+
+       
+
 
         yield return new WaitForEndOfFrame();
         StartCoroutine(FindObjectOfType<UIClouds>().Enter());
@@ -457,11 +460,12 @@ public class GameController : MonoBehaviour
         timer = 0;
         while (timer < endBattleTime)
         {
-            CameraTrans.position = new Vector3(CameraTrans.position.x, Mathf.Lerp(0.5f, -3.87f, timer / 2), -10);
-            resultObj.GetComponent<Image>().color = Color.Lerp(invis, Color.white, resultJuice.Evaluate(timer / 2));
+            CameraTrans.position = new Vector3(CameraTrans.position.x, Mathf.Lerp(0.5f, -3.87f, timer / endBattleTime), -10);
+            resultObj.GetComponent<Image>().color = Color.Lerp(invis, Color.white, resultJuice.Evaluate(timer / endBattleTime));
             timer += Time.deltaTime;
             yield return null;
         }
+        resultObj.GetComponent<Image>().color = invis;
         CameraTrans.position = new Vector3(CameraTrans.position.x, -3.87f,-10);
 
         if (wins == 10 || lives <= 0) {
@@ -478,6 +482,14 @@ public class GameController : MonoBehaviour
             square.GetComponent<GameSquare>().occupied = false;
             square.GetComponent<GameSquare>().occupier = null;
             Destroy(u);
+        }
+
+        foreach(GameObject u in playerUnits)
+        {
+            if (u.GetComponent<Unit>().temperary)
+            {
+                u.GetComponent<Unit>().health = 0;
+            }
         }
 
         StartCoroutine(FindObjectOfType<UIClouds>().Leave());
