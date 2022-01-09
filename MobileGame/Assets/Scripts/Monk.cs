@@ -24,6 +24,7 @@ public class Monk : Unit
     private IEnumerator BuffObj(GameObject u)
     {
         GameObject newBuff = Instantiate(RangedAttack, transform.position, Quaternion.identity);
+        newBuff.GetComponent<Buff>().good = false;
         float buffTimer = 0;
         while (buffTimer <= buffTime)
         {

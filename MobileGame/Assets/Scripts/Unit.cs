@@ -78,12 +78,15 @@ public class Unit : MonoBehaviour
 
     [HideInInspector]
     public Vector2 initPos;
-    public AudioSource audiosource;
+    [HideInInspector]
+    public AudioSource unitSound;
+    protected SoundManager sm;
 
     // Start is called before the first frame update
     public virtual void Start()
     {
         gc = FindObjectOfType<GameController>();
+        sm = FindObjectOfType<SoundManager>();
         qualitySprites = gc.qualitySprites;
         healthText = transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
         attackText = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
@@ -105,12 +108,13 @@ public class Unit : MonoBehaviour
         deathParticles = gc.deathParticles;
         cloudParticles = gc.cloudParticles;
         coinParticles = gc.coinParticles;
-        Instantiate(cloudParticles, transform.position, Quaternion.identity);
+        ParticleSystem cp = Instantiate(cloudParticles, transform.position, Quaternion.identity);
+        if (transform.parent.name.Contains("Shop")) cp.GetComponent<AudioSource>().Stop();
         attackTime = gc.attackTime;
         initPos = transform.position;
         buffJuice = gc.buffJuice;
         zombieColor = gc.zombieColor;
-        audiosource = GetComponent<AudioSource>();
+        unitSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

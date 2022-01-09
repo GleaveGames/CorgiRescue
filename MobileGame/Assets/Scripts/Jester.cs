@@ -18,6 +18,7 @@ public class Jester : Unit
             //Throw ball;
             int randomUnitIndex = Random.Range(0, enemies.Count - 1);
             GameObject newBuff = Instantiate(RangedAttack, transform.position, Quaternion.identity);
+            newBuff.GetComponent<Buff>().good = false;
             while (buffTimer <= buffTime)
             {
                 newBuff.transform.position = new Vector2(Mathf.Lerp(transform.position.x, enemies[randomUnitIndex].transform.position.x, buffX.Evaluate(buffTimer / buffTime)),
@@ -47,6 +48,7 @@ public class Jester : Unit
                         buffTimer += Time.deltaTime;
                         yield return null;
                     }
+                    sm.PlayHurt();
                     previousEnemyPos = enemies[randomUnitIndex].transform.position;
                     enemies[randomUnitIndex].GetComponent<Unit>().health += healthBuff;
                     if (enemies[randomUnitIndex].GetComponent<Unit>().health <= 0) StartCoroutine(enemies[randomUnitIndex].GetComponent<Unit>().OnDie());

@@ -17,6 +17,7 @@ public class Mage : Unit
         int randomUnitIndex = Random.Range(0, enemies.Count - 1);
         GameObject newBuff = Instantiate(RangedAttack, transform.position, Quaternion.identity);
         newBuff.GetComponent<SpriteRenderer>().sprite = fireball;
+        newBuff.GetComponent<Buff>().good = false;
         float buffTimer = 0;
         while (buffTimer <= buffTime)
         {

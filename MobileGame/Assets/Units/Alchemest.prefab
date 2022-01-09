@@ -147,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   temperary: 0
   symbol: 65
-  quality: 4
+  quality: 1
   health: 3
   attack: 2
   level: 1
@@ -174,7 +174,7 @@ MonoBehaviour:
   healthBuff: 5
   dead: 0
   initPos: {x: 0, y: 0}
-  audiosource: {fileID: 0}
+  unitSound: {fileID: -3513402289092336803}
   potion: {fileID: 21300000, guid: 34ff31aff2a8cb44a937b5e43ce58b40, type: 3}
   badPotion: {fileID: 21300000, guid: dd0bd2aa7936d52499eeef6b3ede8618, type: 3}
 --- !u!82 &-3513402289092336803

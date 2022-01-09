@@ -38,6 +38,7 @@ public class Engineer : Unit
             StartCoroutine(Jiggle());
             GameObject newBuff = Instantiate(RangedAttack, transform.position, Quaternion.identity);
             newBuff.GetComponent<SpriteRenderer>().sprite = bomb;
+            newBuff.GetComponent<Buff>().good = false;
             while (buffTimer <= buffTime)
             {
                 if (go == null) yield break;

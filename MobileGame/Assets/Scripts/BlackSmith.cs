@@ -24,7 +24,6 @@ public class BlackSmith : Unit
                 buffTimer += Time.deltaTime;
                 yield return null;
             }
-
             Destroy(newBuff);
             square.occupier.GetComponent<Unit>().attack += attackBuff * level;
             StartCoroutine(square.occupier.GetComponent<Unit>().BuffJuice(2));

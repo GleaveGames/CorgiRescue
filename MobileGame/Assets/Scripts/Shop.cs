@@ -35,6 +35,14 @@ public class Shop : MonoBehaviour
     [SerializeField]
     Image musicBut;
 
+    [Header("AudioSources")]
+    [SerializeField]
+    AudioSource music;
+    [SerializeField]
+    AudioSource reroll;
+    [SerializeField]
+    AudioSource freeze;
+
     private void Start()
     {
         unitPool = new List<GameObject>();
@@ -68,8 +76,7 @@ public class Shop : MonoBehaviour
             newSpot.sr = newSpot.go.transform.GetChild(1).GetComponent<SpriteRenderer>();
             newSpot.number = i;
         }
-        gc.Gold++;
-        ReRoll();
+        ReRoll(true);
     }
 
     private void Update()
@@ -82,7 +89,7 @@ public class Shop : MonoBehaviour
         }
     }
 
-    public void ReRoll()
+    public void ReRoll(bool free = false)
     {
         if (gc.Gold > 0)
         {
@@ -96,7 +103,11 @@ public class Shop : MonoBehaviour
                 GameObject unit = Instantiate(unitPool[Random.Range(0, unitPool.Count)], ShopSlots[i].go.transform.position, Quaternion.identity);
                 unit.transform.parent = ShopSlots[i].go.transform;
             }
-            gc.Gold--;
+            if (!free)
+            {
+                gc.Gold--;
+                reroll.Play();
+            }
         }
         else
         {
@@ -150,13 +161,13 @@ public class Shop : MonoBehaviour
     {
         if(musicOn)
         {
-            GetComponent<AudioSource>().volume = 0;
+            music.volume = 0;
             musicOn = false;
             musicBut.sprite = musicButtonSprites[1];   
         }
         else
         {
-            GetComponent<AudioSource>().volume = musicVolumeInit;
+            music.volume = musicVolumeInit;
             musicOn = true;
             musicBut.sprite = musicButtonSprites[0];
         }

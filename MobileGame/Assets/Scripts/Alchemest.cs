@@ -33,7 +33,8 @@ public class Alchemest : Unit
         if (level == 1 || level == 2) allies[0].GetComponent<Unit>().attack += attackBuff;
         else allies[0].GetComponent<Unit>().attack += attackBuff * 2;
         if (level == 1 || level == 2) allies[0].GetComponent<Unit>().health += healthBuff;
-        else allies[0].GetComponent<Unit>().attack += attackBuff * 2; StartCoroutine(allies[0].GetComponent<Unit>().BuffJuice(3));
+        else allies[0].GetComponent<Unit>().attack += attackBuff * 2; 
+        StartCoroutine(allies[0].GetComponent<Unit>().BuffJuice(3));
         StartCoroutine(allies[0].GetComponent<Unit>().Jiggle());
         
         
@@ -41,7 +42,9 @@ public class Alchemest : Unit
         {
             StartCoroutine(Jiggle());
             newBuff = Instantiate(Buff, transform.position, Quaternion.identity);
+            newBuff.GetComponent<Buff>().good = false;
             newBuff.GetComponent<SpriteRenderer>().sprite = badPotion;
+            buffTimer = 0;
             while (buffTimer <= buffTime)
             {
                 newBuff.transform.position = new Vector2(Mathf.Lerp(transform.position.x, enemies[enemies.Count - 1].transform.position.x, buffX.Evaluate(buffTimer / buffTime)),

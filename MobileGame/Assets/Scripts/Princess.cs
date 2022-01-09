@@ -50,6 +50,7 @@ public class Princess : Unit
     private IEnumerator Buff(GameObject u)
     {
         GameObject newBuff = Instantiate(heart, transform.position, Quaternion.identity);
+        newBuff.GetComponent<Buff>().good = false;
         float buffTimer = 0;
         while (buffTimer <= buffTime)
         {

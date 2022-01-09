@@ -32,7 +32,6 @@ public class Bishop : Unit
                 buffTimer += Time.deltaTime;
                 yield return null;
             }
-
             Destroy(newBuff);
             attack += attackBuff * level;
             health += healthBuff * level;

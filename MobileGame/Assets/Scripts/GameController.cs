@@ -79,11 +79,20 @@ public class GameController : MonoBehaviour
     [HideInInspector]
     public bool loadFailed = false;
     public Color zombieColor;
+
+    [Header ("Sounds")]
     [SerializeField]
     AudioSource click;
     [SerializeField]
     AudioSource hit;
-
+    [SerializeField]
+    AudioSource win;
+    [SerializeField]
+    AudioSource lose;
+    [SerializeField]
+    AudioSource draw;    
+    [SerializeField]
+    AudioSource denied;
 
     private void Start()
     {
@@ -163,6 +172,7 @@ public class GameController : MonoBehaviour
                         draggingObj.transform.position = draggingObj.GetComponent<ShopSprite>().origin;
                         draggingObj.transform.GetChild(0).gameObject.SetActive(true);
                         StartCoroutine(draggingObj.GetComponent<Unit>().Jiggle());
+                        denied.Play();
                         draggingObj = null;
                     }
                     else if (square != null && square.name == "Sell")
@@ -184,7 +194,7 @@ public class GameController : MonoBehaviour
                         draggingObj.GetComponent<Unit>().spriteQuality.SetActive(false);
                         draggingObj.transform.GetChild(0).GetChild(3).position = new Vector2(draggingObj.transform.position.x, draggingObj.transform.position.y - 1.5f);
                         StartCoroutine(draggingObj.GetComponent<Unit>().Jiggle());
-                        draggingObj.GetComponent<Unit>().audiosource.Play();
+                        draggingObj.GetComponent<Unit>().unitSound.Play();
                         draggingObj = null;
                         Gold -= 3;
                     }
@@ -204,6 +214,11 @@ public class GameController : MonoBehaviour
                         StartCoroutine(draggingObj.GetComponent<Unit>().Jiggle());
                         draggingObj = null;
                         playClick();
+                        if (unitNumber > 5)
+                        {
+                            StartCoroutine(UnitJuice());
+                            denied.Play();
+                        }
                     }
                 }
             }
@@ -224,6 +239,19 @@ public class GameController : MonoBehaviour
             yield return null;
         }
         goldText.transform.position = goldInit;
+    }
+
+    public IEnumerator UnitJuice()
+    {
+        float timer = 0;
+        Vector2 u = unitText.transform.position;
+        while (timer < 0.6)
+        {
+            unitText.transform.position = new Vector2(u.x + goldJuiceX.Evaluate(timer), u.y);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        unitText.transform.position = u;
     }
 
     public void BattleTrigger()
@@ -442,6 +470,7 @@ public class GameController : MonoBehaviour
             {
                 resultObj.GetComponent<Image>().sprite = resultSprites[2];
                 Battling = false;
+                draw.PlayDelayed(2);
             }
             else if (enemyUnits.Count == 0 && playerUnits.Count > 0)
             {
@@ -449,12 +478,14 @@ public class GameController : MonoBehaviour
                 wins++;
                 resultObj.GetComponent<Image>().sprite = resultSprites[0];
                 if (wins == 10) resultObj.GetComponent<Image>().sprite = resultSprites[4];
+                win.PlayDelayed(2);
             }
             else if (playerUnits.Count == 0) { 
                 Battling = false;
                 lives -= 1;
                 resultObj.GetComponent<Image>().sprite = resultSprites[1];
                 if (lives <= 0) resultObj.GetComponent<Image>().sprite = resultSprites[3];
+                lose.PlayDelayed(2);
             }
 
             yield return null;
@@ -504,7 +535,7 @@ public class GameController : MonoBehaviour
         StartCoroutine(FindObjectOfType<UIClouds>().Leave());
         round++;
         ResetStats();
-        Gold = 11;
+        Gold = 10;
 
         GetPlayerUnits();
         foreach (GameObject u in playerUnits)
@@ -531,7 +562,7 @@ public class GameController : MonoBehaviour
         else if (round == 6) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(3));  
         else if (round == 8) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(4));
 
-        FindObjectOfType<Shop>().ReRoll();
+        FindObjectOfType<Shop>().ReRoll(true);
         foreach (Button b in freezeButtons)
         {
             b.interactable = true;

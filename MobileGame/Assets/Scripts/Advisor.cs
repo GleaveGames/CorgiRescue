@@ -46,6 +46,7 @@ public class Advisor : Unit
             jiggled = true;
             float buffTimer = 0;
             GameObject newBuff = Instantiate(Buff, square.transform.position, Quaternion.identity);
+            sm.PlayHurt();
             square.occupier.GetComponent<Unit>().StartCoroutine(CollisionJiggle());
             square.occupier.GetComponent<Unit>().StartCoroutine(BuffJuice(3));
             while (buffTimer <= buffTime)

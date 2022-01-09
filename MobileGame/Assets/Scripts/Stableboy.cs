@@ -49,6 +49,7 @@ public class Stableboy : Unit
     private IEnumerator GiveBuff(GameObject u)
     {
         GameObject newBuff = Instantiate(heart, transform.position, Quaternion.identity);
+        newBuff.GetComponent<Buff>().good = false;
         float buffTimer = 0;
         while (buffTimer <= buffTime)
         {

@@ -54,7 +54,7 @@ public class Butcher : Unit
         //Give Buff
         if (square != null && square.occupied) 
         {
-            if(!jiggled) StartCoroutine(Jiggle());
+            if (!jiggled) StartCoroutine(Jiggle());
             jiggled = true;
             float buffTimer = 0;
             GameObject newBuff = Instantiate(Buff, transform.position, Quaternion.identity);

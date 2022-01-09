@@ -35,7 +35,6 @@ public class DataBase : MonoBehaviour
         }
         else
         {
-            Debug.Log(www.downloadHandler.text);
             GetComponent<GameController>().enemyFormation = www.downloadHandler.text;
             loadingText.text = "";
         }

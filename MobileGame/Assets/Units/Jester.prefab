@@ -174,7 +174,10 @@ MonoBehaviour:
   healthBuff: -8
   dead: 0
   initPos: {x: 0, y: 0}
-  audiosource: {fileID: 0}
+  unitSound: {fileID: 0}
+  buff: {fileID: 0}
+  buffThrow: {fileID: 0}
+  badBuff: {fileID: 0}
   ball: {fileID: 21300000, guid: aa5f977e26659dc44b3c554efe0760b2, type: 3}
 --- !u!82 &540522071036318119
 AudioSource:

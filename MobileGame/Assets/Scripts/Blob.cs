@@ -15,6 +15,7 @@ public class Blob : Unit
             StartCoroutine(Jiggle());
             int randomUnitIndex = Random.Range(0, enemies.Count - 1);
             GameObject newBuff = Instantiate(RangedAttack, transform.position, Quaternion.identity);
+            newBuff.GetComponent<Buff>().good = false;
             while (buffTimer <= buffTime)
             {
                 newBuff.transform.position = new Vector2(Mathf.Lerp(transform.position.x, enemies[randomUnitIndex].transform.position.x, buffX.Evaluate(buffTimer / buffTime)),
