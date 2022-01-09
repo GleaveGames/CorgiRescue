@@ -79,6 +79,11 @@ public class GameController : MonoBehaviour
     [HideInInspector]
     public bool loadFailed = false;
     public Color zombieColor;
+    [SerializeField]
+    AudioSource click;
+    [SerializeField]
+    AudioSource hit;
+
 
     private void Start()
     {
@@ -129,6 +134,7 @@ public class GameController : MonoBehaviour
                         draggingObj.transform.GetChild(0).gameObject.SetActive(true);
                         StartCoroutine(draggingObj.GetComponent<Unit>().Jiggle());
                         draggingObj = null;
+                        playClick();
                     }
                     else if (square != null && square.GetComponent<GameSquare>().occupier != null && draggingObj.name == square.GetComponent<GameSquare>().occupier.name && square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().level != 3)
                     {
@@ -146,6 +152,7 @@ public class GameController : MonoBehaviour
                         draggingObj.transform.GetChild(0).gameObject.SetActive(true);
                         StartCoroutine(draggingObj.GetComponent<Unit>().Jiggle());
                         draggingObj = null;
+                        playClick();
                     }
                 }
                 else
@@ -177,6 +184,7 @@ public class GameController : MonoBehaviour
                         draggingObj.GetComponent<Unit>().spriteQuality.SetActive(false);
                         draggingObj.transform.GetChild(0).GetChild(3).position = new Vector2(draggingObj.transform.position.x, draggingObj.transform.position.y - 1.5f);
                         StartCoroutine(draggingObj.GetComponent<Unit>().Jiggle());
+                        draggingObj.GetComponent<Unit>().audiosource.Play();
                         draggingObj = null;
                         Gold -= 3;
                     }
@@ -195,6 +203,7 @@ public class GameController : MonoBehaviour
                         draggingObj.transform.GetChild(0).gameObject.SetActive(true);
                         StartCoroutine(draggingObj.GetComponent<Unit>().Jiggle());
                         draggingObj = null;
+                        playClick();
                     }
                 }
             }
@@ -612,5 +621,16 @@ public class GameController : MonoBehaviour
             if (unit.actioning) result = true;
         }
         return result;
+    }
+
+    public void playClick()
+    {
+        click.pitch = Random.Range(1.3f, 1.7f);
+        click.Play();
+    }
+    public void playHit()
+    {
+        hit.pitch = Random.Range(0.8f, 1.2f);
+        hit.Play();
     }
 }

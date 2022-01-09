@@ -45,23 +45,26 @@ public class ShopSprite : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        if (Input.GetMouseButtonDown(0))
+        if (!gc.Battling)
         {
-            origin = transform.position;
-            Collider2D targetObject = Physics2D.OverlapPoint(mousePosition);
-            if (targetObject && targetObject == this.gameObject.GetComponent<Collider2D>())
-            {
-                gc.draggingObj = this.gameObject;
-                Collider2D square = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition), squares);
-                transform.GetChild(0).gameObject.SetActive(false);
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-                //Already On Board
-                if(square != null)
+            if (Input.GetMouseButtonDown(0))
+            {
+                origin = transform.position;
+                Collider2D targetObject = Physics2D.OverlapPoint(mousePosition);
+                if (targetObject && targetObject == this.gameObject.GetComponent<Collider2D>())
                 {
-                    square.GetComponent<GameSquare>().occupied = false;
-                    square.GetComponent<GameSquare>().occupier = null;
+                    gc.draggingObj = this.gameObject;
+                    Collider2D square = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition), squares);
+                    transform.GetChild(0).gameObject.SetActive(false);
+
+                    //Already On Board
+                    if (square != null)
+                    {
+                        square.GetComponent<GameSquare>().occupied = false;
+                        square.GetComponent<GameSquare>().occupier = null;
+                    }
                 }
             }
         }

@@ -78,6 +78,7 @@ public class Unit : MonoBehaviour
 
     [HideInInspector]
     public Vector2 initPos;
+    public AudioSource audiosource;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -109,6 +110,7 @@ public class Unit : MonoBehaviour
         initPos = transform.position;
         buffJuice = gc.buffJuice;
         zombieColor = gc.zombieColor;
+        audiosource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -327,14 +329,15 @@ public class Unit : MonoBehaviour
                     {
 
                         //Ping Off
-                        
-                        if (timer > attackTime/2 && !particlesGoneOff)
+
+                        if (timer > attackTime / 2 && !particlesGoneOff)
                         {
                             particlesGoneOff = true;
                             particle = Instantiate(collisionParticle, transform.position, Quaternion.identity);
-                            particleSpawnPos = (transform.position + enemyUnit.transform.position)/2;
+                            particleSpawnPos = (transform.position + enemyUnit.transform.position) / 2;
                             particle.transform.up = Vector2.Perpendicular(spawnPoint - initPos);
                             StartCoroutine(CollisionJiggle());
+                            if(playerUnit) gc.playHit();
                         }
                         else if(timer > attackTime / 2)
                         {
