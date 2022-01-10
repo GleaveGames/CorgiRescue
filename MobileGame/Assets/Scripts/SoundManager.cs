@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public AudioSource Buff;
+    [SerializeField]
+    AudioSource Buff;
+    [SerializeField]
     public AudioSource Throw;
-    public AudioSource Hurt;
+    [SerializeField]
+    AudioSource Hurt;
+    [SerializeField]
+    AudioSource LevelUp;
+    [SerializeField]
+    AudioSource ExpUp;
 
     private void PlaySound(AudioSource source)
     {
@@ -26,6 +33,15 @@ public class SoundManager : MonoBehaviour
     public void PlayHurt()
     {
         PlaySound(Hurt);
+    }
+
+    public void PlayExpUp()
+    {
+        PlaySound(ExpUp);
+    }
+    public void PlayLvUp()
+    {
+        PlaySound(LevelUp);
     }
 
 }
