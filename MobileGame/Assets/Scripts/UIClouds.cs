@@ -11,6 +11,7 @@ public class UIClouds : MonoBehaviour
     [SerializeField]
     AnimationCurve Y;
     
+    
     void Start()
     {
         cloudsleft = new List<Cloud>();
@@ -19,14 +20,14 @@ public class UIClouds : MonoBehaviour
         {
             Cloud newcloud = new Cloud();
             newcloud.t = transform.GetChild(i);
-            newcloud.initPos = transform.GetChild(i).position;
+            newcloud.initPos = transform.GetChild(i).position - transform.parent.position;
             cloudsleft.Add(newcloud);
         }
         for(int i = transform.childCount/2; i < transform.childCount; i++)
         {
             Cloud newcloud = new Cloud();
             newcloud.t = transform.GetChild(i);
-            newcloud.initPos = transform.GetChild(i).position;
+            newcloud.initPos = transform.GetChild(i).position - transform.parent.position;
             cloudsright.Add(newcloud);
         }
         StartCoroutine(Leave());
@@ -36,11 +37,11 @@ public class UIClouds : MonoBehaviour
     {
         foreach (Cloud c in cloudsleft)
         {
-            StartCoroutine(cloudMove(c.t, c.t.position, c.initPos, Random.Range(1f, 1.5f)));
+            StartCoroutine(cloudMove(c.t, c.t.position, c.initPos + new Vector2(transform.parent.position.x, transform.parent.position.y), Random.Range(1f, 1.5f)));
         }
         foreach (Cloud c in cloudsright)
         {
-            StartCoroutine(cloudMove(c.t, c.t.position, c.initPos, Random.Range(1f, 1.5f)));
+            StartCoroutine(cloudMove(c.t, c.t.position, c.initPos + new Vector2(transform.parent.position.x, transform.parent.position.y), Random.Range(1f, 1.5f)));
         }
         yield return null;
     }
@@ -53,14 +54,14 @@ public class UIClouds : MonoBehaviour
             Vector2 end = c.initPos;
             end.x -= Random.Range(2500,3500);
             end.y -= Random.Range(-300,300);
-            StartCoroutine(cloudMove(c.t, c.initPos, end, Random.Range(1.5f,2f)));
+            StartCoroutine(cloudMove(c.t, c.initPos + new Vector2(transform.parent.position.x, transform.parent.position.y), end, Random.Range(1.5f,2f)));
         }
         foreach(Cloud c in cloudsright)
         {
             Vector2 end = c.initPos;
             end.x += Random.Range(2500,3500);
             end.y += Random.Range(-300,300);
-            StartCoroutine(cloudMove(c.t, c.initPos, end, Random.Range(1.5f, 2f)));
+            StartCoroutine(cloudMove(c.t, c.initPos + new Vector2(transform.parent.position.x, transform.parent.position.y), end, Random.Range(1.5f, 2f)));
         }
         yield return null;
     }

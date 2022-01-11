@@ -152,6 +152,21 @@ public class GameController : MonoBehaviour
                         StartCoroutine(oc.GetComponent<Unit>().Combine(draggingObj.GetComponent<Unit>().level * draggingObj.GetComponent<Unit>().level + draggingObj.GetComponent<Unit>().exp - draggingObj.GetComponent<Unit>().level - 1));
                         Destroy(draggingObj);
                     }
+                    else if (square != null && square.GetComponent<GameSquare>().occupier != null)
+                    {
+                        GameObject oc = square.GetComponent<GameSquare>().occupier;
+                        draggingObj.transform.position = new Vector3(square.transform.position.x, square.transform.position.y, 0);
+                        square.GetComponent<GameSquare>().occupier = draggingObj;
+                        Collider2D oldsquare = Physics2D.OverlapPoint(draggingObj.GetComponent<ShopSprite>().origin, squares);
+                        oc.transform.position = draggingObj.GetComponent<ShopSprite>().origin;
+                        oldsquare.GetComponent<GameSquare>().occupier = oc;
+                        oldsquare.GetComponent<GameSquare>().occupied = true;
+                        StartCoroutine(draggingObj.GetComponent<Unit>().Jiggle());
+                        StartCoroutine(oc.GetComponent<Unit>().Jiggle());
+                        draggingObj.transform.GetChild(0).gameObject.SetActive(true);
+                        draggingObj = null;
+                        playClick();
+                    }
                     else
                     {
                         draggingObj.transform.position = draggingObj.GetComponent<ShopSprite>().origin;
