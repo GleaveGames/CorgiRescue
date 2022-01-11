@@ -123,11 +123,7 @@ public class Unit : MonoBehaviour
         healthText.text = health.ToString();
         attackText.text = attack.ToString();
         levelSprite.sprite = levelSprites[level*level + exp - level-1];
-        if (level <= exp-2)
-        {
-            //level up
-            LevelUp();
-        }
+        
         if(health <= 0)
         {
             health = 0;
@@ -315,7 +311,6 @@ public class Unit : MonoBehaviour
                     square = Physics2D.OverlapPoint(spawnPoint, playerTiles);
                 }
                 if (square == null) {
-                    Debug.Log("Didn't hit a sqaure");
                     Instantiate(levelUpParticles, spawnPoint, Quaternion.identity);
                 }
                 else if (square.GetComponent<GameSquare>().occupied)
@@ -401,13 +396,18 @@ public class Unit : MonoBehaviour
 
     public virtual IEnumerator Combine(int lxp = 0)
     {
-        Debug.Log(lxp);
         for (int i = 0; i < lxp + 1; i++)
         {
             health++;
             attack++;
             exp++;
             StartCoroutine(Jiggle());
+            if (level <= exp - 2)
+            {
+                LevelUp();
+                sm.PlayLevelUp();
+            }
+            else sm.PlayExp();
             yield return new WaitForSeconds(0.4f);
         }
     }

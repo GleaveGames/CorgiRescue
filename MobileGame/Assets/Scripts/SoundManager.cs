@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public AudioSource Buff;
-    public AudioSource Throw;
-    public AudioSource Hurt;
-
+    [SerializeField]
+    AudioSource Buff;
+    [SerializeField]
+    AudioSource Throw;
+    [SerializeField]
+    AudioSource Hurt;
+    [SerializeField]
+    AudioSource ExpUp;
+    [SerializeField]
+    AudioSource LvlUp;
+    
     private void PlaySound(AudioSource source)
     {
         source.pitch = Random.Range(0.8f, 1.2f);
@@ -27,5 +34,12 @@ public class SoundManager : MonoBehaviour
     {
         PlaySound(Hurt);
     }
-
+    public void PlayExp()
+    {
+        PlaySound(ExpUp);
+    }
+    public void PlayLevelUp()
+    {
+        PlaySound(LvlUp);
+    }
 }
