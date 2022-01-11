@@ -77,8 +77,10 @@ public class UIClouds : MonoBehaviour
             yield return null;
         }
     }
-
+    
 }
+
+
 
 public class Cloud
 {
