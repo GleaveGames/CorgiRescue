@@ -93,16 +93,18 @@ public class GameController : MonoBehaviour
     AudioSource draw;    
     [SerializeField]
     AudioSource denied;
-    SoundManager sm;
 
     private void Start()
     {
-        sm = FindObjectOfType<SoundManager>();
         ResetStats();
         CameraTrans = FindObjectOfType<Camera>().transform;
         if (LOCALTESTING)
         {
             databasetext = database.text;
+        }
+        else 
+        {
+            //GetComponent<DataBase>().GetDataBase();
         }
     }
 

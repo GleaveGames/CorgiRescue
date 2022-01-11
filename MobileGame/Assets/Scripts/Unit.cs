@@ -123,7 +123,11 @@ public class Unit : MonoBehaviour
         healthText.text = health.ToString();
         attackText.text = attack.ToString();
         levelSprite.sprite = levelSprites[level*level + exp - level-1];
-        
+        if (level <= exp-2)
+        {
+            //level up
+            LevelUp();
+        }
         if(health <= 0)
         {
             health = 0;
@@ -403,13 +407,6 @@ public class Unit : MonoBehaviour
             health++;
             attack++;
             exp++;
-            if (level <= exp - 2)
-            {
-                //level up
-                LevelUp();
-                sm.PlayLvUp();
-            }
-            else sm.PlayExpUp();
             StartCoroutine(Jiggle());
             yield return new WaitForSeconds(0.4f);
         }
