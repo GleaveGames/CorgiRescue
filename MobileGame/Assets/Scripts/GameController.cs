@@ -79,6 +79,11 @@ public class GameController : MonoBehaviour
     [HideInInspector]
     public bool loadFailed = false;
     public Color zombieColor;
+    int gameSpeed;
+    [SerializeField]
+    Sprite[] GameSpeedSprites;
+    [SerializeField]
+    Image gameSpeedButtonSR;
 
     [Header ("Sounds")]
     [SerializeField]
@@ -678,5 +683,49 @@ public class GameController : MonoBehaviour
     {
         hit.pitch = Random.Range(0.8f, 1.2f);
         hit.Play();
+    }
+
+    public void ToggleGameSpeed()
+    {
+        gameSpeed ++;
+        if (gameSpeed == 3) gameSpeed = 0;
+        gameSpeedButtonSR.sprite = GameSpeedSprites[gameSpeed];
+        if(gameSpeed == 0)
+        {
+            jiggleTime = 0.7f;
+            attackTime = 1;
+            buffTime = 0.6f;
+        }
+        else if(gameSpeed == 1)
+        {
+            jiggleTime = 0.525f;
+            attackTime = 0.75f;
+            buffTime = 0.45f;
+        }
+        else
+        {
+            jiggleTime = 0.35f;
+            attackTime = 0.5f;
+            buffTime = 0.3f;
+        }
+
+        GetPlayerUnits();
+        foreach(GameObject u in allUnits)
+        {
+            u.GetComponent<Unit>().attackTime = attackTime;
+            u.GetComponent<Unit>().buffTime = buffTime;
+            u.GetComponent<Unit>().jiggleTime = jiggleTime;
+        }
+        List<ShopSpot> shopSpots = FindObjectOfType<Shop>().ShopSlots;
+        foreach(ShopSpot sp in shopSpots)
+        {
+            if(sp.go.transform.childCount > 2)
+            {
+                sp.go.transform.GetChild(2).GetComponent<Unit>().attackTime = attackTime;
+                sp.go.transform.GetChild(2).GetComponent<Unit>().buffTime = buffTime;
+                sp.go.transform.GetChild(2).GetComponent<Unit>().jiggleTime = jiggleTime;
+            }
+        }
+
     }
 }

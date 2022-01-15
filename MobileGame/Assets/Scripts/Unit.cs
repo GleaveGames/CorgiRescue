@@ -37,7 +37,8 @@ public class Unit : MonoBehaviour
     [SerializeField]
     protected LayerMask enemyTiles;
     protected AnimationCurve attackCurve;   
-    protected float attackTime;
+    [HideInInspector]
+    public float attackTime;
     protected GameController gc;
     [HideInInspector]
     public int healthPreBattle;
@@ -55,7 +56,8 @@ public class Unit : MonoBehaviour
     public int levelPreEndTurn;
     [HideInInspector]
     public int expPreEndTurn;
-    float jiggleTime;
+    [HideInInspector]
+    public float jiggleTime;
     AnimationCurve jiggleX;
     AnimationCurve jiggleY;
     protected GameObject collisionParticle;
@@ -72,7 +74,8 @@ public class Unit : MonoBehaviour
     protected int attackBuff;
     [SerializeField]
     protected int healthBuff;
-    protected float buffTime = 1;
+    [HideInInspector]
+    public float buffTime = 1;
     [HideInInspector]
     public bool dead;
 
@@ -111,6 +114,8 @@ public class Unit : MonoBehaviour
         ParticleSystem cp = Instantiate(cloudParticles, transform.position, Quaternion.identity);
         if (transform.parent.name.Contains("Shop")) cp.GetComponent<AudioSource>().Stop();
         attackTime = gc.attackTime;
+        buffTime = gc.buffTime;
+        jiggleTime = gc.jiggleTime;
         initPos = transform.position;
         buffJuice = gc.buffJuice;
         zombieColor = gc.zombieColor;
