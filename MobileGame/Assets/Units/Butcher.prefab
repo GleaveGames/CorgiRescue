@@ -162,6 +162,7 @@ MonoBehaviour:
   enemyTiles:
     serializedVersion: 2
     m_Bits: 512
+  attackTime: 0
   healthPreBattle: 0
   attackPreBattle: 0
   levelPreBattle: 0
@@ -170,14 +171,17 @@ MonoBehaviour:
   attackPreEndTurn: 0
   levelPreEndTurn: 0
   expPreEndTurn: 0
+  jiggleTime: 0
   attackBuff: 0
   healthBuff: 1
+  rowbuff: 000000
+  rowdebuff: 000000
+  buffs: 010101010001010101
+  debuffs: 000000000000000000
+  buffTime: 1
   dead: 0
   initPos: {x: 0, y: 0}
   unitSound: {fileID: 0}
-  buff: {fileID: 0}
-  buffThrow: {fileID: 0}
-  badBuff: {fileID: 0}
   meat: {fileID: 21300000, guid: 8f982a03467cfdb4dab34d595da83bf7, type: 3}
 --- !u!82 &2352747654671067184
 AudioSource:
@@ -282,9 +286,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 757357724859235948}
     m_Modifications:
+    - target: {fileID: 3671523183155734225, guid: b4101005315136046a3527e48caa4c0f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4565190641329966298, guid: b4101005315136046a3527e48caa4c0f, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5131478320586918172, guid: b4101005315136046a3527e48caa4c0f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7171951987264187325, guid: b4101005315136046a3527e48caa4c0f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8317786970848638297, guid: b4101005315136046a3527e48caa4c0f, type: 3}
       propertyPath: m_Pivot.x

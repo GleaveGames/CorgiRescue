@@ -12,7 +12,7 @@ public class Prisoner : Unit
         actioning = true;
         bool noUnits = true;
         int y = 0;
-        for (int x = -5; x <= 5; x++)
+        for (int x = -1; x <= 1; x++)
         {
             if (x == 0 && y == 0)
             {

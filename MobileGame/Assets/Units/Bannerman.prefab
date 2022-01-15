@@ -162,6 +162,7 @@ MonoBehaviour:
   enemyTiles:
     serializedVersion: 2
     m_Bits: 512
+  attackTime: 0
   healthPreBattle: 0
   attackPreBattle: 0
   levelPreBattle: 0
@@ -170,14 +171,18 @@ MonoBehaviour:
   attackPreEndTurn: 0
   levelPreEndTurn: 0
   expPreEndTurn: 0
+  jiggleTime: 0
   attackBuff: 1
   healthBuff: 1
+  rowbuff: 010000
+  rowdebuff: 000000
+  buffs: 000000000000000000
+  debuffs: 000000000000000000
+  nounits: 000000000000000000
+  buffTime: 1
   dead: 0
   initPos: {x: 0, y: 0}
   unitSound: {fileID: -2322159443507267439}
-  buff: {fileID: 0}
-  buffThrow: {fileID: 0}
-  badBuff: {fileID: 0}
 --- !u!82 &-2322159443507267439
 AudioSource:
   m_ObjectHideFlags: 0

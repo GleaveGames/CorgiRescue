@@ -84,6 +84,7 @@ public class GameController : MonoBehaviour
     Sprite[] GameSpeedSprites;
     [SerializeField]
     Image gameSpeedButtonSR;
+    public AnimationCurve gsjuice;
 
     [Header ("Sounds")]
     [SerializeField]
@@ -98,6 +99,7 @@ public class GameController : MonoBehaviour
     AudioSource draw;    
     [SerializeField]
     AudioSource denied;
+    
 
     private void Start()
     {
@@ -147,6 +149,7 @@ public class GameController : MonoBehaviour
                         square.GetComponent<GameSquare>().occupier = draggingObj;
                         draggingObj.transform.GetChild(0).gameObject.SetActive(true);
                         StartCoroutine(draggingObj.GetComponent<Unit>().Jiggle());
+                        draggingObj.GetComponent<Unit>().ShowBuffStuff();
                         draggingObj = null;
                         playClick();
                     }
@@ -155,6 +158,7 @@ public class GameController : MonoBehaviour
                         //COMBINE 
                         GameObject oc = square.GetComponent<GameSquare>().occupier;
                         StartCoroutine(oc.GetComponent<Unit>().Combine(draggingObj.GetComponent<Unit>().level * draggingObj.GetComponent<Unit>().level + draggingObj.GetComponent<Unit>().exp - draggingObj.GetComponent<Unit>().level - 1));
+                        oc.GetComponent<Unit>().ShowBuffStuff();
                         Destroy(draggingObj);
                     }
                     else if (square != null && square.GetComponent<GameSquare>().occupier != null)
@@ -169,6 +173,7 @@ public class GameController : MonoBehaviour
                         StartCoroutine(draggingObj.GetComponent<Unit>().Jiggle());
                         StartCoroutine(oc.GetComponent<Unit>().Jiggle());
                         draggingObj.transform.GetChild(0).gameObject.SetActive(true);
+                        draggingObj.GetComponent<Unit>().ShowBuffStuff();
                         draggingObj = null;
                         playClick();
                     }
@@ -217,6 +222,7 @@ public class GameController : MonoBehaviour
                         draggingObj.transform.GetChild(0).GetChild(3).position = new Vector2(draggingObj.transform.position.x, draggingObj.transform.position.y - 1.5f);
                         StartCoroutine(draggingObj.GetComponent<Unit>().Jiggle());
                         draggingObj.GetComponent<Unit>().unitSound.Play();
+                        draggingObj.GetComponent<Unit>().ShowBuffStuff();
                         draggingObj = null;
                         Gold -= 3;
                     }
@@ -226,6 +232,7 @@ public class GameController : MonoBehaviour
                         GameObject oc = square.GetComponent<GameSquare>().occupier;
                         StartCoroutine(oc.GetComponent<Unit>().Combine());
                         oc.GetComponent<ShopSprite>().Bought();
+                        oc.GetComponent<Unit>().ShowBuffStuff();
                         Destroy(draggingObj);
                         Gold -= 3;
                     }

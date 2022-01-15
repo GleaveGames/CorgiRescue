@@ -65,6 +65,7 @@ public class Unit : MonoBehaviour
     protected Color colorInvisible;
     AnimationCurve buffJuice;
     Color zombieColor;
+    GameObject buffStuff;
 
     [Header("Buff")]
     protected AnimationCurve buffY;
@@ -75,6 +76,20 @@ public class Unit : MonoBehaviour
     protected int attackBuff;
     [SerializeField]
     protected int healthBuff;
+
+    [Header("Row?")]
+    [SerializeField]
+    bool[] rowbuff = new bool[3];     
+    [SerializeField]
+    bool[] rowdebuff = new bool[3];
+    [SerializeField]
+    bool[] buffs = new bool[9];
+    [SerializeField]
+    bool[] debuffs = new bool[9];
+    [SerializeField]
+    bool[] nounits = new bool[9];
+
+
     [HideInInspector]
     public float buffTime = 1;
     [HideInInspector]
@@ -535,5 +550,78 @@ public class Unit : MonoBehaviour
         }
         if (square != null && square.occupied && square.occupier.name.Contains(name)) return true;
         else return false;
+    }
+
+    public void ShowBuffStuff()
+    {
+        Transform board = gc.gameObject.transform.GetChild(0);
+        if (rowbuff[0])
+        {
+            for(int i = 0; i < board.childCount; i++)
+            {
+                if (board.GetChild(i).name.Contains("D")) StartCoroutine(board.GetChild(i).GetComponent<GameSquare>().showBuff(0));
+            }
+        }
+        if (rowbuff[1])
+        {
+            for (int i = 0; i < board.childCount; i++)
+            {
+                if (board.GetChild(i).name.Contains("E")) StartCoroutine(board.GetChild(i).GetComponent<GameSquare>().showBuff(0));
+            }
+        }
+        if (rowbuff[2])
+        {
+            for (int i = 0; i < board.childCount; i++)
+            {
+                if (board.GetChild(i).name.Contains("F")) StartCoroutine(board.GetChild(i).GetComponent<GameSquare>().showBuff(0));
+            }
+        }
+        if (rowdebuff[0])
+        {
+            for (int i = 0; i < board.childCount; i++)
+            {
+                if (board.GetChild(i).name.Contains("D")) StartCoroutine(board.GetChild(i).GetComponent<GameSquare>().showBuff(1));
+            }
+        }
+        if (rowdebuff[1])
+        {
+            for (int i = 0; i < board.childCount; i++)
+            {
+                if (board.GetChild(i).name.Contains("E")) StartCoroutine(board.GetChild(i).GetComponent<GameSquare>().showBuff(2));
+            }
+        }
+        if (rowdebuff[2])
+        {
+            for (int i = 0; i < board.childCount; i++)
+            {
+                if (board.GetChild(i).name.Contains("F")) StartCoroutine(board.GetChild(i).GetComponent<GameSquare>().showBuff(3));
+            }
+        }
+
+        for(int i = 0; i < buffs.Length; i++)
+        {
+            if (buffs[i])
+            {
+                Collider2D squareCol = Physics2D.OverlapPoint(transform.position + new Vector3((i % 3) * 1.25f - 1.25f, 1.25f - (i / 3) * 1.25f), playerTiles);
+                if(squareCol != null) StartCoroutine(squareCol.GetComponent<GameSquare>().showBuff(0));
+            }
+        }
+        for (int i = 0; i < debuffs.Length; i++)
+        {
+            if (debuffs[i])
+            {
+                Collider2D squareCol = Physics2D.OverlapPoint(transform.position + new Vector3((i % 3) * 1.25f - 1.25f, 1.25f - (i / 3) * 1.25f), playerTiles);
+                if (squareCol != null) StartCoroutine(squareCol.GetComponent<GameSquare>().showBuff(1));
+            }
+        }
+        for (int i = 0; i < nounits.Length; i++)
+        {
+            if (nounits[i])
+            {
+                Collider2D squareCol = Physics2D.OverlapPoint(transform.position + new Vector3((i % 3) * 1.25f - 1.25f, 1.25f - (i / 3) * 1.25f), playerTiles);
+                if (squareCol != null && squareCol.GetComponent<GameSquare>().occupier != null) StartCoroutine(squareCol.GetComponent<GameSquare>().showBuff(1));
+                else if(squareCol!=null) StartCoroutine(squareCol.GetComponent<GameSquare>().showBuff(0));
+            }
+        }
     }
 }
