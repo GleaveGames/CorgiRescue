@@ -120,6 +120,7 @@ public class Shop : MonoBehaviour
         ShopSpot sp = ShopSlots[spot];
         if(sp.go.transform.childCount > 2)
         {
+            freeze.Play();
             sp.frozen = !sp.frozen;
         }
         else
