@@ -7,9 +7,11 @@ public class MouseOverInfo : MonoBehaviour
     GameObject unitTextParent;
     List<Coroutine> mouseoverchecks;
 
+
     private void Start()
     {
         unitTextParent = transform.GetChild(0).gameObject;
+        mouseoverchecks = new List<Coroutine>();
     }
 
 
@@ -20,7 +22,6 @@ public class MouseOverInfo : MonoBehaviour
     }
     public void OnMouseExit()
     {
-        transform.GetChild(0).GetComponent<Canvas>().sortingOrder = 11;
         unitTextParent.SetActive(false);
         StopAllMouseOvers();
     }
@@ -28,7 +29,6 @@ public class MouseOverInfo : MonoBehaviour
     private IEnumerator MouseOverCheck()
     {
         yield return new WaitForSeconds(0.6f);
-        transform.GetChild(0).GetComponent<Canvas>().sortingOrder = 12;
         unitTextParent.SetActive(true);
     }
     private void StopAllMouseOvers()

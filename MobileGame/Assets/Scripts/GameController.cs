@@ -197,9 +197,11 @@ public class GameController : MonoBehaviour
                     }
                     else if (square != null && square.name == "Sell")
                     {
-                        Gold -= 3;
-                        Gold += draggingObj.GetComponent<Unit>().level;
-                        StartCoroutine(draggingObj.GetComponent<Unit>().OnSell());
+                        draggingObj.transform.position = draggingObj.GetComponent<ShopSprite>().origin;
+                        draggingObj.transform.GetChild(0).gameObject.SetActive(true);
+                        StartCoroutine(draggingObj.GetComponent<Unit>().Jiggle());
+                        draggingObj = null;
+                        playClick();
                     }
                     else if (square != null && !square.GetComponent<GameSquare>().occupied && unitNumber < 6)
                     {
