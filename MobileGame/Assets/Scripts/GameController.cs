@@ -709,23 +709,12 @@ public class GameController : MonoBehaviour
             buffTime = 0.3f;
         }
 
-        GetPlayerUnits();
-        foreach(GameObject u in allUnits)
+        GameObject[] us = GameObject.FindGameObjectsWithTag("ShopItem");
+        foreach (GameObject u in us)
         {
             u.GetComponent<Unit>().attackTime = attackTime;
             u.GetComponent<Unit>().buffTime = buffTime;
             u.GetComponent<Unit>().jiggleTime = jiggleTime;
         }
-        List<ShopSpot> shopSpots = FindObjectOfType<Shop>().ShopSlots;
-        foreach(ShopSpot sp in shopSpots)
-        {
-            if(sp.go.transform.childCount > 2)
-            {
-                sp.go.transform.GetChild(2).GetComponent<Unit>().attackTime = attackTime;
-                sp.go.transform.GetChild(2).GetComponent<Unit>().buffTime = buffTime;
-                sp.go.transform.GetChild(2).GetComponent<Unit>().jiggleTime = jiggleTime;
-            }
-        }
-
     }
 }

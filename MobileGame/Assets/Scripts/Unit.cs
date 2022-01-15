@@ -22,6 +22,7 @@ public class Unit : MonoBehaviour
     Image levelSprite;
     [HideInInspector]
     public GameObject spriteQuality;
+    List<Image> spriteQualities;
     ParticleSystem levelUpParticles;
     [HideInInspector]
     protected ParticleSystem deathParticles;
@@ -95,7 +96,11 @@ public class Unit : MonoBehaviour
         attackText = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
         levelSprite = transform.GetChild(0).GetChild(2).GetComponent<Image>();
         spriteQuality = transform.GetChild(0).GetChild(4).gameObject;
+        spriteQualities = new List<Image>();
+        spriteQualities.Add(transform.GetChild(0).GetChild(3).GetChild(2).GetComponent<Image>());
+        spriteQualities.Add(transform.GetChild(0).GetChild(3).GetChild(3).GetComponent<Image>());
         spriteQuality.GetComponent<Image>().sprite = qualitySprites[quality - 1];
+        foreach(Image i in spriteQualities) i.sprite = qualitySprites[quality - 1];
         levelSprites = gc.levelSprites;
         jiggleX = gc.JiggleX;
         jiggleY = gc.JiggleY;
