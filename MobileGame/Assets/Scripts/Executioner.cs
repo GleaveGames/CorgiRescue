@@ -26,11 +26,14 @@ public class Executioner : Unit
             }
 
             Destroy(newBuff);
-            health += Mathf.RoundToInt((level/2f) * square.occupier.GetComponent<Unit>().health);
-            attack += Mathf.RoundToInt((level/2f) * square.occupier.GetComponent<Unit>().attack);
-            StartCoroutine(square.occupier.GetComponent<Unit>().OnDie());
-            square.occupier.GetComponent<Unit>().health = 0;
-            square.occupier.GetComponent<Unit>().attack = 0;
+            if (square.occupier != null)
+            {
+                health += Mathf.RoundToInt((level / 2f) * square.occupier.GetComponent<Unit>().health);
+                attack += Mathf.RoundToInt((level / 2f) * square.occupier.GetComponent<Unit>().attack);
+                StartCoroutine(square.occupier.GetComponent<Unit>().OnDie());
+                square.occupier.GetComponent<Unit>().health = 0;
+                square.occupier.GetComponent<Unit>().attack = 0;
+            }
             StartCoroutine(BuffJuice(3));
             StartCoroutine(Jiggle());
         }

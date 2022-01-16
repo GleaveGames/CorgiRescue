@@ -77,7 +77,7 @@ public class ShopSprite : MonoBehaviour
         StartCoroutine(GetComponent<Unit>().OnBuy());
         unitTextParent.SetActive(false);
         StartCoroutine(GetComponent<Unit>().Jiggle());
-        if (shopSpot >= 0 && shop.ShopSlots[shopSpot].frozen) shop.ToggleFreeze(shopSpot);
+        //if (shopSpot >= 0 && shop.ShopSlots[shopSpot].frozen) shop.ToggleFreeze(shopSpot);
     }
 
     public void OnMouseEnter()

@@ -140,6 +140,7 @@ public class Unit : MonoBehaviour
         buffJuice = gc.buffJuice;
         zombieColor = gc.zombieColor;
         unitSound = GetComponent<AudioSource>();
+        if (temperary) spriteQuality.SetActive(false);
     }
 
     // Update is called once per frame
