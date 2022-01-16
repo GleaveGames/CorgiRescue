@@ -112,7 +112,7 @@ public class ShopSprite : MonoBehaviour
         unitTextParent.SetActive(true);
     }
 
-    private void StopAllMouseOvers()
+    public void StopAllMouseOvers()
     {
         for (int i = mouseoverchecks.Count - 1; i >= 0; i--)
         {

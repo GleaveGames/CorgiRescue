@@ -150,6 +150,8 @@ public class GameController : MonoBehaviour
                         draggingObj.transform.GetChild(0).gameObject.SetActive(true);
                         StartCoroutine(draggingObj.GetComponent<Unit>().Jiggle());
                         draggingObj.GetComponent<Unit>().ShowBuffStuff();
+                        draggingObj.GetComponent<ShopSprite>().OnMouseExit();
+                        draggingObj.GetComponent<ShopSprite>().StopAllMouseOvers();
                         draggingObj = null;
                         playClick();
                     }
@@ -174,6 +176,8 @@ public class GameController : MonoBehaviour
                         StartCoroutine(oc.GetComponent<Unit>().Jiggle());
                         draggingObj.transform.GetChild(0).gameObject.SetActive(true);
                         draggingObj.GetComponent<Unit>().ShowBuffStuff();
+                        draggingObj.GetComponent<ShopSprite>().OnMouseExit();
+                        draggingObj.GetComponent<ShopSprite>().StopAllMouseOvers();
                         draggingObj = null;
                         playClick();
                     }
@@ -223,6 +227,8 @@ public class GameController : MonoBehaviour
                         StartCoroutine(draggingObj.GetComponent<Unit>().Jiggle());
                         draggingObj.GetComponent<Unit>().unitSound.Play();
                         draggingObj.GetComponent<Unit>().ShowBuffStuff();
+                        draggingObj.GetComponent<ShopSprite>().OnMouseExit();
+                        draggingObj.GetComponent<ShopSprite>().StopAllMouseOvers();
                         draggingObj = null;
                         Gold -= 3;
                     }
