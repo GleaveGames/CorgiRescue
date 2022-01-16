@@ -55,7 +55,8 @@ public class Guard : Unit
             }
             Destroy(newBuff);
             square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().health += healthBuff * level;
-            StartCoroutine(square.occupier.GetComponent<Unit>().BuffJuice(1));
+            square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().attack += attackBuff * level;
+            StartCoroutine(square.occupier.GetComponent<Unit>().BuffJuice(3));
             StartCoroutine(square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().Jiggle());
         }
         else

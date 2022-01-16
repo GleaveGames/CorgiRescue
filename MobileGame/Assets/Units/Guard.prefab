@@ -104,9 +104,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'On Hurt: Give adjacent units behind +2 health'
-  UnitText2: 'On Hurt: Give adjacent units behind +4 health'
-  UnitText3: 'On Hurt: Give adjacent units behind +6 health'
+  UnitText1: 'On Hurt: Give adjacent units behind +1/+2'
+  UnitText2: 'On Hurt: Give adjacent units behind +2/+4'
+  UnitText3: 'On Hurt: Give adjacent units behind +3/+6'
 --- !u!61 &757357724859235949
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -172,7 +172,7 @@ MonoBehaviour:
   levelPreEndTurn: 0
   expPreEndTurn: 0
   jiggleTime: 0
-  attackBuff: 0
+  attackBuff: 1
   healthBuff: 2
   rowbuff: 000000
   rowdebuff: 000000
