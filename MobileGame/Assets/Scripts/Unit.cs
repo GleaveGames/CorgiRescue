@@ -416,6 +416,7 @@ public class Unit : MonoBehaviour
         exp = 1;
         level++;
         Instantiate(levelUpParticles, transform.position, Quaternion.identity);
+        StartCoroutine(FindObjectOfType<Shop>().SpawnNewShopSpot());
         StartCoroutine(OnLevelUp());
         StartCoroutine(Jiggle());
     }

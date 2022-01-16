@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
+    [SerializeField]
+    GameObject shopSpotPrefab;
+    [SerializeField]
+    AnimationCurve newSpotJuice;
     public List<ShopSpot> ShopSlots;
     public List<GameObject> Units;
     GameController gc;
@@ -83,9 +87,18 @@ public class Shop : MonoBehaviour
     {
         foreach(ShopSpot thisSpot in ShopSlots)
         {
-            if (thisSpot.go.transform.childCount <= 2) thisSpot.frozen = false;
+            if (thisSpot.temperary && thisSpot.go.transform.childCount <= 2)
+            {
+                StartCoroutine(LoseSpot(thisSpot));
+            }
+            else if (thisSpot.temperary) continue;
+            else if (thisSpot.go.transform.childCount <= 2) thisSpot.frozen = false;
             if (thisSpot.frozen) thisSpot.sr.enabled = true;
-            else thisSpot.sr.enabled = false;
+            else if(!thisSpot.temperary) thisSpot.sr.enabled = false;
+        }
+        for (int i = ShopSlots.Count-1; i >= 0; i--)
+        {
+            if (ShopSlots[i] == null || ShopSlots[i].remove) ShopSlots.RemoveAt(i);
         }
     }
 
@@ -95,6 +108,11 @@ public class Shop : MonoBehaviour
         {
             for (int i = 0; i < ShopSlots.Count; i++)
             {
+                if (ShopSlots[i].temperary)
+                {
+                    StartCoroutine(LoseSpot(ShopSlots[i]));
+                    continue;
+                }
                 if (ShopSlots[i].frozen) continue;
                 if (ShopSlots[i].go.transform.childCount > 2)
                 {
@@ -174,6 +192,57 @@ public class Shop : MonoBehaviour
         }
     }
 
+    public IEnumerator SpawnNewShopSpot()
+    {
+        Vector2 newSpotPos = ShopSlots[ShopSlots.Count - 1].go.transform.position;
+        newSpotPos.x += 1.6f;
+
+        Vector2 endPos = newSpotPos;
+
+        newSpotPos.y -= 5f;
+
+        GameObject newspot = Instantiate(shopSpotPrefab, newSpotPos, Quaternion.identity);
+        newspot.transform.parent = transform;
+        newspot.transform.GetChild(0).gameObject.SetActive(false);
+        int unitType = gc.round / 2 + 1;
+        List<GameObject> pool = new List<GameObject>();
+        if (unitType == 1) pool = BarracksUnits;
+        else if (unitType == 2) pool = ChurchUnits;
+        else if (unitType == 3) pool = WorkshopUnits;
+        else pool = CastleUnits;
+        GameObject unit = Instantiate(pool[Random.Range(0, pool.Count)], newspot.transform.position, Quaternion.identity);
+        unit.transform.parent = newspot.transform;
+        float timer = 0;
+        while(timer<=0.6f)
+        {
+            newspot.transform.position = Vector2.Lerp(newSpotPos, endPos, newSpotJuice.Evaluate(timer/0.6f));
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        ShopSpot thisSpot = new ShopSpot();
+        thisSpot.go = newspot;
+        thisSpot.number = ShopSlots[ShopSlots.Count - 1].number + 1;
+        thisSpot.temperary = true;
+        ShopSlots.Add(thisSpot);
+        
+    }
+
+    public IEnumerator LoseSpot(ShopSpot spot)
+    {
+        spot.remove = true;
+        Vector2 endpos = spot.go.transform.position;
+        Vector2 startpos = endpos;
+        endpos.y -= 5;
+        float timer = 0;
+        while (timer <= 0.6f)
+        {
+            spot.go.transform.position = Vector2.Lerp(startpos, endpos, newSpotJuice.Evaluate(timer / 0.6f));
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        Destroy(spot.go);
+    }
+
 }
 
 public class ShopSpot
@@ -182,4 +251,6 @@ public class ShopSpot
     public bool frozen;
     public SpriteRenderer sr;
     public int number;
+    public bool temperary = false;
+    public bool remove = false;
 }
