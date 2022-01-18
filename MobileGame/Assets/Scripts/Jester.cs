@@ -33,6 +33,8 @@ public class Jester : Unit
             else StartCoroutine(enemies[randomUnitIndex].GetComponent<Unit>().OnHurt());
             StartCoroutine(enemies[randomUnitIndex].GetComponent<Unit>().CollisionJiggle());
             StartCoroutine(enemies[randomUnitIndex].GetComponent<Unit>().BuffJuice(1));
+            while (enemies[randomUnitIndex] != null && enemies[randomUnitIndex].GetComponent<Unit>().actioning) yield return null;
+
             enemies.RemoveAt(randomUnitIndex);
 
             for (int i = 0; i < level; i++)
@@ -55,6 +57,7 @@ public class Jester : Unit
                     else StartCoroutine(enemies[randomUnitIndex].GetComponent<Unit>().OnHurt());
                     StartCoroutine(enemies[randomUnitIndex].GetComponent<Unit>().CollisionJiggle());
                     StartCoroutine(enemies[randomUnitIndex].GetComponent<Unit>().BuffJuice(1));
+                    while (enemies[randomUnitIndex] != null && enemies[randomUnitIndex].GetComponent<Unit>().actioning) yield return null;
                     enemies.RemoveAt(randomUnitIndex);
                 }
             }

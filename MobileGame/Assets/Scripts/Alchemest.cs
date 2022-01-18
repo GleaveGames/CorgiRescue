@@ -55,12 +55,15 @@ public class Alchemest : Unit
             Destroy(newBuff);
             if (level == 1 || level == 2) enemies[enemies.Count-1].GetComponent<Unit>().attack -= attackBuff;
             else enemies[enemies.Count - 1].GetComponent<Unit>().attack -= attackBuff * 2;
+            if (enemies[enemies.Count - 1].GetComponent<Unit>().attack <= 0) enemies[enemies.Count - 1].GetComponent<Unit>().attack = 1;
+
+            
             if (level == 1 || level == 2) enemies[enemies.Count - 1].GetComponent<Unit>().health -= healthBuff;
-            if (enemies[enemies.Count - 1].GetComponent<Unit>().health < 0) enemies[enemies.Count - 1].GetComponent<Unit>().health = 0;
-            else enemies[enemies.Count - 1].GetComponent<Unit>().attack -= attackBuff * 2; 
+            else enemies[enemies.Count - 1].GetComponent<Unit>().health -= healthBuff * 2; 
+            if (enemies[enemies.Count - 1].GetComponent<Unit>().health < 0) enemies[enemies.Count - 1].GetComponent<Unit>().health = 1;
+
             StartCoroutine(enemies[enemies.Count - 1].GetComponent<Unit>().BuffJuice(3));
-            StartCoroutine(enemies[enemies.Count - 1].GetComponent<Unit>().Jiggle());
-            if (enemies[enemies.Count - 1].GetComponent<Unit>().health <= 0) StartCoroutine(enemies[enemies.Count - 1].GetComponent<Unit>().OnDie());
+            StartCoroutine(enemies[enemies.Count - 1].GetComponent<Unit>().CollisionJiggle());
         }
         actioning = false;
 

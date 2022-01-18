@@ -31,6 +31,8 @@ public class Blob : Unit
             else StartCoroutine(enemies[randomUnitIndex].GetComponent<Unit>().OnHurt());
             StartCoroutine(enemies[randomUnitIndex].GetComponent<Unit>().CollisionJiggle());
             StartCoroutine(enemies[randomUnitIndex].GetComponent<Unit>().BuffJuice(1));
+
+            while (enemies[randomUnitIndex] != null && enemies[randomUnitIndex].GetComponent<Unit>().actioning) yield return null;
         }
 
         yield return StartCoroutine(base.OnDie());

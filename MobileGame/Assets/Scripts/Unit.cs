@@ -221,6 +221,7 @@ public class Unit : MonoBehaviour
                     if (y == 0 && x == 0) continue;
                     if(CheckForUnit(x, y, "Shephard"))
                     {
+                        yield return new WaitForSeconds(buffTime / 3);
                         Vector2 pos = transform.position + new Vector3(x * 1.25f, y * 1.25f,0);
                         Collider2D col = null;
                         if (playerUnit) col = Physics2D.OverlapPoint(pos, playerTiles);
@@ -228,7 +229,19 @@ public class Unit : MonoBehaviour
                         GameSquare square = col.GetComponent<GameSquare>();
                         GameObject shep = square.occupier;
                         StartCoroutine(shep.GetComponent<Shephard>().ShephardBuff(gameObject));
-                        yield return new WaitForSeconds(0.2f);
+                        yield return new WaitForSeconds(buffTime);
+                    }
+                    if (CheckForUnit(x, y, "Noble"))
+                    {
+                        yield return new WaitForSeconds(buffTime / 3);
+                        Vector2 pos = transform.position + new Vector3(x * 1.25f, y * 1.25f, 0);
+                        Collider2D col = null;
+                        if (playerUnit) col = Physics2D.OverlapPoint(pos, playerTiles);
+                        else col = Physics2D.OverlapPoint(pos, enemyTiles);
+                        GameSquare square = col.GetComponent<GameSquare>();
+                        GameObject shep = square.occupier;
+                        StartCoroutine(shep.GetComponent<Shephard>().ShephardBuff(gameObject));
+                        yield return new WaitForSeconds(buffTime);
                     }
                 }
             }

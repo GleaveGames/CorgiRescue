@@ -34,12 +34,7 @@ public class Stableboy : Unit
                 StartCoroutine(GiveBuff(u));
                 yield return new WaitForSeconds(0.2f);
             }
-            float timer = 0;
-            while (timer < buffTime)
-            {
-                timer += Time.deltaTime;
-                yield return null;
-            }
+            yield return new WaitForSeconds(buffTime * 2);
         }
         actioning = false;
         yield return StartCoroutine(base.OnDie());

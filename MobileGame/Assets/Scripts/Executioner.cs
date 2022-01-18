@@ -14,6 +14,17 @@ public class Executioner : Unit
         if (squareCol != null) square = squareCol.GetComponent<GameSquare>();
         if (square != null && square.occupied)
         {
+            yield return new WaitForSeconds(0.1f);
+            while(square.occupier!=null && square.occupier.GetComponent<Unit>().actioning)
+            {
+                yield return null;
+            }
+            yield return new WaitForSeconds(0.1f);
+            if (square.occupier == null)
+            {
+                yield return StartCoroutine(base.OnStartOfBattle());
+                yield break;
+            }
             float buffTimer = 0;
             GameObject newBuff = Instantiate(Buff, transform.position, Quaternion.identity);
             StartCoroutine(Jiggle());
@@ -33,11 +44,11 @@ public class Executioner : Unit
                 StartCoroutine(square.occupier.GetComponent<Unit>().OnDie());
                 square.occupier.GetComponent<Unit>().health = 0;
                 square.occupier.GetComponent<Unit>().attack = 0;
+                StartCoroutine(BuffJuice(3));
+                StartCoroutine(Jiggle());
+                while (square.occupier!=null && square.occupier.GetComponent<Unit>().actioning) yield return null;
             }
-            StartCoroutine(BuffJuice(3));
-            StartCoroutine(Jiggle());
         }
-
         yield return StartCoroutine(base.OnStartOfBattle());
     }
 }

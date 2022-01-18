@@ -5,6 +5,8 @@ using UnityEngine;
 public class Minstrel : Unit
 {
     bool jiggled = false;
+    [SerializeField]
+    Sprite note;
 
     public override IEnumerator OnStartOfBattle()
     {
@@ -58,6 +60,7 @@ public class Minstrel : Unit
             jiggled = true;
             float buffTimer = 0;
             GameObject newBuff = Instantiate(Buff, transform.position, Quaternion.identity);
+            newBuff.GetComponent<SpriteRenderer>().sprite = note;
             while (buffTimer <= buffTime)
             {
                 newBuff.transform.position = new Vector2(Mathf.Lerp(transform.position.x, square.transform.position.x, buffX.Evaluate(buffTimer / buffTime)),
@@ -66,9 +69,13 @@ public class Minstrel : Unit
                 yield return null;
             }
             Destroy(newBuff);
-            square.occupier.GetComponent<Unit>().attack += attackBuff * level;
-            StartCoroutine(square.occupier.GetComponent<Unit>().Jiggle());
-            StartCoroutine(square.occupier.GetComponent<Unit>().BuffJuice(2));
+
+            if (square.occupier != null)
+            {
+                square.occupier.GetComponent<Unit>().attack += attackBuff * level;
+                StartCoroutine(square.occupier.GetComponent<Unit>().Jiggle());
+                StartCoroutine(square.occupier.GetComponent<Unit>().BuffJuice(2));
+            }
         }
         else
         {
