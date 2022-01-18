@@ -8,6 +8,12 @@ public class Shop : MonoBehaviour
     [SerializeField]
     GameObject shopSpotPrefab;
     [SerializeField]
+    Sprite specialSpotSprite;
+    [SerializeField]
+    Sprite ownedSprite;   
+    [SerializeField]
+    Sprite normalSprite;
+    [SerializeField]
     AnimationCurve newSpotJuice;
     public List<ShopSpot> ShopSlots;
     public List<GameObject> Units;
@@ -100,6 +106,8 @@ public class Shop : MonoBehaviour
         {
             if (ShopSlots[i] == null || ShopSlots[i].remove) ShopSlots.RemoveAt(i);
         }
+        CheckForOwned();
+
     }
 
     public void ReRoll(bool free = false)
@@ -202,6 +210,7 @@ public class Shop : MonoBehaviour
         newSpotPos.y -= 5f;
 
         GameObject newspot = Instantiate(shopSpotPrefab, newSpotPos, Quaternion.identity);
+        newspot.GetComponent<SpriteRenderer>().sprite = specialSpotSprite;
         newspot.transform.parent = transform;
         newspot.transform.GetChild(0).gameObject.SetActive(false);
         int unitType = gc.round / 2 + 1;
@@ -243,6 +252,35 @@ public class Shop : MonoBehaviour
         Destroy(spot.go);
     }
 
+    public void CheckForOwned()
+    {
+        string chars = "";
+        List<GameObject> list = GetPlayerUnits();
+        foreach (GameObject u in list)
+        {
+            chars += u.GetComponent<Unit>().symbol;
+        }
+
+        foreach (ShopSpot ss in ShopSlots)
+        {
+            if (ss.go.transform.childCount > 2 && ss.go.transform.GetChild(2) != null && chars.Contains(ss.go.transform.GetChild(2).GetComponent<Unit>().symbol.ToString())) ss.go.GetComponent<SpriteRenderer>().sprite = ownedSprite;
+            else ss.go.GetComponent<SpriteRenderer>().sprite = normalSprite;
+        }
+    }
+
+    public List<GameObject> GetPlayerUnits()
+    {
+        //get player Units
+        List<GameObject> playerUnits = new List<GameObject>();
+        //make an array more units and enemy units
+
+        for (int i = 3; i < gc.transform.childCount; i++)
+        {
+            if (gc.transform.GetChild(i).GetComponent<Unit>().playerUnit) playerUnits.Add(gc.transform.GetChild(i).gameObject);
+        }
+
+        return playerUnits;
+    }
 }
 
 public class ShopSpot

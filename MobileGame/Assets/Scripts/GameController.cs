@@ -231,6 +231,7 @@ public class GameController : MonoBehaviour
                         draggingObj.GetComponent<ShopSprite>().StopAllMouseOvers();
                         draggingObj = null;
                         Gold -= 3;
+                        FindObjectOfType<Shop>().CheckForOwned();
                     }
                     else if (square != null && square.GetComponent<GameSquare>().occupier != null && draggingObj.name == square.GetComponent<GameSquare>().occupier.name && square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().level != 3)
                     {
