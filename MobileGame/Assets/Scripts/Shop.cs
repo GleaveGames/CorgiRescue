@@ -258,7 +258,7 @@ public class Shop : MonoBehaviour
         List<GameObject> list = GetPlayerUnits();
         foreach (GameObject u in list)
         {
-            chars += u.GetComponent<Unit>().symbol;
+            if(u.GetComponent<Unit>().level != 3) chars += u.GetComponent<Unit>().symbol;
         }
 
         foreach (ShopSpot ss in ShopSlots)
