@@ -180,6 +180,7 @@ public class Shop : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
+        building.GetComponent<BoxCollider2D>().enabled = true;
 
     }
 
@@ -268,6 +269,7 @@ public class Shop : MonoBehaviour
 
         foreach (ShopSpot ss in ShopSlots)
         {
+            if (ss.temperary) continue;
             if (ss.go.transform.childCount > 2 && ss.go.transform.GetChild(2) != null && chars.Contains(ss.go.transform.GetChild(2).GetComponent<Unit>().symbol.ToString())) ss.go.GetComponent<SpriteRenderer>().sprite = ownedSprite;
             else ss.go.GetComponent<SpriteRenderer>().sprite = normalSprite;
         }
