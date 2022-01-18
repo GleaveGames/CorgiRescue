@@ -183,6 +183,11 @@ public class Shop : MonoBehaviour
 
     }
 
+    public void TEST(int choice)
+    {
+        StartCoroutine(UnlockBuilding(choice));
+    }
+
 
     public void ToggleMusic()
     {

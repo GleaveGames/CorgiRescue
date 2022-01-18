@@ -6987,6 +6987,7 @@ GameObject:
   - component: {fileID: 470878043}
   - component: {fileID: 470878044}
   - component: {fileID: 470878045}
+  - component: {fileID: 470878046}
   m_Layer: 0
   m_Name: Barracks
   m_TagString: Untagged
@@ -7098,6 +7099,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ee2019009e3074f917538df31bd4c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &470878046
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470878041}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 21a31556a14ba3d4fa8f5b2f426f8114, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &481638049
 GameObject:
   m_ObjectHideFlags: 0
@@ -10132,6 +10152,7 @@ GameObject:
   - component: {fileID: 805466840}
   - component: {fileID: 805466841}
   - component: {fileID: 805466842}
+  - component: {fileID: 805466843}
   m_Layer: 0
   m_Name: Religious
   m_TagString: Untagged
@@ -10243,6 +10264,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ee2019009e3074f917538df31bd4c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &805466843
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805466838}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3b74fc527baa4834ab4135f165fd582e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &818825669
 GameObject:
   m_ObjectHideFlags: 0
@@ -13479,6 +13519,7 @@ GameObject:
   - component: {fileID: 1261557715}
   - component: {fileID: 1261557716}
   - component: {fileID: 1261557717}
+  - component: {fileID: 1261557718}
   m_Layer: 0
   m_Name: Workshop
   m_TagString: Untagged
@@ -13590,6 +13631,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ee2019009e3074f917538df31bd4c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1261557718
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261557713}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6b61228b97d28044d92496c1a1ed55e5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1300496141
 GameObject:
   m_ObjectHideFlags: 0
@@ -13883,6 +13943,7 @@ GameObject:
   - component: {fileID: 1309536504}
   - component: {fileID: 1309536505}
   - component: {fileID: 1309536506}
+  - component: {fileID: 1309536507}
   m_Layer: 0
   m_Name: Farm
   m_TagString: Untagged
@@ -13994,6 +14055,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.25, y: 1.25}
   m_EdgeRadius: 0
+--- !u!95 &1309536507
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309536502}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fe29187826d74be48a5bfafbd3a89263, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1315734417
 GameObject:
   m_ObjectHideFlags: 0
@@ -15819,6 +15899,7 @@ GameObject:
   - component: {fileID: 1567242675}
   - component: {fileID: 1567242676}
   - component: {fileID: 1567242677}
+  - component: {fileID: 1567242678}
   m_Layer: 0
   m_Name: Castle
   m_TagString: Untagged
@@ -15930,6 +16011,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ee2019009e3074f917538df31bd4c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1567242678
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567242673}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b3dad002c46521a4d9640151d602fcff, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1582997315
 GameObject:
   m_ObjectHideFlags: 0
@@ -21139,6 +21239,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shopSpotPrefab: {fileID: 2816167473654733418, guid: 028ff1da9d6867140a184249a2290c55, type: 3}
   specialSpotSprite: {fileID: 21300000, guid: 932bfc3915ba1f746b99929b7ea32e97, type: 3}
+  ownedSprite: {fileID: 21300000, guid: ed8a8921a0e925e44a0532853d3e9c67, type: 3}
+  normalSprite: {fileID: 21300000, guid: c4d16fee988b99f4b9dec6964a60c0b4, type: 3}
   newSpotJuice:
     serializedVersion: 2
     m_Curve:
@@ -21397,7 +21499,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8c79744a3a9994747b118d510b5e5ded, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.55
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
