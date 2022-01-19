@@ -148,8 +148,8 @@ MonoBehaviour:
   temperary: 0
   symbol: 110
   quality: 3
-  health: 1
-  attack: 1
+  health: 2
+  attack: 3
   level: 1
   exp: 1
   spriteQuality: {fileID: 0}
@@ -172,6 +172,7 @@ MonoBehaviour:
   levelPreEndTurn: 0
   expPreEndTurn: 0
   jiggleTime: 0
+  sameSquareSpawner: 0
   attackBuff: 0
   healthBuff: 0
   rowbuff: 000000

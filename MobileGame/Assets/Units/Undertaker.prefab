@@ -104,9 +104,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: Gains +1/+1 when an adjacent unit dies
-  UnitText2: Gains +2/+2 when an adjacent unit dies
-  UnitText3: Gains +3/+3 when an adjacent unit dies
+  UnitText1: Gains +1/+2 when an adjacent unit dies
+  UnitText2: Gains +2/+4 when an adjacent unit dies
+  UnitText3: Gains +3/+6 when an adjacent unit dies
 --- !u!61 &757357724859235949
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -172,8 +172,9 @@ MonoBehaviour:
   levelPreEndTurn: 0
   expPreEndTurn: 0
   jiggleTime: 0
+  sameSquareSpawner: 0
   attackBuff: 1
-  healthBuff: 1
+  healthBuff: 2
   rowbuff: 000000
   rowdebuff: 000000
   buffs: 010101010101010101

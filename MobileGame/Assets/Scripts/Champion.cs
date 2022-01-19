@@ -83,6 +83,8 @@ public class Champion : Unit
 
                     // Code for Damaging a unit
                     enemyUnit.health -= attack;
+                    ShowDamage(attack, enemyUnit.transform.position);
+
                     if (enemyUnit.health > 0)
                     {
                         StartCoroutine(enemyUnit.OnHurt());
@@ -100,9 +102,11 @@ public class Champion : Unit
                         }
                     }
 
+
                     if (left != null)
                     {
                         left.health -= attack;
+                        ShowDamage(attackBuff * level, left.transform.position);
                         left.StartCoroutine(CollisionJiggle());
                         if (left.health > 0)
                         {
@@ -121,9 +125,11 @@ public class Champion : Unit
                             }
                         }
                     }
+
                     if (right != null)
                     {
                         right.health -= attack;
+                        ShowDamage(attackBuff * level, right.transform.position);
                         right.StartCoroutine(CollisionJiggle());
                         if (right.health > 0)
                         {

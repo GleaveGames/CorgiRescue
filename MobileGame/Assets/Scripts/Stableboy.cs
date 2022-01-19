@@ -58,6 +58,7 @@ public class Stableboy : Unit
         else StartCoroutine(u.GetComponent<Unit>().OnHurt());
         Destroy(newBuff);
         u.GetComponent<Unit>().CollisionJiggle();
+        ShowDamage(-healthBuff * level, u.transform.position);
     }
 
     private void CheckForPrincess(int x, int y)

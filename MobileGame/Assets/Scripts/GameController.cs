@@ -94,6 +94,7 @@ public class GameController : MonoBehaviour
     [SerializeField]
     Image gameSpeedButtonSR;
     public AnimationCurve gsjuice;
+    public GameObject damageText;
 
     [Header ("Sounds")]
     [SerializeField]

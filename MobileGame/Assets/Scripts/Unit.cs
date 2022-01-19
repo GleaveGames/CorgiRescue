@@ -7,6 +7,7 @@ using TMPro;
 
 public class Unit : MonoBehaviour
 {
+    
     [HideInInspector]
     public bool temperary = false;
     public char symbol;
@@ -68,6 +69,7 @@ public class Unit : MonoBehaviour
     GameObject buffStuff;
     [SerializeField]
     bool sameSquareSpawner;
+    GameObject damageText;
 
     [Header("Buff")]
     protected AnimationCurve buffY;
@@ -143,6 +145,7 @@ public class Unit : MonoBehaviour
         zombieColor = gc.zombieColor;
         unitSound = GetComponent<AudioSource>();
         if (temperary) spriteQuality.SetActive(false);
+        damageText = gc.damageText;
     }
 
     // Update is called once per frame
@@ -284,7 +287,6 @@ public class Unit : MonoBehaviour
         if (square != null && square.occupied && square.occupier.name.Contains("Priest") && !square.occupier.GetComponent<Priest>().triggered && square.occupier.GetComponent<Priest>().health > 0) respawn = true;
         if (respawn && !sameSquareSpawner)
         {
-            
             Instantiate(deathParticles, transform.position, Quaternion.identity);
             Instantiate(cloudParticles, transform.position, Quaternion.identity);
             dead = false;
@@ -387,18 +389,18 @@ public class Unit : MonoBehaviour
                             particle.transform.localScale = Vector3.Lerp(initParticleScale, new Vector3(1,1,1), (timer - attackTime / 2) / (attackTime / 2));
                         }
 
-                            /*
-                        if (timer > attackTime/2 && enemyUnit.attack >= health)
-                            transform.position = Vector2.Lerp((initPos-spawnPoint)*5, spawnPoint, dieCurve.Evaluate(timer / attackTime));
-                        else 
-                            transform.position = Vector2.Lerp(initPos, spawnPoint, attackCurve.Evaluate(timer / attackTime));
-                        */
+                        /*
+                    if (timer > attackTime/2 && enemyUnit.attack >= health)
+                        transform.position = Vector2.Lerp((initPos-spawnPoint)*5, spawnPoint, dieCurve.Evaluate(timer / attackTime));
+                    else 
+                        transform.position = Vector2.Lerp(initPos, spawnPoint, attackCurve.Evaluate(timer / attackTime));
+                    */
                         transform.position = Vector2.Lerp(initPos, spawnPoint, attackCurve.Evaluate(timer / attackTime));
                         timer += Time.deltaTime;
                         yield return null;
                     }
                     Destroy(particle);
-
+                    ShowDamage(attack, enemyUnit.transform.position);
                     // Code for Damaging a unit
                     enemyUnit.health -= attack;
                     if(enemyUnit.health > 0)
@@ -641,5 +643,11 @@ public class Unit : MonoBehaviour
                 else if(squareCol!=null) StartCoroutine(squareCol.GetComponent<GameSquare>().showBuff(0));
             }
         }
+    }
+
+    public void ShowDamage(int damage, Vector2 pos)
+    {
+        GameObject dt = Instantiate(damageText, pos, Quaternion.identity);
+        dt.GetComponent<TextMeshPro>().text = damage.ToString();
     }
 }

@@ -147,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   temperary: 0
   symbol: 120
-  quality: 1
+  quality: 3
   health: 1
   attack: 1
   level: 1
@@ -172,6 +172,7 @@ MonoBehaviour:
   levelPreEndTurn: 0
   expPreEndTurn: 0
   jiggleTime: 0
+  sameSquareSpawner: 0
   attackBuff: 0
   healthBuff: 0
   rowbuff: 000000

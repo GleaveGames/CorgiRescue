@@ -32,6 +32,7 @@ public class Crossbow : Unit
                 else StartCoroutine(enemies[randomUnitIndex].GetComponent<Unit>().OnHurt());
                 StartCoroutine(enemies[randomUnitIndex].GetComponent<Unit>().CollisionJiggle());
                 StartCoroutine(enemies[randomUnitIndex].GetComponent<Unit>().BuffJuice(1));
+                ShowDamage(-healthBuff * level, enemies[randomUnitIndex].transform.position);
 
                 while (enemies[randomUnitIndex] != null && enemies[randomUnitIndex].GetComponent<Unit>().actioning) yield return null;
             }

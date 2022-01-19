@@ -34,6 +34,7 @@ public class Monk : Unit
             yield return null;
         }
         u.GetComponent<Unit>().health += healthBuff * level;
+        ShowDamage(-healthBuff * level, u.transform.position);
         if (u.GetComponent<Unit>().health <= 0) StartCoroutine(u.GetComponent<Unit>().OnDie());
         else StartCoroutine(u.GetComponent<Unit>().OnHurt());
         Destroy(newBuff);

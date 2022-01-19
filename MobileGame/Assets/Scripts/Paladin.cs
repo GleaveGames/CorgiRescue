@@ -6,6 +6,7 @@ public class Paladin : Unit
 {
     public override IEnumerator OnDie()
     {
+        actioning = true;
         List<GameObject> allies = GetAllies();
         allies.Remove(gameObject);
         for(int i =0;i < allies.Count; i++)

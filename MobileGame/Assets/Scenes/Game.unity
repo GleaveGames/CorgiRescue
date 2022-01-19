@@ -2015,7 +2015,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.125, y: 0.125, z: 0}
   m_MaxChunkCount: 16
@@ -18599,7 +18599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LOCALTESTING: 1
-  testEnemy: '"[aaa...........j...][1,2,1][1,2,1][1,2,1][1,1,100]["'
+  testEnemy: '"[aaa...........p...][1,2,1][1,2,1][1,2,1][10,1,100]["'
   databasetext: 
   draggingObj: {fileID: 0}
   squares:
@@ -19108,6 +19108,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  damageText: {fileID: 6179163854020206119, guid: 0e4a22f2e604d594ba03c04d2344557c, type: 3}
   click: {fileID: 1823306630}
   hit: {fileID: 1823306629}
   win: {fileID: 1823306633}
@@ -22068,7 +22069,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8c79744a3a9994747b118d510b5e5ded, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.55
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0

@@ -148,7 +148,7 @@ MonoBehaviour:
   temperary: 0
   symbol: 83
   quality: 1
-  health: 1
+  health: 2
   attack: 2
   level: 1
   exp: 1
@@ -172,6 +172,7 @@ MonoBehaviour:
   levelPreEndTurn: 0
   expPreEndTurn: 0
   jiggleTime: 0
+  sameSquareSpawner: 0
   attackBuff: 1
   healthBuff: 1
   rowbuff: 000000

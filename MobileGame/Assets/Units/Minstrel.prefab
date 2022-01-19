@@ -104,9 +104,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'Warcry: Give Adjacent Units +1 Attack'
-  UnitText2: 'Warcry: Give Adjacent Units +2 Attack'
-  UnitText3: 'Warcry: Give Adjacent Units +3 Attack'
+  UnitText1: 'Warcry: Give Adjacent Units +2 Attack'
+  UnitText2: 'Warcry: Give Adjacent Units +4 Attack'
+  UnitText3: 'Warcry: Give Adjacent Units +6 Attack'
 --- !u!61 &538672580819213160
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -172,7 +172,8 @@ MonoBehaviour:
   levelPreEndTurn: 0
   expPreEndTurn: 0
   jiggleTime: 0
-  attackBuff: 1
+  sameSquareSpawner: 0
+  attackBuff: 2
   healthBuff: 0
   rowbuff: 000000
   rowdebuff: 000000
