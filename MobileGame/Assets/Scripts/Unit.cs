@@ -66,6 +66,8 @@ public class Unit : MonoBehaviour
     AnimationCurve buffJuice;
     Color zombieColor;
     GameObject buffStuff;
+    [SerializeField]
+    bool sameSquareSpawner;
 
     [Header("Buff")]
     protected AnimationCurve buffY;
@@ -280,8 +282,9 @@ public class Unit : MonoBehaviour
             if (squareCol != null) square = squareCol.GetComponent<GameSquare>();
         }
         if (square != null && square.occupied && square.occupier.name.Contains("Priest") && !square.occupier.GetComponent<Priest>().triggered && square.occupier.GetComponent<Priest>().health > 0) respawn = true;
-        if (respawn)
+        if (respawn && !sameSquareSpawner)
         {
+            
             Instantiate(deathParticles, transform.position, Quaternion.identity);
             Instantiate(cloudParticles, transform.position, Quaternion.identity);
             dead = false;
@@ -293,7 +296,7 @@ public class Unit : MonoBehaviour
             GetComponent<SpriteRenderer>().color = zombieColor;
             StartCoroutine(OnStartOfBattle());
             while (actioning) yield return null;
-        }
+        }         
 
         actioning = false;
         yield return null;

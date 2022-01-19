@@ -9,6 +9,8 @@ public class GameController : MonoBehaviour
 {
     [SerializeField]
     bool LOCALTESTING;
+    [SerializeField]
+    string testEnemy;
     public string databasetext;
 
     public GameObject draggingObj;
@@ -386,7 +388,7 @@ public class GameController : MonoBehaviour
         if (!LOCALTESTING) StartCoroutine(GetComponent<DataBase>().FindOpponent(round.ToString(), formation));
         else
         {
-            enemyFormation = "[..............3...][1,1,1][";
+            enemyFormation = testEnemy;
         }
 
         while (GetComponent<DataBase>().loading)
@@ -471,7 +473,11 @@ public class GameController : MonoBehaviour
         foreach (GameObject u in allUnits)
         {
             StartCoroutine(u.GetComponent<Unit>().OnStartOfBattle());
-            if (u.GetComponent<Unit>().actioning) yield return new WaitForSeconds(buffTime);
+            //if (u.GetComponent<Unit>().actioning) yield return new WaitForSeconds(buffTime);
+            yield return new WaitForEndOfFrame();
+            while (IsAUnitActioning()) yield return null;
+            while (IsAUnitActioning()) yield return null;
+
         }
 
         yield return new WaitForSeconds(1);
@@ -509,6 +515,9 @@ public class GameController : MonoBehaviour
             }
             //check if any unit is doing an action
             while (IsAUnitActioning()) yield return null;
+            while (IsAUnitActioning()) yield return null;
+
+            yield return new WaitForSeconds(buffTime / 2);
 
             GetPlayerUnits();
 

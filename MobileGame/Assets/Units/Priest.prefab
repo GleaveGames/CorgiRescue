@@ -147,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   temperary: 0
   symbol: 120
-  quality: 3
+  quality: 1
   health: 1
   attack: 1
   level: 1

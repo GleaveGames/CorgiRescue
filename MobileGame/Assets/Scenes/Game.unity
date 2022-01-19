@@ -18598,7 +18598,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e46a2c264b040c489fd4af5c317b877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LOCALTESTING: 0
+  LOCALTESTING: 1
+  testEnemy: '"[aaa...........j...][1,2,1][1,2,1][1,2,1][1,1,100]["'
   databasetext: 
   draggingObj: {fileID: 0}
   squares:
@@ -22067,7 +22068,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8c79744a3a9994747b118d510b5e5ded, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0
+  m_Volume: 0.55
   m_Pitch: 1
   Loop: 1
   Mute: 0
