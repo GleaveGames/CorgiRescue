@@ -168,7 +168,7 @@ public class GameController : MonoBehaviour
                         draggingObj = null;
                         playClick();
                     }
-                    else if (square != null && square.GetComponent<GameSquare>().occupier != null && draggingObj.name == square.GetComponent<GameSquare>().occupier.name && square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().level != 3)
+                    else if (square != null && square.GetComponent<GameSquare>().occupier != null && draggingObj.name == square.GetComponent<GameSquare>().occupier.name && square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().level != 3 && draggingObj.GetComponent<Unit>().level != 3)
                     {
                         //COMBINE 
                         GameObject oc = square.GetComponent<GameSquare>().occupier;

@@ -153,6 +153,7 @@ public class Unit : MonoBehaviour
     {
         healthText.text = health.ToString();
         attackText.text = attack.ToString();
+        if (level == 3) exp = 1;
         levelSprite.sprite = levelSprites[level*level + exp - level-1];
         
         if(health <= 0)
@@ -183,7 +184,7 @@ public class Unit : MonoBehaviour
         if (playerUnit) square = Physics2D.OverlapPoint(initPos, playerTiles);
         else square = Physics2D.OverlapPoint(initPos, enemyTiles);
         //new for prisoner next if
-        if (square.GetComponent<GameSquare>().occupier == gameObject)
+        if (square.GetComponent<GameSquare>().occupier != null && square.GetComponent<GameSquare>().occupier == gameObject)
         {
             square.GetComponent<GameSquare>().occupied = false;
             square.GetComponent<GameSquare>().occupier = null;
@@ -368,6 +369,7 @@ public class Unit : MonoBehaviour
                     GameObject particle = null;
                     Vector2 particleSpawnPos = new Vector2(0,0);
                     Vector3 initParticleScale = new Vector3(0.2f,0.2f,1);
+                    Vector2 startPos = transform.position;
                     while (timer < attackTime)
                     {
 
@@ -388,17 +390,12 @@ public class Unit : MonoBehaviour
                             particle.GetComponent<SpriteRenderer>().color = Color.Lerp(Color.white, colorInvisible, (timer - attackTime / 2) / (attackTime / 2));
                             particle.transform.localScale = Vector3.Lerp(initParticleScale, new Vector3(1,1,1), (timer - attackTime / 2) / (attackTime / 2));
                         }
-
-                        /*
-                    if (timer > attackTime/2 && enemyUnit.attack >= health)
-                        transform.position = Vector2.Lerp((initPos-spawnPoint)*5, spawnPoint, dieCurve.Evaluate(timer / attackTime));
-                    else 
-                        transform.position = Vector2.Lerp(initPos, spawnPoint, attackCurve.Evaluate(timer / attackTime));
-                    */
+                    
                         transform.position = Vector2.Lerp(initPos, spawnPoint, attackCurve.Evaluate(timer / attackTime));
                         timer += Time.deltaTime;
                         yield return null;
                     }
+                    transform.position = startPos;
                     Destroy(particle);
                     ShowDamage(attack, enemyUnit.transform.position);
                     // Code for Damaging a unit
@@ -431,18 +428,22 @@ public class Unit : MonoBehaviour
 
     protected virtual void LevelUp()
     {
-        exp = 1;
-        level++;
-        Instantiate(levelUpParticles, transform.position, Quaternion.identity);
-        StartCoroutine(FindObjectOfType<Shop>().SpawnNewShopSpot());
-        StartCoroutine(OnLevelUp());
-        StartCoroutine(Jiggle());
+        if (level < 3)
+        {
+            exp = 1;
+            level++;
+            Instantiate(levelUpParticles, transform.position, Quaternion.identity);
+            StartCoroutine(FindObjectOfType<Shop>().SpawnNewShopSpot());
+            StartCoroutine(OnLevelUp());
+            StartCoroutine(Jiggle());
+        }
     }
 
     public virtual IEnumerator Combine(int lxp = 0)
     {
         for (int i = 0; i < lxp + 1; i++)
         {
+            if (level == 3) yield break;
             health++;
             attack++;
             exp++;
