@@ -17,7 +17,7 @@ public class Monk : Unit
             StartCoroutine(BuffObj(u));
             yield return new WaitForSeconds(0.2f);
         }
-        yield return new WaitForSeconds(2*buffTime + units.Count * 0.2f);
+        yield return new WaitForSeconds(4*buffTime + units.Count * 0.2f);
         
         yield return StartCoroutine(base.OnAttack());
     }
