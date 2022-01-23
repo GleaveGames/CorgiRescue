@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIClouds : MonoBehaviour
 {
@@ -30,7 +31,7 @@ public class UIClouds : MonoBehaviour
             newcloud.initPos = transform.GetChild(i).position - transform.parent.position;
             cloudsright.Add(newcloud);
         }
-        StartCoroutine(Leave());
+        if(SceneManager.GetActiveScene().buildIndex != 0) StartCoroutine(Leave());
     }
 
     public IEnumerator Enter()
