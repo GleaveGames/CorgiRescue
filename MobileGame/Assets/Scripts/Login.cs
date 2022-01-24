@@ -21,11 +21,21 @@ public class Login : MonoBehaviour
         NewAccountButton.onClick.AddListener(() => {
             StartCoroutine(MainMenu.Instance.db.RegisterUser(UsernameInput.text, PasswordInput.text));
         });
+        StartCoroutine(LateStart());
     }
+
+    IEnumerator LateStart()
+    {
+        yield return new WaitForEndOfFrame();
+        if (PlayerPrefs.GetString("Username") != null) StartCoroutine(MainMenu.Instance.db.Login(PlayerPrefs.GetString("Username"), PlayerPrefs.GetString("Password")));
+    }
+
 
     public void LoginSuccess()
     {
-        Destroy(gameObject);
+        PlayerPrefs.SetString("Username", MainMenu.Instance.username);
+        PlayerPrefs.SetString("Password", MainMenu.Instance.password);
+        gameObject.SetActive(false);
     }
 
     public IEnumerator DisplayText(string error)
@@ -35,8 +45,4 @@ public class Login : MonoBehaviour
         errorText.text = "";
     }
 
-    public void KingLogin()
-    {
-        StartCoroutine(MainMenu.Instance.db.Login("king", "king"));
-    }
 }

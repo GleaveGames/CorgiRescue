@@ -61,11 +61,11 @@ public class DataBase : MonoBehaviour
                 jsonArray = jsonArray.Trim('[',']');
                 jsonArray = jsonArray.Trim('{','}');
                 string[] sections = jsonArray.Split(',');
-                int ingameint = int.Parse(sections[3].Split(':')[1].Trim('"'));
+                int ingameint = int.Parse(sections[4].Split(':')[1].Trim('"'));
                 bool ingame = (ingameint == 0 ? false : true);
                 //sections[0].Split(':')[1].Trim('"');
                 //Debug.Log(sections[3].Split(':')[1].Trim('"'));
-                MainMenu.Instance.SetClientInfo(sections[0].Split(':')[1].Trim('"'), sections[1].Split(':')[1].Trim('"'), int.Parse(sections[2].Split(':')[1].Trim('"')), ingame, sections[4].Split(':')[1].Trim('"'), int.Parse(sections[5].Split(':')[1].Trim('"')), int.Parse(sections[6].Split(':')[1].Trim('"')), int.Parse(sections[7].Split(':')[1].Trim('"')));
+                MainMenu.Instance.SetClientInfo(sections[0].Split(':')[1].Trim('"'), sections[1].Split(':')[1].Trim('"'), sections[2].Split(':')[1].Trim('"'), int.Parse(sections[3].Split(':')[1].Trim('"')), ingame, sections[5].Split(':')[1].Trim('"'), int.Parse(sections[6].Split(':')[1].Trim('"')), int.Parse(sections[7].Split(':')[1].Trim('"')), int.Parse(sections[8].Split(':')[1].Trim('"')));
                 FindObjectOfType<Login>().LoginSuccess();
             }
         }

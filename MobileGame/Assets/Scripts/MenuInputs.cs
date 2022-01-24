@@ -14,6 +14,10 @@ public class MenuInputs : MonoBehaviour
     Text trophyCount;
     [SerializeField]
     Text usernameText;
+    [SerializeField]
+    Button logOut;
+    [SerializeField]
+    GameObject LoginGO;
 
 
     private void Start()
@@ -29,10 +33,9 @@ public class MenuInputs : MonoBehaviour
 
     public void OnLogin()
     {
-        if (MainMenu.Instance.inGame)
-        {
-            continueButton.interactable = true;
-        }
+        if (MainMenu.Instance.inGame) continueButton.interactable = true;
+        logOut.interactable = true;
+        trophyCount.gameObject.SetActive(true);
         trophyCount.text = MainMenu.Instance.trophies.ToString();
         usernameText.text = MainMenu.Instance.username;
     }
@@ -47,5 +50,13 @@ public class MenuInputs : MonoBehaviour
     public void NewGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void LogOut()
+    {
+        LoginGO.SetActive(true);
+        trophyCount.gameObject.SetActive(false);
+        logOut.interactable = false;
+        MainMenu.Instance.ResetClientStats();
     }
 }

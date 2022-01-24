@@ -27,10 +27,11 @@ public class MainMenu : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void SetClientInfo(string ID, string NAME, int TROPHIES, bool INGAME, string SAVEDFORMATION, int WINS, int LIVES, int ROUND)
+    public void SetClientInfo(string ID, string NAME, string PASSWORD, int TROPHIES, bool INGAME, string SAVEDFORMATION, int WINS, int LIVES, int ROUND)
     {
         id = ID;
         username = NAME;
+        password = PASSWORD;
         trophies = TROPHIES;
         inGame = INGAME;
         savedFormation = SAVEDFORMATION.Replace('!', ',');
@@ -51,4 +52,16 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(db.SetDBInfo(id, trophies, inGame, savedFormation, wins, lives, round));
     }
 
+    public void ResetClientStats()
+    {
+        id = null;
+        username = "";
+        password="";
+        trophies=0;
+        inGame=false;
+        savedFormation="";
+        wins=0;
+        lives=4;
+        round=1;
+    }
 }
