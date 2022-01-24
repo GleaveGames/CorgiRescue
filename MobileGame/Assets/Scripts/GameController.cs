@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour
     [SerializeField]
     Button BattleButton;
     [SerializeField]
-    Text livesText;    
+    Text livesText;
     [SerializeField]
     Text livesText2;
     [SerializeField]
@@ -96,7 +96,7 @@ public class GameController : MonoBehaviour
     public AnimationCurve gsjuice;
     public GameObject damageText;
 
-    [Header ("Sounds")]
+    [Header("Sounds")]
     [SerializeField]
     AudioSource click;
     [SerializeField]
@@ -106,20 +106,28 @@ public class GameController : MonoBehaviour
     [SerializeField]
     AudioSource lose;
     [SerializeField]
-    AudioSource draw;    
+    AudioSource draw;
     [SerializeField]
     AudioSource denied;
-    
+
 
     private void Start()
     {
+        if (MainMenu.Instance.continuing)
+        {
+            lives = MainMenu.Instance.lives;
+            round = MainMenu.Instance.round;
+            wins = MainMenu.Instance.wins;
+            StartCoroutine(SpawnUnits());
+        }
+
         ResetStats();
         CameraTrans = FindObjectOfType<Camera>().transform;
         if (LOCALTESTING)
         {
             databasetext = database.text;
         }
-        else 
+        else
         {
             //GetComponent<DataBase>().GetDataBase();
         }
@@ -129,10 +137,13 @@ public class GameController : MonoBehaviour
     {
         livesText.text = lives.ToString();
         livesText2.text = lives.ToString();
-        Round.text = (round+1).ToString();
-        Round2.text = (round+1).ToString();
+        Round.text = (round + 1).ToString();
+        Round2.text = (round + 1).ToString();
         Wins.text = wins.ToString();
         Wins2.text = wins.ToString();
+        MainMenu.Instance.lives = lives;
+        MainMenu.Instance.wins = wins;
+        MainMenu.Instance.round = round;
     }
 
     private void Update()
@@ -141,13 +152,13 @@ public class GameController : MonoBehaviour
         if (draggingObj != null)
         {
             draggingObj.transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
-            
+
             //stop dragging if mouse up
             if (Input.GetMouseButtonUp(0))
             {
                 Collider2D square = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition), squares);
                 //check if been bought yet
-                if(draggingObj.GetComponent<ShopSprite>().beenPlaced)
+                if (draggingObj.GetComponent<ShopSprite>().beenPlaced)
                 {
                     if (square != null && square.name == "Sell")
                     {
@@ -281,7 +292,7 @@ public class GameController : MonoBehaviour
     {
         float timer = 0;
         Vector2 goldInit = goldText.transform.position;
-        while(timer < 0.6)
+        while (timer < 0.6)
         {
             goldText.transform.position = new Vector2(goldInit.x + goldJuiceX.Evaluate(timer), goldInit.y);
             timer += Time.deltaTime;
@@ -333,7 +344,7 @@ public class GameController : MonoBehaviour
             }
         }
 
-        foreach(Button b in freezeButtons)
+        foreach (Button b in freezeButtons)
         {
             b.interactable = false;
         }
@@ -375,7 +386,7 @@ public class GameController : MonoBehaviour
             }
         }
         formation += ']';
-        foreach(Unit u in unitsInOrder)
+        foreach (Unit u in unitsInOrder)
         {
             formation += '[';
             formation += u.level;
@@ -386,13 +397,13 @@ public class GameController : MonoBehaviour
             formation += ']';
         }
         formation += '[';
-        if (!LOCALTESTING) StartCoroutine(GetComponent<DataBase>().FindOpponent(round.ToString(), formation));
+        if (!LOCALTESTING) StartCoroutine(MainMenu.Instance.db.FindOpponent(round.ToString(), formation));
         else
         {
             enemyFormation = testEnemy;
         }
 
-        while (GetComponent<DataBase>().loading)
+        while (MainMenu.Instance.db.loading)
         {
             yield return null;
         }
@@ -424,7 +435,7 @@ public class GameController : MonoBehaviour
         i = 0;
         int characterSelect = 0;
         string allCharacters = null;
-        foreach(GameObject u in transform.GetChild(1).GetComponent<Shop>().Units)
+        foreach (GameObject u in transform.GetChild(1).GetComponent<Shop>().Units)
         {
             allCharacters += u.GetComponent<Unit>().symbol;
         }
@@ -432,12 +443,12 @@ public class GameController : MonoBehaviour
         {
             for (int x = 0; x < 6; x++)
             {
-                for(int z = 0; z < allCharacters.Length; z++)
+                for (int z = 0; z < allCharacters.Length; z++)
                 {
                     if (sections[1][i] == allCharacters[z])
                     {
                         characterSelect++;
-                        GameObject newUnit = Instantiate(transform.GetChild(1).GetComponent<Shop>().Units[z], new Vector2(1.25f*x-2.5f,y*1.25f), Quaternion.identity);
+                        GameObject newUnit = Instantiate(transform.GetChild(1).GetComponent<Shop>().Units[z], new Vector2(1.25f * x - 2.5f, y * 1.25f), Quaternion.identity);
                         newUnit.GetComponent<Unit>().playerUnit = false;
                         transform.GetChild(0).GetChild(i).GetComponent<GameSquare>().occupied = true;
                         transform.GetChild(0).GetChild(i).GetComponent<GameSquare>().occupier = newUnit;
@@ -446,7 +457,7 @@ public class GameController : MonoBehaviour
                         enemyUnits.Add(newUnit);
                         allUnits.Add(newUnit);
                         //set Stats
-                        string[] enemyStats = sections[characterSelect+1].Split(',');
+                        string[] enemyStats = sections[characterSelect + 1].Split(',');
                         newUnit.GetComponent<Unit>().level = int.Parse(enemyStats[0]);
                         newUnit.GetComponent<Unit>().attack = int.Parse(enemyStats[1]);
                         newUnit.GetComponent<Unit>().health = int.Parse(enemyStats[2].Substring(0, enemyStats[2].Length - 1));
@@ -460,16 +471,16 @@ public class GameController : MonoBehaviour
         Color invis = Color.white;
         invis.a = 0;
 
-        while(timer < 2)
+        while (timer < 2)
         {
             CameraTrans.position = new Vector3(CameraTrans.position.x, Mathf.Lerp(-3.87f, 0.5f, timer / 2), -10);
             timer += Time.deltaTime;
             yield return null;
         }
 
-        
+
         allUnits = InsertionSort(allUnits);
-        
+
 
         foreach (GameObject u in allUnits)
         {
@@ -539,7 +550,8 @@ public class GameController : MonoBehaviour
                 win.PlayDelayed(2);
                 StartCoroutine(ResultJuice("w"));
             }
-            else if (playerUnits.Count == 0) { 
+            else if (playerUnits.Count == 0)
+            {
                 Battling = false;
                 lives -= 1;
                 resultObj.GetComponent<Image>().sprite = resultSprites[1];
@@ -551,17 +563,17 @@ public class GameController : MonoBehaviour
             yield return null;
         }
 
-       
+
 
 
         yield return new WaitForEndOfFrame();
         StartCoroutine(FindObjectOfType<UIClouds>().Enter());
         yield return new WaitForSeconds(1.5f);
         timer = 0;
-        
+
         Color textColorInvis = textColor;
         textColorInvis.a = 0;
-        
+
 
         while (timer < endBattleTime)
         {
@@ -583,9 +595,10 @@ public class GameController : MonoBehaviour
         Round2.color = textColorInvis;
         Wins2.color = textColorInvis;
         livesText2.color = textColorInvis;
-        CameraTrans.position = new Vector3(CameraTrans.position.x, -3.87f,-10);
+        CameraTrans.position = new Vector3(CameraTrans.position.x, -3.87f, -10);
 
-        if (wins == 10 || lives <= 0) {
+        if (wins == 10 || lives <= 0)
+        {
             PlayerPrefs.SetString("formation", formation);
             PlayerPrefs.SetInt("wins", wins);
             PlayerPrefs.SetInt("round", round);
@@ -601,7 +614,7 @@ public class GameController : MonoBehaviour
             Destroy(u);
         }
 
-        foreach(GameObject u in playerUnits)
+        foreach (GameObject u in playerUnits)
         {
             if (u.GetComponent<Unit>().temperary)
             {
@@ -634,9 +647,9 @@ public class GameController : MonoBehaviour
             if (u.GetComponent<Unit>().actioning) yield return new WaitForSeconds(buffTime);
         }
 
-        if (round == 2) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(1));  
-        else if (round == 4) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(2));  
-        else if (round == 6) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(3));  
+        if (round == 2) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(1));
+        else if (round == 4) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(2));
+        else if (round == 6) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(3));
         else if (round == 8) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(4));
 
         FindObjectOfType<Shop>().ReRoll(true);
@@ -645,6 +658,45 @@ public class GameController : MonoBehaviour
             b.interactable = true;
         }
         BattleButton.interactable = true;
+
+
+
+
+        formation = "[";
+        unitsInOrder = new List<Unit>();
+
+        i = 0;
+        for (int y = -2; y < 1; y++)
+        {
+            for (int x = 0; x < 6; x++)
+            {
+                Collider2D square = Physics2D.OverlapPoint(new Vector2(1.25f * x - 2.5f, y * 1.25f), squares);
+                if (square != null && square.GetComponent<GameSquare>().occupied)
+                {
+                    Unit thisUnit = square.GetComponent<GameSquare>().occupier.GetComponent<Unit>();
+                    formation += thisUnit.symbol;
+                    unitsInOrder.Add(thisUnit);
+                    //set Stats
+                }
+                else formation += '.';
+                i++;
+            }
+        }
+        formation += ']';
+        foreach (Unit u in unitsInOrder)
+        {
+            formation += '[';
+            formation += u.level;
+            formation += ',';
+            formation += u.attack;
+            formation += ',';
+            formation += u.health;
+            formation += ']';
+        }
+        formation += '[';
+        MainMenu.Instance.savedFormation = formation;
+        MainMenu.Instance.inGame = true;
+        MainMenu.Instance.SetDBInfo();
     }
 
     private Unit GetFrontmostPlayerUnit()
@@ -656,7 +708,7 @@ public class GameController : MonoBehaviour
             {
                 Collider2D square = null;
                 Vector2 spawnPoint = Vector2.zero;
-                spawnPoint = new Vector2(1.25f*x - 2.5f, 1.25f-1.25f*y);
+                spawnPoint = new Vector2(1.25f * x - 2.5f, 1.25f - 1.25f * y);
                 square = Physics2D.OverlapPoint(spawnPoint, squares);
                 if (square.GetComponent<GameSquare>().occupied)
                 {
@@ -744,16 +796,16 @@ public class GameController : MonoBehaviour
 
     public void ToggleGameSpeed()
     {
-        gameSpeed ++;
+        gameSpeed++;
         if (gameSpeed == 3) gameSpeed = 0;
         gameSpeedButtonSR.sprite = GameSpeedSprites[gameSpeed];
-        if(gameSpeed == 0)
+        if (gameSpeed == 0)
         {
             jiggleTime = 0.7f;
             attackTime = 1;
             buffTime = 0.6f;
         }
-        else if(gameSpeed == 1)
+        else if (gameSpeed == 1)
         {
             jiggleTime = 0.525f;
             attackTime = 0.75f;
@@ -809,12 +861,67 @@ public class GameController : MonoBehaviour
     private IEnumerator UIJuice(Transform t)
     {
         float timer = 0;
-        while(timer < 1)
+        while (timer < 1)
         {
             t.localScale = new Vector3(2 * JiggleX.Evaluate(timer), 2 * JiggleY.Evaluate(timer), 1);
             timer += Time.deltaTime;
             yield return null;
         }
         t.localScale = new Vector3(2, 2, 1);
+    }
+
+    private IEnumerator SpawnUnits()
+    {
+        yield return new WaitForSeconds(2);
+
+        string[] sections = MainMenu.Instance.savedFormation.Split('[');
+
+        int i = 0;
+        int characterSelect = 0;
+        string allCharacters = null;
+        foreach (GameObject u in transform.GetChild(1).GetComponent<Shop>().Units)
+        {
+            allCharacters += u.GetComponent<Unit>().symbol;
+        }
+        for (int y = -2; y <= 0; y++)
+        {
+            for (int x = 0; x < 6; x++)
+            {
+                for (int z = 0; z < allCharacters.Length; z++)
+                {
+                    if (sections[1][i] == allCharacters[z])
+                    {
+                        characterSelect++;
+                        GameObject newUnit = Instantiate(transform.GetChild(1).GetComponent<Shop>().Units[z], new Vector2(1.25f * x - 2.5f, y * 1.25f), Quaternion.identity);
+                        newUnit.transform.parent = transform;
+                        yield return new WaitForEndOfFrame();
+                        newUnit.GetComponent<Unit>().playerUnit = true;
+                        Collider2D col = Physics2D.OverlapPoint(newUnit.transform.position, squares);
+                        GameSquare square = col.GetComponent<GameSquare>();
+                        square.GetComponent<GameSquare>().occupied = true;
+                        square.GetComponent<GameSquare>().occupier = newUnit;
+                        //newUnit.transform.GetChild(0).GetChild(4).gameObject.SetActive(false);
+                        newUnit.GetComponent<ShopSprite>().beenPlaced = true;
+                        //set Stats
+                        newUnit.transform.GetChild(0).gameObject.SetActive(true);
+                        newUnit.transform.GetChild(0).GetChild(2).gameObject.SetActive(true);
+                        newUnit.transform.GetChild(0).GetChild(3).gameObject.SetActive(false);
+                        newUnit.GetComponent<Unit>().spriteQuality.SetActive(false);
+                        newUnit.transform.GetChild(0).GetChild(3).position = new Vector2(newUnit.transform.position.x, newUnit.transform.position.y - 1.5f);
+                        StartCoroutine(newUnit.GetComponent<Unit>().Jiggle());
+                        newUnit.GetComponent<Unit>().unitSound.Play();
+                        newUnit.GetComponent<Unit>().ShowBuffStuff();
+
+
+                        string[] enemyStats = sections[characterSelect + 1].Split(',');
+                        newUnit.GetComponent<Unit>().level = int.Parse(enemyStats[0]);
+                        newUnit.GetComponent<Unit>().attack = int.Parse(enemyStats[1]);
+                        newUnit.GetComponent<Unit>().health = int.Parse(enemyStats[2].Substring(0, enemyStats[2].Length - 1));
+                        yield return new WaitForSeconds(0.6f);
+                    }
+                }
+                i++;
+            }
+        }
     }
 }

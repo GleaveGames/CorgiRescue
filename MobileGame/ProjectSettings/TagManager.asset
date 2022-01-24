@@ -7,6 +7,7 @@ TagManager:
   - ShopItem
   - GameSquare
   - EnemySquare
+  - LoadingText
   layers:
   - Default
   - TransparentFX

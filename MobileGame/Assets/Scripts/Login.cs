@@ -10,6 +10,8 @@ public class Login : MonoBehaviour
     public InputField PasswordInput;
     public Button LoginButton;
     public Button NewAccountButton;
+    [SerializeField]
+    TextMeshProUGUI errorText;
 
     private void Start()
     {
@@ -26,4 +28,15 @@ public class Login : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public IEnumerator DisplayText(string error)
+    {
+        errorText.text = error;
+        yield return new WaitForSeconds(3);
+        errorText.text = "";
+    }
+
+    public void KingLogin()
+    {
+        StartCoroutine(MainMenu.Instance.db.Login("king", "king"));
+    }
 }
