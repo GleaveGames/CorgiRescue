@@ -17,6 +17,7 @@ public class DataBase : MonoBehaviour
         List<IMultipartFormSection> wwwForm = new List<IMultipartFormSection>();
         wwwForm.Add(new MultipartFormDataSection("playerRound", round));
         wwwForm.Add(new MultipartFormDataSection("playerFormation", formation));
+        wwwForm.Add(new MultipartFormDataSection("playerName", MainMenu.Instance.username));
 
         UnityWebRequest www = UnityWebRequest.Post(geturl, wwwForm);
         GameObject.FindGameObjectWithTag("LoadingText").GetComponent<Text>().text = "loading...";
@@ -75,9 +76,21 @@ public class DataBase : MonoBehaviour
 
     public IEnumerator RegisterUser(string username, string password)
     {
+
+        if(username.Length < 4)
+        {
+            StartCoroutine(FindObjectOfType<Login>().DisplayText("Username must be at least 3 characters"));
+            yield break;
+        }
+        if (username.Contains("[") || username.Contains("]")){
+            StartCoroutine(FindObjectOfType<Login>().DisplayText("Usernames must be letters and numbers"));
+            yield break;
+        }
+
         WWWForm form = new WWWForm();
         form.AddField("loginUser", username);
         form.AddField("loginPass", password);
+
 
         using (UnityWebRequest www = UnityWebRequest.Post("https://feudalwars.000webhostapp.com/registeruser.php", form))
         {
@@ -85,13 +98,15 @@ public class DataBase : MonoBehaviour
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                Debug.Log(www.error);
+                GameObject.FindGameObjectWithTag("LoadingText").GetComponent<Text>().text = www.error;
             }
             else
             {
-                Debug.Log(www.downloadHandler.text);
+                StartCoroutine(FindObjectOfType<Login>().DisplayText("Account Created Successfully"));
             }
         }
+        yield return new WaitForSeconds(2);
+        StartCoroutine(Login(username, password));
     }
 
     public IEnumerator SetDBInfo(string ID, int TROPHIES, bool INGAME, string SAVEDFORMATION, int WINS, int LIVES, int ROUND)

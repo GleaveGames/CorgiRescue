@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameController : MonoBehaviour
 {
@@ -95,6 +96,13 @@ public class GameController : MonoBehaviour
     Image gameSpeedButtonSR;
     public AnimationCurve gsjuice;
     public GameObject damageText;
+    [SerializeField]
+    GameObject playerName;
+    [SerializeField]
+    GameObject enemyName;
+    [SerializeField]
+    GameObject vsText;
+
 
     [Header("Sounds")]
     [SerializeField]
@@ -471,21 +479,68 @@ public class GameController : MonoBehaviour
         Color invis = Color.white;
         invis.a = 0;
 
-        while (timer < 2)
+        while (timer < 1)
         {
-            CameraTrans.position = new Vector3(CameraTrans.position.x, Mathf.Lerp(-3.87f, 0.5f, timer / 2), -10);
+            CameraTrans.position = new Vector3(CameraTrans.position.x, Mathf.Lerp(-3.87f, 0.5f, timer), -10);
             timer += Time.deltaTime;
             yield return null;
         }
 
-
+        
         allUnits = InsertionSort(allUnits);
 
+        //VS STUFF
+
+        playerName.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = MainMenu.Instance.username;
+        playerName.SetActive(true);
+        enemyName.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = sections[sections.Length-1];
+        enemyName.SetActive(true);
+        vsText.SetActive(true);
+
+        transform.GetChild(2).GetComponent<Canvas>().sortingOrder = 100;
+
+        timer = 0;
+        while (timer < 0.6f)
+        {
+            playerName.transform.localPosition = Vector2.Lerp(playerName.GetComponent<MovingText>().startPos, playerName.GetComponent<MovingText>().endPos, timer / 0.6f);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        playHit();
+        yield return new WaitForSeconds(0.8f);
+        timer = 0;
+        while (timer < 0.6f)
+        {
+            vsText.transform.localPosition = Vector2.Lerp(vsText.GetComponent<MovingText>().startPos, vsText.GetComponent<MovingText>().endPos, timer / 0.6f);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        playHit();
+        yield return new WaitForSeconds(0.8f);
+        timer = 0;
+        while (timer < 0.6f)
+        {
+            enemyName.transform.localPosition = Vector2.Lerp(enemyName.GetComponent<MovingText>().startPos, enemyName.GetComponent<MovingText>().endPos, timer / 0.6f);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        playHit();
+        yield return new WaitForSeconds(2f);
+        timer = 0;
+        while(timer < 1)
+        {
+            playerName.transform.localPosition = Vector2.Lerp(playerName.GetComponent<MovingText>().endPos, playerName.GetComponent<MovingText>().startPos, timer);
+            vsText.transform.localPosition = Vector2.Lerp(vsText.GetComponent<MovingText>().endPos, vsText.GetComponent<MovingText>().startPos, timer);
+            enemyName.transform.localPosition = Vector2.Lerp(enemyName.GetComponent<MovingText>().endPos, enemyName.GetComponent<MovingText>().startPos, timer);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.GetChild(2).GetComponent<Canvas>().sortingOrder = 0;
 
         foreach (GameObject u in allUnits)
         {
             StartCoroutine(u.GetComponent<Unit>().OnStartOfBattle());
-            //if (u.GetComponent<Unit>().actioning) yield return new WaitForSeconds(buffTime);
             yield return new WaitForEndOfFrame();
             while (IsAUnitActioning()) yield return null;
             while (IsAUnitActioning()) yield return null;
