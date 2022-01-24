@@ -139,6 +139,18 @@ public class GameController : MonoBehaviour
         {
             //GetComponent<DataBase>().GetDataBase();
         }
+
+        StartCoroutine(LateStart());
+    }
+
+    private IEnumerator LateStart()
+    {
+        yield return new WaitForEndOfFrame();
+
+        if (round >= 2) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(1));
+        if (round >= 4) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(2));
+        if (round >= 6) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(3));
+        if (round >= 8) StartCoroutine(FindObjectOfType<Shop>().UnlockBuilding(4));
     }
 
     private void ResetStats()
@@ -507,7 +519,7 @@ public class GameController : MonoBehaviour
             yield return null;
         }
         playHit();
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.2f);
         timer = 0;
         while (timer < 0.6f)
         {
@@ -516,7 +528,7 @@ public class GameController : MonoBehaviour
             yield return null;
         }
         playHit();
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.2f);
         timer = 0;
         while (timer < 0.6f)
         {
@@ -601,7 +613,7 @@ public class GameController : MonoBehaviour
                 Battling = false;
                 wins++;
                 resultObj.GetComponent<Image>().sprite = resultSprites[0];
-                if (wins == 10) resultObj.GetComponent<Image>().sprite = resultSprites[4];
+                if (wins >= 10) resultObj.GetComponent<Image>().sprite = resultSprites[4];
                 win.PlayDelayed(2);
                 StartCoroutine(ResultJuice("w"));
             }
@@ -658,7 +670,7 @@ public class GameController : MonoBehaviour
             PlayerPrefs.SetInt("wins", wins);
             PlayerPrefs.SetInt("round", round);
             PlayerPrefs.SetInt("lives", lives);
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
 
         foreach (GameObject u in enemyUnits)
