@@ -64,4 +64,13 @@ public class MainMenu : MonoBehaviour
         lives=4;
         round=1;
     }
+
+    public void ResetAfterGameEnd()
+    {
+        inGame = false;
+        savedFormation = "";
+        wins = 0;
+        lives = 4;
+        round = 1;
+    }
 }

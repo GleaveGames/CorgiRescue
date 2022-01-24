@@ -44,16 +44,17 @@ public class DataBase : MonoBehaviour
 
         using (UnityWebRequest www = UnityWebRequest.Post("https://feudalwars.000webhostapp.com/login.php", form))
         {
+            GameObject.FindGameObjectWithTag("LoadingText").GetComponent<Text>().text = "Loading...";
             yield return www.SendWebRequest();
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                Debug.Log(www.error);
+                GameObject.FindGameObjectWithTag("LoadingText").GetComponent<Text>().text = www.error;
             }
             else
             {
                 string jsonArray = www.downloadHandler.text;
-                if (www.downloadHandler.text == "Wrong password." || www.downloadHandler.text == "Username not found.")
+                if (www.downloadHandler.text == "Wrong password." || www.downloadHandler.text == "Username not found." || www.downloadHandler.text[0] != '[')
                 {
                     StartCoroutine(FindObjectOfType<Login>().DisplayText(www.downloadHandler.text));
                     yield break;
@@ -67,10 +68,11 @@ public class DataBase : MonoBehaviour
                 //Debug.Log(sections[3].Split(':')[1].Trim('"'));
                 MainMenu.Instance.SetClientInfo(sections[0].Split(':')[1].Trim('"'), sections[1].Split(':')[1].Trim('"'), sections[2].Split(':')[1].Trim('"'), int.Parse(sections[3].Split(':')[1].Trim('"')), ingame, sections[5].Split(':')[1].Trim('"'), int.Parse(sections[6].Split(':')[1].Trim('"')), int.Parse(sections[7].Split(':')[1].Trim('"')), int.Parse(sections[8].Split(':')[1].Trim('"')));
                 FindObjectOfType<Login>().LoginSuccess();
+                GameObject.FindGameObjectWithTag("LoadingText").GetComponent<Text>().text = "";
             }
         }
     }
-    
+
     public IEnumerator RegisterUser(string username, string password)
     {
         WWWForm form = new WWWForm();

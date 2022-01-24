@@ -58,5 +58,13 @@ public class GameOverScene : MonoBehaviour
         Lives.text = "" + PlayerPrefs.GetInt("lives");
         Wins.text = "" + PlayerPrefs.GetInt("wins");
         Round.text = "" + PlayerPrefs.GetInt("round");
+
+        int trophiesGained = PlayerPrefs.GetInt("wins");
+        if (trophiesGained == 10) trophiesGained = 30;
+
+        MainMenu.Instance.trophies += trophiesGained;
+        MainMenu.Instance.ResetAfterGameEnd();
+        MainMenu.Instance.SetDBInfo();
     }
+
 }
