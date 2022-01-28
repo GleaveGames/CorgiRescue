@@ -18,6 +18,8 @@ public class MenuInputs : MonoBehaviour
     Button logOut;
     [SerializeField]
     GameObject LoginGO;
+    [SerializeField]
+    Button Quit;
 
 
     private void Start()
@@ -28,8 +30,15 @@ public class MenuInputs : MonoBehaviour
         newGameButton.onClick.AddListener(() => {
             NewGame();
         });
+        Quit.onClick.AddListener(() => {
+            QuitGame();
+        });
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 
     public void OnLogin()
     {

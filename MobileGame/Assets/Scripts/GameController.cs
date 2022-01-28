@@ -57,6 +57,8 @@ public class GameController : MonoBehaviour
     float endBattleTime = 5;
     [SerializeField]
     GameObject resultObj;
+    [SerializeField]
+    GameObject ExcessGoldParent;
 
     [Header("Curves and Things")]
     [SerializeField]
@@ -161,8 +163,8 @@ public class GameController : MonoBehaviour
         livesText2.text = lives.ToString();
         Round.text = (round + 1).ToString();
         Round2.text = (round + 1).ToString();
-        Wins.text = wins.ToString();
-        Wins2.text = wins.ToString();
+        Wins.text = wins.ToString() + "/10";
+        Wins2.text = wins.ToString() + "/10"; 
         MainMenu.Instance.lives = lives;
         MainMenu.Instance.wins = wins;
         MainMenu.Instance.round = round;
@@ -336,7 +338,26 @@ public class GameController : MonoBehaviour
         unitText.transform.position = u;
     }
 
-    public void BattleTrigger()
+    public void BattleButtonPressed()
+    {
+        if (Gold > 0)
+        {
+            ExcessGoldParent.SetActive(true);
+        }
+        else
+        {
+            StartBattle();
+            RemoveExcessGoldParent();
+        }
+    }
+
+    public void RemoveExcessGoldParent()
+    {
+        ExcessGoldParent.SetActive(false);
+    }
+
+
+    public void StartBattle()
     {
         StartCoroutine(Battle());
         BattleButton.interactable = false;
@@ -945,7 +966,7 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(2);
 
         string[] sections = MainMenu.Instance.savedFormation.Split('[');
-
+        
         int i = 0;
         int characterSelect = 0;
         string allCharacters = null;
@@ -987,7 +1008,7 @@ public class GameController : MonoBehaviour
                         newUnit.GetComponent<Unit>().level = int.Parse(enemyStats[0]);
                         newUnit.GetComponent<Unit>().attack = int.Parse(enemyStats[1]);
                         newUnit.GetComponent<Unit>().health = int.Parse(enemyStats[2].Substring(0, enemyStats[2].Length - 1));
-                        yield return new WaitForSeconds(0.6f);
+                        yield return new WaitForSeconds(0.4f);
                     }
                 }
                 i++;
