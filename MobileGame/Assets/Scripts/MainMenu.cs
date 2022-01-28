@@ -22,9 +22,16 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        Instance = this;
-        db = GetComponent<DataBase>();
-        DontDestroyOnLoad(gameObject);
+        if(MainMenu.Instance != null)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+            db = GetComponent<DataBase>();
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     public void SetClientInfo(string ID, string NAME, string PASSWORD, int TROPHIES, bool INGAME, string SAVEDFORMATION, int WINS, int LIVES, int ROUND)

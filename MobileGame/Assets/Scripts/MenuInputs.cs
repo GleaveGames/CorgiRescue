@@ -43,10 +43,12 @@ public class MenuInputs : MonoBehaviour
     public void OnLogin()
     {
         if (MainMenu.Instance.inGame) continueButton.interactable = true;
+        else continueButton.interactable = false;
         logOut.interactable = true;
         trophyCount.gameObject.SetActive(true);
         trophyCount.text = MainMenu.Instance.trophies.ToString();
         usernameText.text = MainMenu.Instance.username;
+        Quit.interactable = true;
     }
 
     public void Continue()
