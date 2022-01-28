@@ -141,6 +141,8 @@ public class GameController : MonoBehaviour
         }
 
         StartCoroutine(LateStart());
+        gameSpeed = PlayerPrefs.GetInt("GameSpeed") - 1;
+        ToggleGameSpeed();
     }
 
     private IEnumerator LateStart()
@@ -892,6 +894,7 @@ public class GameController : MonoBehaviour
             u.GetComponent<Unit>().buffTime = buffTime;
             u.GetComponent<Unit>().jiggleTime = jiggleTime;
         }
+        PlayerPrefs.SetInt("GameSpeed", gameSpeed);
     }
 
     private IEnumerator ResultJuice(string name)

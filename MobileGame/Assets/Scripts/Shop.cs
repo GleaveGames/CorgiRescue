@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Shop : MonoBehaviour
 {
@@ -87,6 +88,11 @@ public class Shop : MonoBehaviour
             newSpot.number = i;
         }
         ReRoll(true);
+
+        if(PlayerPrefs.GetInt("Music") == 0)
+        {
+            ToggleMusic();
+        }
     }
 
     private void Update()
@@ -184,25 +190,21 @@ public class Shop : MonoBehaviour
 
     }
 
-    public void TEST(int choice)
-    {
-        StartCoroutine(UnlockBuilding(choice));
-    }
-
-
     public void ToggleMusic()
     {
         if(musicOn)
         {
             music.volume = 0;
             musicOn = false;
-            musicBut.sprite = musicButtonSprites[1];   
+            musicBut.sprite = musicButtonSprites[1];
+            PlayerPrefs.SetInt("Music", 0);
         }
         else
         {
             music.volume = musicVolumeInit;
             musicOn = true;
             musicBut.sprite = musicButtonSprites[0];
+            PlayerPrefs.SetInt("Music", 1);
         }
     }
 
@@ -288,6 +290,12 @@ public class Shop : MonoBehaviour
 
         return playerUnits;
     }
+
+    public void Quit()
+    {
+        SceneManager.LoadScene(0);
+    }
+
 }
 
 public class ShopSpot
