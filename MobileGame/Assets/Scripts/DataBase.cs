@@ -58,6 +58,7 @@ public class DataBase : MonoBehaviour
                 if (www.downloadHandler.text == "Wrong password." || www.downloadHandler.text == "Username not found." || www.downloadHandler.text[0] != '[')
                 {
                     StartCoroutine(FindObjectOfType<Login>().DisplayText(www.downloadHandler.text));
+                    GameObject.FindGameObjectWithTag("LoadingText").GetComponent<Text>().text = "";
                     yield break;
                 }
                 jsonArray = jsonArray.Trim('[',']');

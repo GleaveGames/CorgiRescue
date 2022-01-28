@@ -22,7 +22,6 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(System.DateTime.Now);
         Instance = this;
         db = GetComponent<DataBase>();
         DontDestroyOnLoad(gameObject);
