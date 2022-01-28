@@ -10,6 +10,7 @@ public class Login : MonoBehaviour
     public InputField PasswordInput;
     public Button LoginButton;
     public Button NewAccountButton;
+    public Button PlayGuestButton;
     [SerializeField]
     TextMeshProUGUI errorText;
 
@@ -20,6 +21,12 @@ public class Login : MonoBehaviour
         });
         NewAccountButton.onClick.AddListener(() => {
             StartCoroutine(MainMenu.Instance.db.RegisterUser(UsernameInput.text, PasswordInput.text));
+        }); 
+        PlayGuestButton.onClick.AddListener(() => {
+            string tempUsername = "Guest " + System.DateTime.Now;
+            tempUsername.Replace('/', ' ');
+            tempUsername.Replace('\\', ' ');
+            StartCoroutine(MainMenu.Instance.db.RegisterUser(tempUsername, ""));
         });
         StartCoroutine(LateStart());
     }

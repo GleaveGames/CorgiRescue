@@ -105,7 +105,6 @@ public class DataBase : MonoBehaviour
                 StartCoroutine(FindObjectOfType<Login>().DisplayText("Account Created Successfully"));
             }
         }
-        yield return new WaitForSeconds(2);
         StartCoroutine(Login(username, password));
     }
 
