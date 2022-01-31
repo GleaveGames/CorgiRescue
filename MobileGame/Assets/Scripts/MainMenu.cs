@@ -19,6 +19,8 @@ public class MainMenu : MonoBehaviour
 
     public DataBase db;
     public bool continuing = false;
+    public Texture2D[] mouseCursor;
+
 
     private void Start()
     {
@@ -31,7 +33,14 @@ public class MainMenu : MonoBehaviour
             Instance = this;
             db = GetComponent<DataBase>();
             DontDestroyOnLoad(gameObject);
+            
         }
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButton(0)) Cursor.SetCursor(mouseCursor[1], Vector2.zero, CursorMode.ForceSoftware);
+        else Cursor.SetCursor(mouseCursor[0], Vector2.zero, CursorMode.ForceSoftware);
     }
 
     public void SetClientInfo(string ID, string NAME, string PASSWORD, int TROPHIES, bool INGAME, string SAVEDFORMATION, int WINS, int LIVES, int ROUND)

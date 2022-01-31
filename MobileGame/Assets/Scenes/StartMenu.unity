@@ -3367,6 +3367,9 @@ MonoBehaviour:
   round: 0
   db: {fileID: 0}
   continuing: 0
+  mouseCursor:
+  - {fileID: 2800000, guid: df7f8c9848b23a545b9d92275f95ed1d, type: 3}
+  - {fileID: 2800000, guid: e8a37e32dccca724b8a9b2be0b816ec8, type: 3}
 --- !u!4 &925798614
 Transform:
   m_ObjectHideFlags: 0

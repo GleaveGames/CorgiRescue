@@ -48,7 +48,7 @@ public class Champion : Unit
                             particleSpawnPos = (transform.position + enemyUnit.transform.position) / 2;
                             particle.transform.up = Vector2.Perpendicular(spawnPoint - initPos);
                             StartCoroutine(CollisionJiggle());
-                            if (playerUnit) gc.playHit();
+                            if (playerUnit) gc.playHit(attack + 20);
                         }
                         else if (timer > attackTime / 2)
                         {

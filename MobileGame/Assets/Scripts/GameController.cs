@@ -104,6 +104,8 @@ public class GameController : MonoBehaviour
     GameObject enemyName;
     [SerializeField]
     GameObject vsText;
+    [SerializeField]
+    CameraShake cs;
 
 
     [Header("Sounds")]
@@ -582,7 +584,7 @@ public class GameController : MonoBehaviour
 
         }
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f);
 
         foreach (GameObject u in allUnits)
         {
@@ -878,10 +880,19 @@ public class GameController : MonoBehaviour
         click.pitch = Random.Range(1.3f, 1.7f);
         click.Play();
     }
-    public void playHit()
+    public void playHit(int damage = 0)
     {
-        hit.pitch = Random.Range(0.8f, 1.2f);
+        if(damage == 0)
+        {
+            hit.pitch = Random.Range(0.8f, 1.2f);
+        }
+        else
+        {
+            hit.pitch = 1 - damage*0.01f;
+            if (hit.pitch < 0.7) hit.pitch = 0.7f;
+        }
         hit.Play();
+        StartCoroutine(cs.Shake(buffTime*2, 1 + damage / 200f));
     }
 
     public void ToggleGameSpeed()
@@ -931,7 +942,7 @@ public class GameController : MonoBehaviour
         }
         else if (name == "w")
         {
-            Wins2.text = (wins).ToString();
+            Wins2.text = (wins).ToString()+"/10";
             StartCoroutine(UIJuice(Wins2.transform));
             Round2.text = (round + 2).ToString();
             StartCoroutine(UIJuice(Round2.transform));

@@ -8052,6 +8052,7 @@ GameObject:
   - component: {fileID: 519420030}
   - component: {fileID: 519420037}
   - component: {fileID: 519420036}
+  - component: {fileID: 519420038}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -8621,6 +8622,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &519420038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a121570da676fad42af40fa8f904313c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &543578897
 GameObject:
   m_ObjectHideFlags: 0
@@ -16949,6 +16962,77 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 028ff1da9d6867140a184249a2290c55, type: 3}
+--- !u!1 &1486923686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1486923689}
+  - component: {fileID: 1486923688}
+  - component: {fileID: 1486923687}
+  m_Layer: 0
+  m_Name: MainMenuScript
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1486923687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486923686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ec7aa3a1506de408e5636dc5e42960, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loading: 0
+--- !u!114 &1486923688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486923686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca09b6bb1af4ea34fb3f99e7300b83ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  username: 
+  password: 
+  trophies: 0
+  inGame: 0
+  savedFormation: 
+  wins: 0
+  lives: 0
+  round: 0
+  db: {fileID: 0}
+  continuing: 0
+  mouseCursor:
+  - {fileID: 2800000, guid: df7f8c9848b23a545b9d92275f95ed1d, type: 3}
+  - {fileID: 2800000, guid: e8a37e32dccca724b8a9b2be0b816ec8, type: 3}
+--- !u!4 &1486923689
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486923686}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1503493608
 GameObject:
   m_ObjectHideFlags: 0
@@ -20004,7 +20088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e46a2c264b040c489fd4af5c317b877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LOCALTESTING: 0
+  LOCALTESTING: 1
   testEnemy: '"[aaa...........p...][1,2,1][1,2,1][1,2,1][10,1,100]["'
   databasetext: 
   draggingObj: {fileID: 0}
@@ -20519,6 +20603,7 @@ MonoBehaviour:
   playerName: {fileID: 1230056295}
   enemyName: {fileID: 2039145211}
   vsText: {fileID: 1188855750}
+  cs: {fileID: 519420038}
   click: {fileID: 1823306630}
   hit: {fileID: 1823306629}
   win: {fileID: 1823306633}

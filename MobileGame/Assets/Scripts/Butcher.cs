@@ -67,7 +67,7 @@ public class Butcher : Unit
                 yield return null;
             }
             Destroy(newBuff);
-            square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().health += healthBuff*level;
+            square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().health += healthBuff*level-1;
             StartCoroutine(square.occupier.GetComponent<Unit>().BuffJuice(1));
             StartCoroutine(square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().Jiggle());
         }

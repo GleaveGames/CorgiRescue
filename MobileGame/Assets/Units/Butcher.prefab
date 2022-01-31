@@ -105,8 +105,8 @@ MonoBehaviour:
     m_Bits: 256
   beenPlaced: 0
   UnitText1: 'DeathRattle: Give adjacent units +1 health'
-  UnitText2: 'DeathRattle: Give adjacent units +2 health'
-  UnitText3: 'DeathRattle: Give adjacent units +3 health'
+  UnitText2: 'DeathRattle: Give adjacent units +3 health'
+  UnitText3: 'DeathRattle: Give adjacent units +5 health'
 --- !u!61 &757357724859235949
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -174,7 +174,7 @@ MonoBehaviour:
   jiggleTime: 0
   sameSquareSpawner: 0
   attackBuff: 0
-  healthBuff: 1
+  healthBuff: 2
   rowbuff: 000000
   rowdebuff: 000000
   buffs: 010101010001010101

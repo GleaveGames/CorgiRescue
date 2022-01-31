@@ -104,9 +104,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'On Start of Turn: Give adjacent castle units +3/+3'
-  UnitText2: 'On Start of Turn: Give adjacent castle units +6/+6'
-  UnitText3: 'On Start of Turn: Give adjacent castle units +9/+9'
+  UnitText1: 'On Start of Turn: Give adjacent castle units +2/+2'
+  UnitText2: 'On Start of Turn: Give adjacent castle units +4/+4'
+  UnitText3: 'On Start of Turn: Give adjacent castle units +6/+6'
 --- !u!61 &538672580819213160
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -172,8 +172,9 @@ MonoBehaviour:
   levelPreEndTurn: 0
   expPreEndTurn: 0
   jiggleTime: 0
-  attackBuff: 3
-  healthBuff: 3
+  sameSquareSpawner: 0
+  attackBuff: 2
+  healthBuff: 2
   rowbuff: 000000
   rowdebuff: 000000
   buffs: 010101010001010101
