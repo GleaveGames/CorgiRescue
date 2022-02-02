@@ -50,7 +50,7 @@ public class Shop : MonoBehaviour
     [SerializeField]
     AudioSource music;
     [SerializeField]
-    AudioSource reroll;
+    public AudioSource reroll;
     [SerializeField]
     AudioSource freeze;
 

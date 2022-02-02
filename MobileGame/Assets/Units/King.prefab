@@ -104,9 +104,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'Start of Turn: Gain +1 gold for each peasant'
-  UnitText2: 'Start of Turn: Gain +1 gold and attack for each peasant'
-  UnitText3: 'Start of Turn: Gain +1 gold, attack and health for each peasant'
+  UnitText1: 'Start of Turn: Gain +1/+1 and +1 gold for each peasant'
+  UnitText2: 'Start of Turn: Gain +2/+2 and +2 gold for each peasant'
+  UnitText3: 'Start of Turn: Gain +3/+3 and +3 gold for each peasant'
 --- !u!61 &757357724859235949
 BoxCollider2D:
   m_ObjectHideFlags: 0
