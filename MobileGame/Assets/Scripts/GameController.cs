@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
     [SerializeField]
     string testEnemy;
     public string databasetext;
+    public bool screenShake;
 
     public GameObject draggingObj;
     [SerializeField]
@@ -362,6 +363,7 @@ public class GameController : MonoBehaviour
     public void StartBattle()
     {
         StartCoroutine(Battle());
+        RemoveExcessGoldParent();
         BattleButton.interactable = false;
     }
 
@@ -892,7 +894,7 @@ public class GameController : MonoBehaviour
             if (hit.pitch < 0.7) hit.pitch = 0.7f;
         }
         hit.Play();
-        StartCoroutine(cs.Shake(buffTime*2, 1 + damage / 200f));
+        if(screenShake) StartCoroutine(cs.Shake());
     }
 
     public void ToggleGameSpeed()

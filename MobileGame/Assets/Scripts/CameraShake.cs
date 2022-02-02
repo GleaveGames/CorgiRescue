@@ -4,47 +4,46 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
-    public IEnumerator Shake(float duration, float magnitude)
+    public IEnumerator Shake()
     {
+        float duration = 0.02f;
+        float magnitude = 0.2f;
         Vector3 originalPos = transform.position;
         float elapsedTime = 0f;
+        yield return new WaitForSeconds(0.1f);
 
-        while (elapsedTime < duration)
+        for (int i = 0; i < 3; i++)
         {
-            for(int i = 0; i < 3; i++)
+            elapsedTime = 0f;
+            float xOffset = Random.Range(-0.5f, 0.5f);
+            float yOffset = Random.Range(-0.5f, 0.5f);
+            Vector2 newPos = new Vector2(xOffset, yOffset) * magnitude;
+            Vector3 newPos3 = new Vector3(Random.Range(-0.5f, 0.5f) * magnitude, Random.Range(-0.5f, 0.5f)*magnitude, 0);
+            Debug.Log(newPos3);
+
+            while (elapsedTime <= duration)
             {
-                float xOffset = Random.Range(-0.5f, 0.5f);
-                float yOffset = Random.Range(-0.5f, 0.5f);
-                Vector2 newPos = new Vector2(xOffset, yOffset) * magnitude;
-                Vector3 newPos3 = new Vector3(Random.Range(-0.5f, 0.5f) * magnitude, Random.Range(-0.5f, 0.5f)*magnitude, 0);
-                Debug.Log(newPos3);
-
-                while (elapsedTime < (2*i*duration/6) + duration/6)
-                {
-                    transform.position = Vector3.Lerp(originalPos, originalPos + newPos3, (elapsedTime - (2 * i * duration / 6) / duration / 6));
-                    elapsedTime += Time.deltaTime;
+                transform.position = Vector3.Lerp(originalPos, originalPos + newPos3, elapsedTime/(duration));
+                elapsedTime += Time.deltaTime;
                     
-                    yield return null;
-                }
-
-                while (elapsedTime < ((2*i*duration + duration/6)/6) + duration/6)
-                {
-                    transform.position = Vector3.Lerp(originalPos+ newPos3, originalPos, (elapsedTime - (2 * i * duration / 6) / duration / 6));
-                    elapsedTime += Time.deltaTime;
-
-                    yield return null;
-                }
-                transform.position = originalPos;
-
+                yield return null;
             }
+            elapsedTime = 0f;
 
+            while (elapsedTime <= duration)
+            {
+                transform.position = Vector3.Lerp(originalPos+ newPos3, originalPos, (elapsedTime/duration));
+                elapsedTime += Time.deltaTime;
 
-            elapsedTime += Time.deltaTime;
-
-            yield return null;
+                yield return null;
+            }
+            transform.position = originalPos;
         }
 
         transform.position = originalPos;
     }
 
+    public void testShake()
+    {
+    }
 }
