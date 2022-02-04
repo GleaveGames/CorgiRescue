@@ -288,6 +288,7 @@ public class Unit : MonoBehaviour
         if (square != null && square.occupied && square.occupier.name.Contains("Priest") && !square.occupier.GetComponent<Priest>().triggered && square.occupier.GetComponent<Priest>().health > 0) respawn = true;
         if (respawn && !sameSquareSpawner)
         {
+            yield return new WaitForSeconds(0.1f);
             Instantiate(deathParticles, transform.position, Quaternion.identity);
             Instantiate(cloudParticles, transform.position, Quaternion.identity);
             dead = false;
