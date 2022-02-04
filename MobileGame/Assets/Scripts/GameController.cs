@@ -545,7 +545,10 @@ public class GameController : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
+        playerName.transform.localPosition = playerName.GetComponent<MovingText>().endPos;
+        playerName.GetComponent<Animator>().enabled = true;
         playHit();
+        /*
         yield return new WaitForSeconds(0.2f);
         timer = 0;
         while (timer < 0.6f)
@@ -555,7 +558,8 @@ public class GameController : MonoBehaviour
             yield return null;
         }
         playHit();
-        yield return new WaitForSeconds(0.2f);
+        */
+        yield return new WaitForSeconds(0.5f);
         timer = 0;
         while (timer < 0.6f)
         {
@@ -563,17 +567,33 @@ public class GameController : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
+        enemyName.transform.localPosition = enemyName.GetComponent<MovingText>().endPos;
+        enemyName.GetComponent<Animator>().enabled = true;
         playHit();
+
         yield return new WaitForSeconds(2f);
+        playerName.GetComponent<Animator>().Play("BasicBannerOut");
+        enemyName.GetComponent<Animator>().Play("BasicBannerOut");
+        yield return new WaitForSeconds(0.5f);
         timer = 0;
+
         while(timer < 1)
         {
-            playerName.transform.localPosition = Vector2.Lerp(playerName.GetComponent<MovingText>().endPos, playerName.GetComponent<MovingText>().startPos, timer);
-            vsText.transform.localPosition = Vector2.Lerp(vsText.GetComponent<MovingText>().endPos, vsText.GetComponent<MovingText>().startPos, timer);
-            enemyName.transform.localPosition = Vector2.Lerp(enemyName.GetComponent<MovingText>().endPos, enemyName.GetComponent<MovingText>().startPos, timer);
+            playerName.transform.localPosition = Vector2.Lerp(playerName.GetComponent<MovingText>().endPos, playerName.GetComponent<MovingText>().oppositePos, timer);
+            //vsText.transform.localPosition = Vector2.Lerp(vsText.GetComponent<MovingText>().endPos, vsText.GetComponent<MovingText>().startPos, timer);
+            enemyName.transform.localPosition = Vector2.Lerp(enemyName.GetComponent<MovingText>().endPos, enemyName.GetComponent<MovingText>().oppositePos, timer);
             timer += Time.deltaTime;
             yield return null;
         }
+
+        playerName.GetComponent<Animator>().Play("BasicBanner");
+        enemyName.GetComponent<Animator>().Play("BasicBanner");
+        playerName.GetComponent<Animator>().enabled = false;
+        enemyName.GetComponent<Animator>().enabled = false;
+        playerName.transform.localPosition = -playerName.GetComponent<MovingText>().startPos;
+        enemyName.transform.localPosition = -enemyName.GetComponent<MovingText>().startPos;
+
+
 
         transform.GetChild(2).GetComponent<Canvas>().sortingOrder = 0;
 

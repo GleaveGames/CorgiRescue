@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MenuInputs : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class MenuInputs : MonoBehaviour
     [SerializeField]
     Text trophyCount;
     [SerializeField]
-    Text usernameText;
+    TextMeshProUGUI usernameText;
     [SerializeField]
     Button logOut;
     [SerializeField]
@@ -47,6 +48,7 @@ public class MenuInputs : MonoBehaviour
         logOut.interactable = true;
         trophyCount.gameObject.SetActive(true);
         trophyCount.text = MainMenu.Instance.trophies.ToString();
+        usernameText.gameObject.transform.parent.GetComponent<Animator>().enabled = true;
         usernameText.text = MainMenu.Instance.username;
         Quit.interactable = true;
     }
@@ -69,5 +71,15 @@ public class MenuInputs : MonoBehaviour
         trophyCount.gameObject.SetActive(false);
         logOut.interactable = false;
         MainMenu.Instance.ResetClientStats();
+        StartCoroutine(ReFurlUsername());
+    }
+
+    private IEnumerator ReFurlUsername()
+    {
+        usernameText.gameObject.transform.parent.GetComponent<Animator>().Play("BasicBannerRefurl");
+        yield return new WaitForSeconds(0.9f);
+        usernameText.gameObject.transform.parent.GetComponent<Animator>().Play("BasicBanner");
+        usernameText.gameObject.transform.parent.GetComponent<Animator>().enabled = false;
+        usernameText.text = "";
     }
 }
