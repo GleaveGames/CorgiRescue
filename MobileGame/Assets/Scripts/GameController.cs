@@ -588,10 +588,11 @@ public class GameController : MonoBehaviour
 
         playerName.GetComponent<Animator>().Play("BasicBanner");
         enemyName.GetComponent<Animator>().Play("BasicBanner");
+        yield return new WaitForEndOfFrame();
         playerName.GetComponent<Animator>().enabled = false;
         enemyName.GetComponent<Animator>().enabled = false;
-        playerName.transform.localPosition = -playerName.GetComponent<MovingText>().startPos;
-        enemyName.transform.localPosition = -enemyName.GetComponent<MovingText>().startPos;
+        playerName.transform.localPosition = playerName.GetComponent<MovingText>().startPos;
+        enemyName.transform.localPosition = enemyName.GetComponent<MovingText>().startPos;
 
 
 
