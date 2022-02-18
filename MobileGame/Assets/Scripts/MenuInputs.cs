@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.EventSystems;
+
 
 public class MenuInputs : MonoBehaviour
 {
@@ -18,13 +20,14 @@ public class MenuInputs : MonoBehaviour
     [SerializeField]
     Button logOut;
     [SerializeField]
-    GameObject LoginGO;
+    GameObject LoginGO; 
     [SerializeField]
     Button Quit;
-
+    EventSystem system;
 
     private void Start()
     {
+        system = EventSystem.current;
         continueButton.onClick.AddListener(() => {
             Continue();
         });
@@ -81,5 +84,27 @@ public class MenuInputs : MonoBehaviour
         usernameText.gameObject.transform.parent.GetComponent<Animator>().Play("BasicBanner");
         usernameText.gameObject.transform.parent.GetComponent<Animator>().enabled = false;
         usernameText.text = "";
+        gameObject.SetActive(false);
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            Selectable next = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown();
+
+            if (next != null)
+            {
+
+                InputField inputfield = next.GetComponent<InputField>();
+                if (inputfield != null)
+                    inputfield.OnPointerClick(new PointerEventData(system));  //if it's an input field, also set the text caret
+
+                system.SetSelectedGameObject(next.gameObject, new BaseEventData(system));
+            }
+            //else Debug.Log("next nagivation element not found");
+
+        }
     }
 }
+

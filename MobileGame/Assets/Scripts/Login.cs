@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
+
 
 public class Login : MonoBehaviour
 {
@@ -13,11 +15,15 @@ public class Login : MonoBehaviour
     public Button PlayGuestButton;
     [SerializeField]
     TextMeshProUGUI errorText;
+    EventSystem system;
+    [SerializeField]
+    GameObject MenuGo;
 
     private void Start()
     {
+        system = EventSystem.current;
         LoginButton.onClick.AddListener(() => {
-            StartCoroutine(MainMenu.Instance.db.Login(UsernameInput.text, PasswordInput.text));
+            LoginTrigger();
         });
         NewAccountButton.onClick.AddListener(() => {
             StartCoroutine(MainMenu.Instance.db.RegisterUser(UsernameInput.text, PasswordInput.text));
@@ -31,10 +37,17 @@ public class Login : MonoBehaviour
         StartCoroutine(LateStart());
     }
 
+    void LoginTrigger()
+    {
+        MenuGo.SetActive(true);
+        StartCoroutine(MainMenu.Instance.db.Login(UsernameInput.text, PasswordInput.text));
+    }
+
+
     IEnumerator LateStart()
     {
         yield return new WaitForEndOfFrame();
-        if (PlayerPrefs.GetString("Username") != null) StartCoroutine(MainMenu.Instance.db.Login(PlayerPrefs.GetString("Username"), PlayerPrefs.GetString("Password")));
+        if (PlayerPrefs.GetString("Username") != null) LoginTrigger();
     }
 
 
@@ -47,9 +60,29 @@ public class Login : MonoBehaviour
 
     public IEnumerator DisplayText(string error)
     {
+        MenuGo.SetActive(false);
         errorText.text = error;
         yield return new WaitForSeconds(3);
         errorText.text = "";
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            Selectable next = system.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown();
+
+            if (next != null)
+            {
+
+                InputField inputfield = next.GetComponent<InputField>();
+                if (inputfield != null)
+                    inputfield.OnPointerClick(new PointerEventData(system));  //if it's an input field, also set the text caret
+
+                system.SetSelectedGameObject(next.gameObject, new BaseEventData(system));
+            }
+            //else Debug.Log("next nagivation element not found");
+
+        }
     }
 
 }

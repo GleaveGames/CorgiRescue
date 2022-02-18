@@ -650,7 +650,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_AnchorMin.x
@@ -658,7 +658,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_SizeDelta.x
@@ -698,11 +698,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -425
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -726,7 +726,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5145786687254463723, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_fontColor.a
-      value: 0.5411765
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5145786687254463723, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_fontSizeBase
@@ -1705,7 +1705,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 19.8891, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1900,6 +1900,7 @@ MonoBehaviour:
   NewAccountButton: {fileID: 1431700496}
   PlayGuestButton: {fileID: 1631837759}
   errorText: {fileID: 382102081}
+  MenuGo: {fileID: 1973369130}
 --- !u!114 &467035603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2573,7 +2574,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114968128994587846, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_Color.a
-      value: 0.53333336
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_Pivot.x
@@ -2593,7 +2594,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_AnchorMin.x
@@ -2601,7 +2602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2641,11 +2642,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -325
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4669,7 +4670,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_AnchorMin.x
@@ -4677,7 +4678,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_SizeDelta.x
@@ -4717,11 +4718,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5563,7 +5564,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.73333335, g: 0.7843138, b: 0.2509804, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -7997,7 +7998,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.73333335, g: 0.7843138, b: 0.2509804, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -8058,7 +8059,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_AnchorMin.x
@@ -8066,7 +8067,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_SizeDelta.x
@@ -8106,11 +8107,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -175
       objectReference: {fileID: 0}
     - target: {fileID: 224574930937200620, guid: d1086bdb8c797b941a8e00b72210ba49, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -8772,7 +8773,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1973369131
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10090,7 +10091,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.73333335, g: 0.7843138, b: 0.2509804, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1

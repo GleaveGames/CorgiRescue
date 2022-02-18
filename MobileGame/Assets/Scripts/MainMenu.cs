@@ -21,7 +21,6 @@ public class MainMenu : MonoBehaviour
     public bool continuing = false;
     public Texture2D[] mouseCursor;
 
-
     private void Start()
     {
         if(MainMenu.Instance != null)
