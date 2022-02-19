@@ -954,8 +954,10 @@ public class GameController : MonoBehaviour
 
     private IEnumerator ResultJuice(string name)
     {
+        //confetti effect;
+        
+
         yield return new WaitForSeconds(4);
-        float timer = 0;
         if (name == "l")
         {
             livesText2.text = (lives).ToString();
@@ -974,12 +976,6 @@ public class GameController : MonoBehaviour
         {
             Round2.text = (round + 2).ToString();
             StartCoroutine(UIJuice(Round2.transform));
-        }
-        timer = 0;
-        while (timer < 1)
-        {
-            timer += Time.deltaTime;
-            yield return null;
         }
     }
 
