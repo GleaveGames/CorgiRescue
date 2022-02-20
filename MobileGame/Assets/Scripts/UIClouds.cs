@@ -19,7 +19,6 @@ public class UIClouds : MonoBehaviour
     
     void Start()
     {
-        ConfettiTest();
         cloudsleft = new List<Cloud>();
         cloudsright = new List<Cloud>();
         for(int i = 0; i < transform.childCount/2; i++)
@@ -91,13 +90,12 @@ public class UIClouds : MonoBehaviour
         int confettiCount = 100;
         List<Transform> confettis = new List<Transform>();
         List<float> confettiWeights = new List<float>();
+        List<Vector2> confettiDisplacements = new List<Vector2>();
         float minX = transform.parent.GetComponent<RectTransform>().position.x + transform.parent.GetComponent<RectTransform>().rect.xMin;
         float maxY = transform.parent.GetComponent<RectTransform>().position.y + transform.parent.GetComponent<RectTransform>().rect.yMax;
         float z = transform.parent.GetComponent<RectTransform>().position.z;
-        float speed = 12f;
-        float noiseMag = 50;
-        float depth = 0.01f;
-        
+        float speed = 14f;
+        float depth = 0.002f;
 
         Vector3 topLeft = new Vector3(minX, maxY, z);
         for (int i = 0; i < confettiCount; i++)
@@ -112,17 +110,24 @@ public class UIClouds : MonoBehaviour
             spawnPos.y += Random.Range(0, 400);
             confetti.transform.position = spawnPos;
             confetti.transform.localScale = new Vector3(0.2f, 0.2f, 1);
-            confettiWeights.Add(Random.Range(0.6f, 1.4f));
+            confettiWeights.Add(1);
+            confettiDisplacements.Add(new Vector2(Random.Range(-1000, 1000), Random.Range(-1000, 1000)));
+
         }
         while (timer <= length)
         {
             for(int i = 0; i < confettis.Count; i++)
             {
-                confettis[i].position += Vector3.right * (Mathf.PerlinNoise(confettis[i].position.x*depth, confettis[i].position.y*depth) - 0.5f) * speed * confettiWeights[i];
-                confettis[i].position += Vector3.down * speed * (0.5f-(Mathf.Abs(Mathf.PerlinNoise(confettis[i].position.x*depth, confettis[i].position.y*depth)-0.5f)));
+                confettis[i].position += Vector3.right * (Mathf.PerlinNoise((confettis[i].position.x + confettiDisplacements[i].x)*depth, (confettis[i].position.y + confettiDisplacements[i].y) * depth) - 0.45f) * speed * confettiWeights[i];
+                confettis[i].position += Vector3.down * speed * (0.3f-(Mathf.Abs(Mathf.PerlinNoise((confettis[i].position.x + confettiDisplacements[i].x) * depth, (confettis[i].position.y + confettiDisplacements[i].y) * depth)-0.45f)));
             }
             timer += Time.deltaTime;
             yield return null;
+        }
+
+        foreach(Transform t in confettis)
+        {
+            Destroy(t.gameObject);
         }
     }
 

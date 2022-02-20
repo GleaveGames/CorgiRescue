@@ -662,6 +662,7 @@ public class GameController : MonoBehaviour
                 wins++;
                 resultObj.GetComponent<Image>().sprite = resultSprites[0];
                 if (wins >= 10) resultObj.GetComponent<Image>().sprite = resultSprites[4];
+                StartCoroutine(FindObjectOfType<UIClouds>().Confetti(20));
                 win.PlayDelayed(2);
                 StartCoroutine(ResultJuice("w"));
             }

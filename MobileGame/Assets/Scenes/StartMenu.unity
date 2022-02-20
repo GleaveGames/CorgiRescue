@@ -401,6 +401,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  confettiSprites:
+  - {fileID: 21300000, guid: dd503d2a81359254e8d0c7b616c016bb, type: 3}
+  - {fileID: 21300000, guid: d1b1ed75cdfd2bb4082a55544d26518c, type: 3}
+  - {fileID: 21300000, guid: c23783aa937a29849bead8c4717e6b1c, type: 3}
+  - {fileID: 21300000, guid: f906730769d16954da14ebdac640bb8d, type: 3}
+  - {fileID: 21300000, guid: dc349b62b37735841908a0b57603d8bb, type: 3}
 --- !u!1 &117154181
 GameObject:
   m_ObjectHideFlags: 0
