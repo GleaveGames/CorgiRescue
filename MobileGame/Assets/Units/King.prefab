@@ -173,8 +173,8 @@ MonoBehaviour:
   expPreEndTurn: 0
   jiggleTime: 0
   sameSquareSpawner: 0
-  attackBuff: 0
-  healthBuff: 0
+  attackBuff: 1
+  healthBuff: 1
   rowbuff: 000000
   rowdebuff: 000000
   buffs: 000000000000000000

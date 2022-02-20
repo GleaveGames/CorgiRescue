@@ -29,10 +29,7 @@ public class Login : MonoBehaviour
             StartCoroutine(MainMenu.Instance.db.RegisterUser(UsernameInput.text, PasswordInput.text));
         }); 
         PlayGuestButton.onClick.AddListener(() => {
-            string tempUsername = "Guest " + System.DateTime.Now;
-            tempUsername.Replace('/', ' ');
-            tempUsername.Replace('\\', ' ');
-            StartCoroutine(MainMenu.Instance.db.RegisterUser(tempUsername, ""));
+            GuestTrigger();
         });
         StartCoroutine(LateStart());
     }
@@ -41,6 +38,15 @@ public class Login : MonoBehaviour
     {
         MenuGo.SetActive(true);
         StartCoroutine(MainMenu.Instance.db.Login(UsernameInput.text, PasswordInput.text));
+    }
+
+    void GuestTrigger()
+    {
+        MenuGo.SetActive(true);
+        string tempUsername = "Guest " + System.DateTime.Now;
+        tempUsername.Replace('/', ' ');
+        tempUsername.Replace('\\', ' ');
+        StartCoroutine(MainMenu.Instance.db.RegisterUser(tempUsername, ""));
     }
 
 

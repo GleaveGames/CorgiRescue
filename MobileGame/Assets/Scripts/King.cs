@@ -18,21 +18,6 @@ public class King : Unit
                     peasants++;
                 }
             }
-            if (level == 1)
-            {
-                attackBuff = 0;
-                healthBuff = 0;
-            }
-            else if (level == 2)
-            {
-                attackBuff = 1;
-                healthBuff = 0;
-            }
-            else
-            {
-                attackBuff = 1;
-                healthBuff = 1;
-            }
 
             if(peasants > 0)
             {
@@ -47,8 +32,8 @@ public class King : Unit
                 }
 
                 Destroy(newBuff);
-                attack += attackBuff * peasants;
-                health += healthBuff * peasants;
+                attack += attackBuff * peasants *level ;
+                health += healthBuff * peasants * level;
                 FindObjectOfType<GameController>().Gold += peasants;
                 StartCoroutine(BuffJuice(3));
                 StartCoroutine(Jiggle());

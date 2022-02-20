@@ -14,7 +14,10 @@ public class UIClouds : MonoBehaviour
     AnimationCurve Y;
     [SerializeField]
     List<Sprite> confettiSprites;
-
+    [SerializeField]
+    GameObject[] units;
+    [SerializeField]
+    AnimationCurve waddle;
 
     
     void Start()
@@ -84,12 +87,93 @@ public class UIClouds : MonoBehaviour
         }
     }
 
+    public IEnumerator UnitDrop(string formation)
+    {
+        float length = 20;
+        string allCharacters;
+        string[] sections = formation.Split('[');
+        allCharacters = null;
+        List<Sprite> sprites = new List<Sprite>();
+        foreach (GameObject u in units)
+        {
+            allCharacters += u.GetComponent<Unit>().symbol;
+        }
+
+        int characterSelect = 0;
+        for (int i = 0; i < sections[1].Length; i++)
+        {
+            for (int f = 0; f < allCharacters.Length; f++)
+            {
+                if (sections[1][i] == allCharacters[f])
+                {
+                    characterSelect++;
+                    sprites.Add(units[f].GetComponent<SpriteRenderer>().sprite);
+                }
+            }
+        }
+
+        float timer = 0;
+        List<Transform> confettis = new List<Transform>();
+        List<float> confettiWeights = new List<float>();
+        List<Vector2> confettiDisplacements = new List<Vector2>();
+        float minX = transform.parent.GetComponent<RectTransform>().position.x + transform.parent.GetComponent<RectTransform>().rect.xMin;
+        float maxY = transform.parent.GetComponent<RectTransform>().position.y + transform.parent.GetComponent<RectTransform>().rect.yMax;
+        float z = transform.parent.GetComponent<RectTransform>().position.z;
+
+        Vector3 topLeft = new Vector3(minX, maxY, z);
+        for (int i = 0; i < sprites.Count; i++)
+        {
+            GameObject confetti = new GameObject();
+            confetti.AddComponent<Image>();
+            confetti.transform.parent = transform;
+            confettis.Add(confetti.transform);
+            confetti.GetComponent<Image>().sprite = sprites[i];
+            Vector3 spawnPos = topLeft;
+            spawnPos.x += Random.Range(0.25f* transform.parent.GetComponent<RectTransform>().rect.xMax, 1.75f * transform.parent.GetComponent<RectTransform>().rect.xMax);
+            spawnPos.y += Random.Range(800, 1200);
+            confetti.transform.position = spawnPos;
+            confetti.transform.localScale = new Vector3(1, 1, 1);
+            StartCoroutine(Waddle(confetti.transform, Random.Range(3f,4f)));
+        }
+        while (timer <= length)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        foreach (Transform t in confettis)
+        {
+            Destroy(t.gameObject);
+        }
+    }
+    
+    IEnumerator Waddle(Transform t, float speed)
+    {
+        float waddleTime = Random.Range(0.4f, 0.6f);
+        float timer = 0;
+        Vector3 rot = t.eulerAngles;
+        while (timer<= waddleTime)
+        {
+            rot.z = waddle.Evaluate(timer / waddleTime);
+            t.eulerAngles = rot;
+            timer += Time.deltaTime;
+            t.position += Vector3.down * (speed + Mathf.Abs(waddle.Evaluate(timer / waddleTime)) / 2);
+            yield return null;
+        }
+        StartCoroutine(Waddle(t, speed));
+    }
+
+    public void UNITDORPTEST()
+    {
+        StartCoroutine(UnitDrop(PlayerPrefs.GetString("formation")));
+    }
+
+
     public IEnumerator Confetti(int length)
     {
         float timer = 0;
         int confettiCount = 100;
         List<Transform> confettis = new List<Transform>();
-        List<float> confettiWeights = new List<float>();
         List<Vector2> confettiDisplacements = new List<Vector2>();
         float minX = transform.parent.GetComponent<RectTransform>().position.x + transform.parent.GetComponent<RectTransform>().rect.xMin;
         float maxY = transform.parent.GetComponent<RectTransform>().position.y + transform.parent.GetComponent<RectTransform>().rect.yMax;
@@ -107,10 +191,9 @@ public class UIClouds : MonoBehaviour
             confetti.GetComponent<Image>().sprite = confettiSprites[Random.Range(0, confettiSprites.Count)];
             Vector3 spawnPos = topLeft;
             spawnPos.x += Random.Range(0, 2* transform.parent.GetComponent<RectTransform>().rect.xMax);
-            spawnPos.y += Random.Range(0, 400);
+            spawnPos.y += Random.Range(0, 700);
             confetti.transform.position = spawnPos;
             confetti.transform.localScale = new Vector3(0.2f, 0.2f, 1);
-            confettiWeights.Add(1);
             confettiDisplacements.Add(new Vector2(Random.Range(-1000, 1000), Random.Range(-1000, 1000)));
 
         }
@@ -118,7 +201,7 @@ public class UIClouds : MonoBehaviour
         {
             for(int i = 0; i < confettis.Count; i++)
             {
-                confettis[i].position += Vector3.right * (Mathf.PerlinNoise((confettis[i].position.x + confettiDisplacements[i].x)*depth, (confettis[i].position.y + confettiDisplacements[i].y) * depth) - 0.45f) * speed * confettiWeights[i];
+                confettis[i].position += Vector3.right * (Mathf.PerlinNoise((confettis[i].position.x + confettiDisplacements[i].x)*depth, (confettis[i].position.y + confettiDisplacements[i].y) * depth) - 0.45f) * speed;
                 confettis[i].position += Vector3.down * speed * (0.3f-(Mathf.Abs(Mathf.PerlinNoise((confettis[i].position.x + confettiDisplacements[i].x) * depth, (confettis[i].position.y + confettiDisplacements[i].y) * depth)-0.45f)));
             }
             timer += Time.deltaTime;

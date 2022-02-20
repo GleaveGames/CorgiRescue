@@ -672,6 +672,7 @@ public class GameController : MonoBehaviour
                 lives -= 1;
                 resultObj.GetComponent<Image>().sprite = resultSprites[1];
                 if (lives <= 0) resultObj.GetComponent<Image>().sprite = resultSprites[3];
+                StartCoroutine(FindObjectOfType<UIClouds>().UnitDrop(formation));
                 lose.PlayDelayed(2);
                 StartCoroutine(ResultJuice("l"));
             }
