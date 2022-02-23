@@ -54,11 +54,6 @@ public class MainMenu : MonoBehaviour
         lives = LIVES;
         round = ROUND;
 
-        Debug.Log("id = " + id);
-        Debug.Log("username = " + username);
-        Debug.Log("trophies = " + trophies);
-        Debug.Log("ingame = " + INGAME);
-        Debug.Log("saved formation = " + SAVEDFORMATION);
         FindObjectOfType<MenuInputs>().OnLogin();
     }
 

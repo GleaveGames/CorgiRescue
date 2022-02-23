@@ -17,7 +17,7 @@ public class Login : MonoBehaviour
     TextMeshProUGUI errorText;
     EventSystem system;
     [SerializeField]
-    GameObject MenuGo;
+    GameObject MenuGO;
 
     private void Start()
     {
@@ -36,13 +36,13 @@ public class Login : MonoBehaviour
 
     void LoginTrigger()
     {
-        MenuGo.SetActive(true);
+        MenuGO.SetActive(true);
         StartCoroutine(MainMenu.Instance.db.Login(UsernameInput.text, PasswordInput.text));
     }
 
     void GuestTrigger()
     {
-        MenuGo.SetActive(true);
+        MenuGO.SetActive(true);
         string tempUsername = "Guest " + System.DateTime.Now;
         tempUsername.Replace('/', ' ');
         tempUsername.Replace('\\', ' ');
@@ -59,6 +59,7 @@ public class Login : MonoBehaviour
 
     public void LoginSuccess()
     {
+        MenuGO.SetActive(true);
         PlayerPrefs.SetString("Username", MainMenu.Instance.username);
         PlayerPrefs.SetString("Password", MainMenu.Instance.password);
         gameObject.SetActive(false);
@@ -66,7 +67,7 @@ public class Login : MonoBehaviour
 
     public IEnumerator DisplayText(string error)
     {
-        MenuGo.SetActive(false);
+        MenuGO.SetActive(false);
         errorText.text = error;
         yield return new WaitForSeconds(3);
         errorText.text = "";

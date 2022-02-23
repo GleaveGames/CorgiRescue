@@ -133,7 +133,7 @@ public class UIClouds : MonoBehaviour
             spawnPos.y += Random.Range(800, 1200);
             confetti.transform.position = spawnPos;
             confetti.transform.localScale = new Vector3(1, 1, 1);
-            StartCoroutine(Waddle(confetti.transform, Random.Range(3f,4f)));
+            StartCoroutine(Waddle(confetti.transform, Random.Range(1.5f,2.5f)));
         }
         while (timer <= length)
         {
