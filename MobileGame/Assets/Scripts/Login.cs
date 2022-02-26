@@ -53,7 +53,11 @@ public class Login : MonoBehaviour
     IEnumerator LateStart()
     {
         yield return new WaitForEndOfFrame();
-        if (PlayerPrefs.GetString("Username") != null) LoginTrigger();
+        if (PlayerPrefs.GetString("Username") != null)
+        {
+            MenuGO.SetActive(true);
+            StartCoroutine(MainMenu.Instance.db.Login(PlayerPrefs.GetString("Username"), PlayerPrefs.GetString("Password")));
+        }
     }
 
 
