@@ -24,6 +24,8 @@ public class MenuInputs : MonoBehaviour
     [SerializeField]
     Button Quit;
     EventSystem system;
+    [SerializeField]
+    Button FSButton;
 
     private void Start()
     {
@@ -37,6 +39,15 @@ public class MenuInputs : MonoBehaviour
         Quit.onClick.AddListener(() => {
             QuitGame();
         });
+        FSButton.onClick.AddListener(() =>
+        {
+            ToggleFullscreen();
+        });
+    }
+
+    public void ToggleFullscreen()
+    {
+        Screen.fullScreen = !Screen.fullScreen;
     }
 
     public void QuitGame()
