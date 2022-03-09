@@ -21,11 +21,7 @@ public class MenuInputs : MonoBehaviour
     Button logOut;
     [SerializeField]
     GameObject LoginGO; 
-    [SerializeField]
-    Button Quit;
     EventSystem system;
-    [SerializeField]
-    Button FSButton;
 
     private void Start()
     {
@@ -33,27 +29,14 @@ public class MenuInputs : MonoBehaviour
         continueButton.onClick.AddListener(() => {
             Continue();
         });
-        newGameButton.onClick.AddListener(() => {
+        newGameButton.onClick.AddListener(() =>
+        {
             NewGame();
         });
-        Quit.onClick.AddListener(() => {
-            QuitGame();
-        });
-        FSButton.onClick.AddListener(() =>
-        {
-            ToggleFullscreen();
-        });
     }
 
-    public void ToggleFullscreen()
-    {
-        Screen.fullScreen = !Screen.fullScreen;
-    }
 
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
+
 
     public void OnLogin()
     {
@@ -64,7 +47,6 @@ public class MenuInputs : MonoBehaviour
         trophyCount.text = MainMenu.Instance.trophies.ToString();
         usernameText.gameObject.transform.parent.GetComponent<Animator>().enabled = true;
         usernameText.text = MainMenu.Instance.username;
-        Quit.interactable = true;
     }
 
     public void Continue()

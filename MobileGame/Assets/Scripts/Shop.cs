@@ -295,6 +295,10 @@ public class Shop : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+    public void ToggleFullscreen()
+    {
+        Screen.fullScreen = !Screen.fullScreen;
+    }
 
 }
 
