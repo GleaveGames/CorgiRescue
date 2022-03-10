@@ -104,9 +104,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'On Attack: Deal 1 damage to entire coloumn'
-  UnitText2: 'On Attack: Deal 2 damage to entire coloumn'
-  UnitText3: 'On Attack: Deal 3 damage to entire coloumn'
+  UnitText1: 'On Attack: Deal 1 damage to entire column'
+  UnitText2: 'On Attack: Deal 2 damage to entire column'
+  UnitText3: 'On Attack: Deal 3 damage to entire column'
 --- !u!61 &538672580819213160
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -172,6 +172,7 @@ MonoBehaviour:
   levelPreEndTurn: 0
   expPreEndTurn: 0
   jiggleTime: 0
+  sameSquareSpawner: 0
   attackBuff: 0
   healthBuff: -1
   rowbuff: 000000

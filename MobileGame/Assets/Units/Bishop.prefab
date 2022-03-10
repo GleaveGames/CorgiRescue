@@ -172,11 +172,12 @@ MonoBehaviour:
   levelPreEndTurn: 0
   expPreEndTurn: 0
   jiggleTime: 0
+  sameSquareSpawner: 0
   attackBuff: 1
   healthBuff: 1
   rowbuff: 000000
   rowdebuff: 000000
-  buffs: 000000000001000000
+  buffs: 000000000000000100
   debuffs: 000000000000000000
   nounits: 000000000000000000
   buffTime: 1

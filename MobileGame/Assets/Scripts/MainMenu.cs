@@ -53,7 +53,12 @@ public class MainMenu : MonoBehaviour
         wins = WINS;
         lives = LIVES;
         round = ROUND;
-
+        var fooGroup = Resources.FindObjectsOfTypeAll<MenuInputs>();
+        if (fooGroup.Length > 0)
+        {
+            var foo = fooGroup[0];
+            foo.gameObject.SetActive(true);
+        }
         FindObjectOfType<MenuInputs>().OnLogin();
     }
 
