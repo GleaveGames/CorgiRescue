@@ -17,8 +17,8 @@ public class Monk : Unit
             StartCoroutine(BuffObj(u));
             yield return new WaitForSeconds(0.2f);
         }
-        yield return new WaitForSeconds(4*buffTime + units.Count * 0.2f);
-        
+        yield return new WaitForSeconds(6*buffTime + units.Count * 0.2f);
+        yield return new WaitForSeconds(1);
         yield return StartCoroutine(base.OnAttack());
     }
     private IEnumerator BuffObj(GameObject u)
