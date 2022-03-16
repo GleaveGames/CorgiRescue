@@ -89,7 +89,7 @@ public class UIClouds : MonoBehaviour
 
     public IEnumerator UnitDrop(string formation)
     {
-        float length = 20;
+        float length = 10;
         string allCharacters;
         string[] sections = formation.Split('[');
         allCharacters = null;
@@ -140,8 +140,13 @@ public class UIClouds : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
+        DestroyDroppedUnits(confettis);
+    }
 
-        foreach (Transform t in confettis)
+    private void DestroyDroppedUnits(List<Transform> ts)
+    {
+        StopAllCoroutines();
+        foreach(Transform t in ts)
         {
             Destroy(t.gameObject);
         }

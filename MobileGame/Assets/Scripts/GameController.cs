@@ -600,21 +600,33 @@ public class GameController : MonoBehaviour
 
         foreach (GameObject u in allUnits)
         {
-            StartCoroutine(u.GetComponent<Unit>().OnStartOfBattle());
-            yield return new WaitForEndOfFrame();
-            while (IsAUnitActioning()) yield return null;
-            while (IsAUnitActioning()) yield return null;
-
+            if (!u.GetComponent<Unit>().dead)
+            {
+                StartCoroutine(u.GetComponent<Unit>().OnStartOfBattle());
+                yield return new WaitForEndOfFrame();
+                while (IsAUnitActioning()) yield return null;
+                yield return new WaitForEndOfFrame();
+                while (IsAUnitActioning()) yield return null;
+                yield return new WaitForEndOfFrame();
+                while (IsAUnitActioning()) yield return null;
+                yield return new WaitForEndOfFrame();
+                while (IsAUnitActioning()) yield return null;
+                yield return new WaitForEndOfFrame();
+                while (IsAUnitActioning()) yield return null;
+            }
         }
 
         yield return new WaitForSeconds(0.1f);
 
         foreach (GameObject u in allUnits)
         {
-            while (u.GetComponent<Unit>().actioning)
-            {
-                yield return null;
-            }
+            while (IsAUnitActioning()) yield return null;
+            yield return new WaitForEndOfFrame();
+            while (IsAUnitActioning()) yield return null;
+            yield return new WaitForEndOfFrame();
+            while (IsAUnitActioning()) yield return null;
+            yield return new WaitForEndOfFrame();
+
         }
 
         while (Battling)
@@ -642,9 +654,16 @@ public class GameController : MonoBehaviour
             }
             //check if any unit is doing an action
             while (IsAUnitActioning()) yield return null;
+            yield return new WaitForEndOfFrame();
             while (IsAUnitActioning()) yield return null;
+            yield return new WaitForEndOfFrame();
+            while (IsAUnitActioning()) yield return null;
+            yield return new WaitForEndOfFrame();
+            while (IsAUnitActioning()) yield return null;
+            yield return new WaitForEndOfFrame();
 
-            yield return new WaitForSeconds(buffTime / 2);
+
+            yield return new WaitForSeconds(buffTime);
 
             GetPlayerUnits();
 
@@ -754,6 +773,8 @@ public class GameController : MonoBehaviour
             }
             u.GetComponent<Unit>().health = u.GetComponent<Unit>().healthPreBattle;
             u.GetComponent<Unit>().attack = u.GetComponent<Unit>().attackPreBattle;
+            u.GetComponent<Unit>().exp = u.GetComponent<Unit>().expPreBattle;
+            u.GetComponent<Unit>().level = u.GetComponent<Unit>().levelPreBattle;
             u.GetComponent<Unit>().dead = false;
         }
 
@@ -775,8 +796,6 @@ public class GameController : MonoBehaviour
             b.interactable = true;
         }
         BattleButton.interactable = true;
-
-
 
 
         formation = "[";

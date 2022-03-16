@@ -298,6 +298,8 @@ public class Unit : MonoBehaviour
             level = square.occupier.GetComponent<Priest>().level;
             exp = 1;
             GetComponent<SpriteRenderer>().color = zombieColor;
+            //below is new
+            actioning = true;
             StartCoroutine(OnStartOfBattle());
             while (actioning) yield return null;
         }         

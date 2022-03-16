@@ -19,8 +19,6 @@ public class CameraShake : MonoBehaviour
             float yOffset = Random.Range(-0.5f, 0.5f);
             Vector2 newPos = new Vector2(xOffset, yOffset) * magnitude;
             Vector3 newPos3 = new Vector3(Random.Range(-0.5f, 0.5f) * magnitude, Random.Range(-0.5f, 0.5f)*magnitude, 0);
-            Debug.Log(newPos3);
-
             while (elapsedTime <= duration)
             {
                 transform.position = Vector3.Lerp(originalPos, originalPos + newPos3, elapsedTime/(duration));
@@ -43,7 +41,4 @@ public class CameraShake : MonoBehaviour
         transform.position = originalPos;
     }
 
-    public void testShake()
-    {
-    }
 }

@@ -15,8 +15,4 @@ public class MovingText : MonoBehaviour
         oppositePos = startPos;
         oppositePos.x = endPos.x - startPos.x;
     }
-
-    
-
-
 }

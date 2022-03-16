@@ -58,6 +58,8 @@ public class MenuInputs : MonoBehaviour
 
     public void NewGame()
     {
+        MainMenu.Instance.continuing = false;
+        MainMenu.Instance.ResetAfterGameEnd();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
