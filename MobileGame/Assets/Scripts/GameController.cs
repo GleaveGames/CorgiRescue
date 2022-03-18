@@ -713,7 +713,7 @@ public class GameController : MonoBehaviour
 
         while (timer < endBattleTime)
         {
-            CameraTrans.position = new Vector3(CameraTrans.position.x, Mathf.Lerp(0.5f, -3.87f, timer / endBattleTime), -10);
+            //CameraTrans.position = new Vector3(CameraTrans.position.x, Mathf.Lerp(0.5f, -3.87f, timer / endBattleTime), -10);
             resultObj.GetComponent<Image>().color = Color.Lerp(invis, Color.white, resultJuice.Evaluate(timer / endBattleTime));
             livesText2.color = Color.Lerp(invis, textColor, resultJuice.Evaluate(timer / endBattleTime));
             livesText2.transform.GetChild(0).GetComponent<Image>().color = Color.Lerp(invis, Color.white, resultJuice.Evaluate(timer / endBattleTime));
@@ -819,6 +819,7 @@ public class GameController : MonoBehaviour
             }
         }
         formation += ']';
+        string formationWithExp = formation;
         foreach (Unit u in unitsInOrder)
         {
             formation += '[';
@@ -828,9 +829,23 @@ public class GameController : MonoBehaviour
             formation += ',';
             formation += u.health;
             formation += ']';
+
+            //Now for formationWithExp
+            formationWithExp += '[';
+            formationWithExp += u.level;
+            formationWithExp += ',';
+            formationWithExp += u.exp;
+            formationWithExp += ',';
+            formationWithExp += u.attack;
+            formationWithExp += ',';
+            formationWithExp += u.health;
+            formationWithExp += ']';
+
         }
         formation += '[';
-        MainMenu.Instance.savedFormation = formation;
+        formationWithExp += '[';
+
+        MainMenu.Instance.savedFormation = formationWithExp;
         MainMenu.Instance.inGame = true;
         MainMenu.Instance.SetDBInfo();
     }
@@ -1057,8 +1072,9 @@ public class GameController : MonoBehaviour
 
                         string[] enemyStats = sections[characterSelect + 1].Split(',');
                         newUnit.GetComponent<Unit>().level = int.Parse(enemyStats[0]);
-                        newUnit.GetComponent<Unit>().attack = int.Parse(enemyStats[1]);
-                        newUnit.GetComponent<Unit>().health = int.Parse(enemyStats[2].Substring(0, enemyStats[2].Length - 1));
+                        newUnit.GetComponent<Unit>().exp = int.Parse(enemyStats[1]);
+                        newUnit.GetComponent<Unit>().attack = int.Parse(enemyStats[2]);
+                        newUnit.GetComponent<Unit>().health = int.Parse(enemyStats[3].Substring(0, enemyStats[3].Length - 1));
                         yield return new WaitForSeconds(0.4f);
                     }
                 }
