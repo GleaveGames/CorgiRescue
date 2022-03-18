@@ -20458,7 +20458,7 @@ MonoBehaviour:
   allUnits: []
   lives: 4
   wins: 0
-  round: 1
+  round: 0
   unitNumber: 0
   BattleButton: {fileID: 1858036737}
   livesText: {fileID: 1876003031}
@@ -24085,6 +24085,7 @@ MonoBehaviour:
   music: {fileID: 2084872742}
   reroll: {fileID: 2084872743}
   freeze: {fileID: 2084872744}
+  QuitButton: {fileID: 1768283215}
 --- !u!222 &2084872741
 CanvasRenderer:
   m_ObjectHideFlags: 0

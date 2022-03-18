@@ -77,7 +77,7 @@ public class MainMenu : MonoBehaviour
         savedFormation="";
         wins=0;
         lives=4;
-        round=1;
+        round=0;
     }
 
     public void ResetAfterGameEnd()
@@ -86,6 +86,6 @@ public class MainMenu : MonoBehaviour
         savedFormation = "";
         wins = 0;
         lives = 4;
-        round = 1;
+        round = 0;
     }
 }

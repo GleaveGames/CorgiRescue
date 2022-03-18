@@ -53,6 +53,8 @@ public class Shop : MonoBehaviour
     public AudioSource reroll;
     [SerializeField]
     AudioSource freeze;
+    [SerializeField]
+    Button QuitButton;
 
     private void Start()
     {
@@ -113,7 +115,14 @@ public class Shop : MonoBehaviour
             if (ShopSlots[i] == null || ShopSlots[i].remove) ShopSlots.RemoveAt(i);
         }
         CheckForOwned();
-
+        if (gc.Battling)
+        {
+            QuitButton.interactable = false;
+        }
+        else
+        {
+            QuitButton.interactable = true;
+        }
     }
 
     public void ReRoll(bool free = false)
@@ -293,7 +302,7 @@ public class Shop : MonoBehaviour
 
     public void Quit()
     {
-        SceneManager.LoadScene(0);
+        if (!gc.Battling) SceneManager.LoadScene(0);
     }
     public void ToggleFullscreen()
     {
