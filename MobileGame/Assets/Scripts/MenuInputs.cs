@@ -14,7 +14,7 @@ public class MenuInputs : MonoBehaviour
     [SerializeField]
     Button newGameButton;
     [SerializeField]
-    Text trophyCount;
+    TextMeshProUGUI trophyCount;
     [SerializeField]
     TextMeshProUGUI usernameText;
     [SerializeField]
@@ -44,7 +44,7 @@ public class MenuInputs : MonoBehaviour
         else continueButton.interactable = false;
         logOut.interactable = true;
         trophyCount.gameObject.SetActive(true);
-        trophyCount.text = MainMenu.Instance.trophies.ToString();
+        trophyCount.text = "<sprite index=4>" + MainMenu.Instance.trophies.ToString();
         usernameText.gameObject.transform.parent.GetComponent<Animator>().enabled = true;
         usernameText.text = MainMenu.Instance.username;
     }

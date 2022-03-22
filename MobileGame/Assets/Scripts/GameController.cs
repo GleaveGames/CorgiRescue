@@ -34,7 +34,7 @@ public class GameController : MonoBehaviour
     [SerializeField]
     Text livesText;
     [SerializeField]
-    Text livesText2;
+    TextMeshProUGUI livesText2;
     [SerializeField]
     Text unitText;
     [SerializeField]
@@ -44,11 +44,11 @@ public class GameController : MonoBehaviour
     [SerializeField]
     Text Round;
     [SerializeField]
-    Text Round2;
+    TextMeshProUGUI Round2;
     [SerializeField]
     Text Wins;
     [SerializeField]
-    Text Wins2;
+    TextMeshProUGUI Wins2;
     [SerializeField]
     AnimationCurve goldJuiceX;
     public string enemyFormation;
@@ -163,11 +163,11 @@ public class GameController : MonoBehaviour
     private void ResetStats()
     {
         livesText.text = lives.ToString();
-        livesText2.text = lives.ToString();
+        livesText2.text = "<sprite index=1>" + lives.ToString();
         Round.text = (round + 1).ToString();
-        Round2.text = (round + 1).ToString();
+        Round2.text = "<sprite index=2>" + (round + 1).ToString();
         Wins.text = wins.ToString() + "/10";
-        Wins2.text = wins.ToString() + "/10"; 
+        Wins2.text = "<sprite index=4>"+wins.ToString() + "/10"; 
         MainMenu.Instance.lives = lives;
         MainMenu.Instance.wins = wins;
         MainMenu.Instance.round = round;
@@ -716,18 +716,18 @@ public class GameController : MonoBehaviour
             //CameraTrans.position = new Vector3(CameraTrans.position.x, Mathf.Lerp(0.5f, -3.87f, timer / endBattleTime), -10);
             resultObj.GetComponent<Image>().color = Color.Lerp(invis, Color.white, resultJuice.Evaluate(timer / endBattleTime));
             livesText2.color = Color.Lerp(invis, textColor, resultJuice.Evaluate(timer / endBattleTime));
-            livesText2.transform.GetChild(0).GetComponent<Image>().color = Color.Lerp(invis, Color.white, resultJuice.Evaluate(timer / endBattleTime));
+            //livesText2.transform.GetChild(0).GetComponent<Image>().color = Color.Lerp(invis, Color.white, resultJuice.Evaluate(timer / endBattleTime));
             Wins2.color = Color.Lerp(invis, textColor, resultJuice.Evaluate(timer / endBattleTime));
-            Wins2.transform.GetChild(0).GetComponent<Image>().color = Color.Lerp(invis, Color.white, resultJuice.Evaluate(timer / endBattleTime));
+            //Wins2.transform.GetChild(0).GetComponent<Image>().color = Color.Lerp(invis, Color.white, resultJuice.Evaluate(timer / endBattleTime));
             Round2.color = Color.Lerp(invis, textColor, resultJuice.Evaluate(timer / endBattleTime));
-            Round2.transform.GetChild(0).GetComponent<Image>().color = Color.Lerp(invis, Color.white, resultJuice.Evaluate(timer / endBattleTime));
+            //Round2.transform.GetChild(0).GetComponent<Image>().color = Color.Lerp(invis, Color.white, resultJuice.Evaluate(timer / endBattleTime));
             timer += Time.deltaTime;
             yield return null;
         }
         resultObj.GetComponent<Image>().color = invis;
-        livesText2.transform.GetChild(0).GetComponent<Image>().color = invis;
-        Wins2.transform.GetChild(0).GetComponent<Image>().color = invis;
-        Round2.transform.GetChild(0).GetComponent<Image>().color = invis;
+        //livesText2.transform.GetChild(0).GetComponent<Image>().color = invis;
+        //Wins2.transform.GetChild(0).GetComponent<Image>().color = invis;
+        //Round2.transform.GetChild(0).GetComponent<Image>().color = invis;
         Round2.color = textColorInvis;
         Wins2.color = textColorInvis;
         livesText2.color = textColorInvis;
@@ -996,21 +996,21 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(4);
         if (name == "l")
         {
-            livesText2.text = (lives).ToString();
+            livesText2.text = "<sprite index=1>" + (lives).ToString();
             StartCoroutine(UIJuice(livesText2.transform));
-            if (lives >= 1) Round2.text = (round + 2).ToString();
+            if (lives >= 1) Round2.text = "<sprite index=2>" + (round + 2).ToString();
             StartCoroutine(UIJuice(Round2.transform));
         }
         else if (name == "w")
         {
-            Wins2.text = (wins).ToString()+"/10";
+            Wins2.text = "<sprite index=4>" + (wins).ToString()+"/10";
             StartCoroutine(UIJuice(Wins2.transform));
-            Round2.text = (round + 2).ToString();
+            Round2.text = "<sprite index=2>" + (round + 2).ToString();
             StartCoroutine(UIJuice(Round2.transform));
         }
         else
         {
-            Round2.text = (round + 2).ToString();
+            Round2.text = "<sprite index=2>" + (round + 2).ToString();
             StartCoroutine(UIJuice(Round2.transform));
         }
     }
@@ -1020,11 +1020,11 @@ public class GameController : MonoBehaviour
         float timer = 0;
         while (timer < 1)
         {
-            t.localScale = new Vector3(2 * JiggleX.Evaluate(timer), 2 * JiggleY.Evaluate(timer), 1);
+            t.localScale = new Vector3(JiggleX.Evaluate(timer), JiggleY.Evaluate(timer), 1);
             timer += Time.deltaTime;
             yield return null;
         }
-        t.localScale = new Vector3(2, 2, 1);
+        t.localScale = new Vector3(1, 1, 1);
     }
 
     private IEnumerator SpawnUnits()
