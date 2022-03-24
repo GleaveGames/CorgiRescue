@@ -53,7 +53,6 @@ public class Engineer : Unit
             if (go.GetComponent<Unit>().health <= 0) StartCoroutine(go.GetComponent<Unit>().OnDie());
             else StartCoroutine(go.GetComponent<Unit>().OnHurt());
             StartCoroutine(go.GetComponent<Unit>().CollisionJiggle());
-            StartCoroutine(go.GetComponent<Unit>().BuffJuice(1));
             ShowDamage(-healthBuff * level, go.transform.position);
 
             while (go != null && go.GetComponent<Unit>().actioning) yield return null;

@@ -35,7 +35,7 @@ public class King : Unit
                 attack += attackBuff * peasants *level ;
                 health += healthBuff * peasants * level;
                 FindObjectOfType<GameController>().Gold += peasants;
-                StartCoroutine(BuffJuice(3));
+                StartCoroutine(BuffJuice(3, attackBuff*peasants*level,healthBuff*peasants*level));
                 StartCoroutine(Jiggle());
                 FindObjectOfType<Shop>().reroll.Play();
             }

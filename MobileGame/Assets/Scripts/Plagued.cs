@@ -22,7 +22,7 @@ public class Plagued : Unit
                 buffTimer += Time.deltaTime;
                 yield return null;
             }
-            StartCoroutine(allies[randomUnitIndex].GetComponent<Unit>().BuffJuice(3));
+            StartCoroutine(allies[randomUnitIndex].GetComponent<Unit>().BuffJuice(3, attackBuff*level,healthBuff*level));
             StartCoroutine(allies[randomUnitIndex].GetComponent<Unit>().Jiggle());
             Destroy(newBuff);
             allies[randomUnitIndex].GetComponent<Unit>().attack += attackBuff * level;

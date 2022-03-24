@@ -70,6 +70,8 @@ public class Unit : MonoBehaviour
     [SerializeField]
     bool sameSquareSpawner;
     GameObject damageText;
+    GameObject hText;
+    GameObject aText;
 
     [Header("Buff")]
     protected AnimationCurve buffY;
@@ -146,6 +148,8 @@ public class Unit : MonoBehaviour
         unitSound = GetComponent<AudioSource>();
         if (temperary) spriteQuality.SetActive(false);
         damageText = gc.damageText;
+        hText = gc.hText;
+        aText = gc.aText;
     }
 
     // Update is called once per frame
@@ -532,15 +536,36 @@ public class Unit : MonoBehaviour
         transform.localScale = new Vector3(1, 1, 1);
     }
 
-    public IEnumerator BuffJuice(int buff) 
+    public IEnumerator BuffJuice(int buff, int attack, int health) 
     {
         float timer = 0;
         float juiceTime = 0.5f;
+
+        if (buff == 1)
+        {
+            ShowHealthBuff(health);
+        }
+        else if (buff == 2)
+        {
+            ShowAttackBuff(attack);
+        }
+        else
+        {
+            ShowAttackBuff(attack);
+            ShowHealthBuff(health);
+        }
+
         while (timer < juiceTime)
         {
             float newScale = buffJuice.Evaluate(timer / juiceTime);
-            if(buff == 1) healthText.transform.parent.localScale = new Vector2(newScale, newScale);
-            else if(buff == 2) attackText.transform.parent.localScale = new Vector2(newScale, newScale);
+            if (buff == 1)
+            {
+                healthText.transform.parent.localScale = new Vector2(newScale, newScale);
+            }
+            else if (buff == 2)
+            {
+                attackText.transform.parent.localScale = new Vector2(newScale, newScale);
+            }
             else
             {
                 healthText.transform.parent.localScale = new Vector2(newScale, newScale);
@@ -550,6 +575,7 @@ public class Unit : MonoBehaviour
             yield return null;
         }
         healthText.transform.parent.localScale = new Vector2(0.5f, 0.5f);
+        attackText.transform.parent.localScale = new Vector2(0.5f, 0.5f);
     }
 
     protected bool CheckForUnit(int x, int y, string name, Transform t = null)
@@ -653,5 +679,23 @@ public class Unit : MonoBehaviour
     {
         GameObject dt = Instantiate(damageText, pos, Quaternion.identity);
         dt.GetComponent<TextMeshPro>().text = damage.ToString();
+    }
+
+    public void ShowHealthBuff(int buff)
+    {
+        Vector2 pos = transform.position;
+        pos.x += 0.442f;
+        pos.y -= 0.37f;
+        GameObject dt = Instantiate(hText, pos, Quaternion.identity);
+        dt.GetComponent<TextMeshPro>().text = buff.ToString();
+    } 
+    
+    public void ShowAttackBuff(int buff)
+    {
+        Vector2 pos = transform.position;
+        pos.x -= 0.365f;
+        pos.y -= 0.386f;
+        GameObject dt = Instantiate(aText, pos, Quaternion.identity);
+        dt.GetComponent<TextMeshPro>().text = buff.ToString();
     }
 }

@@ -35,7 +35,7 @@ public class Bannerman : Unit
                 Destroy(newBuff);
                 allies[r].GetComponent<Unit>().attack += attackBuff;
                 allies[r].GetComponent<Unit>().health += healthBuff;
-                StartCoroutine(allies[r].GetComponent<Unit>().BuffJuice(3));
+                StartCoroutine(allies[r].GetComponent<Unit>().BuffJuice(3, attackBuff,healthBuff));
                 StartCoroutine(allies[r].GetComponent<Unit>().Jiggle());
                 allies.Remove(allies[r]);
             }

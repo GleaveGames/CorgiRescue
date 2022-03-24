@@ -26,7 +26,7 @@ public class Wizard : Unit
             Destroy(newBuff);
             allies[randomUnitIndex].GetComponent<Unit>().attack += attackBuff * level;
             allies[randomUnitIndex].GetComponent<Unit>().health += healthBuff * level;
-            StartCoroutine(allies[randomUnitIndex].GetComponent<Unit>().BuffJuice(3));
+            StartCoroutine(allies[randomUnitIndex].GetComponent<Unit>().BuffJuice(3,attackBuff*level, healthBuff*level));
             StartCoroutine(allies[randomUnitIndex].GetComponent<Unit>().Jiggle());
         }
         yield return StartCoroutine(base.OnBuy());

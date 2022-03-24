@@ -47,8 +47,8 @@ public class Advisor : Unit
             float buffTimer = 0;
             GameObject newBuff = Instantiate(Buff, square.transform.position, Quaternion.identity);
             sm.PlayHurt();
-            square.occupier.GetComponent<Unit>().StartCoroutine(CollisionJiggle());
-            square.occupier.GetComponent<Unit>().StartCoroutine(BuffJuice(3));
+            StartCoroutine(square.occupier.GetComponent<Unit>().CollisionJiggle());
+            StartCoroutine(square.occupier.GetComponent<Unit>().BuffJuice(3, -healthBuff*level, -attackBuff*level));
             while (buffTimer <= buffTime)
             {
                 newBuff.transform.position = new Vector2(Mathf.Lerp(square.transform.position.x, transform.position.x, buffX.Evaluate(buffTimer / buffTime)),
@@ -65,7 +65,8 @@ public class Advisor : Unit
             health += healthBuff*level;
 
             StartCoroutine(Jiggle());
-            StartCoroutine(BuffJuice(3));
+            StartCoroutine(BuffJuice(3, attackBuff*level, healthBuff*level));
+            yield return new WaitForSeconds(buffTime);
         }
         else
         {

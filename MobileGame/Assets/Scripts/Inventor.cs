@@ -26,7 +26,7 @@ public class Inventor : Unit
             Destroy(newBuff);
             unit.GetComponent<Unit>().health += healthBuff * level;
             unit.GetComponent<Unit>().attack += attackBuff * level;
-            StartCoroutine(unit.GetComponent<Unit>().BuffJuice(3));
+            StartCoroutine(unit.GetComponent<Unit>().BuffJuice(3,attackBuff*level, healthBuff*level));
             StartCoroutine(unit.GetComponent<Unit>().Jiggle());
         }
 

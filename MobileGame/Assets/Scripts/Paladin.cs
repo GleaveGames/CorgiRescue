@@ -27,7 +27,7 @@ public class Paladin : Unit
                 Destroy(newBuff);
                 allies[i].GetComponent<Unit>().attack += attackBuff * level;
                 allies[i].GetComponent<Unit>().health += healthBuff * level;
-                StartCoroutine(allies[i].GetComponent<Unit>().BuffJuice(3));
+                StartCoroutine(allies[i].GetComponent<Unit>().BuffJuice(3, attackBuff*level, healthBuff*level));
                 StartCoroutine(allies[i].GetComponent<Unit>().Jiggle());
                 yield return new WaitForSeconds(buffTime/2);
             }

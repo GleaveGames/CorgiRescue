@@ -21,7 +21,7 @@ public class Lance : Unit
         Destroy(newBuff);
         attack += attackBuff * level;
         health += healthBuff * level;
-        StartCoroutine(BuffJuice(2));
+        StartCoroutine(BuffJuice(2, attackBuff*level, 0));
         StartCoroutine(Jiggle());
         actioning = false;
 

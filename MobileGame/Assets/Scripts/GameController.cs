@@ -99,6 +99,8 @@ public class GameController : MonoBehaviour
     Image gameSpeedButtonSR;
     public AnimationCurve gsjuice;
     public GameObject damageText;
+    public GameObject aText;
+    public GameObject hText;
     [SerializeField]
     GameObject playerName;
     [SerializeField]

@@ -6929,7 +6929,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56.15
+  m_fontSize: 127.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -13368,7 +13368,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 57.7
+  m_fontSize: 131
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -13580,7 +13580,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 67.95
+  m_fontSize: 154.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -20797,6 +20797,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   damageText: {fileID: 6179163854020206119, guid: 0e4a22f2e604d594ba03c04d2344557c, type: 3}
+  aText: {fileID: 6179163854020206119, guid: 6b78e4c9c87cffd4686293bd29d32365, type: 3}
+  hText: {fileID: 6179163854020206119, guid: 42dc65b943735c3469374c84066cdca1, type: 3}
   playerName: {fileID: 1230056295}
   enemyName: {fileID: 2039145211}
   vsText: {fileID: 1188855750}

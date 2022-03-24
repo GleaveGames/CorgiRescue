@@ -22,7 +22,7 @@ public class Shephard : Unit
         buffedUnit.GetComponent<Unit>().attack += attackBuff * level;
         buffedUnit.GetComponent<Unit>().health += healthBuff * level;
         StartCoroutine(buffedUnit.GetComponent<Unit>().Jiggle());
-        StartCoroutine(buffedUnit.GetComponent<Unit>().BuffJuice(3));
+        StartCoroutine(buffedUnit.GetComponent<Unit>().BuffJuice(3, attackBuff * level, healthBuff*level));
         actioning = false;
         yield return null;
     }

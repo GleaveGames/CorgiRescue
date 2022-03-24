@@ -39,6 +39,7 @@ public class Peasant : Unit
             Destroy(newBuff);
             attack += attackBuff * peasants * level;
             StartCoroutine(Jiggle());
+            StartCoroutine(BuffJuice(2, attackBuff * level * peasants, 0));
         }
         yield return StartCoroutine(base.OnStartOfBattle());
     }

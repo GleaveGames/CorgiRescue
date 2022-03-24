@@ -74,7 +74,7 @@ public class Minstrel : Unit
             {
                 square.occupier.GetComponent<Unit>().attack += attackBuff * level;
                 StartCoroutine(square.occupier.GetComponent<Unit>().Jiggle());
-                StartCoroutine(square.occupier.GetComponent<Unit>().BuffJuice(2));
+                StartCoroutine(square.occupier.GetComponent<Unit>().BuffJuice(2, attackBuff*level, 0));
             }
         }
         else
