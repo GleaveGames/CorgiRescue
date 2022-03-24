@@ -8,9 +8,12 @@ public class Prisoner : Unit
     GameObject spawnedPeasant;
     public override IEnumerator OnDie()
     {
+        
         //if on his own row, spawn a peasant level 1 peasant when dead;
         actioning = true;
+        
         bool noUnits = true;
+        /*
         int y = 0;
         for (int x = -1; x <= 1; x++)
         {
@@ -23,7 +26,7 @@ public class Prisoner : Unit
                 noUnits = false;
             }
         }
-
+        */
         yield return StartCoroutine(base.OnDie());
 
         if (noUnits)

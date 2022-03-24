@@ -104,9 +104,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'Deathrattle: If no units to left and right, spawn a level 1 peasant '
-  UnitText2: 'Deathrattle: If no units to left and right, spawn a level 2 peasant '
-  UnitText3: 'Deathrattle: If no units to left and right, spawn a level 3 peasant '
+  UnitText1: 'Deathrattle: Spawn a level 1 peasant '
+  UnitText2: 'Deathrattle: Spawn a level 2 peasant '
+  UnitText3: 'Deathrattle: Spawn a level 3 peasant '
 --- !u!61 &757357724859235949
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -148,7 +148,7 @@ MonoBehaviour:
   temperary: 0
   symbol: 51
   quality: 1
-  health: 2
+  health: 1
   attack: 1
   level: 1
   exp: 1
