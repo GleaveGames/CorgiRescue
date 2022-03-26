@@ -27,9 +27,8 @@ public class Jester : Unit
                 yield return null;
             }
             Vector3 previousEnemyPos = enemies[randomUnitIndex].transform.position;
-            enemies[randomUnitIndex].GetComponent<Unit>().attack += attackBuff;
-            enemies[randomUnitIndex].GetComponent<Unit>().health += healthBuff;
-            ShowDamage(-healthBuff * level, enemies[randomUnitIndex].transform.position);
+            enemies[randomUnitIndex].GetComponent<Unit>().health += attack/2;
+            ShowDamage(-attack/2, enemies[randomUnitIndex].transform.position);
             if (enemies[randomUnitIndex].GetComponent<Unit>().health <= 0) StartCoroutine(enemies[randomUnitIndex].GetComponent<Unit>().OnDie());
             else StartCoroutine(enemies[randomUnitIndex].GetComponent<Unit>().OnHurt());
             StartCoroutine(enemies[randomUnitIndex].GetComponent<Unit>().CollisionJiggle());
@@ -53,7 +52,7 @@ public class Jester : Unit
                     sm.PlayHurt();
                     previousEnemyPos = enemies[randomUnitIndex].transform.position;
                     enemies[randomUnitIndex].GetComponent<Unit>().health -= attack/2;
-                    ShowDamage(attack/2 * level, enemies[randomUnitIndex].transform.position);
+                    ShowDamage(attack/2, enemies[randomUnitIndex].transform.position);
                     if (enemies[randomUnitIndex].GetComponent<Unit>().health <= 0) StartCoroutine(enemies[randomUnitIndex].GetComponent<Unit>().OnDie());
                     else StartCoroutine(enemies[randomUnitIndex].GetComponent<Unit>().OnHurt());
                     StartCoroutine(enemies[randomUnitIndex].GetComponent<Unit>().CollisionJiggle());
