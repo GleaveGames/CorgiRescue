@@ -193,6 +193,7 @@ public class GameController : MonoBehaviour
                     {
                         Gold += draggingObj.GetComponent<Unit>().level;
                         StartCoroutine(draggingObj.GetComponent<Unit>().OnSell());
+                        MainMenu.Instance.SetDBInfo();
                     }
                     else if (square != null && !square.GetComponent<GameSquare>().occupied)
                     {
@@ -215,6 +216,7 @@ public class GameController : MonoBehaviour
                         StartCoroutine(oc.GetComponent<Unit>().Combine(draggingObj.GetComponent<Unit>().level * draggingObj.GetComponent<Unit>().level + draggingObj.GetComponent<Unit>().exp - draggingObj.GetComponent<Unit>().level - 1));
                         oc.GetComponent<Unit>().ShowBuffStuff();
                         Destroy(draggingObj);
+                        MainMenu.Instance.SetDBInfo();
                     }
                     else if (square != null && square.GetComponent<GameSquare>().occupier != null)
                     {
@@ -264,6 +266,7 @@ public class GameController : MonoBehaviour
                         StartCoroutine(draggingObj.GetComponent<Unit>().Jiggle());
                         draggingObj = null;
                         playClick();
+                        MainMenu.Instance.SetDBInfo();
                     }
                     else if (square != null && !square.GetComponent<GameSquare>().occupied && unitNumber < 6)
                     {
@@ -285,6 +288,7 @@ public class GameController : MonoBehaviour
                         draggingObj = null;
                         Gold -= 3;
                         FindObjectOfType<Shop>().CheckForOwned();
+                        MainMenu.Instance.SetDBInfo();
                     }
                     else if (square != null && square.GetComponent<GameSquare>().occupier != null && draggingObj.name == square.GetComponent<GameSquare>().occupier.name && square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().level != 3)
                     {
@@ -295,6 +299,7 @@ public class GameController : MonoBehaviour
                         oc.GetComponent<Unit>().ShowBuffStuff();
                         Destroy(draggingObj);
                         Gold -= 3;
+                        MainMenu.Instance.SetDBInfo();
                     }
                     else
                     {

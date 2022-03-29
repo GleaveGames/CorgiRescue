@@ -35,7 +35,7 @@ public class Apprentice : Unit
             clone.GetComponent<Unit>().temperary = true;
             clone.transform.parent = transform.parent;
             yield return new WaitForEndOfFrame();
-            StartCoroutine(clone.GetComponent<Unit>().OnStartOfBattle());
+            StartCoroutine(clone.GetComponent<Unit>().OnEndTurn());
 
             health = 0;
         }

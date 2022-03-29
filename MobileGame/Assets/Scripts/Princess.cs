@@ -33,21 +33,18 @@ public class Princess : Unit
             List<GameObject> enemies = GetEnemies();
             foreach(GameObject u in enemies)
             {
-                StartCoroutine(Buff(u));
-                yield return new WaitForSeconds(0.2f);
+                if(u.GetComponent<Unit>().health > 0)
+                {
+                    StartCoroutine(Buffer(u));
+                    yield return new WaitForSeconds(0.2f);
+                }
             }
-            float timer = 0;
-            while (timer < buffTime)
-            {
-                timer += Time.deltaTime;
-                yield return null;
-            }
+            yield return new WaitForSeconds(2*buffTime);
         }
-
         yield return StartCoroutine(base.OnStartOfBattle());
     }
 
-    private IEnumerator Buff(GameObject u)
+    private IEnumerator Buffer(GameObject u)
     {
         GameObject newBuff = Instantiate(heart, transform.position, Quaternion.identity);
         newBuff.GetComponent<Buff>().good = false;

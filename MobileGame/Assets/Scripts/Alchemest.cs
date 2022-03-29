@@ -13,10 +13,8 @@ public class Alchemest : Unit
     {
         actioning = true;
         List<GameObject> allies = GetAllies();
-        List<GameObject> enemies = GetEnemies();
         allies.Remove(gameObject);
         allies = InsertionSort(allies);
-        enemies = InsertionSort(enemies);
 
         float buffTimer = 0;
         StartCoroutine(Jiggle());
@@ -43,39 +41,45 @@ public class Alchemest : Unit
         StartCoroutine(allies[0].GetComponent<Unit>().Jiggle());
         
         
-        if(level == 2 || level == 3)
+        if(level > 1)
         {
-            StartCoroutine(Jiggle());
-            newBuff = Instantiate(Buff, transform.position, Quaternion.identity);
-            newBuff.GetComponent<Buff>().good = false;
-            newBuff.GetComponent<SpriteRenderer>().sprite = badPotion;
-            buffTimer = 0;
-            while (buffTimer <= buffTime)
-            {
-                newBuff.transform.position = new Vector2(Mathf.Lerp(transform.position.x, enemies[enemies.Count - 1].transform.position.x, buffX.Evaluate(buffTimer / buffTime)),
-                    Mathf.Lerp(transform.position.y, enemies[enemies.Count - 1].transform.position.y, buffTimer / buffTime) + 2 * buffY.Evaluate(buffTimer / buffTime));
-                buffTimer += Time.deltaTime;
-                yield return null;
-            }
-            Destroy(newBuff);
-            if (level == 2) {
-                enemies[enemies.Count - 1].GetComponent<Unit>().attack -= attackBuff;
-                enemies[enemies.Count - 1].GetComponent<Unit>().health -= healthBuff;
-                StartCoroutine(enemies[enemies.Count - 1].GetComponent<Unit>().BuffJuice(3,-attackBuff,-healthBuff));
-            }
+            List<GameObject> enemies = GetEnemies();
+            enemies = InsertionSort(enemies);
+            if (enemies[enemies.Count - 1].GetComponent<Unit>().health < 0) yield return null;
             else
             {
-                enemies[enemies.Count - 1].GetComponent<Unit>().attack -= attackBuff * 2;
-                enemies[enemies.Count - 1].GetComponent<Unit>().health -= healthBuff * 2;
-                StartCoroutine(enemies[enemies.Count - 1].GetComponent<Unit>().BuffJuice(3, -attackBuff*2, -healthBuff*2));
+                StartCoroutine(Jiggle());
+                newBuff = Instantiate(Buff, transform.position, Quaternion.identity);
+                newBuff.GetComponent<Buff>().good = false;
+                newBuff.GetComponent<SpriteRenderer>().sprite = badPotion;
+                buffTimer = 0;
+                while (buffTimer <= buffTime)
+                {
+                    newBuff.transform.position = new Vector2(Mathf.Lerp(transform.position.x, enemies[enemies.Count - 1].transform.position.x, buffX.Evaluate(buffTimer / buffTime)),
+                        Mathf.Lerp(transform.position.y, enemies[enemies.Count - 1].transform.position.y, buffTimer / buffTime) + 2 * buffY.Evaluate(buffTimer / buffTime));
+                    buffTimer += Time.deltaTime;
+                    yield return null;
+                }
+                Destroy(newBuff);
+                if (level == 2)
+                {
+                    enemies[enemies.Count - 1].GetComponent<Unit>().attack -= attackBuff;
+                    enemies[enemies.Count - 1].GetComponent<Unit>().health -= healthBuff;
+                    StartCoroutine(enemies[enemies.Count - 1].GetComponent<Unit>().BuffJuice(3, -attackBuff, -healthBuff));
+                }
+                else
+                {
+                    enemies[enemies.Count - 1].GetComponent<Unit>().attack -= attackBuff * 2;
+                    enemies[enemies.Count - 1].GetComponent<Unit>().health -= healthBuff * 2;
+                    StartCoroutine(enemies[enemies.Count - 1].GetComponent<Unit>().BuffJuice(3, -attackBuff * 2, -healthBuff * 2));
+                }
+
+                if (enemies[enemies.Count - 1].GetComponent<Unit>().health < 0) enemies[enemies.Count - 1].GetComponent<Unit>().health = 1;
+                if (enemies[enemies.Count - 1].GetComponent<Unit>().attack <= 0) enemies[enemies.Count - 1].GetComponent<Unit>().attack = 1;
+
+                StartCoroutine(enemies[enemies.Count - 1].GetComponent<Unit>().CollisionJiggle());
             }
-
-            if (enemies[enemies.Count - 1].GetComponent<Unit>().health < 0) enemies[enemies.Count - 1].GetComponent<Unit>().health = 1;
-            if (enemies[enemies.Count - 1].GetComponent<Unit>().attack <= 0) enemies[enemies.Count - 1].GetComponent<Unit>().attack = 1;
-
-            StartCoroutine(enemies[enemies.Count - 1].GetComponent<Unit>().CollisionJiggle());
         }
-        actioning = false;
 
         yield return StartCoroutine(base.OnStartOfBattle());
     }

@@ -316,6 +316,8 @@ public class Unit : MonoBehaviour
     {
         actioning = false;
         yield return null;
+        FindObjectOfType<Shop>().SaveShop();
+
     }
     public virtual IEnumerator OnHurt()
     {

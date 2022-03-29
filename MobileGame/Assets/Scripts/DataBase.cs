@@ -68,7 +68,7 @@ public class DataBase : MonoBehaviour
                 bool ingame = (ingameint == 0 ? false : true);
                 //sections[0].Split(':')[1].Trim('"');
                 //Debug.Log(sections[3].Split(':')[1].Trim('"'));
-                MainMenu.Instance.SetClientInfo(sections[0].Split(':')[1].Trim('"'), sections[1].Split(':')[1].Trim('"'), sections[2].Split(':')[1].Trim('"'), int.Parse(sections[3].Split(':')[1].Trim('"')), ingame, sections[5].Split(':')[1].Trim('"'), int.Parse(sections[6].Split(':')[1].Trim('"')), int.Parse(sections[7].Split(':')[1].Trim('"')), int.Parse(sections[8].Split(':')[1].Trim('"')));
+                MainMenu.Instance.SetClientInfo(sections[0].Split(':')[1].Trim('"'), sections[1].Split(':')[1].Trim('"'), sections[2].Split(':')[1].Trim('"'), int.Parse(sections[3].Split(':')[1].Trim('"')), ingame, sections[5].Split(':')[1].Trim('"'), int.Parse(sections[6].Split(':')[1].Trim('"')), int.Parse(sections[7].Split(':')[1].Trim('"')), int.Parse(sections[8].Split(':')[1].Trim('"')), sections[9].Split(':')[1].Trim('"'), int.Parse(sections[10].Split(':')[1].Trim('"')));
                 FindObjectOfType<Login>().LoginSuccess();
                 GameObject.FindGameObjectWithTag("LoadingText").GetComponent<Text>().text = "";
             }
@@ -124,6 +124,31 @@ public class DataBase : MonoBehaviour
         
 
         using (UnityWebRequest www = UnityWebRequest.Post("https://feudalwars.000webhostapp.com/updatestats.php", form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                Debug.Log(www.downloadHandler.text);
+            }
+        }
+    }
+
+    public IEnumerator SetDBShop(string ID, string SHOPFORMATION, int GOLD)
+    {
+        //string formattedFormation = SAVEDFORMATION.Replace(',', '!');
+
+        WWWForm form = new WWWForm();
+        form.AddField("id", ID);
+        form.AddField("shopFormation", SHOPFORMATION);
+        form.AddField("gold", GOLD);
+
+
+        using (UnityWebRequest www = UnityWebRequest.Post("https://feudalwars.000webhostapp.com/updateshop.php", form))
         {
             yield return www.SendWebRequest();
 

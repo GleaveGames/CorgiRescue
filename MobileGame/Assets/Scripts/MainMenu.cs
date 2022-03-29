@@ -16,6 +16,8 @@ public class MainMenu : MonoBehaviour
     public int wins;
     public int lives;
     public int round;
+    public string shopFormation;
+    public int gold;
 
     public DataBase db;
     public bool continuing = false;
@@ -42,7 +44,7 @@ public class MainMenu : MonoBehaviour
         else Cursor.SetCursor(mouseCursor[0], Vector2.zero, CursorMode.ForceSoftware);
     }
 
-    public void SetClientInfo(string ID, string NAME, string PASSWORD, int TROPHIES, bool INGAME, string SAVEDFORMATION, int WINS, int LIVES, int ROUND)
+    public void SetClientInfo(string ID, string NAME, string PASSWORD, int TROPHIES, bool INGAME, string SAVEDFORMATION, int WINS, int LIVES, int ROUND, string SHOPFORMATION, int GOLD)
     {
         id = ID;
         username = NAME;
@@ -53,6 +55,8 @@ public class MainMenu : MonoBehaviour
         wins = WINS;
         lives = LIVES;
         round = ROUND;
+        shopFormation = SHOPFORMATION;
+        gold = GOLD;
         var fooGroup = Resources.FindObjectsOfTypeAll<MenuInputs>();
         if (fooGroup.Length > 0)
         {
@@ -61,6 +65,14 @@ public class MainMenu : MonoBehaviour
         }
         FindObjectOfType<MenuInputs>().OnLogin();
     }
+
+
+    public void SetShopInfo(string shopFormation, int shopGold)
+    {
+        StartCoroutine(db.SetDBShop(id, shopFormation, shopGold));
+    }
+
+
 
     public void SetDBInfo()
     {

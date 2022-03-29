@@ -3364,6 +3364,8 @@ MonoBehaviour:
   wins: 0
   lives: 0
   round: 0
+  shopFormation: 
+  gold: 0
   db: {fileID: 0}
   continuing: 0
   mouseCursor:

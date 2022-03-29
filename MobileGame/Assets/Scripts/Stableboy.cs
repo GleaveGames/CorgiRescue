@@ -31,9 +31,13 @@ public class Stableboy : Unit
             List<GameObject> enemies = GetEnemies();
             foreach (GameObject u in enemies)
             {
-                StartCoroutine(GiveBuff(u));
-                yield return new WaitForSeconds(0.2f);
+                if (u.GetComponent<Unit>().health > 0)
+                {
+                    StartCoroutine(GiveBuff(u));
+                    yield return new WaitForSeconds(0.2f);
+                }
             }
+                
             yield return new WaitForSeconds(buffTime * 2);
         }
         actioning = false;

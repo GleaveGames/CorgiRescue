@@ -89,12 +89,120 @@ public class Shop : MonoBehaviour
             newSpot.sr = newSpot.go.transform.GetChild(1).GetComponent<SpriteRenderer>();
             newSpot.number = i;
         }
-        ReRoll(true);
+
+        if (!MainMenu.Instance.continuing)
+        {
+            ReRoll(true);
+        }
+        else
+        {
+            ContinueShop();
+        }
 
         if(PlayerPrefs.GetInt("Music") == 0)
         {
             ToggleMusic();
         }
+    }
+
+    private void ContinueShop()
+    {
+        string allCharacters = null;
+        foreach (GameObject u in Units)
+        {
+            allCharacters += u.GetComponent<Unit>().symbol;
+        }
+        string shopFormation = MainMenu.Instance.shopFormation;
+        gc.Gold = MainMenu.Instance.gold;
+
+        //SLOT 1
+        if (shopFormation[0] != '@')
+        {
+            for (int z = 0; z < allCharacters.Length; z++)
+            {
+                if (shopFormation[0] == allCharacters[z])
+                {
+                    GameObject unit = Instantiate(Units[z], ShopSlots[0].go.transform.position, Quaternion.identity);
+                    unit.transform.parent = ShopSlots[0].go.transform;
+                }
+            }
+            if (shopFormation[1] == 'f')
+            {
+                ToggleFreeze(0);
+            }
+        }
+
+        //SLOT 2
+        if (shopFormation[2] != '@')
+        {
+            for (int z = 0; z < allCharacters.Length; z++)
+            {
+                if (shopFormation[2] == allCharacters[z])
+                {
+                    GameObject unit = Instantiate(Units[z], ShopSlots[1].go.transform.position, Quaternion.identity);
+                    unit.transform.parent = ShopSlots[1].go.transform;
+                }
+            }
+            if (shopFormation[3] == 'f')
+            {
+                ToggleFreeze(1);
+            }
+        }
+        //SLOT 3
+        if (shopFormation[4] != '@')
+        {
+            for (int z = 0; z < allCharacters.Length; z++)
+            {
+                if (shopFormation[4] == allCharacters[z])
+                {
+                    GameObject unit = Instantiate(Units[z], ShopSlots[2].go.transform.position, Quaternion.identity);
+                    unit.transform.parent = ShopSlots[2].go.transform;
+                }
+            }
+            if (shopFormation[5] == 'f')
+            {
+                ToggleFreeze(2);
+            }
+        }
+        //SLOT 4
+        if (shopFormation[6] != '@')
+        {
+            for (int z = 0; z < allCharacters.Length; z++)
+            {
+                if (shopFormation[6] == allCharacters[z])
+                {
+                    GameObject unit = Instantiate(Units[z], ShopSlots[3].go.transform.position, Quaternion.identity);
+                    unit.transform.parent = ShopSlots[3].go.transform;
+                }
+            }
+            if (shopFormation[7] == 'f')
+            {
+                ToggleFreeze(3);
+            }
+        }
+
+    }
+
+    private string GetShopFormation()
+    {
+        string shopFormation = "";
+        //string shopFormation = "pnpfpnpf";
+        for (int i = 0; i < 4; i++)
+        {
+            if (ShopSlots[i].go.transform.childCount < 3) shopFormation += "@";
+            else shopFormation += ShopSlots[i].go.transform.GetChild(2).GetComponent<Unit>().symbol;
+            if (ShopSlots[i].frozen) shopFormation += "f";
+            else shopFormation += "n";
+        }
+
+        return shopFormation;
+    }
+
+
+
+    public void SaveShop()
+    {
+        MainMenu.Instance.SetShopInfo(GetShopFormation(), gc.Gold);
     }
 
     private void Update()
@@ -154,6 +262,7 @@ public class Shop : MonoBehaviour
         {
             StartCoroutine(gc.GoldJuice());
         }
+        SaveShop();
     }
 
     public void ToggleFreeze(int spot)
@@ -168,6 +277,7 @@ public class Shop : MonoBehaviour
         {
             sp.frozen = false;
         }
+        SaveShop();
     }
     public IEnumerator UnlockBuilding(int buildingNumber)
     {
