@@ -193,7 +193,7 @@ public class GameController : MonoBehaviour
                     {
                         Gold += draggingObj.GetComponent<Unit>().level;
                         StartCoroutine(draggingObj.GetComponent<Unit>().OnSell());
-                        MainMenu.Instance.SetDBInfo();
+                        ResetFormationForDB();
                     }
                     else if (square != null && !square.GetComponent<GameSquare>().occupied)
                     {
@@ -216,7 +216,7 @@ public class GameController : MonoBehaviour
                         StartCoroutine(oc.GetComponent<Unit>().Combine(draggingObj.GetComponent<Unit>().level * draggingObj.GetComponent<Unit>().level + draggingObj.GetComponent<Unit>().exp - draggingObj.GetComponent<Unit>().level - 1));
                         oc.GetComponent<Unit>().ShowBuffStuff();
                         Destroy(draggingObj);
-                        MainMenu.Instance.SetDBInfo();
+                        ResetFormationForDB();
                     }
                     else if (square != null && square.GetComponent<GameSquare>().occupier != null)
                     {
@@ -266,7 +266,7 @@ public class GameController : MonoBehaviour
                         StartCoroutine(draggingObj.GetComponent<Unit>().Jiggle());
                         draggingObj = null;
                         playClick();
-                        MainMenu.Instance.SetDBInfo();
+                        ResetFormationForDB();
                     }
                     else if (square != null && !square.GetComponent<GameSquare>().occupied && unitNumber < 6)
                     {
@@ -288,7 +288,7 @@ public class GameController : MonoBehaviour
                         draggingObj = null;
                         Gold -= 3;
                         FindObjectOfType<Shop>().CheckForOwned();
-                        MainMenu.Instance.SetDBInfo();
+                        ResetFormationForDB();
                     }
                     else if (square != null && square.GetComponent<GameSquare>().occupier != null && draggingObj.name == square.GetComponent<GameSquare>().occupier.name && square.GetComponent<GameSquare>().occupier.GetComponent<Unit>().level != 3)
                     {
@@ -299,7 +299,7 @@ public class GameController : MonoBehaviour
                         oc.GetComponent<Unit>().ShowBuffStuff();
                         Destroy(draggingObj);
                         Gold -= 3;
-                        MainMenu.Instance.SetDBInfo();
+                        ResetFormationForDB();
                     }
                     else
                     {
@@ -852,6 +852,49 @@ public class GameController : MonoBehaviour
         formation += '[';
         formationWithExp += '[';
 
+        MainMenu.Instance.savedFormation = formationWithExp;
+        MainMenu.Instance.inGame = true;
+        MainMenu.Instance.SetDBInfo();
+    }
+
+    public void ResetFormationForDB()
+    {
+        string formationWithExp = "[";
+        List<Unit> unitsInOrder = new List<Unit>();
+
+        int i = 0;
+        for (int y = -2; y < 1; y++)
+        {
+            for (int x = 0; x < 6; x++)
+            {
+                Collider2D square = Physics2D.OverlapPoint(new Vector2(1.25f * x - 2.5f, y * 1.25f), squares);
+                if (square != null && square.GetComponent<GameSquare>().occupied)
+                {
+                    Unit thisUnit = square.GetComponent<GameSquare>().occupier.GetComponent<Unit>();
+                    formationWithExp += thisUnit.symbol;
+                    unitsInOrder.Add(thisUnit);
+                    //set Stats
+                }
+                else formationWithExp += '.';
+                i++;
+            }
+        }
+        formationWithExp += ']';
+        foreach (Unit u in unitsInOrder)
+        {
+            //Now for formationWithExp
+            formationWithExp += '[';
+            formationWithExp += u.level;
+            formationWithExp += ',';
+            formationWithExp += u.exp;
+            formationWithExp += ',';
+            formationWithExp += u.attack;
+            formationWithExp += ',';
+            formationWithExp += u.health;
+            formationWithExp += ']';
+
+        }
+        formationWithExp += '[';
         MainMenu.Instance.savedFormation = formationWithExp;
         MainMenu.Instance.inGame = true;
         MainMenu.Instance.SetDBInfo();

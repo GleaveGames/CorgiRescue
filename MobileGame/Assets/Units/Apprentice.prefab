@@ -104,9 +104,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'On End of Turn: Clone the Lv1 ability of the unit to the left'
-  UnitText2: 'On End of Turn: Clone the Lv2 ability of the unit to the left'
-  UnitText3: 'On End of Turn: Clone the Lv3 ability of the unit to the left'
+  UnitText1: 'On End of Turn: Resummon as the unit to the left at level 1'
+  UnitText2: 'On End of Turn: Resummon as the unit to the left at level 2'
+  UnitText3: 'On End of Turn: Resummon as the unit to the left at level 3'
 --- !u!61 &538672580819213160
 BoxCollider2D:
   m_ObjectHideFlags: 0
