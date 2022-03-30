@@ -55,10 +55,12 @@ public class GameOverScene : MonoBehaviour
 
                     //set Stats
 
-                    //string[] enemyStats = sections[characterSelect + 1].Split(',');
-                    //newUnit.GetComponent<Unit>().level = int.Parse(enemyStats[0]);
-                    //newUnit.GetComponent<Unit>().attack = int.Parse(enemyStats[1]);
-                    //newUnit.GetComponent<Unit>().health = int.Parse(enemyStats[2].Substring(0, enemyStats[2].Length - 1));
+                    string[] enemyStats = sections[characterSelect + 1].Split(',');
+                    enemyStats[2] = enemyStats[2].Substring(0, enemyStats[2].Length - 1);
+                    images[image].gameObject.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = enemyStats[2];
+                    images[image].gameObject.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = enemyStats[1];
+                    images[image].gameObject.transform.GetChild(1).gameObject.SetActive(true);
+                    images[image].gameObject.transform.GetChild(0).gameObject.SetActive(true);
                     image++;
                 }
             }

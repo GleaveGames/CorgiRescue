@@ -47,7 +47,6 @@ public class Shop : MonoBehaviour
     Image musicBut;
 
     [Header("AudioSources")]
-    [SerializeField]
     AudioSource music;
     [SerializeField]
     public AudioSource reroll;
@@ -64,7 +63,8 @@ public class Shop : MonoBehaviour
         ChurchUnits = new List<GameObject>();
         WorkshopUnits = new List<GameObject>();
         CastleUnits = new List<GameObject>();
-        musicVolumeInit = GetComponent<AudioSource>().volume;
+        music = MainMenu.Instance.GetComponent<AudioSource>();
+        musicVolumeInit = 0.5f;
 
         foreach(GameObject u in Units)
         {
@@ -313,6 +313,7 @@ public class Shop : MonoBehaviour
     {
         if(musicOn)
         {
+            StartCoroutine(LerpMusic(music.volume, 0));
             music.volume = 0;
             musicOn = false;
             musicBut.sprite = musicButtonSprites[1];
@@ -320,11 +321,24 @@ public class Shop : MonoBehaviour
         }
         else
         {
+            StartCoroutine(LerpMusic(music.volume, 0.5f));
             music.volume = musicVolumeInit;
             musicOn = true;
             musicBut.sprite = musicButtonSprites[0];
             PlayerPrefs.SetInt("Music", 1);
         }
+    }
+
+    private IEnumerator LerpMusic(float startVol, float endVol)
+    {
+        float timer = 0;
+        while(timer < 1)
+        {
+            timer += Time.deltaTime;
+            music.volume = Mathf.Lerp(startVol, endVol, timer);
+            yield return null;
+        }
+        music.volume = endVol;
     }
 
     public IEnumerator SpawnNewShopSpot()

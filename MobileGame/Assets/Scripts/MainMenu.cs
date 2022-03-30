@@ -27,14 +27,13 @@ public class MainMenu : MonoBehaviour
     {
         if(MainMenu.Instance != null)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         else
         {
             Instance = this;
             db = GetComponent<DataBase>();
             DontDestroyOnLoad(gameObject);
-            
         }
     }
 

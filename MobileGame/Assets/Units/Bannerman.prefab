@@ -104,9 +104,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   beenPlaced: 0
-  UnitText1: 'End of Turn: If on front row, give 1 random barracks unit +1/+1'
-  UnitText2: 'End of Turn: If on front row, give 2 random barracks unit +1/+1'
-  UnitText3: 'End of Turn: If on front row, give 3 random barracks unit +1/+1'
+  UnitText1: 'Start of Turn: If on front row, give 1 random barracks unit +1/+1'
+  UnitText2: 'Start of Turn: If on front row, give 2 random barracks unit +1/+1'
+  UnitText3: 'Start of Turn: If on front row, give 3 random barracks unit +1/+1'
 --- !u!61 &538672580819213160
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -172,6 +172,7 @@ MonoBehaviour:
   levelPreEndTurn: 0
   expPreEndTurn: 0
   jiggleTime: 0
+  sameSquareSpawner: 0
   attackBuff: 1
   healthBuff: 1
   rowbuff: 010000
