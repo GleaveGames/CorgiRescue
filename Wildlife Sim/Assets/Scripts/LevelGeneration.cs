@@ -5,122 +5,106 @@ using UnityEngine;
 public class LevelGeneration : MonoBehaviour
 {
     public int mapWidth, mapHeight;
-    public float noiseScale;
-    [Range(1, 5)]
-    public int octaves;
-    [Range(0, 0.9f)]
-    public float persistance;
-    [Range(1, 10)]
-    public float lacunarity;
-    [Range(0, 100)]
-    public float grassSpawnChance;
+    
+    public List<GameObject> tileGO;
 
+    public List<bool> boolList;
 
+    List<bool>[,] tileOptions;
 
-    public GameObject block;
-    [Range(0, 1)]
-    public float minBlockValue;
-    [Range(0, 1)]
-    public float minGrassValue;
-    [Range(0, 1)]
-    public float minRockValue;
-    [Range(0, 1)]
-    public float minSnowValue;
-    public Material sand;
-    public Material grass;
-    public Material rock;
-    public Material snow;
-    public int heightMax;
-    public int[,] heightMap;
-
-    public GameObject[] grassSpawns;
+    int[,] confirmedTiles;
 
     private void Start()
     {
+        tileOptions = new List<bool>[mapWidth, mapHeight];
+        confirmedTiles = new int[mapWidth, mapHeight];
         GenerateMap();
+    }
+
+    private float CalculateEntropy(Vector2Int position, int[,] terrainTiles) {
+        float value = 0;
+                
+        //foreach ()
+
+        return value;
+    }
+
+    private void PickTile(Vector2Int position) {
+        //loop through bools in tileOptions and see how many are still available
+        int numTrue = 0;
+        int tileChoice = -10;
+        List<int> myOptions = new List<int>();
+        for (int i =0; i < tileOptions[position.x, position.y].Count; i++)
+        {
+            if (tileOptions[position.x, position.y][i]) myOptions.Add(i);
+        }
+        int randChoice = Random.Range(0, myOptions.Count);
+        tileChoice = myOptions[randChoice];
+
+
+        //SpawnTile
+        GameObject newTile = Instantiate(tileGO[tileChoice], new Vector3(position.x, position.y, 0), Quaternion.identity);
+        newTile.transform.parent = gameObject.transform;
+
+        //Permiate
+        Permiate(position, tileChoice);
+        
+    }
+
+    void Permiate(Vector2Int position, int tileChoice)
+    {
+        //RULES
+        if (position.x == 0 || position.x == mapWidth - 1 || position.y == 0 || position.y == mapHeight - 1) return ;
+        else
+        {
+            for(int i = 0; i < boolList.Count; i++)
+            {
+                if (Mathf.Abs(tileChoice - i) > 1)
+                {
+                    tileOptions[position.x, position.y+1][i] = false;
+                    tileOptions[position.x+1, position.y+1][i] = false;
+                    tileOptions[position.x, position.y-1][i] = false;
+                    tileOptions[position.x-1, position.y-1][i] = false;
+                    tileOptions[position.x+1, position.y][i] = false;
+                    tileOptions[position.x+1, position.y-1][i] = false;
+                    tileOptions[position.x-1, position.y][i] = false;
+                    tileOptions[position.x-1, position.y+1][i] = false;
+                }
+            }
+        }
     }
 
 
 
     public void GenerateMap()
     {
-        float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, noiseScale, octaves, persistance, lacunarity);
-        int[,] intMap = new int[mapWidth, mapHeight];
-        for (int y = 0; y < mapHeight; y++)
-        {
-            for (int x = 0; x < mapWidth; x++)
-            {
-                int yHeight = Mathf.FloorToInt(noiseMap[x, y] * heightMax - minBlockValue * heightMax);
-                //yHeight = 1;
-                intMap[x, y] = yHeight;
-            }
-        }
-        for (int y = 0; y < mapHeight; y++)
-        {
-            for (int x = 0; x < mapWidth; x++)
-            {
-                Vector3 pos = transform.position;
-                pos.x += block.transform.localScale.x * ((-mapWidth / 2) + x);
-                pos.y += block.transform.localScale.z * ((-mapHeight / 2) + y);
-                pos.z += intMap[x, y] * block.transform.localScale.y;
-                Vector3 spawnPos = pos;
-                spawnPos.z += block.transform.localScale.y / 2;
-                if (noiseMap[x, y] > minBlockValue)
-                {
-                    GameObject newblock = Instantiate(block, pos, Quaternion.identity);
-                    newblock.transform.parent = transform;
-                    int numBelow = CheckBelows(intMap, x, y);
+        //INSTANTIATING SHIT
 
-                    if (noiseMap[x, y] > minSnowValue)
-                    {
-                        newblock.GetComponent<Renderer>().material = snow;
-                    }
-                    else if (noiseMap[x, y] > minRockValue)
-                    {
-                        newblock.GetComponent<Renderer>().material = rock;
-                    }
-                    else if (noiseMap[x, y] > minGrassValue)
-                    {
-                        newblock.GetComponent<Renderer>().material = grass;
-                        float chance = Random.Range(0, 100);
-                        /*
-                        if (chance <= grassSpawnChance)
-                        {
-                            GameObject newGO = Instantiate(grassSpawns[Random.Range(0, grassSpawns.Length)], spawnPos, Quaternion.identity);
-                            newGO.transform.parent = transform;
-                            if (newGO.CompareTag("Creature"))
-                            {
-                                newGO.GetComponent<Creature>().pos.x = x;
-                                newGO.GetComponent<Creature>().pos.y = y;
-                                newGO.GetComponent<Creature>().lg = this;
-                            }
-                        }
-                        */
-                    }
-                    else
-                    {
-                        newblock.GetComponent<Renderer>().material = sand;
-                    }
-                    
-                }
-            }
+        for (int x = 0; x < mapWidth; x++)
+        {
+            for (int y = 0; y < mapHeight; y++) {
+                tileOptions[x, y] = new List<bool>();
+                tileOptions[x,y].AddRange(boolList);
+                confirmedTiles[x, y] = -1;
+            } 
         }
-        heightMap = intMap;
-    }
 
-    private int CheckBelows(int[,] intMap, int x, int y)
-    {
-        int numBelow = 0;
-        int myHeight = intMap[x, y];
-        //left
-        if (x > 0) numBelow = myHeight - intMap[x - 1, y];
-        //right
-        if (x < mapWidth - 1) if (numBelow < myHeight - intMap[x + 1, y]) numBelow = myHeight - intMap[x + 1, y];
-        //down
-        if (y > 0) if (numBelow < myHeight - intMap[x, y - 1]) numBelow = myHeight - intMap[x, y - 1];
-        //up
-        if (y < mapHeight - 1) if (numBelow < myHeight - intMap[x, y + 1]) numBelow = myHeight - intMap[x, y + 1];
-        return numBelow;
+        /*
+        for (int i = 0; i < 1000; i++) {
+            int xRand = Random.Range(0, mapWidth);
+            int yRand = Random.Range(0, mapHeight);
+            if (confirmedTiles[xRand, yRand] < 0) PickTile(new Vector2Int(xRand, yRand));
+        } 
+        */
+
+        
+        for (int x = 0; x < mapWidth; x++) {
+            for (int y = 0; y < mapHeight; y++) PickTile(new Vector2Int(x, y));
+        }
+
+        //PickTile(new Vector2Int(mapWidth / 2, mapHeight / 2));
+        
+
     }
 
     public void DestroyMap()
@@ -145,3 +129,11 @@ public class LevelGeneration : MonoBehaviour
         }
     }
 }
+
+/*
+public class Tile {
+    public GameObject go;
+    public string name;
+
+}
+*/
