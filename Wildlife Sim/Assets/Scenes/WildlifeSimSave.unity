@@ -215,13 +215,13 @@ MonoBehaviour:
       canConnect: 0
     - name: Water
       value: 1
-      canConnect: 0
+      canConnect: 1
     - name: Sand
       value: 2
-      canConnect: 0
+      canConnect: 1
     - name: Dirt
       value: 3
-      canConnect: 0
+      canConnect: 1
     - name: Grass
       value: 4
       canConnect: 0
@@ -328,15 +328,15 @@ MonoBehaviour:
       canConnect: 0
     - name: Grass
       value: 4
-      canConnect: 1
+      canConnect: 0
     - name: sTree
       value: 5
       canConnect: 1
     - name: bTree
       value: 6
       canConnect: 1
-  mapWidth: 30
-  mapHeight: 30
+  mapWidth: 100
+  mapHeight: 100
   tileGO:
   - {fileID: 2053809518175329958, guid: 1064a7ffdd6777742a130fea0dd1c6f7, type: 3}
   - {fileID: 2053809518175329958, guid: 202bcc766c192b24d9dbdadba701f031, type: 3}

@@ -45,7 +45,7 @@ public class LevelGeneration : MonoBehaviour
             }
         }
 
-
+        /*
         for (int x = 0; x < mapWidth; x++)
         {
             SetTile(new Vector2Int(x, 0), 0);
@@ -60,6 +60,7 @@ public class LevelGeneration : MonoBehaviour
             SetTile(new Vector2Int(mapWidth - 1, y), 0);
             SetTile(new Vector2Int(mapWidth - 2, y), 0);
         }
+        */
         //INSTANTIATING SHIT
         for (int x = 0; x < mapWidth; x++)
         {
@@ -104,7 +105,9 @@ public class LevelGeneration : MonoBehaviour
         tileCounts[tileChoice]++;
 
         GameObject newTile = Instantiate(tileGO[tileChoice], new Vector3(position.x, position.y, 0), Quaternion.identity);
-        if(tileChoice == 3)
+
+        //random rotation
+        if(tileChoice == 2)
         {
             int choice = Random.Range(0, 4);
             if (choice == 1) newTile.transform.Rotate(new Vector3(0,0,90));
@@ -188,85 +191,57 @@ public class LevelGeneration : MonoBehaviour
 
 
         //Reverse Sytem, start false and add true
-        //Permiate the Next layer
-
-
+        //Permiate the Next layer 1
         Permiate2(new Vector2Int(position.x, position.y + 1), new Vector2Int(position.x, position.y + 2));
         Permiate2(new Vector2Int(position.x, position.y + 1), new Vector2Int(position.x + 1, position.y + 1));
         Permiate2(new Vector2Int(position.x, position.y + 1), new Vector2Int(position.x - 1, position.y + 1));
         Permiate2(new Vector2Int(position.x + 1, position.y), new Vector2Int(position.x + 2, position.y));
         Permiate2(new Vector2Int(position.x, position.y - 1), new Vector2Int(position.x, position.y - 2));
-        Permiate2(new Vector2Int(position.x, position.y + 1), new Vector2Int(position.x + 1, position.y - 1));
-        Permiate2(new Vector2Int(position.x, position.y + 1), new Vector2Int(position.x - 1, position.y - 1));
+        Permiate2(new Vector2Int(position.x, position.y - 1), new Vector2Int(position.x + 1, position.y - 1));
+        Permiate2(new Vector2Int(position.x, position.y - 1), new Vector2Int(position.x - 1, position.y - 1));
         Permiate2(new Vector2Int(position.x - 1, position.y), new Vector2Int(position.x - 2, position.y));
 
-        /*
-        if (CheckValid(position, new Vector2Int(0, 2)))
-        {
-            //initialise fake tileOptions bool list
-            List<bool> fakeOptions = new List<bool>();
-            foreach (Tile t in Tiles) fakeOptions.Add(false);
-            for (int i = 0; i < boolList.Count; i++)
-            {
-                if (tileOptions[position.x, position.y + 1][i])
-                {
-                    for (int j = 0; j < boolList.Count; j++) if (Tiles[i].rules[j].canConnect) fakeOptions[j] = true;
-                }
-            }
+        //Permiate the Next layer 2
+        Permiate2(new Vector2Int(position.x, position.y + 2), new Vector2Int(position.x, position.y + 3));
+        Permiate2(new Vector2Int(position.x, position.y + 2), new Vector2Int(position.x-1, position.y + 2));
+        Permiate2(new Vector2Int(position.x, position.y + 2), new Vector2Int(position.x+1, position.y + 2));
 
-            //fake options is now a list of all potential tile choices but need to check if any are illegal from before
-            for (int i = 0; i < Tiles.Count; i++)
-            {
-                if (!fakeOptions[i]) tileOptions[position.x, position.y + 2][i] = false;
-            }
-        }
-        */
+        Permiate2(new Vector2Int(position.x, position.y - 2), new Vector2Int(position.x, position.y - 3));
+        Permiate2(new Vector2Int(position.x, position.y - 2), new Vector2Int(position.x - 1, position.y - 2));
+        Permiate2(new Vector2Int(position.x, position.y - 2), new Vector2Int(position.x + 1, position.y - 2));
 
-        /*
-        //NEEDS TO EXTEND BEYOND ONCE ITS CHANGED THESE ONES
-        for(int i = 0; i < boolList.Count; i++)
-        {
+        Permiate2(new Vector2Int(position.x + 2, position.y), new Vector2Int(position.x + 3, position.y));
+        Permiate2(new Vector2Int(position.x + 2, position.y), new Vector2Int(position.x + 2, position.y+1));
+        Permiate2(new Vector2Int(position.x + 2, position.y), new Vector2Int(position.x + 2, position.y-1));
+
+        Permiate2(new Vector2Int(position.x - 2, position.y), new Vector2Int(position.x - 3, position.y));
+        Permiate2(new Vector2Int(position.x - 2, position.y), new Vector2Int(position.x - 2, position.y + 1));
+        Permiate2(new Vector2Int(position.x - 2, position.y), new Vector2Int(position.x - 2, position.y - 1));
+
+        
+        //Permiate the Next layer 3
+        Permiate2(new Vector2Int(position.x, position.y + 3), new Vector2Int(position.x, position.y + 4));
+        Permiate2(new Vector2Int(position.x, position.y + 3), new Vector2Int(position.x - 1, position.y + 3));
+        Permiate2(new Vector2Int(position.x, position.y + 3), new Vector2Int(position.x + 1, position.y + 3));
+
+        Permiate2(new Vector2Int(position.x, position.y - 3), new Vector2Int(position.x, position.y - 4));
+        Permiate2(new Vector2Int(position.x, position.y - 3), new Vector2Int(position.x - 1, position.y - 3));
+        Permiate2(new Vector2Int(position.x, position.y - 3), new Vector2Int(position.x + 1, position.y - 3));
+
+        Permiate2(new Vector2Int(position.x + 3, position.y), new Vector2Int(position.x + 4, position.y));
+        Permiate2(new Vector2Int(position.x + 3, position.y), new Vector2Int(position.x + 3, position.y + 1));
+        Permiate2(new Vector2Int(position.x + 3, position.y), new Vector2Int(position.x + 3, position.y - 1));
+
+        Permiate2(new Vector2Int(position.x - 3, position.y), new Vector2Int(position.x - 4, position.y));
+        Permiate2(new Vector2Int(position.x - 3, position.y), new Vector2Int(position.x - 3, position.y + 1));
+        Permiate2(new Vector2Int(position.x - 3, position.y), new Vector2Int(position.x - 3, position.y - 1));
+
+        Permiate2(new Vector2Int(position.x - 1, position.y+2), new Vector2Int(position.x - 2, position.y + 2));
+        Permiate2(new Vector2Int(position.x + 1, position.y+2), new Vector2Int(position.x + 2, position.y + 2));
+        Permiate2(new Vector2Int(position.x + 1, position.y-2), new Vector2Int(position.x + 2, position.y - 2));
+        Permiate2(new Vector2Int(position.x + 1, position.y-2), new Vector2Int(position.x + 2, position.y - 2));
 
 
-        if (Mathf.Abs(tileChoice - i) > 1)
-        {
-            if(CheckValid(position,new Vector2Int(0,1))) tileOptions[position.x, position.y+1][i] = false;
-            if (CheckValid(position, new Vector2Int(0, -1))) tileOptions[position.x, position.y-1][i] = false;
-            if (CheckValid(position, new Vector2Int(1, 0))) tileOptions[position.x+1, position.y][i] = false;
-            if (CheckValid(position, new Vector2Int(-1, 0))) tileOptions[position.x-1, position.y][i] = false;
-
-        }
-        if(Mathf.Abs(tileChoice - i) > 2)
-        {
-            if (CheckValid(position, new Vector2Int(1, -1))) tileOptions[position.x + 1, position.y - 1][i] = false;
-            if (CheckValid(position, new Vector2Int(-1, -1))) tileOptions[position.x - 1, position.y - 1][i] = false;
-            if (CheckValid(position, new Vector2Int(1, 1))) tileOptions[position.x + 1, position.y + 1][i] = false;
-            if (CheckValid(position, new Vector2Int(-1, 1))) tileOptions[position.x - 1, position.y + 1][i] = false;
-
-            if (CheckValid(position, new Vector2Int(2, 0))) tileOptions[position.x + 2, position.y][i] = false;
-            if (CheckValid(position, new Vector2Int(-2, 0))) tileOptions[position.x - 2, position.y][i] = false;
-            if (CheckValid(position, new Vector2Int(0, 2))) tileOptions[position.x, position.y+2][i] = false;
-            if (CheckValid(position, new Vector2Int(0, -2))) tileOptions[position.x + 0, position.y-2][i] = false;
-        }
-        if (Mathf.Abs(tileChoice - i) > 3)
-        {
-            if (CheckValid(position, new Vector2Int(0, 3))) tileOptions[position.x, position.y + 3][i] = false;
-            if (CheckValid(position, new Vector2Int(1, 2))) tileOptions[position.x + 1, position.y + 2][i] = false;
-            if (CheckValid(position, new Vector2Int(2, 1))) tileOptions[position.x + 2, position.y + 1][i] = false;
-            if (CheckValid(position, new Vector2Int(3, 0))) tileOptions[position.x + 3, position.y][i] = false;
-            if (CheckValid(position, new Vector2Int(2, -1))) tileOptions[position.x + 2, position.y-1][i] = false;
-            if (CheckValid(position, new Vector2Int(1, -2))) tileOptions[position.x + 1, position.y-2][i] = false;
-            if (CheckValid(position, new Vector2Int(0, -3))) tileOptions[position.x, position.y-3][i] = false;
-            if (CheckValid(position, new Vector2Int(-1, -2))) tileOptions[position.x-1, position.y-2][i] = false;
-            if (CheckValid(position, new Vector2Int(-2, -1))) tileOptions[position.x-2, position.y-1][i] = false;
-            if (CheckValid(position, new Vector2Int(-3, 0))) tileOptions[position.x-3, position.y][i] = false;
-            if (CheckValid(position, new Vector2Int(-2, 1))) tileOptions[position.x-2, position.y+1][i] = false;
-            if (CheckValid(position, new Vector2Int(-1, 2))) tileOptions[position.x-1, position.y+2][i] = false;
-        }
-        //4
-        //5
-    }
-    */
     }
     bool CheckValid(Vector2Int pos, Vector2Int change)
     {
