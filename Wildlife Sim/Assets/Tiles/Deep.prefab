@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2053809518175329952}
   - component: {fileID: 2053809518175329953}
   m_Layer: 0
-  m_Name: Water
+  m_Name: Deep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 79fe18417d92d524a860fa87ac4daa50, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 151fa421e36d8fb4e8e11277ef88800c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

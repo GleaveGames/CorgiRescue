@@ -152,15 +152,200 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1acf91b1f1a80b44e92a02bf23d6d1f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapWidth: 100
-  mapHeight: 100
+  Tiles:
+  - name: Deep
+    value: 0
+    sprites:
+    - {fileID: 21300000, guid: 151fa421e36d8fb4e8e11277ef88800c, type: 3}
+    rules:
+    - name: Deep
+      value: 0
+      canConnect: 1
+    - name: Water
+      value: 1
+      canConnect: 1
+    - name: Sand
+      value: 2
+      canConnect: 0
+    - name: Dirt
+      value: 3
+      canConnect: 0
+    - name: Grass
+      value: 4
+      canConnect: 0
+    - name: sTree
+      value: 5
+      canConnect: 0
+    - name: bTree
+      value: 6
+      canConnect: 0
+  - name: Water
+    value: 1
+    sprites:
+    - {fileID: 21300000, guid: 79fe18417d92d524a860fa87ac4daa50, type: 3}
+    rules:
+    - name: Deep
+      value: 0
+      canConnect: 1
+    - name: Water
+      value: 1
+      canConnect: 1
+    - name: Sand
+      value: 2
+      canConnect: 1
+    - name: Dirt
+      value: 3
+      canConnect: 0
+    - name: Grass
+      value: 4
+      canConnect: 0
+    - name: sTree
+      value: 5
+      canConnect: 0
+    - name: bTree
+      value: 6
+      canConnect: 0
+  - name: Sand
+    value: 2
+    sprites:
+    - {fileID: 21300000, guid: e3564a0020a52294ea9969bf5dff85e3, type: 3}
+    rules:
+    - name: Deep
+      value: 0
+      canConnect: 0
+    - name: Water
+      value: 1
+      canConnect: 0
+    - name: Sand
+      value: 2
+      canConnect: 0
+    - name: Dirt
+      value: 3
+      canConnect: 0
+    - name: Grass
+      value: 4
+      canConnect: 0
+    - name: sTree
+      value: 5
+      canConnect: 0
+    - name: bTree
+      value: 6
+      canConnect: 0
+  - name: Dirt
+    value: 3
+    sprites:
+    - {fileID: 21300000, guid: 14e003297d711684aa2be20709ad28fa, type: 3}
+    rules:
+    - name: Deep
+      value: 0
+      canConnect: 0
+    - name: Water
+      value: 1
+      canConnect: 0
+    - name: Sand
+      value: 2
+      canConnect: 1
+    - name: Dirt
+      value: 3
+      canConnect: 1
+    - name: Grass
+      value: 4
+      canConnect: 1
+    - name: sTree
+      value: 5
+      canConnect: 0
+    - name: bTree
+      value: 6
+      canConnect: 0
+  - name: Grass
+    value: 4
+    sprites:
+    - {fileID: 21300000, guid: 8aff0c9d5d9950a40bb723b300e827aa, type: 3}
+    rules:
+    - name: Deep
+      value: 0
+      canConnect: 0
+    - name: Water
+      value: 1
+      canConnect: 0
+    - name: Sand
+      value: 2
+      canConnect: 0
+    - name: Dirt
+      value: 3
+      canConnect: 1
+    - name: Grass
+      value: 4
+      canConnect: 1
+    - name: sTree
+      value: 5
+      canConnect: 1
+    - name: bTree
+      value: 6
+      canConnect: 0
+  - name: sTree
+    value: 5
+    sprites:
+    - {fileID: 21300000, guid: 2b221d306abfed445aee936da19a51ad, type: 3}
+    rules:
+    - name: Deep
+      value: 0
+      canConnect: 0
+    - name: Water
+      value: 1
+      canConnect: 0
+    - name: Sand
+      value: 2
+      canConnect: 0
+    - name: Dirt
+      value: 3
+      canConnect: 0
+    - name: Grass
+      value: 4
+      canConnect: 1
+    - name: sTree
+      value: 5
+      canConnect: 1
+    - name: bTree
+      value: 6
+      canConnect: 1
+  - name: bTree
+    value: 6
+    sprites:
+    - {fileID: 21300000, guid: 49ac8ed022bf1474680877d9640ee300, type: 3}
+    rules:
+    - name: Deep
+      value: 0
+      canConnect: 0
+    - name: Water
+      value: 1
+      canConnect: 0
+    - name: Sand
+      value: 2
+      canConnect: 0
+    - name: Dirt
+      value: 3
+      canConnect: 0
+    - name: Grass
+      value: 4
+      canConnect: 1
+    - name: sTree
+      value: 5
+      canConnect: 1
+    - name: bTree
+      value: 6
+      canConnect: 1
+  mapWidth: 30
+  mapHeight: 30
   tileGO:
+  - {fileID: 2053809518175329958, guid: 1064a7ffdd6777742a130fea0dd1c6f7, type: 3}
   - {fileID: 2053809518175329958, guid: 202bcc766c192b24d9dbdadba701f031, type: 3}
   - {fileID: 2053809518175329958, guid: c6de21bdce007454e92e56d0ff088673, type: 3}
+  - {fileID: 2053809518175329958, guid: 4ffd987332f920742aa7ffb538f6b04e, type: 3}
   - {fileID: 2053809518175329958, guid: c7707c0f4ec86ba45b43d5c5a09b8b03, type: 3}
   - {fileID: 2053809518175329958, guid: 2624c8a00cd4c414599e9ef365e93ad7, type: 3}
   - {fileID: 2053809518175329958, guid: 78f5bac7d5977a3459ca84294e4da70c, type: 3}
-  boolList: 0101010101
+  boolList: 01010101010101
 --- !u!4 &21740550
 Transform:
   m_ObjectHideFlags: 0
@@ -278,7 +463,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 17
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -302,7 +487,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 799972073}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 15, y: 15, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
