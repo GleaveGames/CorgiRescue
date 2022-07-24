@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class LevelGeneration : MonoBehaviour
 {
+    [SerializeField]
+    [Range (0,0.05f)]
+    float spawnSpeed;
 
     public List<Tile> Tiles;
 
     public int mapWidth, mapHeight;
     
-    public List<GameObject> tileGO;
+    public GameObject tileGO;
 
     public List<bool> boolList;
 
@@ -66,7 +69,7 @@ public class LevelGeneration : MonoBehaviour
         {
             for (int y = 0; y < mapHeight; y++)
             {
-                yield return new WaitForSeconds(0.01f);
+                yield return new WaitForSeconds(spawnSpeed);
 
                 PickTile(GetEntropies());
             }
@@ -104,7 +107,20 @@ public class LevelGeneration : MonoBehaviour
         Debug.Log(myOptionsWeight.Count);
         tileCounts[tileChoice]++;
 
-        GameObject newTile = Instantiate(tileGO[tileChoice], new Vector3(position.x, position.y, 0), Quaternion.identity);
+        GameObject newTile = Instantiate(tileGO, new Vector3(position.x, position.y, 0), Quaternion.identity);
+        Tile tileType = Tiles[tileChoice];
+        newTile.name = tileType.name;
+        newTile.GetComponent<SpriteRenderer>().sprite = tileType.sprites[Random.Range(0, tileType.sprites.Length)];
+        newTile.GetComponent<SpriteRenderer>().sortingOrder = tileType.layer;
+        if(tileType.child)
+        {
+            GameObject newTileChild = Instantiate(tileGO, new Vector3(position.x, position.y, 0), Quaternion.identity);
+            newTileChild.name = tileType.name;
+            newTileChild.transform.parent = newTile.transform;
+            newTileChild.GetComponent<SpriteRenderer>().sprite = tileType.childSprites[Random.Range(0, tileType.childSprites.Length)];
+            newTileChild.GetComponent<SpriteRenderer>().sortingOrder = tileType.childLayer;
+        }
+
 
         //random rotation
         if(tileChoice == 2)
@@ -290,7 +306,7 @@ public class LevelGeneration : MonoBehaviour
         confirmedTiles[position.x, position.y] = tileChoice;
         tileCounts[tileChoice]++;
 
-        GameObject newTile = Instantiate(tileGO[tileChoice], new Vector3(position.x, position.y, 0), Quaternion.identity);
+        GameObject newTile = Instantiate(tileGO, new Vector3(position.x, position.y, 0), Quaternion.identity);
         if (tileChoice == 3)
         {
             int choice = Random.Range(0, 4);
@@ -314,23 +330,12 @@ public class Tile
     public string name;
     public int value;
     public Sprite[] sprites;
+    public int layer;
     public List<Rule> rules;
-
-    /*
-    public Tile(string name, int id)
-    {
-        name = name;
-        id = id;
-        rules = new List<Rule>(); 
-    }
-
-
-    public Tile()
-    {
-
-    }
-
-    */
+    public bool child;
+    public Sprite[] childSprites;
+    public int childLayer;
+    
 }
 
 [System.Serializable]
