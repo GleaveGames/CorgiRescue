@@ -20,9 +20,16 @@ public class LevelGeneration : MonoBehaviour
 
     float[,] entropies;
 
-    int[,] confirmedTiles;
+    public int[,] confirmedTiles;
+
+    public GameObject[,] tileObjects;
 
     int[] tileCounts;
+
+    [SerializeField]
+    bool IslandMode;
+
+    public bool mapLoaded;
 
     private void Start()
     {
@@ -37,6 +44,7 @@ public class LevelGeneration : MonoBehaviour
         confirmedTiles = new int[mapWidth, mapHeight];
         entropies = new float[mapWidth, mapHeight];
         tileCounts = new int[boolList.Count];
+        tileObjects = new GameObject[mapWidth, mapHeight];
 
         for (int x = 0; x < mapWidth; x++)
         {
@@ -48,22 +56,24 @@ public class LevelGeneration : MonoBehaviour
             }
         }
 
-        /*
-        for (int x = 0; x < mapWidth; x++)
+        if (IslandMode)
         {
-            SetTile(new Vector2Int(x, 0), 0);
-            SetTile(new Vector2Int(x, 1), 0);
-            SetTile(new Vector2Int(x, mapHeight - 1), 0);
-            SetTile(new Vector2Int(x, mapHeight - 2), 0);
+            for (int x = 0; x < mapWidth; x++)
+            {
+                SetTile(new Vector2Int(x, 0), 0);
+                SetTile(new Vector2Int(x, 1), 0);
+                SetTile(new Vector2Int(x, mapHeight - 1), 0);
+                SetTile(new Vector2Int(x, mapHeight - 2), 0);
+            }
+            for (int y = 2; y < mapHeight - 2; y++)
+            {
+                SetTile(new Vector2Int(0, y), 0);
+                SetTile(new Vector2Int(1, y), 0);
+                SetTile(new Vector2Int(mapWidth - 1, y), 0);
+                SetTile(new Vector2Int(mapWidth - 2, y), 0);
+            }
         }
-        for (int y = 2; y < mapHeight - 2; y++)
-        {
-            SetTile(new Vector2Int(0, y), 0);
-            SetTile(new Vector2Int(1, y), 0);
-            SetTile(new Vector2Int(mapWidth - 1, y), 0);
-            SetTile(new Vector2Int(mapWidth - 2, y), 0);
-        }
-        */
+
         //INSTANTIATING SHIT
         for (int x = 0; x < mapWidth; x++)
         {
@@ -74,6 +84,8 @@ public class LevelGeneration : MonoBehaviour
                 PickTile(GetEntropies());
             }
         }
+
+        mapLoaded = true;
     }
 
 
@@ -104,7 +116,6 @@ public class LevelGeneration : MonoBehaviour
             }
         }
         confirmedTiles[position.x,position.y] = tileChoice;
-        Debug.Log(myOptionsWeight.Count);
         tileCounts[tileChoice]++;
 
         GameObject newTile = Instantiate(tileGO, new Vector3(position.x, position.y, 0), Quaternion.identity);
@@ -112,18 +123,24 @@ public class LevelGeneration : MonoBehaviour
         newTile.name = tileType.name;
         newTile.GetComponent<SpriteRenderer>().sprite = tileType.sprites[Random.Range(0, tileType.sprites.Length)];
         newTile.GetComponent<SpriteRenderer>().sortingOrder = tileType.layer;
-        if(tileType.child)
+        tileObjects[position.x, position.y] = newTile;
+
+        if (tileType.child)
         {
             GameObject newTileChild = Instantiate(tileGO, new Vector3(position.x, position.y, 0), Quaternion.identity);
+            Vector3 randOffset = new Vector2(Random.Range(-0.1f,0.1f), Random.Range(-0.1f, 0.1f));
+            newTileChild.transform.position += randOffset;
             newTileChild.name = tileType.name;
             newTileChild.transform.parent = newTile.transform;
             newTileChild.GetComponent<SpriteRenderer>().sprite = tileType.childSprites[Random.Range(0, tileType.childSprites.Length)];
             newTileChild.GetComponent<SpriteRenderer>().sortingOrder = tileType.childLayer;
+            tileObjects[position.x, position.y] = newTileChild;
+
         }
 
 
         //random rotation
-        if(tileChoice == 2)
+        if (tileChoice == 2)
         {
             int choice = Random.Range(0, 4);
             if (choice == 1) newTile.transform.Rotate(new Vector3(0,0,90));
@@ -166,7 +183,6 @@ public class LevelGeneration : MonoBehaviour
                 }
             }
         }
-        Debug.Log(lowestEntropy);
 
         return lowestEntropyPosition;
 

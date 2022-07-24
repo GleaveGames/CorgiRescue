@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
     public Vector2 move;
     public float speed;
-   
+
+    
 
     void Update()
     {
@@ -14,7 +16,9 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow)) move.x --; 
         if (Input.GetKey(KeyCode.RightArrow)) move.x ++; 
         if (Input.GetKey(KeyCode.DownArrow)) move.y --; 
-        if (Input.GetKey(KeyCode.UpArrow)) move.y ++; 
+        if (Input.GetKey(KeyCode.UpArrow)) move.y ++;
+
+        
     }
 
     private void FixedUpdate()
