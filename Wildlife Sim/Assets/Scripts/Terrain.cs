@@ -37,24 +37,29 @@ public class Terrain : MonoBehaviour
             }
         }
 
-        if (currentTerrain == "sTree" || currentTerrain == "bTree")
+        if (playerTransform.GetComponent<PlayerMovement>().currentlyMoving)
         {
-            playerTransform.GetComponent<PlayerMovement>().speed = 2;
-            GameObject currentTile = lg.tileObjects[roundedPosition.x, roundedPosition.y];
-
-            if (currentTile.GetComponent<Animator>() == null)
+            if (currentTerrain == "sTree" || currentTerrain == "bTree")
             {
-                Animator animator = currentTile.AddComponent<Animator>();
-                animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("TileAnimatorController");
-                if (currentTile.GetComponent<SpriteRenderer>().sprite.name == "BigTreeA1") animator.Play("BigTreeA", 0 , 0f);
+                playerTransform.GetComponent<PlayerMovement>().speed = 2;
+                GameObject currentTile = lg.tileObjects[roundedPosition.x, roundedPosition.y];
+
+                if (currentTile.GetComponent<Animator>() == null)
+                {
+                    Animator animator = currentTile.AddComponent<Animator>();
+                    animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("TileAnimatorController");
+                    if (currentTile.GetComponent<SpriteRenderer>().sprite.name == "BigTreeA1") animator.Play("BigTreeA", 0, 0f);
+                    if (currentTile.GetComponent<SpriteRenderer>().sprite.name == "BigTreeB1") animator.Play("BigTreeB", 0, 0f);
+                    if (currentTile.GetComponent<SpriteRenderer>().sprite.name == "BigTreeC1") animator.Play("BigTreeC", 0, 0f);
+                    if (currentTile.GetComponent<SpriteRenderer>().sprite.name == "BigTreeD1") animator.Play("BigTreeD", 0, 0f);
 
 
-                StartCoroutine(KillAnimator(animator));
+                    StartCoroutine(KillAnimator(animator));
+                }
+
             }
-            
+            else playerTransform.GetComponent<PlayerMovement>().speed = 4;
         }
-        else playerTransform.GetComponent<PlayerMovement>().speed = 4;
-
     }
 
 

@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public Vector2 move;
     public float speed;
-
+    public bool currentlyMoving;
     
 
     void Update()
@@ -17,7 +17,8 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow)) move.x ++; 
         if (Input.GetKey(KeyCode.DownArrow)) move.y --; 
         if (Input.GetKey(KeyCode.UpArrow)) move.y ++;
-
+        if (move != new Vector2(0, 0)) currentlyMoving = true;
+        else currentlyMoving = false;
         
     }
 

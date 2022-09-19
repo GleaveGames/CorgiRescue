@@ -86,6 +86,21 @@ public class LevelGeneration : MonoBehaviour
         }
 
         mapLoaded = true;
+
+        //Spawn (move) player
+        int randomSpawn = Random.Range(0, tileCounts[4]);
+        int counter = 0;
+        for (int x = 0; x < mapWidth; x++)
+        {
+            for (int y = 0; y < mapHeight; y++)
+            {
+                if (confirmedTiles[x, y] == 4)
+                {
+                    if (counter == randomSpawn) GameObject.FindGameObjectWithTag("Player").transform.position = new Vector2(x, y);
+                    counter++;
+                }
+            }
+        }        
     }
 
 
@@ -169,7 +184,8 @@ public class LevelGeneration : MonoBehaviour
                     {
                         if (tileOptions[x, y][i])
                         {
-                            sumWeights += (tileCounts[i]+1f)/(mapWidth*mapHeight+1);
+                            //added commonality
+                            sumWeights += (tileCounts[i]+1f)/(Tiles[i].commonality*(mapWidth*mapHeight+1));
                         }
                     }
                     entropies[x, y] = sumWeights;
@@ -344,6 +360,8 @@ public class LevelGeneration : MonoBehaviour
 public class Tile
 {
     public string name;
+    [Range(0.001f,1)]
+    public float commonality;
     public int value;
     public Sprite[] sprites;
     public int layer;
